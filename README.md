@@ -6,8 +6,7 @@ api project starting on w12d3
 
 ## Database Schema Design
 
-![image](https://drive.google.com/file/d/18n08QNiu60t6pAcpqnoeGlX-uXI6MeYK/view?usp=sharing)
-
+<a href="https://drive.google.com/uc?export=view&id=<FILEID>"><img src="https://drive.google.com/uc?export=view&id=18n08QNiu60t6pAcpqnoeGlX-uXI6MeYK" style="width: 650px; max-width: 100%; height: auto" title="Click to enlarge picture" />
 
 ## API Documentation
 
