@@ -6,7 +6,8 @@ api project starting on w12d3
 
 ## Database Schema Design
 
-`<insert database schema design here>`
+![image](https://drive.google.com/file/d/18n08QNiu60t6pAcpqnoeGlX-uXI6MeYK/view?usp=sharing=<FILEID>)
+
 
 ## API Documentation
 
