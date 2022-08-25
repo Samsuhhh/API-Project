@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "csurf": "^1.11.0",
@@ -18,13 +19,11 @@
     "nodemon": "^2.0.19",
     "sqlite3": "^5.0.11"
   },
-    "scripts": {
-      "sequelize": "sequelize",
-      "sequelize-cli": "sequelize-cli",
-      "start": "per-env",
-      "start:development": "nodemon ./bin/www",
-      "start:production": "node ./bin/www"
-    }
-
+  "scripts": {
+    "sequelize": "sequelize",
+    "sequelize-cli": "sequelize-cli",
+    "start": "per-env",
+    "start:development": "nodemon ./bin/www",
+    "start:production": "node ./bin/www"
+  }
 }
-
