@@ -1,6 +1,6 @@
 # API-Project
 api project starting on w12d3
-# `<name of application here>`
+# `<bnb to go wip>`
 
 `airbnb clone WIP`
 
