@@ -2,14 +2,14 @@
 api project starting on w12d3
 # `<bnb to go wip>`
 
-`airbnb clone WIP`
+`airbNbN clone WIP`
 
 ## Database Schema Design
 
-<a href="https://drive.google.com/uc?export=view&id=18n08QNiu60t6pAcpqnoeGlX-uXI6MeYK"><img src="https://drive.google.com/uc?export=view&id=18n08QNiu60t6pAcpqnoeGlX-uXI6MeYK" style="width: 650px; max-width: 100%; height: auto" title="Click to enlarge picture" />
+<a href="https://drive.google.com/uc?export=view&id=1ir5SgqAZZ28y5CPu674N6mXPTNKSlFas"><img src="https://drive.google.com/uc?export=view&id=1ir5SgqAZZ28y5CPu674N6mXPTNKSlFas" style="width: 650px; max-width: 100%; height: auto" title="Click to enlarge picture" />
 
- 
- 
+
+
 ## API Documentation
 
 ## USER AUTHENTICATION/AUTHORIZATION
