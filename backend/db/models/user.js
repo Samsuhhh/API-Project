@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       const { id, username, email, firstName, lastName } = this; // context will be the User instance
       return { id, username, email, firstName, lastName };
     }
-    // checking if ?
+    // checking if ??
     validatePassword(password) {
       return bcrypt.compareSync(password, this.hashedPassword.toString());
     }
