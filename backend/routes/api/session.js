@@ -26,7 +26,6 @@ const validateLogin = [
 ];
 
 
-
 // Log in route handler
 // "Add User login backend endpoint"
 router.post('/', validateLogin, async (req, res, next) => {
