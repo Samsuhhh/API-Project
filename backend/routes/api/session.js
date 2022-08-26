@@ -8,6 +8,7 @@ const router = express.Router();
 
 
 // Log in route handler
+// "Add User login backend endpoint"
 router.post('/', async (req, res, next) => {
     const { credential, password } = req.body;
 
@@ -30,6 +31,7 @@ router.post('/', async (req, res, next) => {
 );
 
 // Log out route handler
+// "Add User logout backend endpoint"
 router.delete(
     '/',
     (_req, res) => {
@@ -39,6 +41,7 @@ router.delete(
 );
 
 // Restore session user route handlers
+// "Add a backend endpoint to get the current user session"
 router.get(
     '/',
     restoreUser,

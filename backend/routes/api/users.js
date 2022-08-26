@@ -9,6 +9,7 @@ const router = express.Router();
 
 
 // Sign up route handler
+//"Add User signup backend endpoint"
 router.post('/', async (req, res) => {
         const { email, password, username } = req.body;
         const user = await User.signup({ email, username, password });
