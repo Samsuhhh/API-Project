@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "pg": "^8.8.0"
+  },
+  "name": "api-project",
+  "description": "api project starting on w12d3 # `<NbNair : wip>`",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+    "scripts": {
+      "install": "npm --prefix backend install backend",
+      "dev:backend": "npm install --prefix backend start",
+      "sequelize": "npm run --prefix backend sequelize",
+      "sequelize-cli": "npm run --prefix backend sequelize-cli",
+      "start": "npm start --prefix backend"
+    },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Samsuhhh/API-Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Samsuhhh/API-Project/issues"
+  },
+  "homepage": "https://github.com/Samsuhhh/API-Project#readme"
+}
