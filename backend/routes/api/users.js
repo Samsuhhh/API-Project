@@ -14,6 +14,7 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 // POST /api/users singup route expects req to have username, email, pw w/
 //password of the user being created. ValidateSignup checks and validates these keys
+// DO NOT REMOVE YET (as per end of Phase 5)
 
 const validateSignup = [
     check('email')
