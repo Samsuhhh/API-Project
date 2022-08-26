@@ -8,11 +8,11 @@ const cookieParser = require('cookie-parser');
 
 const { environment } = require('./config');
 const isProduction = environment === 'production';
+// backend/app.js
 
+const routes = require('./routes')
 const app = express();
-
 app.use(morgan('dev'));
-
 app.use(cookieParser());
 app.use(express.json());
 
@@ -41,6 +41,8 @@ app.use(
     })
 );
 
+// THIS MUST BE USED BEFORE ERROR HANDLERS
+app.use(routes); // Connect all the routes
 
 
 // Catch unhandled requests and forward to error handler.
@@ -54,7 +56,6 @@ app.use((_req, _res, next) => {
 
 const { ValidationError } = require('sequelize');
 
-// ...
 
 // Process sequelize errors
 app.use((err, _req, _res, next) => {
@@ -80,18 +81,6 @@ app.use((err, _req, res, _next) => {
 
 
 
-// backend/app.js
-const routes = require('./routes');
 
-// ...
-
-app.use(routes); // Connect all the routes
-
-
-
-
-
-// backend/app.js
-// ...
 
 module.exports = app;
