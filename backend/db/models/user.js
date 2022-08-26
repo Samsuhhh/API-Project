@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     validatePassword(password) {
       return bcrypt.compareSync(password, this.hashedPassword.toString());
     }
+    
     static getCurrentUserById(id){
       return User.scope("currentUser").findByPk(id);
     }
