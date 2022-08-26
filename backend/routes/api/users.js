@@ -17,6 +17,12 @@ const { handleValidationErrors } = require('../../utils/validation');
 // DO NOT REMOVE YET (as per end of Phase 5)
 
 const validateSignup = [
+    // check('firstName')
+    //     .exists({checkFalsy: true})
+    //     .withMessage('Please provide your First Name'),
+    // check('lastName')
+    //     .exists({ checkFalsy: true })
+    //     .withMessage('Please provide your Last Name'),
     check('email')
     // checks if req.body.email exists and is an email
         .exists({ checkFalsy: true })
