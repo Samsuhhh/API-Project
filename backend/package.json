@@ -12,6 +12,7 @@
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "per-env": "^1.0.2",
+    "pg": "^8.8.0",
     "sequelize": "^6.21.4",
     "sequelize-cli": "^6.4.1"
   },
@@ -26,5 +27,12 @@
     "start": "per-env",
     "start:development": "nodemon ./bin/www",
     "start:production": "node ./bin/www"
-  }
+  },
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "app.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
