@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      
     }
   }
   Spot.init({
@@ -19,11 +20,11 @@ module.exports = (sequelize, DataTypes) => {
     city: DataTypes.STRING,
     state: DataTypes.STRING,
     country: DataTypes.STRING,
-    lat: DataTypes.DECIMAL(8, 4),
-    lng: DataTypes.DECIMAL(8, 4),
+    lat: DataTypes.DECIMAL(5, 8),
+    lng: DataTypes.DECIMAL(5, 8),
     name: DataTypes.STRING,
     description: DataTypes.STRING,
-    price: DataTypes.DECIMAL(2, 2)
+    price: DataTypes.DECIMAL(5, 8)
   }, {
     sequelize,
     modelName: 'Spot',

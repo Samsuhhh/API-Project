@@ -1,6 +1,8 @@
 const express = require('express');
-const { User, Spot } = require('../../db/models');
+const { Spot } = require('../../db/models');
 const router = express.Router();
+
+
 
 router.get('/', async (req, res) => {
     const spots = await Spot.findAll();
