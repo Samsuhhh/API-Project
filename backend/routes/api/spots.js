@@ -1,14 +1,18 @@
 const express = require('express');
-const { Spot } = require('../../db/models');
+const { Spot, SpotImage } = require('../../db/models');
+const { requireAuth } = require('../../utils/auth');
 const router = express.Router();
 
 
-
+// GET ALL SPOTS
 router.get('/', async (req, res) => {
     const spots = await Spot.findAll();
-    res.json(spots)
+    res.json({ "Spots": spots })
 });
 
+
+
+// CREATE A SPOT
 router.post('/', async (req, res) => {
     const user = req.user
     const { address, city, state, country, lat, lng, name, description, price } = req.body
@@ -49,6 +53,31 @@ router.post('/', async (req, res) => {
     };
 
 });
+
+
+// ADD AN IMAGE TO A SPOT
+router.post('/:spotId/images', requireAuth, async (req, res) => {
+    const { spotId } = req.params
+    const { url } = req.body
+    const spot = await Spot.findByPk(spotId);
+
+    if (!spot) {
+        res
+        .json({
+            message: "Spot couldn't be found",
+            statusCode: 404,
+        })
+    }
+
+    const newSpotImg = await SpotImage.create({
+        // spotId: parseInt(spotId),
+        url: url,
+        preview: true
+    })
+    res.json(newSpotImg)
+    
+    
+})
 
 
 
