@@ -76,7 +76,10 @@ module.exports = (sequelize, DataTypes) => {
             if (Validator.isEmail(value)) {
               throw new Error("Cannot be an email.");
             }
-          }
+          },
+          // isUnique(value){
+          //   if(!isUnique) throw new Error('User already exists')
+          // }
         }
       },
       email: {
