@@ -4,6 +4,9 @@ const { requireAuth } = require('../../utils/auth');
 const router = express.Router();
 
 
+
+
+
 //GET ALL SPOTS OF CURRENT USER
 router.get('/current', requireAuth, async (req, res) => {
     const ownerId = req.user.id
@@ -16,6 +19,15 @@ router.get('/current', requireAuth, async (req, res) => {
 
     res.json({Spots: spots})
 })
+
+
+//GET details of a spot from an id
+router.get('/:spotId', async (req, res) => {
+    const { spotId } = req.params
+    const details = await Spot.findByPk(spotId);    //ADD THE INCLUDE MODEL:REVIEWS AND SPOTIMAGES AFTER ASSOCIATIONS
+
+    res.json(details)
+});
 
 
 
