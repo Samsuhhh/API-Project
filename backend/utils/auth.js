@@ -30,10 +30,10 @@ const setTokenCookie = (res, user) => {
 
 // Create (auth) middleware function that will restore the session user based on JWT cookie
 // Create a middleware function that will verify and parse the JWT's payload and search
-    // database for a USER with the id matching the payload.id
+// database for a USER with the id matching the payload.id
 
 // restoreUser middleware will be connected to the API router so that all API 
-    // route handlers will check if there is a current user logged in or not
+// route handlers will check if there is a current user logged in or not
 
 const restoreUser = (req, res, next) => {
     // token parsed from cookies
@@ -60,7 +60,10 @@ const restoreUser = (req, res, next) => {
 };
 
 // If there is no current user, return an error
-const requireAuth = function (req, _res, next) {
+// prevents users who are not logged in from accessing stage changing routes
+const requireAuth = [
+    restoreUser,
+    function (req, _res, next) {
     if (req.user) return next();
 
     const err = new Error('Unauthorized');
@@ -68,13 +71,13 @@ const requireAuth = function (req, _res, next) {
     err.errors = ['Unauthorized'];
     err.status = 401;
     return next(err);
-}
+    }
+];
 
 
 
 
-
-module.exports = { setTokenCookie, restoreUser, requireAuth}
+module.exports = { setTokenCookie, restoreUser, requireAuth }
 
 
 
