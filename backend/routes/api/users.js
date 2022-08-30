@@ -59,6 +59,30 @@ router.post('/', validateSignup, async (req, res) => {
             user,
         });
     }
+
+// router.post('/', validateSignup, async (req, res) => {
+//     const { email, password, username, firstName, lastName } = req.body;
+
+//     try {
+//         const user = await User.signup({
+//             firstName, lastName, email, username, password
+//         });
+//     }
+//     catch {
+//         res.statusCode = 403;
+//         res.json({
+//             message: 'User already exists',
+//             statusCode: res.statusCode,
+//             errors: {
+//                 'email': 'User with that email already exists',
+//                 'username': 'User with that username already exists'
+//             }
+//         })
+//     }
+
+
+
+
 );
 
 
