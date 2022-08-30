@@ -4,6 +4,22 @@ const { requireAuth } = require('../../utils/auth');
 const router = express.Router();
 
 
+//GET ALL SPOTS OF CURRENT USER
+router.get('/current', requireAuth, async (req, res) => {
+    const ownerId = req.user.id
+
+    const spots = await Spot.findAll({
+        where: {
+            ownerId: ownerId
+        }
+    });
+
+    res.json({Spots: spots})
+})
+
+
+
+
 // GET ALL SPOTS
 router.get('/', async (req, res) => {
     const spots = await Spot.findAll();
