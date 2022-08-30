@@ -26,6 +26,13 @@ router.get('/:spotId', async (req, res) => {
     const { spotId } = req.params
     const details = await Spot.findByPk(spotId);    //ADD THE INCLUDE MODEL:REVIEWS AND SPOTIMAGES AFTER ASSOCIATIONS
 
+    if(!details){
+        res.json({
+            message: "Spot couldn't be found",
+            statusCode: 404
+        })
+    }
+
     res.json(details)
 });
 
