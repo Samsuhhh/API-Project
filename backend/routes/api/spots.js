@@ -4,7 +4,50 @@ const { requireAuth } = require('../../utils/auth');
 const router = express.Router();
 
 
+router.put('/:spotId', async (req, res) => {
+    const { spotId } = req.params;
+    const { address, city, state, country, lat, lng, name, description, price } = req.body;
+    const spot = await Spot.findByPk(spotId)
 
+    if (!spot) {
+        res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+        })
+    }
+
+    try {
+        await spot.update({
+            address,
+            city,
+            state,
+            country,
+            lat,
+            lng,
+            name,
+            description,
+            price
+        })
+        return res.json(spot)
+    } catch (error) {
+        res.json({
+            "message": "Validation Error",
+            "statusCode": 400,
+            "errors": {
+                "address": "Street address is required",
+                "city": "City is required",
+                "state": "State is required",
+                "country": "Country is required",
+                "lat": "Latitude is not valid",
+                "lng": "Longitude is not valid",
+                "name": "Name must be less than 50 characters",
+                "description": "Description is required",
+                "price": "Price per day is required"
+            }
+        })
+    }
+
+})
 
 
 //GET ALL SPOTS OF CURRENT USER
@@ -17,7 +60,7 @@ router.get('/current', requireAuth, async (req, res) => {
         }
     });
 
-    res.json({Spots: spots})
+    res.json({ Spots: spots })
 })
 
 
@@ -26,7 +69,7 @@ router.get('/:spotId', async (req, res) => {
     const { spotId } = req.params
     const details = await Spot.findByPk(spotId);    //ADD THE INCLUDE MODEL:REVIEWS AND SPOTIMAGES AFTER ASSOCIATIONS
 
-    if(!details){
+    if (!details) {
         res.json({
             message: "Spot couldn't be found",
             statusCode: 404
@@ -98,10 +141,10 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
 
     if (!spot) {
         res
-        .json({
-            message: "Spot couldn't be found",
-            statusCode: 404,
-        })
+            .json({
+                message: "Spot couldn't be found",
+                statusCode: 404,
+            })
     }
 
     const newSpotImg = await SpotImage.create({
@@ -111,8 +154,8 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
 
     })
     res.json(newSpotImg)
-    
-    
+
+
 })
 
 
