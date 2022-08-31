@@ -58,15 +58,27 @@ router.put('/:spotId', async (req, res) => {
 // GET ALL REVIEWS BY SPOT ID
 router.get('/:spotId/reviews', async (req, res) => {
     const { spotId } = req.params;
-    const findSpot = await Spot.findByPk(spotId, {
+    const findSpot = await Spot.findByPk(spotId)
+
+    const getReviews = await Review.findOne({
+        where: {
+            spotId: spotId
+        },
         include: [
-            {model: Review, as: 'Reviews'},
-            { model: User, as: 'User' },
-            // { model: ReviewImage, as: "REviewImages" }
+            {
+                model: User,
+                attributes: ['id', 'firstName', 'lastName']
+            },
+            {
+                model: ReviewImage,
+                attributes: {
+                    exclude: ['createdAt', 'updatedAt', 'reviewId']
+                }
+            }
         ]
     });
 
-    res.json({Reviews:findSpot})
+    res.json({ Reviews: getReviews })
 
 });
 
