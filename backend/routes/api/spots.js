@@ -207,10 +207,14 @@ router.post('/:spotId/bookings', requireAuth, async(req, res) => {
     for(let i = 0; i < allBookings.length; i++){
         if (
             // startDate >= allBookings[i].startDate && endDate <= allBookings[i].endDate ||
-            Date.parse(startDate) <= Date.parse(allBookings[i].startDate) && Date.parse(endDate) >= Date.parse(allBookings[i].endDate) || 
+            Date.parse(startDate) <= Date.parse(allBookings[i].startDate) && 
+            Date.parse(endDate) >= Date.parse(allBookings[i].endDate) || 
 
-            Date.parse(startDate) >= Date.parse(allBookings[i].startDate) && Date.parse(startDate) <= Date.parse(allBookings[i].endDate) ||
-            Date.parse(endDate) >= Date.parse(allBookings[i].startDate) && Date.parse(endDate) <= Date.parse(allBookings[i].endDate)
+            Date.parse(startDate) >= Date.parse(allBookings[i].startDate) && 
+            Date.parse(startDate) <= Date.parse(allBookings[i].endDate) ||
+            
+            Date.parse(endDate) >= Date.parse(allBookings[i].startDate) && 
+            Date.parse(endDate) <= Date.parse(allBookings[i].endDate)
             ) {
             return res.json({
                 message: "Sorry, this spot is already booked for the specificied dates",
@@ -221,11 +225,6 @@ router.post('/:spotId/bookings', requireAuth, async(req, res) => {
                 } 
             })
         }
-        // console.log(typeof allBookings[1].startDate)
-        // console.log(Date.parse(startDate) , Date.parse(allBookings[1].startDate));
-
-
-
     };
 
     // console.log(allBookings);
