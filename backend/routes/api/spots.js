@@ -1,5 +1,5 @@
 const express = require('express');
-const { Spot, SpotImage } = require('../../db/models');
+const { Spot, SpotImage, Review } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 const router = express.Router();
 
@@ -14,10 +14,12 @@ router.put('/:spotId', async (req, res) => {
             "message": "Spot couldn't be found",
             "statusCode": 404
         })
-    }
+    };
+
 
     try {
         await spot.update({
+
             address,
             city,
             state,
@@ -75,7 +77,6 @@ router.get('/:spotId', async (req, res) => {
             statusCode: 404
         })
     }
-
     res.json(details)
 });
 
@@ -87,6 +88,83 @@ router.get('/', async (req, res) => {
     const spots = await Spot.findAll();
     res.json({ "Spots": spots })
 });
+
+
+    // Create a Review for a Spot based on Spot's Id
+router.post('/:spotId/reviews', requireAuth, async (req, res) => {
+    const { spotId } = req.params;
+    const spot = await Spot.findByPk(spotId);
+
+    // if we cannot find spotbyPk
+    if (!spot) {
+        res.json({
+            message: "Spot couldn't be found",
+            statusCode: 404
+        })
+    };
+
+    // find if Review Exists and if so, throw the error
+    const reviewExists = await Review.findOne({
+        where: {
+            userId: req.user.id
+        }
+    });
+    if (reviewExists) {
+        res.json({
+            message: "User already has a review for this spot",
+            statusCode: 403
+        });
+    }; 
+
+    // Try to create a new review, if validation/constraints aren't met, throw an error
+    try {
+        const newReview = await Review.create({
+            userId: req.user.id,
+            spotId: spotId,
+            review: "This was an awesome spot!",
+            stars: 5
+        });
+        res.json(newReview)
+
+    } catch (error) {
+        res.json({
+            message: 'Validation error',
+            statusCode: 400,
+            errors: {
+                review: 'Review text is required',
+                stars: 'Stars must be an integer from 1 to 5'
+            }
+        });
+    };
+
+});
+
+
+// ADD AN IMAGE TO A SPOT
+router.post('/:spotId/images', requireAuth, async (req, res) => {
+    const { spotId } = req.params
+    const { url } = req.body
+    const spot = await Spot.findByPk(spotId);
+
+    if (!spot) {
+        res
+            .json({
+                message: "Spot couldn't be found",
+                statusCode: 404,
+            })
+    }
+
+    const newSpotImg = await SpotImage.create({
+        // spotId: parseInt(spotId),
+        url: url,
+        preview: true,
+
+    })
+    res.json(newSpotImg)
+
+
+});
+
 
 
 
@@ -133,30 +211,7 @@ router.post('/', async (req, res) => {
 });
 
 
-// ADD AN IMAGE TO A SPOT
-router.post('/:spotId/images', requireAuth, async (req, res) => {
-    const { spotId } = req.params
-    const { url } = req.body
-    const spot = await Spot.findByPk(spotId);
 
-    if (!spot) {
-        res
-            .json({
-                message: "Spot couldn't be found",
-                statusCode: 404,
-            })
-    }
-
-    const newSpotImg = await SpotImage.create({
-        // spotId: parseInt(spotId),
-        url: url,
-        preview: true,
-
-    })
-    res.json(newSpotImg)
-
-
-})
 
 
 
