@@ -10,17 +10,53 @@ router.get('/current', requireAuth, async (req, res) => {
     const userId = req.user.id
 
     const reviews = await Review.findAll({
-        include:[{model: User, as: 'User'}, {model: ReviewImage, as: "ReviewImages"}, {model: Spot, as: "Spot"}],
+        include: [{ model: User, as: 'User' }, { model: ReviewImage, as: "ReviewImages" }, { model: Spot, as: "Spot" }],
         where: {
             userId: userId
-        }, 
+        },
     });
 
-    res.json({ Reviews: reviews})
+    res.json({ Reviews: reviews })
 });
 
 
 
+//EDIT a REVIEW
+
+router.put('/:reviewId', requireAuth, async (req, res) => {
+    const { reviewId } = req.params;
+    const findReview = await Review.findByPk(reviewId);
+    const { review, stars } = req.body;
+
+    if (!findReview) {
+        res.json({
+            message: "Review couldn't be found",
+            statusCode: 404
+        })
+    };
+
+
+    try {
+        findReview.update({
+            review: review,
+            stars, stars
+        });
+
+        res.json({findReview})
+        
+    } catch (error) {
+        res.json({
+            "message": "Validation error",
+            statusCode: 400,
+            errors: {
+                review: "Review text is required",
+                stars: "Stars must be an integer from 1 to 5",
+            }
+        });
+    };
+
+
+})
 
 
 
@@ -28,8 +64,8 @@ router.get('/current', requireAuth, async (req, res) => {
 
 // create an image for a review
 router.post('/:reviewId/images', requireAuth, async (req, res) => {
-    const {reviewId} = req.params;
-    const {url} = req.body;
+    const { reviewId } = req.params;
+    const { url } = req.body;
     const findReview = await Review.findByPk(reviewId);
 
     if (!findReview) {
