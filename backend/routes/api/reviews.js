@@ -24,6 +24,8 @@ router.get('/current', requireAuth, async (req, res) => {
 
 
 
+
+
 // create an image for a review
 router.post('/:reviewId/images', requireAuth, async (req, res) => {
     const {reviewId} = req.params;

@@ -78,6 +78,14 @@ router.get('/:spotId/reviews', async (req, res) => {
         ]
     });
 
+    // error handler if errock check invalid id
+    if (!getReviews) {
+        res.json( {
+            message: "Spot couldn't be found",
+            statusCode: 404
+        })
+    };
+
     res.json({ Reviews: getReviews })
 
 });
