@@ -182,7 +182,7 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
 });
 
 
-// create a BOOKING based on SPOT ID
+// CREATE a BOOKING based on SPOT ID
 router.post('/:spotId/bookings', requireAuth, async(req, res) => {
     const {spotId} = req.params;
     const { startDate, endDate } = req.body;
@@ -212,7 +212,7 @@ router.post('/:spotId/bookings', requireAuth, async(req, res) => {
 
             Date.parse(startDate) >= Date.parse(allBookings[i].startDate) && 
             Date.parse(startDate) <= Date.parse(allBookings[i].endDate) ||
-            
+
             Date.parse(endDate) >= Date.parse(allBookings[i].startDate) && 
             Date.parse(endDate) <= Date.parse(allBookings[i].endDate)
             ) {
@@ -227,7 +227,6 @@ router.post('/:spotId/bookings', requireAuth, async(req, res) => {
         }
     };
 
-    // console.log(allBookings);
 
     // endDate cannot be on or before startDate
     if (endDate <= startDate) {
