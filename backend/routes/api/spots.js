@@ -4,6 +4,11 @@ const { requireAuth } = require('../../utils/auth');
 const router = express.Router();
 
 
+//const validateSpotCreation = VALIDATOR
+
+
+
+
 router.put('/:spotId', async (req, res) => {
     const { spotId } = req.params;
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
@@ -13,12 +18,11 @@ router.put('/:spotId', async (req, res) => {
         res.json({
             "message": "Spot couldn't be found",
             "statusCode": 404
-        })
+        });
     };
 
     try {
         await spot.update({
-
             address,
             city,
             state,
@@ -28,8 +32,9 @@ router.put('/:spotId', async (req, res) => {
             name,
             description,
             price
-        })
-        return res.json(spot)
+        });
+        return res.json(spot);
+
     } catch (error) {
         res.json({
             "message": "Validation Error",
@@ -45,10 +50,10 @@ router.put('/:spotId', async (req, res) => {
                 "description": "Description is required",
                 "price": "Price per day is required"
             }
-        })
+        });
     }
 
-})
+});
 
 
 //GET ALL SPOTS OF CURRENT USER

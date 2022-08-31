@@ -58,6 +58,8 @@ router.post('/', validateSignup, async (req, res) => {
         return res.json({
             user,
         });
+
+        // FINISH ERROR HANDLER?
     }
 
 // router.post('/', validateSignup, async (req, res) => {
