@@ -1,5 +1,5 @@
 const express = require('express');
-const { Spot, SpotImage, Review } = require('../../db/models');
+const { Spot, SpotImage, Review, ReviewImage, User } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 const router = express.Router();
 
@@ -55,6 +55,23 @@ router.put('/:spotId', async (req, res) => {
 
 });
 
+// GET ALL REVIEWS BY SPOT ID
+router.get('/:spotId/reviews', async (req, res) => {
+    const { spotId } = req.params;
+    const findSpot = await Spot.findByPk(spotId, {
+        include: [
+            {model: Review, as: 'Reviews'},
+            { model: User, as: 'User' },
+            // { model: ReviewImage, as: "REviewImages" }
+        ]
+    });
+
+    res.json({Reviews:findSpot})
+
+});
+
+
+
 
 //GET ALL SPOTS OF CURRENT USER
 router.get('/current', requireAuth, async (req, res) => {
@@ -67,7 +84,7 @@ router.get('/current', requireAuth, async (req, res) => {
     });
 
     res.json({ Spots: spots })
-})
+});
 
 
 //GET details of a spot from an id
@@ -94,7 +111,7 @@ router.get('/', async (req, res) => {
 });
 
 
-    // Create a Review for a Spot based on Spot's Id
+// Create a Review for a Spot based on Spot's Id
 router.post('/:spotId/reviews', requireAuth, async (req, res) => {
     const { spotId } = req.params;
     const spot = await Spot.findByPk(spotId);
@@ -118,7 +135,7 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
             message: "User already has a review for this spot",
             statusCode: 403
         });
-    }; 
+    };
 
     // Try to create a new review, if validation/constraints aren't met, throw an error
     try {

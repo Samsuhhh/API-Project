@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     stars: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'Review',
+    modelName: 'Review'
   });
   return Review;
 };
