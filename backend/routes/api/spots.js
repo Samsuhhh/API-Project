@@ -7,7 +7,7 @@ const router = express.Router();
 router.put('/:spotId', async (req, res) => {
     const { spotId } = req.params;
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
-    const spot = await Spot.findByPk(spotId)
+    const spot = await Spot.findByPk(spotId);
 
     if (!spot) {
         res.json({
@@ -15,7 +15,6 @@ router.put('/:spotId', async (req, res) => {
             "statusCode": 404
         })
     };
-
 
     try {
         await spot.update({
@@ -120,7 +119,7 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
     try {
         const newReview = await Review.create({
             userId: req.user.id,
-            spotId: spotId,
+            spotId: Number(spotId),
             review: "This was an awesome spot!",
             stars: 5
         });
