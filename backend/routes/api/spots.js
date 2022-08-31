@@ -1,8 +1,9 @@
 const express = require('express');
-const { Spot, SpotImage, Review, ReviewImage, User } = require('../../db/models');
+const { Spot, SpotImage, Review, ReviewImage, User, Booking } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 const router = express.Router();
-
+const sequelize = require('sequelize');
+const { Op } = require('sequelize');
 
 //const validateSpotCreation = VALIDATOR
 
@@ -179,6 +180,72 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
     };
 
 });
+
+
+// create a booking based on spotId
+router.post('/:spotId/bookings', requireAuth, async(req, res) => {
+    const {spotId} = req.params;
+    const { startDate, endDate } = req.body;
+    const findSpot = await Spot.findByPk(spotId);
+    const { userId } = req.user.id
+
+    if (!findSpot) {
+        return res.json({
+            message: "Spot couldn't be found",
+            statusCode: 404
+        })
+    };
+
+    // find all existing bookings
+    const allBookings = await Booking.findAll({
+        where: {
+            spotId: spotId
+        }
+    });
+
+    // checks if proposed start/end date is conflicting with any existing bookings
+    for(let i = 0; i < allBookings.length; i++){
+        if (startDate >= allBookings[i].startDate && endDate <= allBookings[i].endDate ||
+            startDate <= allBookings[i].startDate && endDate >= allBookings[i].endDate || 
+            startDate >= allBookings[i].startDate && startDate <= allBookings[i].endDate ||
+            endDate >= allBookings[i].startDate && endDate <= allBookings[i].endDate
+            ) {
+            return res.json({
+                message: "Sorry, this spot is already booked for the specificied dates",
+                statusCode: 403,
+                errors: {
+                    startDate: "Start date conflicts with an existing booking",
+                    endDate: "End date conflicts with an existing booking"
+                } 
+            })
+        }
+    };
+
+    // endDate cannot be on or before startDate
+    if (endDate <= startDate) {
+        return res.json({
+            message: "Validation Error",
+            statusCode: 400,
+            errors: {
+                "endDate": "endDate cannot be on or before startDate"
+            }
+         })
+    };
+
+    const newBooking = await Booking.create({
+        spotId: spotId,
+        userId: userId,
+        startDate: startDate,
+        endDate: endDate,
+    });
+
+    return res.json(newBooking)
+
+    
+
+});
+
+
 
 
 // ADD AN IMAGE TO A SPOT
