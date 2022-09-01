@@ -16,7 +16,7 @@ module.exports = {
       url: {
         type: Sequelize.STRING
       },
-      preview: {
+      preview: {  
         type: Sequelize.BOOLEAN
       },
       createdAt: {
