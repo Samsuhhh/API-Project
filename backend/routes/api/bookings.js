@@ -27,7 +27,9 @@ router.get('/current', requireAuth, async (req, res) => {
 });
 
 
-// EDIT a Booking
+
+
+// EDIT a Booking with all conflicting date checks
 router.put('/:bookingId', requireAuth, async (req, res) => {
     const { bookingId } = req.params;
     const { startDate, endDate } = req.body;
@@ -50,7 +52,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
             .json({
                 message: "Past bookings can't be modified",
                 statusCode: res.statusCode
-            })
+            });
     };
 
     const currentBookings = await Booking.findAll({
@@ -78,7 +80,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
                         startDate: "Start date conflicts with an existing booking",
                         endDate: "End date conflicts with an existing booking"
                     }
-                })
+                });
         };
     };
 
@@ -113,9 +115,11 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
     const findBooking = await Booking.findByPk(bookingId)
 
     if (!findBooking) {
-        return res.json({
+        return res
+            .status(404)
+            .json({
             message: "Booking couldn't be found",
-            statusCode: 404
+            statusCode: res.statusCode
         })
     };
 
@@ -132,7 +136,7 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
             .status(404)
             .json({
                 message: "Bookings that have been started can't be deleted",
-                statusCode: 404
+                statusCode: res.statusCode
             })
     };
 
