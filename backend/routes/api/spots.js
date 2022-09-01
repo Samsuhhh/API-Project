@@ -376,11 +376,15 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
 
     if (deleteSpot.ownerId === userId) {
         deleteSpot.destroy();
-        res.json({
+        return res.json({
             message: "Successfully deleted",
             statusCode: 200
         });
-    };
+    } else {
+        return res.json({
+            message: "You are not the owner of this location",
+        })
+    }
 });
 
 
