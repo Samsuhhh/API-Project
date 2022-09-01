@@ -164,10 +164,63 @@ router.get('/:spotId', async (req, res) => {
 
 
 
-// GET ALL SPOTS
+// GET ALL SPOTS; ADDING PAGINATION
 router.get('/', async (req, res) => {
-    const spots = await Spot.findAll();
-    res.json({ "Spots": spots })
+
+    let { minLat, maxLat, minLng, maxLng, minPrice, maxPrice, page, size } = req.query;
+    //PAGINATION and Query Filters
+    page = parseInt(page);
+    size = parseInt(size);
+
+    if (page > 10) page = 10;
+    if (!page || isNaN(page)) page = 1;
+    if (!size || isNaN(size) || size > 20) size = 20;
+
+    if (page < 0 || size < 0 || maxPrice < 0 || minPrice < 0) {
+        return res
+            .status(404)
+            .json({
+                message: "Validation Error",
+                statusCode: res.statusCode,
+                errors: {
+                    "page": "Page must be greater than or equal to 0",
+                    "size": "Size must be greater than or equal to 0",
+                    "minPrice": "Maximum price must be greater than or equal to 0",
+                    "maxPrice": "Minimum price must be greater than or equal to 0"
+                }
+            });
+    };
+
+    // if (typeof minPrice !== 'decimal' ||
+    //     typeof maxPrice !== 'decimal' ||
+    //     typeof minLat !== 'decimal' ||
+    //     typeof maxLat !== 'decimal'
+    // ) {
+    //     return res
+    //         .status(400)
+    //         .json({
+    //             message: "Validation Error",
+    //             statuscode: res.statusCode,
+    //             errors: {
+    //                 "maxLat": "Maximum latitude is invalid",
+    //                 "minLat": "Minimum latitude is invalid",
+    //                 "minLng": "Maximum longitude is invalid",
+    //                 "maxLng": "Minimum longitude is invalid"
+    //             }
+    //         })
+    // };
+
+    let pagination = {};
+    if (page >= 0 && size >= 0) {
+        pagination.limit = size;
+        pagination.offset = size * (page - 1);
+    };
+
+    const spots = await Spot.findAll({
+        ...pagination
+    });
+
+    return res.json({ "Spots": spots, page, size });
 });
 
 
