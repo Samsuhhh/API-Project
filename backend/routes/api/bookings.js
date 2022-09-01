@@ -22,12 +22,11 @@ router.get('/current', requireAuth, async (req, res) => {
     })
 
     return res.json({Bookings: myBookings})
-})
+});
 
 
 
-
-
+// DELETE a Booking
 router.delete('/:bookingId', requireAuth, async (req, res) => {
     const {bookingId} = req.params; 
     const findBooking = await Booking.findByPk(bookingId)
