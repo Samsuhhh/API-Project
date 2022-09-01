@@ -1,8 +1,44 @@
 const express = require('express');
-const { Booking } = require('../../db/models');
+const { Booking, User, Spot } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 const router = express.Router();
 const sequelize = require('sequelize');
+
+
+
+router.get('/current', requireAuth, async (req, res) => {
+    const userId = req.user.id
+    // const findUser = await User.findByPk(req.user.id)
+    const myBookings = await Booking.findAll({
+        where: {
+            userId: req.user.id
+        }, 
+        include:[
+            {model: Spot,
+            attributes: {
+                exclude: ['createdAt', 'updatedAt']
+            }}
+        ],
+    })
+
+    return res.json({Bookings: myBookings})
+})
+
+
+// router.get('/current', requireAuth, async (req, res) => {
+//     const ownerId = req.user.id
+
+//     const spots = await Spot.findAll({
+//         where: {
+//             ownerId: ownerId
+//         }
+//     });
+
+//     res.json({ Spots: spots })
+// });
+
+
+
 
 
 router.delete('/:bookingId', requireAuth, async (req, res) => {

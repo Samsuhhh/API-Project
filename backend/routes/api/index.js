@@ -1,6 +1,6 @@
 // backend/routes/api/index.js
 const router = require("express").Router();
-const bookingRouter = require('./bookings.js');
+const bookingsRouter = require('./bookings.js');
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 const spotsRouter = require('./spots.js');
@@ -12,7 +12,7 @@ const { restoreUser } = require("../../utils/auth.js");
 // If current user session is not valid, set req.user to null
 router.use(restoreUser);
 
-router.use('/bookings', bookingRouter)
+router.use('/bookings', bookingsRouter)
 
 router.use('/session', sessionRouter);
 

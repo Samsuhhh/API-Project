@@ -187,7 +187,7 @@ router.post('/:spotId/bookings', requireAuth, async(req, res) => {
     const {spotId} = req.params;
     const { startDate, endDate } = req.body;
     const findSpot = await Spot.findByPk(spotId);
-    const { userId } = req.user.id
+    const userId  = req.user.id
 
     if (!findSpot) {
         return res.json({
