@@ -42,8 +42,8 @@ router.put('/:reviewId', requireAuth, async (req, res) => {
             stars, stars
         });
 
-        res.json({findReview})
-        
+        res.json({ findReview })
+
     } catch (error) {
         res.json({
             "message": "Validation error",
@@ -54,10 +54,7 @@ router.put('/:reviewId', requireAuth, async (req, res) => {
             }
         });
     };
-
-
-})
-
+});
 
 
 
@@ -91,11 +88,43 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
     const addImage = await ReviewImage.create({
         url,
         reviewId: reviewId
-    })
+    });
+
     res.json(addImage);
-
-
 });
+
+
+
+
+// DELETE a REVIEW
+
+router.delete('/:reviewId', requireAuth, async (req, res) => {
+    const { reviewId } = req.params;
+    const deleteReview = await Review.findByPk(reviewId);
+    const userId = req.user.id;
+
+    if (!deleteReview) {
+        return res
+            .status(404)
+            .json({
+                message: "Review couldn't be found",
+                statusCode: 404
+            });
+    };
+
+    if (deleteReview.userId === userId) {
+        deleteReview.destroy();
+        return res.json({
+            message: "Successfully deleted",
+            statusCode: 200
+        });
+    } else {
+        return res.json({
+            message: "You are not the owner of this Review",
+        })
+    }
+});
+
 
 
 
