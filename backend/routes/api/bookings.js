@@ -5,7 +5,7 @@ const router = express.Router();
 const sequelize = require('sequelize');
 
 
-
+// GET All current User's BOOKINGS
 router.get('/current', requireAuth, async (req, res) => {
     const userId = req.user.id
     // const findUser = await User.findByPk(req.user.id)
@@ -23,19 +23,6 @@ router.get('/current', requireAuth, async (req, res) => {
 
     return res.json({Bookings: myBookings})
 })
-
-
-// router.get('/current', requireAuth, async (req, res) => {
-//     const ownerId = req.user.id
-
-//     const spots = await Spot.findAll({
-//         where: {
-//             ownerId: ownerId
-//         }
-//     });
-
-//     res.json({ Spots: spots })
-// });
 
 
 

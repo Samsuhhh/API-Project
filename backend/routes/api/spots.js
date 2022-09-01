@@ -92,6 +92,45 @@ router.get('/:spotId/reviews', async (req, res) => {
 });
 
 
+// GET All BOOKINGS for a Spot by ID
+router.get('/:spotId/bookings', requireAuth, async (req, res) => {
+    const userId = req.user.id;
+    const {spotId} = req.params;
+    
+    const spot = await Spot.findByPk(spotId)
+
+    if (!spot) {
+        return res
+                .status(404)
+                .json({
+                    message: "Spot couldn't be found",
+                    statusCode: 404
+                })
+    };
+
+    const spotBookings = await Booking.findOne({
+        where: {
+            spotId: spotId
+        },
+        include: [{model: User, attributes: ['id', 'firstName', 'lastName']}]
+    });
+
+    const nonOwnerFilter = await Booking.findOne({
+        where: {
+            spotId: spotId
+        },
+        attributes: ['spotId', 'startDate', 'endDate']
+    });
+
+    if (userId === spot.ownerId) {
+        return res.json({ Bookings: spotBookings })
+    } else {
+        return res.json({nonOwnerFilter})
+    };
+
+});
+
+
 
 
 //GET ALL SPOTS OF CURRENT USER
