@@ -286,12 +286,7 @@ router.post('/:spotId/bookings', requireAuth, async(req, res) => {
     });
 
     return res.json(newBooking)
-
-    
-
 });
-
-
 
 
 // ADD AN IMAGE TO A SPOT
@@ -318,7 +313,6 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
 
 
 });
-
 
 
 
@@ -364,6 +358,30 @@ router.post('/', async (req, res) => {
 
 });
 
+
+// DELETE A SPOT
+router.delete('/:spotId', requireAuth, async (req, res) => {
+    const {spotId} = req.params;
+    const userId = req.user.id;
+    const deleteSpot = await Spot.findByPk(spotId);
+
+    if ( !deleteSpot ) {
+        return res
+            .status(404)
+            .json({
+                message: "Spot couldn't be found",
+                statusCode: 404
+            });
+    };
+
+    if (deleteSpot.ownerId === userId) {
+        deleteSpot.destroy();
+        res.json({
+            message: "Successfully deleted",
+            statusCode: 200
+        });
+    };
+});
 
 
 
