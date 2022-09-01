@@ -12,10 +12,7 @@ module.exports = {
       ownerId: {
         type: Sequelize.INTEGER,
         onDeleete: 'CASCADE',
-        references: {
-          model: 'Users'
-        }
-        
+        references: {model: 'Users'}
       },
       address: {
         type: Sequelize.STRING,
