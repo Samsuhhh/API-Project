@@ -87,7 +87,7 @@ router.get('/:spotId/reviews', async (req, res) => {
         })
     };
 
-    res.json({ Reviews: getReviews })
+    return res.json({ Reviews: getReviews })
 
 });
 
@@ -143,7 +143,7 @@ router.get('/current', requireAuth, async (req, res) => {
         }
     });
 
-    res.json({ Spots: spots })
+    return res.json({ Spots: spots })
 });
 
 
@@ -152,13 +152,34 @@ router.get('/:spotId', async (req, res) => {
     const { spotId } = req.params
     const details = await Spot.findByPk(spotId);    //ADD THE INCLUDE MODEL:REVIEWS AND SPOTIMAGES AFTER ASSOCIATIONS
 
+
     if (!details) {
-        res.json({
+        return res.json({
             message: "Spot couldn't be found",
             statusCode: 404
         })
-    }
-    res.json(details)
+    };
+
+    const reviewCount = await Review.count({ where: { spotId: spotId } })
+
+    const sumOfStars = await Review.sum('stars', {
+        where: { spotId: spotId }
+    });
+
+    const spotImage = await SpotImage.findAll({
+        where: { spotId: spotId },
+        attributes: ['id', 'url', 'preview']
+    });
+
+    let avgRating = (sumOfStars / reviewCount).toFixed(1);
+
+    const resDetails = details.toJSON();
+    resDetails.numReviews = reviewCount;
+    resDetails.SpotImages = spotImage;
+    resDetails.avgRating = Number(avgRating);
+
+
+    return res.json(resDetails)
 });
 
 
