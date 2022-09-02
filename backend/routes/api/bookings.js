@@ -1,8 +1,9 @@
 const express = require('express');
-const { Booking, User, Spot } = require('../../db/models');
+const { Booking, User, Spot, SpotImage } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 const router = express.Router();
 const sequelize = require('sequelize');
+const booking = require('../../db/models/booking');
 
 
 // GET All current User's BOOKINGS
@@ -11,17 +12,42 @@ router.get('/current', requireAuth, async (req, res) => {
     // const findUser = await User.findByPk(req.user.id)
     const myBookings = await Booking.findAll({
         where: {
-            userId: req.user.id
+            userId: userId
         },
         include: [
             {
                 model: Spot,
                 attributes: {
                     exclude: ['createdAt', 'updatedAt']
-                }
-            }
+                },
+            },
+
         ],
-    })
+    });
+
+
+    // LAZY LOADED
+    for (let i = 0; i < myBookings.length; i++) {
+        let bookingsPreview = myBookings[i].toJSON();
+
+        let bookingImg = bookingsPreview.Spot.id;
+        const spotImg = await SpotImage.findOne({
+            where: {
+                spotId: bookingImg,
+                preview: true
+            }
+        });
+
+        if (spotImg) {
+            bookingsPreview.Spot.previewImage = spotImg.url
+        } else {
+            bookingsPreview.Spot.previewImage = 'No image available :('
+        }
+        myBookings[i] = bookingsPreview;
+    };
+
+
+
 
     return res.json({ Bookings: myBookings })
 });
@@ -56,7 +82,8 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
     };
 
     const currentBookings = await Booking.findAll({
-        where: { spotId: findBooking.spotId }
+        where: { spotId: findBooking.spotId },
+
     });
 
     for (let i = 0; i < currentBookings.length; i++) {
@@ -83,6 +110,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
                 });
         };
     };
+
 
     try {
         await findBooking.update({
@@ -119,9 +147,9 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
         return res
             .status(404)
             .json({
-            message: "Booking couldn't be found",
-            statusCode: res.statusCode
-        })
+                message: "Booking couldn't be found",
+                statusCode: res.statusCode
+            })
     };
 
 
