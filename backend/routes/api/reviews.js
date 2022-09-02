@@ -106,6 +106,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
     const { reviewId } = req.params;
     const { url } = req.body;
     const findReview = await Review.findByPk(reviewId);
+    const userId = req.user.id;
 
     if (!findReview) {
         return res
@@ -116,12 +117,17 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
             })
     };
 
+    if (findReview.userId !== userId) {
+        return res
+            .status(403)
+            .json({
+            message: "Slow down there buckaroooo, this doesn't belong to you!",
+            statusCode: 403
+        })
+    };
+
     const hasImages = await ReviewImage.findAll({
-        where: { reviewId: reviewId },
-        attributes: {
-            include: ['url', 'id'],
-            exclude: ['updatedAt', 'createdAt', 'reviewId']
-        }
+        where: { reviewId: reviewId }
     });
 
     if (hasImages.length >= 10) {
@@ -138,7 +144,10 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
         reviewId: reviewId
     });
 
-    res.json(addImage);
+    return res.json({
+        id: addImage.id,
+        url: url
+    });
 });
 
 
