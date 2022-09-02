@@ -17,11 +17,11 @@ router.put('/:spotId', async (req, res) => {
 
     if (!spot) {
         return res
-        .status(404)
-        .json({
-            "message": "Spot couldn't be found",
-            "statusCode": res.statusCode
-        });
+            .status(404)
+            .json({
+                "message": "Spot couldn't be found",
+                "statusCode": res.statusCode
+            });
     };
 
     try {
@@ -40,22 +40,22 @@ router.put('/:spotId', async (req, res) => {
 
     } catch (error) {
         res
-        .status(400)
-        .json({
-            "message": "Validation Error",
-            "statusCode": 400,
-            "errors": {
-                "address": "Street address is required",
-                "city": "City is required",
-                "state": "State is required",
-                "country": "Country is required",
-                "lat": "Latitude is not valid",
-                "lng": "Longitude is not valid",
-                "name": "Name must be less than 50 characters",
-                "description": "Description is required",
-                "price": "Price per day is required"
-            }
-        });
+            .status(400)
+            .json({
+                "message": "Validation Error",
+                "statusCode": 400,
+                "errors": {
+                    "address": "Street address is required",
+                    "city": "City is required",
+                    "state": "State is required",
+                    "country": "Country is required",
+                    "lat": "Latitude is not valid",
+                    "lng": "Longitude is not valid",
+                    "name": "Name must be less than 50 characters",
+                    "description": "Description is required",
+                    "price": "Price per day is required"
+                }
+            });
     }
 
 });
@@ -85,10 +85,12 @@ router.get('/:spotId/reviews', async (req, res) => {
 
     // error handler if error check invalid id
     if (!getReviews) {
-        res.json({
-            message: "Spot couldn't be found",
-            statusCode: 404
-        })
+        return res
+            .status(404)
+            .json({
+                message: "Spot couldn't be found",
+                statusCode: res.statusCode
+            })
     };
 
     return res.json({ Reviews: getReviews })
@@ -158,10 +160,12 @@ router.get('/:spotId', async (req, res) => {
 
 
     if (!details) {
-        return res.json({
-            message: "Spot couldn't be found",
-            statusCode: 404
-        })
+        return res
+            .status(404)
+            .json({
+                message: "Spot couldn't be found",
+                statusCode: res.statusCode
+            })
     };
 
     const reviewCount = await Review.count({ where: { spotId: spotId } })
@@ -332,10 +336,12 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     const userId = req.user.id
 
     if (!findSpot) {
-        return res.json({
-            message: "Spot couldn't be found",
-            statusCode: 404
-        })
+        return res
+            .status(404)
+            .json({
+                message: "Spot couldn't be found",
+                statusCode: res.statusCode
+            })
     };
 
     // find all existing bookings
@@ -372,13 +378,15 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
 
     // endDate cannot be on or before startDate
     if (endDate <= startDate) {
-        return res.json({
-            message: "Validation Error",
-            statusCode: 400,
-            errors: {
-                "endDate": "endDate cannot be on or before startDate"
-            }
-        })
+        return res
+            .status(400)
+            .json({
+                message: "Validation Error",
+                statusCode: 400,
+                errors: {
+                    "endDate": "endDate cannot be on or before startDate"
+                }
+            })
     };
 
     const newBooking = await Booking.create({
@@ -399,10 +407,11 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
     const spot = await Spot.findByPk(spotId);
 
     if (!spot) {
-        res
+        return res
+            .status(404)
             .json({
                 message: "Spot couldn't be found",
-                statusCode: 404,
+                statusCode: res.statusCode,
             })
     }
 
@@ -447,7 +456,7 @@ router.post('/', async (req, res) => {
         res.statusCode = 400;
         return res.json({
             message: "Validation Error",
-            statusCode: 400,
+            statusCode: res.statusCode,
             errors: {
                 "address": "Street address is required",
                 "city": "City is required",
@@ -483,10 +492,12 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
 
     if (deleteSpot.ownerId === userId) {
         deleteSpot.destroy();
-        return res.json({
-            message: "Successfully deleted",
-            statusCode: 200
-        });
+        return res
+            .status(200)
+            .json({
+                message: "Successfully deleted",
+                statusCode: 200
+            });
     } else {
         return res.json({
             message: "You are not the owner of this location",
