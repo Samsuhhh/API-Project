@@ -120,8 +120,6 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
             include: ['url', 'id'],
             exclude: ['updatedAt', 'createdAt', 'reviewId']
         }
-
-
     });
 
     if (hasImages.length >= 10) {
