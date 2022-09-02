@@ -20,7 +20,10 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: 'CASCADE'
     },
     url: DataTypes.STRING,
-    preview: DataTypes.BOOLEAN
+    preview: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    }
   }, {
     sequelize,
     modelName: 'SpotImage',
