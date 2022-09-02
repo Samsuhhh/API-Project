@@ -51,8 +51,8 @@ const validateSignup = [
 router.post('/', validateSignup, async (req, res) => {
         const { email, password, username, firstName, lastName} = req.body;
 
-        const emailExists = await User.findOne({where: email});
-        const usernameExists = await User.findOne({where: username});
+        const emailExists = await User.findOne({where: {email}});
+        const usernameExists = await User.findOne({where: {username}});
 
         if ( emailExists ) {
             return res
