@@ -191,24 +191,24 @@ router.get('/', async (req, res) => {
             });
     };
 
-    // if (typeof minPrice !== 'decimal' ||
-    //     typeof maxPrice !== 'decimal' ||
-    //     typeof minLat !== 'decimal' ||
-    //     typeof maxLat !== 'decimal'
-    // ) {
-    //     return res
-    //         .status(400)
-    //         .json({
-    //             message: "Validation Error",
-    //             statuscode: res.statusCode,
-    //             errors: {
-    //                 "maxLat": "Maximum latitude is invalid",
-    //                 "minLat": "Minimum latitude is invalid",
-    //                 "minLng": "Maximum longitude is invalid",
-    //                 "maxLng": "Minimum longitude is invalid"
-    //             }
-    //         })
-    // };
+    if (minPrice && typeof minPrice !== 'decimal' ||
+        maxPrice && typeof maxPrice !== 'decimal' ||
+        minLat && typeof minLat !== 'decimal' ||
+        maxLat && typeof maxLat !== 'decimal'
+    ) {
+        return res
+            .status(400)
+            .json({
+                message: "Validation Error",
+                statuscode: res.statusCode,
+                errors: {
+                    "maxLat": "Maximum latitude is invalid",
+                    "minLat": "Minimum latitude is invalid",
+                    "minLng": "Maximum longitude is invalid",
+                    "maxLng": "Minimum longitude is invalid"
+                }
+            })
+    };
 
     let pagination = {};
     if (page >= 0 && size >= 0) {
@@ -219,6 +219,23 @@ router.get('/', async (req, res) => {
     const spots = await Spot.findAll({
         ...pagination
     });
+
+    for (i = 0; i < spots.length; i++) {
+        const image = await SpotImage.findOne({
+            raw: true,
+            where: {
+                [Op.and]: [
+                    { spotId: spots[i].id },
+                    { preview: true }
+                ]
+            }
+        })
+        if (image) {
+            spots[i].previewImage = image.url
+        } else {
+            spots[i].previewImage = 'Sorry, there are no images for this spot :('
+        }
+    };
 
     return res.json({ "Spots": spots, page, size });
 });
