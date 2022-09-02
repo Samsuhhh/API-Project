@@ -131,7 +131,7 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
     if (userId === spot.ownerId) {
         return res.json({ Bookings: spotBookings })
     } else {
-        return res.json({ nonOwnerFilter })
+        return res.json({ Bookings: nonOwnerFilter })
     };
 
 });
@@ -392,7 +392,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     };
 
     const newBooking = await Booking.create({
-        spotId: spotId,
+        spotId: Number(spotId),
         userId: userId,
         startDate: startDate,
         endDate: endDate,
