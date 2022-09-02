@@ -217,19 +217,21 @@ router.get('/', async (req, res) => {
     };
 
     const spots = await Spot.findAll({
+        raw: true,
         ...pagination
     });
 
     for (i = 0; i < spots.length; i++) {
         const image = await SpotImage.findOne({
-            raw: true,
+            // raw: true,
             where: {
                 [Op.and]: [
                     { spotId: spots[i].id },
                     { preview: true }
                 ]
             }
-        })
+        });
+        console.log(image)
         if (image) {
             spots[i].previewImage = image.url
         } else {
@@ -361,8 +363,8 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
 
 // ADD AN IMAGE TO A SPOT
 router.post('/:spotId/images', requireAuth, async (req, res) => {
-    const { spotId } = req.params
-    const { url } = req.body
+    const { spotId } = req.params;
+    const { url } = req.body;
     const spot = await Spot.findByPk(spotId);
 
     if (!spot) {
@@ -374,12 +376,16 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
     }
 
     const newSpotImg = await SpotImage.create({
-        // spotId: parseInt(spotId),
+        spotId: parseInt(spotId),
         url: url,
         preview: true,
 
-    })
-    res.json(newSpotImg)
+    });
+    res.json({
+        id: newSpotImg.spotId,
+        url: newSpotImg.url,
+        preview: newSpotImg.preview
+    });
 
 
 });
