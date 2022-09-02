@@ -283,23 +283,50 @@ router.get('/', async (req, res) => {
         ...pagination
     });
 
-    for (i = 0; i < spots.length; i++) {
-        const image = await SpotImage.findOne({
-            // raw: true,
-            where: {
-                [Op.and]: [
-                    { spotId: spots[i].id },
-                    { preview: true }
-                ]
-            }
+    let avgRating;
+    for (let i = 0; i < spots.length; i++) {
+        const reviewCount = await Review.count({ where: { spotId: spots[i].id } })
+        const sumOfStars = await Review.sum('stars', {
+            where: { spotId: spots[i].id }
         });
-        console.log(image)
-        if (image) {
-            spots[i].previewImage = image.url
+
+        if (!sumOfStars) {
+            avgRating = 0;
         } else {
-            spots[i].previewImage = 'Sorry, there are no images for this spot :('
+            avgRating = (sumOfStars / reviewCount).toFixed(1);
         }
-    };
+
+        spots[i].avgRating = avgRating;
+
+        const spotImage = await SpotImage.findOne({
+            where: { spotId: spots[i].id },
+            attributes: ['id', 'url', 'preview']
+        });
+
+        if (spotImage) spots[i].previewImage = spotImage.url;
+        else spots[i].previewImage = 'No Image Available :('
+
+    }
+
+
+
+    // for (i = 0; i < spots.length; i++) {
+    //     const image = await SpotImage.findOne({
+    //         // raw: true,
+    //         where: {
+    //             [Op.and]: [
+    //                 { spotId: spots[i].id },
+    //                 { preview: true }
+    //             ]
+    //         }
+    //     });
+    //     console.log(image)
+    //     if (image) {
+    //         spots[i].previewImage = image.url
+    //     } else {
+    //         spots[i].previewImage = 'Sorry, there are no images for this spot :('
+    //     }
+    // };
 
     return res.json({ "Spots": spots, page, size });
 });
@@ -379,23 +406,42 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
 
     // find all existing bookings
     const allBookings = await Booking.findAll({
+        raw: true,
         where: {
             spotId: spotId
         }
     });
-
+    console.log(startDate, endDate)
     // checks if proposed start/end date is conflicting with any existing bookings
     for (let i = 0; i < allBookings.length; i++) {
         if (
             // startDate >= allBookings[i].startDate && endDate <= allBookings[i].endDate ||
-            Date.parse(startDate) <= Date.parse(allBookings[i].startDate) &&
-            Date.parse(endDate) >= Date.parse(allBookings[i].endDate) ||
+            // Date.parse(startDate) >= Date.parse(allBookings[i].startDate) &&
+            // Date.parse(endDate) <= Date.parse(allBookings[i].endDate) ||
 
-            Date.parse(startDate) >= Date.parse(allBookings[i].startDate) &&
-            Date.parse(startDate) <= Date.parse(allBookings[i].endDate) ||
+            // Date.parse(startDate) <= Date.parse(allBookings[i].startDate) &&
+            // Date.parse(endDate) >= Date.parse(allBookings[i].endDate) ||
 
-            Date.parse(endDate) >= Date.parse(allBookings[i].startDate) &&
-            Date.parse(endDate) <= Date.parse(allBookings[i].endDate)
+            // Date.parse(startDate) >= Date.parse(allBookings[i].startDate) &&
+            // Date.parse(startDate) <= Date.parse(allBookings[i].endDate) ||
+
+            // Date.parse(endDate) >= Date.parse(allBookings[i].startDate) &&
+            // Date.parse(endDate) <= Date.parse(allBookings[i].endDate)
+
+            startDate >= allBookings[i].startDate &&
+            endDate <= allBookings[i].endDate ||
+
+            startDate <= allBookings[i].startDate &&
+            endDate >= allBookings[i].endDate ||
+
+            startDate >= allBookings[i].startDate &&
+            startDate <= allBookings[i].endDate ||
+
+            endDate >= allBookings[i].startDate &&
+            endDate <= allBookings[i].endDate
+
+
+
         ) {
             return res
                 .status(403)
@@ -427,8 +473,8 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     const newBooking = await Booking.create({
         spotId: Number(spotId),
         userId: userId,
-        startDate: startDate,
-        endDate: endDate,
+        startDate,
+        endDate,
     });
 
     return res.json(newBooking)

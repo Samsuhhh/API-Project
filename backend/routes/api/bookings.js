@@ -82,22 +82,40 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
     };
 
     const currentBookings = await Booking.findAll({
+        raw: true,
         where: { spotId: findBooking.spotId },
 
     });
 
     for (let i = 0; i < currentBookings.length; i++) {
         if (
-            // startDate >= currentBookings[i].startDate && endDate <= currentBookings[i].endDate ||
-            Date.parse(startDate) <= Date.parse(currentBookings[i].startDate) &&
-            Date.parse(endDate) >= Date.parse(currentBookings[i].endDate) ||
+            // Date.parse(startDate) >= Date.parse(currentBookings[i].startDate) && 
+            // Date.parse(endDate) <= Date.parse(currentBookings[i].endDate) ||
 
-            Date.parse(startDate) >= Date.parse(currentBookings[i].startDate) &&
-            Date.parse(startDate) <= Date.parse(currentBookings[i].endDate) ||
+            // Date.parse(startDate) <= Date.parse(currentBookings[i].startDate) &&
+            // Date.parse(endDate) >= Date.parse(currentBookings[i].endDate) ||
 
-            Date.parse(endDate) >= Date.parse(currentBookings[i].startDate) &&
-            Date.parse(endDate) <= Date.parse(currentBookings[i].endDate)
-        ) {
+            // Date.parse(startDate) >= Date.parse(currentBookings[i].startDate) &&
+            // Date.parse(startDate) <= Date.parse(currentBookings[i].endDate) ||
+
+            // Date.parse(endDate) >= Date.parse(currentBookings[i].startDate) &&
+            // Date.parse(endDate) <= Date.parse(currentBookings[i].endDate)
+        
+            startDate >= currentBookings[i].startDate &&
+            endDate <= currentBookings[i].endDate ||
+
+            startDate <= currentBookings[i].startDate &&
+            endDate >= currentBookings[i].endDate ||
+
+            startDate >= currentBookings[i].startDate &&
+            startDate <= currentBookings[i].endDate ||
+
+            endDate >= currentBookings[i].startDate &&
+            endDate <= currentBookings[i].endDate
+        
+        
+        
+            ) {
             return res
                 .status(403)
                 .json({
