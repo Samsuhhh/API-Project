@@ -503,7 +503,7 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
 
     });
     res.json({
-        id: newSpotImg.spotId,
+        id: newSpotImg.id,
         url: newSpotImg.url,
         preview: newSpotImg.preview
     });
