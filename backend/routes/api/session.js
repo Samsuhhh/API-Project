@@ -11,6 +11,8 @@ const router = express.Router();
 const { check } = require('express-validator'); //used with handleValidationErrors to VALIDATE body of a req
 const { handleValidationErrors } = require('../../utils/validation');
 
+const { requireAuth } = require('../../utils/auth');
+
 
 //phase 5; is composed of the check and handleValidationErrors middleware
 // checks to see if req.body.credentials and req.body.password are EMPTY
@@ -34,10 +36,17 @@ router.post('/', validateLogin, async (req, res, next) => {
         const user = await User.login({ credential, password });
 
         if (!user) {
-            const err = new Error('Login failed');
-            err.status = 401;
-            err.title = 'Login failed';
-            err.errors = ['The provided credentials were invalid.'];
+            // const err = new Error('Login failed');
+            // err.status = 401;
+            // err.title = 'Login failed';
+            // err.errors = ['The provided credentials were invalid.'];
+             res
+                .status(401)
+                .json({
+                    message: "Invalid Credentials",
+                    statusCode: res.statusCode
+                });
+
             return next(err);
         }
 
@@ -46,7 +55,7 @@ router.post('/', validateLogin, async (req, res, next) => {
         const userObj = user.toJSON();
         userObj.token = token;
 
-        return res.json({userObj});
+        return res.json(userObj);
     }
 );
 
@@ -64,14 +73,17 @@ router.delete(
 // "Add a backend endpoint to get the current user session"
 router.get(
     '/',
-    restoreUser,
+    [requireAuth, restoreUser],
     (req, res) => {
         const { user } = req;
         if (user) {
-            return res.json({
-                user: user.toSafeObject()
-            });
-        } else return res.json({});
+            return res.json(user);
+        } else return res
+                .status(401)
+                .json({
+            message: "Authentication required",
+            statusCode: 401
+        });
     }
 );
 
