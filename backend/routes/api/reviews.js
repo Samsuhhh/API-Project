@@ -32,7 +32,7 @@ router.get('/current', requireAuth, async (req, res) => {
                     attributes: ['url']
                 }
             },
-            
+
         ],
         where: {
             userId: userId
@@ -65,10 +65,12 @@ router.put('/:reviewId', requireAuth, async (req, res) => {
     const { review, stars } = req.body;
 
     if (!findReview) {
-        res.json({
-            message: "Review couldn't be found",
-            statusCode: 404
-        })
+        return res
+            .status(404)
+            .json({
+                message: "Review couldn't be found",
+                statusCode: res.statusCode
+            })
     };
 
 
@@ -81,14 +83,16 @@ router.put('/:reviewId', requireAuth, async (req, res) => {
         res.json({ findReview })
 
     } catch (error) {
-        res.json({
-            "message": "Validation error",
-            statusCode: 400,
-            errors: {
-                review: "Review text is required",
-                stars: "Stars must be an integer from 1 to 5",
-            }
-        });
+        return res
+            .status(400)
+            .json({
+                "message": "Validation error",
+                statusCode: res.statusCode,
+                errors: {
+                    review: "Review text is required",
+                    stars: "Stars must be an integer from 1 to 5",
+                }
+            });
     };
 });
 
@@ -102,23 +106,31 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
     const findReview = await Review.findByPk(reviewId);
 
     if (!findReview) {
-        res.json({
-            message: "Review couldn't be found",
-            statusCode: 404
-        })
+        return res
+            .status(404)
+            .json({
+                message: "Review couldn't be found",
+                statusCode: res.statusCode
+            })
     };
 
     const hasImages = await ReviewImage.findAll({
-        where: {
-            reviewId: reviewId
+        where: { reviewId: reviewId },
+        attributes: {
+            include: ['url', 'id'],
+            exclude: ['updatedAt', 'createdAt', 'reviewId']
         }
+
+
     });
 
     if (hasImages.length >= 10) {
-        res.json({
-            message: "Maximum number of images for this resource was reached",
-            statusCode: 403
-        })
+        return res
+            .status(403)
+            .json({
+                message: "Maximum number of images for this resource was reached",
+                statusCode: res.statusCode
+            })
     };
 
     const addImage = await ReviewImage.create({
@@ -144,7 +156,7 @@ router.delete('/:reviewId', requireAuth, async (req, res) => {
             .status(404)
             .json({
                 message: "Review couldn't be found",
-                statusCode: 404
+                statusCode: res.statusCode
             });
     };
 
