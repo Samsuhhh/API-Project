@@ -183,7 +183,12 @@ router.get('/current', requireAuth, async (req, res) => {
 //GET details of a spot from an id
 router.get('/:spotId', async (req, res) => {
     const { spotId } = req.params
-    const details = await Spot.findByPk(spotId);    //ADD THE INCLUDE MODEL:REVIEWS AND SPOTIMAGES AFTER ASSOCIATIONS
+    const details = await Spot.findByPk(spotId, {
+        include: {
+            model: User, as: 'Owner',
+            attributes: ['id', 'firstName', 'lastName']
+        }
+    });    //ADD THE INCLUDE MODEL:REVIEWS AND SPOTIMAGES AFTER ASSOCIATIONS
 
 
     if (!details) {
@@ -203,7 +208,8 @@ router.get('/:spotId', async (req, res) => {
 
     const spotImage = await SpotImage.findAll({
         where: { spotId: spotId },
-        attributes: ['id', 'url', 'preview']
+        attributes: ['id', 'url', 'preview'],
+
     });
 
     let avgRating = (sumOfStars / reviewCount).toFixed(1);
