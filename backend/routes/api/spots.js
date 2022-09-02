@@ -144,10 +144,37 @@ router.get('/current', requireAuth, async (req, res) => {
     const ownerId = req.user.id
 
     const spots = await Spot.findAll({
+        raw: true,
         where: {
             ownerId: ownerId
-        }
+        },
+
     });
+
+    let avgRating;
+    for (let i = 0; i < spots.length; i++) {
+        const reviewCount = await Review.count({ where: { spotId: spots[i].id } })
+        const sumOfStars = await Review.sum('stars', {
+            where: { spotId: spots[i].id }
+        });
+
+        if (!sumOfStars) {
+            avgRating = 0;
+        } else {
+            avgRating = (sumOfStars / reviewCount).toFixed(1);
+        }
+
+        spots[i].avgRating = avgRating;
+
+        const spotImage = await SpotImage.findOne({
+            where: { spotId: spots[i].id },
+            attributes: ['id', 'url', 'preview']
+        });
+
+        if (spotImage) spots[i].previewImage = spotImage.url;
+        else spots[i].previewImage = 'No Image Available :('
+
+    }
 
     return res.json({ Spots: spots })
 });
@@ -365,15 +392,15 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
             Date.parse(endDate) <= Date.parse(allBookings[i].endDate)
         ) {
             return res
-            .status(403)
-            .json({
-                message: "Sorry, this spot is already booked for the specificied dates",
-                statusCode: res.statusCode,
-                errors: {
-                    startDate: "Start date conflicts with an existing booking",
-                    endDate: "End date conflicts with an existing booking"
-                }
-            })
+                .status(403)
+                .json({
+                    message: "Sorry, this spot is already booked for the specificied dates",
+                    statusCode: res.statusCode,
+                    errors: {
+                        startDate: "Start date conflicts with an existing booking",
+                        endDate: "End date conflicts with an existing booking"
+                    }
+                })
         }
     };
 
