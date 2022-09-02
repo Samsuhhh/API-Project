@@ -100,8 +100,6 @@ router.put('/:reviewId', requireAuth, async (req, res) => {
 
 
 // create an image for a review
-
-// NOT DONE; PICK UP HERE
 router.post('/:reviewId/images', requireAuth, async (req, res) => {
     const { reviewId } = req.params;
     const { url } = req.body;

@@ -16,9 +16,11 @@ router.put('/:spotId', async (req, res) => {
     const spot = await Spot.findByPk(spotId);
 
     if (!spot) {
-        res.json({
+        return res
+        .status(404)
+        .json({
             "message": "Spot couldn't be found",
-            "statusCode": 404
+            "statusCode": res.statusCode
         });
     };
 
@@ -37,7 +39,9 @@ router.put('/:spotId', async (req, res) => {
         return res.json(spot);
 
     } catch (error) {
-        res.json({
+        res
+        .status(400)
+        .json({
             "message": "Validation Error",
             "statusCode": 400,
             "errors": {
@@ -271,10 +275,12 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
 
     // if we cannot find spotbyPk
     if (!spot) {
-        res.json({
-            message: "Spot couldn't be found",
-            statusCode: 404
-        })
+        return res
+            .status(404)
+            .json({
+                message: "Spot couldn't be found",
+                statusCode: 404
+            })
     };
 
     // find if Review Exists and if so, throw the error
@@ -284,10 +290,12 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
         }
     });
     if (reviewExists) {
-        res.json({
-            message: "User already has a review for this spot",
-            statusCode: 403
-        });
+        return res
+            .status(403)
+            .json({
+                message: "User already has a review for this spot",
+                statusCode: 403
+            });
     };
 
     // Try to create a new review, if validation/constraints aren't met, throw an error
@@ -298,17 +306,19 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
             review: "This was an awesome spot!",
             stars: 5
         });
-        res.json(newReview)
+        return res.json(newReview)
 
     } catch (error) {
-        res.json({
-            message: 'Validation error',
-            statusCode: 400,
-            errors: {
-                review: 'Review text is required',
-                stars: 'Stars must be an integer from 1 to 5'
-            }
-        });
+        return res
+            .status(400)
+            .json({
+                message: 'Validation error',
+                statusCode: 400,
+                errors: {
+                    review: 'Review text is required',
+                    stars: 'Stars must be an integer from 1 to 5'
+                }
+            });
     };
 
 });
