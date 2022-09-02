@@ -80,7 +80,7 @@ router.put('/:reviewId', requireAuth, async (req, res) => {
             stars, stars
         });
 
-        res.json({ findReview })
+        res.json( findReview )
 
     } catch (error) {
         return res
