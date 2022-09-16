@@ -10,6 +10,7 @@ AirNbN's greatest attraction is the ability to leverage nights at the houses you
 * [Backend Routes (API Documentation)](https://github.com/Samsuhhh/API-Project/wiki/Backend-Routes---API-Documentation)
 * [Database Schema](https://github.com/Samsuhhh/API-Project/wiki/Database-Schema)
 * [Feature List](https://github.com/Samsuhhh/API-Project/wiki/Feature-List)
+* [Redux Store Shape](https://github.com/Samsuhhh/API-Project/wiki/Redux-State)
 
 
 ## Tech Stack
