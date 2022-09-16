@@ -8,7 +8,7 @@ AirNbN's greatest attraction is the ability to leverage nights at the houses you
 ## Wiki Links
 
 * [Backend Routes (API Documentation)](https://github.com/Samsuhhh/API-Project/wiki/Backend-Routes---API-Documentation)
-* [Databse Schema](https://github.com/Samsuhhh/API-Project/wiki/Database-Schema)
+* [Database Schema](https://github.com/Samsuhhh/API-Project/wiki/Database-Schema)
 * [Feature List](https://github.com/Samsuhhh/API-Project/wiki/Feature-List)
 
 
