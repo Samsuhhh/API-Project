@@ -1,8 +1,7 @@
 # API-Project
 api project starting on w12d3
-# `<NbNair : wip>`
-
-`airBnB clone WIP`
+## `AirNbN : wip`
+## `airBnB clone WIP`
 
 ## Database Schema Design
 
