@@ -411,7 +411,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
             spotId: spotId
         }
     });
-    console.log(startDate, endDate)
+    // console.log(startDate, endDate)
     // checks if proposed start/end date is conflicting with any existing bookings
     for (let i = 0; i < allBookings.length; i++) {
         if (
