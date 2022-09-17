@@ -73,17 +73,19 @@ router.delete(
 // "Add a backend endpoint to get the current user session"
 router.get(
     '/',
-    [requireAuth, restoreUser],
+     restoreUser,
     (req, res) => {
         const { user } = req;
         if (user) {
             return res.json(user);
-        } else return res
-                .status(401)
-                .json({
-            message: "Authentication required",
-            statusCode: 401
-        });
+        } else return res.json(null);
+        // this was wrong :(
+        //     return res
+        //         .status(401)
+        //         .json({
+        //     message: "Authentication required",
+        //     statusCode: 401
+        // });
     }
 );
 
