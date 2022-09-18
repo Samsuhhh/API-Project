@@ -1,0 +1,83 @@
+.header{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: white;
+    border: solid black 1px;
+    /* display: none */
+
+}
+
+
+.nav-bar {
+    height: 80px;
+    width: 1590px;;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 100px;
+    padding-right: 100px;
+
+
+}
+
+.logo {
+    height: 50px;
+    width: 75px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+
+.access-granted-btn{
+    border-radius: 50px;
+    background:transparent;
+    height: 42px;
+    width: 72px;
+    border: auto;
+    
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ddd;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+
+}
+
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+
+#filter-space{
+    width: 1760px;
+    height: 98px;
+}
+
+
+
+.hidden {
+    display: none !important;
+}
+
+
+
