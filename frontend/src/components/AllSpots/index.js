@@ -19,6 +19,7 @@ const SpotsBrowser = () => {
 
     if (!spots) return null;
 
+    
 
     return (
         <div className='wrapper'>
@@ -27,7 +28,9 @@ const SpotsBrowser = () => {
 
                 {Object.values(spots).map(spot => {
                     return <div key={spot.id} className='single-card'>
-                        <SingleSpot />
+                        <SingleSpot spot={spot}/>
+
+                        
                     </div>
                 })}
 

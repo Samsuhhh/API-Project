@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: repeat(5, 300px);
     /* grid-template-columns: repeat(5, 1fr); */
-    grid-template-rows: repeat(5, 324px);
+    grid-template-rows: repeat(5, 1fr);
     /* grid-template-rows: repeat(5, 1fr); */
     border: 5px blue solid;
     height: 100%;
@@ -20,7 +20,7 @@
 }
 
 #single-card {
-    display: -ms-inline-grid;
+    display: flex;
     /* height: 325x; */
     height: 100%;
     /* width: 300px; */
