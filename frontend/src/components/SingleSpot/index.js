@@ -7,22 +7,6 @@ import { getAllSpots } from '../../store/spots';
 
 const SingleSpot = (spot) => {
 
-    const dispatch = useDispatch();
-
-    const spots = useSelector(state => {
-        return state.spots
-    })
-
-
-    useEffect(() => {
-        dispatch(getAllSpots());
-
-    }, [dispatch])
-
-
-    if (!spots) return null;
-
-    console.log('SPOTS:', spots)
 
     return (
         <>

@@ -29,7 +29,7 @@ function Navigation({ isLoaded }) {
         <div className='header'>
             <div className='nav-bar'>
                 <div >
-                    <img className='logo' src='https://1000logos.net/wp-content/uploads/2017/08/Airbnb-Logo-2008.jpg' />
+                    <img alt='blue airBnB logo' className='logo' src='https://1000logos.net/wp-content/uploads/2017/08/Airbnb-Logo-2008.jpg' />
                 </div>
                 <div></div>
                 <div className='dropdown'>
