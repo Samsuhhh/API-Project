@@ -1,0 +1,33 @@
+.SpotsContainer {
+    display: grid;
+    grid-template-columns: repeat(5, 300px);
+    /* grid-template-columns: repeat(5, 1fr); */
+    grid-template-rows: repeat(5, 324px);
+    /* grid-template-rows: repeat(5, 1fr); */
+    border: 5px blue solid;
+    height: 100%;
+    max-width: 100%;
+    gap: 20px;
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+.wrapper {
+    width: 100%;
+    border: solid red 5px;
+    display: flex;
+    justify-content: center;
+}
+
+#single-card {
+    display: -ms-inline-grid;
+    /* height: 325x; */
+    height: 100%;
+    /* width: 300px; */
+    width: 100%;
+    max-width: 320px;
+    border: 5px red dashed;
+    font-size: 15px;
+    line-height: 19px;
+    position: absolute;
+}

@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, Route, useParams } from 'react-router-dom';
 import { getAllSpots } from '../../store/spots';
+import SingleSpot from '../SingleSpot/index';
+import './allSpots.css'
 
 const SpotsBrowser = () => {
     const { spotId } = useParams();
@@ -19,17 +21,19 @@ const SpotsBrowser = () => {
 
 
     return (
-        <div className='SpotsContainer'>
-            <div>
-            <div>
-                <ul>
-                    {Object.values(spots).map(spot => {
-                      return <li key={spot.id}>{spot.address}</li>
-                    })}    
-                </ul>
-            </div>
+        <div className='wrapper'>
+
+            <div className='SpotsContainer'>
+
+                {Object.values(spots).map(spot => {
+                    return <div key={spot.id} className='single-card'>
+                        <SingleSpot />
+                    </div>
+                })}
+
 
             </div>
+
         </div>
     )
 

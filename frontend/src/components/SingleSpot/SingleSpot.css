@@ -1,0 +1,44 @@
+/* 
+.spot-card-container {
+    display: grid;
+    grid-template-rows: repeat(5, .8fr);
+    height: 390px;
+    width: 280px;
+    border: 5px red dashed;
+    font-size: 15px;
+    line-height: 19px;
+    
+} */
+
+
+#spotImg {
+    
+    height: 285px;
+    width: 100%;
+    /* border: solid purple 5px; */
+    display:flex;
+    flex-direction: row;
+    border-radius: 5%;
+    justify-content: center;
+}
+
+
+.description-stars {
+    display:flex;
+    justify-content: space-between;
+}
+
+#miles,
+#dates {
+    font-weight: 200;
+}
+
+
+#price {
+    padding-top: 5px;
+    font-weight: 525;
+}
+
+#location {
+    font-weight: 500;
+}

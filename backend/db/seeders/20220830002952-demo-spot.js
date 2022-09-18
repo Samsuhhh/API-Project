@@ -38,7 +38,33 @@ const demoSpots = [
     name: "Demo3",
     description: 'Place for devs to check if they are sad',
     price: 1234
-  }
+  },
+
+  {
+    ownerId: 2,
+    address: '123 please work ave',
+    city: 'Beg',
+    state: 'All Fours',
+    country: 'United States of Demo',
+    lat: 37.5678,
+    lng: 121.2323,
+    name: "PlzPlz",
+    description: 'Place for devs to beg',
+    price: 1234
+  },
+
+  {
+    ownerId: 3,
+    address: '000 Ghost Town',
+    city: 'Dead',
+    state: 'South Deadkota',
+    country: 'United States of Dead',
+    lat: 37.5678,
+    lng: 121.2323,
+    name: "GhostTown",
+    description: 'Place for devs to die',
+    price: 666
+  },
 ]
 const { Spot } = require('../models')
 
