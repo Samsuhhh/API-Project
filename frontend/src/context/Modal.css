@@ -1,14 +1,59 @@
 /* frontend/src/context/Modal.css */
 #modal {
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
     left: 0;
     bottom: 0;
+    padding: 40px 40px 40px 40px;
     display: flex;
     justify-content: center;
     align-items: center;
+    animation-name: bounce;
+    animation-duration: .1s;
+    border: red 5px;
+    width: 100%;
+    height: 100%
 }
+
+@keyframes bounce {
+    0% {
+        top: 300px
+    }
+}
+
+#top-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height: 60px;
+    box-sizing: border-box;
+    position: 'fixed';
+            /* overflow: 'hidden';
+            inset: '-2066.25px 0px 0px';
+            inset-inline-end: '19px';
+            --scrollbar-gutter: '19px' */
+}
+
+#loginSignup {
+    width: 123px;
+    height: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: 75px;
+    margin-right: 75px;
+}
+
+
+#modal-container {
+    width: 100%;
+    height: 100%;
+    border: red 10px;
+}
+
+
 
 #modal-background {
     position: fixed;
@@ -17,9 +62,24 @@
     left: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.7);
+
 }
 
 #modal-content {
     position: absolute;
     background-color: white;
+    width: 400px;
+    height: 600px;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+
+#close-modal {
+    height: 16px;
+    width: 16px;
+}
+
+#close-modal:hover {
+    cursor: pointer
 }

@@ -30,9 +30,18 @@ export function Modal({ onClose, children }) {
     return ReactDOM.createPortal(
         <div id="modal">
             <div id="modal-background" onClick={onClose} />
+
             <div id="modal-content">
+                <header className='top-modal'>
+                    <img alt='close-button' id='close-modal' onClick={onClose}
+                        src='https://cdn-icons-png.flaticon.com/512/2723/2723639.png' />
+
+                    <div id='loginSignup'>Login or Sign Up</div>
+
+                </header>
                 {children}
             </div>
+
         </div>,
         modalNode
     );

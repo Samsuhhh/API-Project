@@ -12,12 +12,12 @@ const load = (spots, spotId) => ({
 });
 
 
-export const getAllSpots = (spotId) => async dispatch => {
+export const getAllSpots = () => async dispatch => {
     const res = await fetch('/api/spots');
 
     if (res.ok) {
         const spots = await res.json();
-        console.log('spots THUNK', spots)
+        // console.log('spots THUNK', spots)
         dispatch(load(spots));
         return spots;
     }

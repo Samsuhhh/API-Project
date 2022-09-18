@@ -15,7 +15,7 @@ const SpotsBrowser = () => {
         dispatch(getAllSpots());
     }, [dispatch])
 
-    // if (!spot) return null;
+    if (!spots) return null;
 
 
     return (
@@ -24,7 +24,7 @@ const SpotsBrowser = () => {
             <div>
                 <ul>
                     {Object.values(spots).map(spot => {
-                      return <li>{spot.address}</li>
+                      return <li key={spot.id}>{spot.address}</li>
                     })}    
                 </ul>
             </div>
