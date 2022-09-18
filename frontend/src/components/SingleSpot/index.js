@@ -37,10 +37,10 @@ const SingleSpot = (spot) => {
                 </div>
             </div>
             <div id='miles'>
-                miles away
+                {spot.spot.name}
             </div>
             <div id='dates'>
-                dates available
+               {spot.spot.address}
             </div>
             <div id="price">
                 ${spot.spot.price}

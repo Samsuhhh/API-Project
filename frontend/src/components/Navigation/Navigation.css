@@ -11,12 +11,13 @@
 
 .nav-bar {
     height: 80px;
-    width: 1590px;;
+    width: 1650px;;
     font-size: 16px;
     display: flex;
     justify-content: space-between;
     padding-left: 100px;
-    padding-right: 100px;
+    padding-right: 700px;
+    border: solid red 1px;
 
 
 }
@@ -53,7 +54,7 @@
 
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {
+.dropdown-content div:hover {
     background-color: #ddd;
 }
 
@@ -69,8 +70,9 @@
 
 
 #filter-space{
-    width: 1760px;
+    width: 1692px;
     height: 98px;
+    border: blue solid 1px
 }
 
 

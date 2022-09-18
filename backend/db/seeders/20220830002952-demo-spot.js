@@ -4,64 +4,64 @@ const demoSpots = [
   {
     ownerId: 1,
     address: "123 demo avenue",
-    city: "Demo",
+    city: "Los Angeles",
     state: "Demofornia",
     country: 'United States of Demo',
     lat: 37.1234,
     lng: 121.1212,
-    name: "Demo1",
-    description: 'Place for devs to check if they are learning',
-    price: 1234
+    name: "HollyWood",
+    description: 'Place for devs to check if they are acting',
+    price: 3000
   },
 
   {
     ownerId: 2,
     address: '456 demo avenue',
-    city: 'Demo',
+    city: 'San Francsisco',
     state: 'Demofornia',
     country: 'United States of Demo',
     lat: 37.5678,
     lng: 121.2323,
-    name: "Demo2",
-    description: 'Place for devs to check if they are happy',
-    price: 1234
+    name: "YayArea",
+    description: 'Place for devs to check if they are crying on the inside',
+    price: 420
   },
 
   {
     ownerId: 3,
     address: '789 demo avenue',
-    city: 'Demo',
-    state: 'Demofornia',
+    city: 'YOahu',
+    state: 'Havvai',
     country: 'United States of Demo',
     lat: 37.9101,
     lng: 121.4545,
     name: "Demo3",
-    description: 'Place for devs to check if they are sad',
-    price: 1234
+    description: 'Place for devs to check if they need a break',
+    price: 500
   },
 
   {
     ownerId: 2,
-    address: '123 please work ave',
-    city: 'Beg',
-    state: 'All Fours',
-    country: 'United States of Demo',
+    address: '100 Aker Wood West',
+    city: 'Big',
+    state: 'Tree',
+    country: 'Winnie-the-Pooh',
     lat: 37.5678,
     lng: 121.2323,
-    name: "PlzPlz",
-    description: 'Place for devs to beg',
-    price: 1234
+    name: "Pooh Bear's House",
+    description: 'Place for devs to not care',
+    price: 8888
   },
 
   {
     ownerId: 3,
     address: '000 Ghost Town',
     city: 'Dead',
-    state: 'South Deadkota',
+    state: 'South',
     country: 'United States of Dead',
     lat: 37.5678,
     lng: 121.2323,
-    name: "GhostTown",
+    name: "Ghost Town",
     description: 'Place for devs to die',
     price: 666
   },
