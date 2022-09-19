@@ -18,6 +18,7 @@ const loadOne = (spotDetails, spotId) => ({
     spotId
 })
 
+//CREATE TOMORROW
 
 export const getAllSpots = () => async dispatch => {
     const res = await fetch('/api/spots');
