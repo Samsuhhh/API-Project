@@ -28,10 +28,8 @@ function Navigation({ isLoaded }) {
     return (
         <div className='header'>
             <div className='nav-bar'>
-                <div >
                     <img alt='blue airBnB logo' className='logo' src='https://1000logos.net/wp-content/uploads/2017/08/Airbnb-Logo-2008.jpg' />
-                </div>
-                <div></div>
+
                 <div className='dropdown'>
                     <button className='access-granted-btn'> dropdown pls
                         {/* <img alt='hamburger menu' src='../../assets/icons8-menu-30.png' /> */}
@@ -45,7 +43,7 @@ function Navigation({ isLoaded }) {
                     </div>
                 </div>
             </div>
-            <div id='filter-space'>space</div>
+            {/* <div id='filter-space'>space</div> */}
         </div>
 
     );

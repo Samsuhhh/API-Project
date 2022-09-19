@@ -42,6 +42,7 @@ router.get('/current', requireAuth, async (req, res) => {
     for (let i = 0; i < reviews.length; i++) {
         let resPreview = reviews[i].toJSON();
         let spotImageUrl = resPreview.Spot.SpotImages[0]
+        // if (!spotImageUrl) return null;
 
         if (spotImageUrl) {
             resPreview.Spot.previewImage = spotImageUrl.url
