@@ -37,7 +37,7 @@ function Navigation({ isLoaded }) {
                         {/* <img alt='hamburger menu' src='../../assets/icons8-menu-30.png' /> */}
                     </button >
 
-                    <div class='dropdown-content'>
+                    <div className='dropdown-content'>
                         <div>
                             <NavLink exact to="/">Home</NavLink>
                             {isLoaded && sessionLinks}
