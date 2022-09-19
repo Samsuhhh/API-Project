@@ -9,25 +9,31 @@ const SpotDetail = () => {
     const dispatch = useDispatch();
 
     const spotDetails = useSelector(state => {
-        return state.spots
+        return state.spots.singleSpot
     })
 
-    console.log('hi')
+    // console.log('hi')
 
     useEffect(() => {
         dispatch(getSpotDetails(spotId))
-    }, [dispatch])
+    }, [dispatch, spotId])
 
-    // if (!spotDetails) return null;
+    if (!spotDetails) return null;
 
     return (
         <>
-        <div className="body">
-            <p>
-                HI HI HI
-            </p>
-            {/* {spotDetails} */} 
-        </div>
+            <div className="body">
+                <div>
+                    {spotDetails.name}
+                </div>
+                <div>
+                    {spotDetails.id}
+                </div>
+                <div>
+                    {spotDetails.price}
+                </div>
+                
+            </div>
         </>
     )
 }
