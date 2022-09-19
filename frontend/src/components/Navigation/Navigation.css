@@ -17,6 +17,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-left: 72.5px;
+    margin-right: 72.5px;
+    padding-left: 80px;
+    padding-right: 80px;
     /* border: dashed blue 2px */
 
     /* border: solid red 1px; */

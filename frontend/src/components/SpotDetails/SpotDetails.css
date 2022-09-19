@@ -1,6 +1,12 @@
 
 
 .details-container {
-    display: flex;
+    display: block;
     padding-top: 100px;
+    width: 1650px;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    
 }

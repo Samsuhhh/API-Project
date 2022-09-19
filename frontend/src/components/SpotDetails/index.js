@@ -23,22 +23,31 @@ const SpotDetail = () => {
 
     return (
         <>
-            <div className="details-container">
+        <div className="details-container">
+                <div>
+                    Spot Name:  {spotDetails.name}
+                </div>
+            <div className='image-section'>
+                <img alt='no pic' src='https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg' />
+            </div>
 
-                <div className="body">
-                    <div>
-                        {spotDetails.name}
-                    </div>
-                    <div>
-                        {spotDetails.id}
-                    </div>
-                    <div>
-                        {spotDetails.price}
-                    </div>
 
+            <div>
+                
+                <div>
+                    Spot Id: {spotDetails.id}
+                </div>
+                <div>
+                    Price Per Night: ${spotDetails.price}
+                </div>
+                <div>
+                    Spot Description: {spotDetails.description}
                 </div>
             </div>
+        </div>
+        
         </>
+
     )
 }
 
