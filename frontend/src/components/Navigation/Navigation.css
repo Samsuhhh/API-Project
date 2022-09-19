@@ -1,9 +1,10 @@
 .header{
+    display: flex;
+    justify-content: center;
     position: fixed;
-    top: 0;
     width: 100%;
     background-color: white;
-    border: solid black 1px;
+    border-bottom: lightgray 1px solid;
     /* display: none */
 
 }
@@ -11,14 +12,14 @@
 
 .nav-bar {
     height: 80px;
-    width: 1650px;;
+    width: 1750px;
     font-size: 16px;
     display: flex;
     justify-content: space-between;
-    padding-left: 100px;
-    padding-right: 700px;
-    border: solid red 1px;
+    align-items: center;
+    /* border: dashed blue 2px */
 
+    /* border: solid red 1px; */
 
 }
 
@@ -69,12 +70,12 @@
 }
 
 
-#filter-space{
+/* #filter-space{
     width: 1692px;
     height: 98px;
-    border: blue solid 1px;
+    border: blue solid 1px; 
     display: none;
-}
+} */
 
 
 

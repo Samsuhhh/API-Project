@@ -2,6 +2,7 @@ import { getSpotDetails } from "../../store/spots"
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import './SpotDetails.css'
 
 const SpotDetail = () => {
     const params = useParams();
@@ -22,17 +23,20 @@ const SpotDetail = () => {
 
     return (
         <>
-            <div className="body">
-                <div>
-                    {spotDetails.name}
+            <div className="details-container">
+
+                <div className="body">
+                    <div>
+                        {spotDetails.name}
+                    </div>
+                    <div>
+                        {spotDetails.id}
+                    </div>
+                    <div>
+                        {spotDetails.price}
+                    </div>
+
                 </div>
-                <div>
-                    {spotDetails.id}
-                </div>
-                <div>
-                    {spotDetails.price}
-                </div>
-                
             </div>
         </>
     )

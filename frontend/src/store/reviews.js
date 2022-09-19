@@ -11,7 +11,7 @@ const load = (reviews, reviewId) => ({
     reviewId
 })
 
-export const getReviews = (spotId) => async dispatch => {
+export const getSpotReviews = (spotId) => async dispatch => {
     const res = await fetch(`/api/spots/${spotId}/reviews`)
 
     if (res.ok) {
@@ -29,13 +29,22 @@ const initialState = {
 
 const reviewsReducer = (state = initialState, action) => {
 
-    // switch( action.type ) {
-    //     case LOAD_REVIEWS:
-    //         const allReviews = {};
-    //         console.log('spots Reducer', action.reviews)
+    switch( action.type ) {
+        case LOAD_REVIEWS:
+            const spotReviews = {};
+            console.log('reviews Reducer', action.reviews);
+            action.reviews.Reviews.forEach(review => {
+                spotReviews[review.id] = review;
+            });
+            console.log('ALL REVIEWS REDUCED', spotReviews)
+            return {
+                ...state,
+                spotReviews
+            }
+            default:
+            return state
 
-
-    // }
+    }
 }
 
 export default reviewsReducer;
