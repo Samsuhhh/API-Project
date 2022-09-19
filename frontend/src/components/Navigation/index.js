@@ -28,17 +28,21 @@ function Navigation({ isLoaded }) {
     return (
         <div className='header'>
             <div className='nav-bar'>
-                    <img alt='blue airBnB logo' className='logo' src='https://1000logos.net/wp-content/uploads/2017/08/Airbnb-Logo-2008.jpg' />
+                <img alt='blue airBnB logo' className='logo' src='https://1000logos.net/wp-content/uploads/2017/08/Airbnb-Logo-2008.jpg' />
 
                 <div className='dropdown'>
-                    <button className='access-granted-btn'> dropdown pls
+                    <button className='access-granted-btn'> fix me :(
+
                         {/* <img alt='hamburger menu' src='../../assets/icons8-menu-30.png' /> */}
                     </button >
 
                     <div className='dropdown-content'>
+                        {isLoaded && sessionLinks}
                         <div>
                             <NavLink exact to="/">Home</NavLink>
-                            {isLoaded && sessionLinks}
+                        </div>
+                        <div>
+                            <NavLink to='/spots'>Host Your Spot</NavLink>
                         </div>
                     </div>
                 </div>

@@ -37,6 +37,9 @@ function App() {
           <Route path={'/spots/:spotId'}>
             <SpotDetail />
           </Route>
+          <Route path={'/spots'}>
+            
+          </Route>
         </Switch>
 
       )}
