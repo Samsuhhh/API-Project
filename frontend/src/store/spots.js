@@ -1,4 +1,5 @@
-export const ADD_SPOT = 'spots/ADD_SPOT';
+import { csrfFetch } from "./csrf";
+export const ADD_ONE = 'spots/ADD_ONE';
 export const LOAD_SPOTS = 'spots/LOAD_SPOTS';
 export const UPDATE_SPOT = 'spots/UPDATE_SPOTS';
 export const REMOVE_SPOT = 'spots/REMOVE_SPOT';
@@ -16,7 +17,12 @@ const loadOne = (spotDetails, spotId) => ({
     type: LOAD_ONE,
     spotDetails,
     spotId
-})
+});
+
+const createSpot = (spot) => ({
+    type: ADD_ONE,
+    spot
+});
 
 //CREATE TOMORROW
 
@@ -31,7 +37,6 @@ export const getAllSpots = () => async dispatch => {
     }
 };
 
-
 export const getSpotDetails = (spotId) => async dispatch => {
     const res = await fetch(`/api/spots/${spotId}`)
 
@@ -41,7 +46,23 @@ export const getSpotDetails = (spotId) => async dispatch => {
         dispatch(loadOne(spotDetails))
         return spotDetails
     }
+};
+
+export const createNewSpot = (spot) => async dispatch => {
+    const res = await csrfFetch('/api/spots', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(spot)
+    });
+
+    if (res.ok ) {
+        const createdSpot = await res.json();
+        console.log('CREATED SPOT THUNK:', createdSpot)
+        dispatch(createSpot(createdSpot));
+        return createdSpot;
+    }
 }
+
 
 const initialState = {
     allSpots: {},
@@ -63,12 +84,25 @@ const spotsReducer = (state = initialState, action) => {
                 allSpots
             }
         case LOAD_ONE:
-            let singleSpot = {...state};
-            singleSpot = {...action.spotDetails}
+            let singleSpot = { ...state };
+            singleSpot = { ...action.spotDetails }
             console.log('LOAD ONE', singleSpot)
-            return {singleSpot}
-            
-            // spotDetails[spotId] = action.spotDetails
+            return { singleSpot }
+
+        // spotDetails[spotId] = action.spotDetails
+        case ADD_ONE:
+            let createSpot = {...newState}
+            const newSpot = action.spot;
+            createSpot = {
+                ...state,
+                allSpots: {
+                    ...state.allSpots,
+                    [action.spot.id]: newSpot
+                }
+            }
+            console.log('NEW SPOT THUNKAROO', createSpot)
+            return createSpot;
+
 
         default:
             return state

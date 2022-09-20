@@ -1,0 +1,28 @@
+#signup-container {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    margin-top: 120px;
+    display: flex;
+    justify-content: center;
+    /* border: green solid 2px; */
+}
+
+#signup-form {
+    display: block;
+    /* justify-content: center; */
+    margin-top: 60px;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center;
+    border: 2px lightgray solid;
+    border-radius: 25px;
+    width: 400px;
+    height: 500px;
+    /* position: relative; */
+
+}
+
+.input {
+    margin-top: 10px;
+}

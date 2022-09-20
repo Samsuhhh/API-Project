@@ -30,10 +30,7 @@ const SpotDetail = () => {
             <div className='image-section'>
                 <img alt='no pic' src='https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg' />
             </div>
-
-
             <div>
-                
                 <div>
                     Spot Id: {spotDetails.id}
                 </div>
