@@ -1,7 +1,7 @@
 import { getSpotDetails } from "../../store/spots"
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 import './SpotDetails.css'
 
 const SpotDetail = () => {

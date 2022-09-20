@@ -1,7 +1,7 @@
 import { csrfFetch } from "./csrf";
 export const ADD_ONE = 'spots/ADD_ONE';
 export const LOAD_SPOTS = 'spots/LOAD_SPOTS';
-export const UPDATE_SPOT = 'spots/UPDATE_SPOTS';
+export const UPDATE_ONE = 'spots/UPDATE_ONE';
 export const REMOVE_SPOT = 'spots/REMOVE_SPOT';
 export const LOAD_ONE = 'spots/LOAD_ONE';
 
@@ -23,6 +23,12 @@ const createSpot = (spot) => ({
     type: ADD_ONE,
     spot
 });
+
+const updateSpot = (spot) => ({
+    type: UPDATE_ONE,
+    spot
+})
+
 
 //CREATE TOMORROW
 
@@ -60,6 +66,21 @@ export const createNewSpot = (spot) => async dispatch => {
         console.log('CREATED SPOT THUNK:', createdSpot)
         dispatch(createSpot(createdSpot));
         return createdSpot;
+    }
+};
+
+export const editSpot = (spot) => async dispatch => {
+    const res = await csrfFetch(`/api/spots/${spot.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(spot)
+    });
+
+    if (res.ok) {
+        const updatedSpot = await res.json();
+        console.log('UPDATED SPOTaroooo', updatedSpot);
+        dispatch(updateSpot(updatedSpot));
+        return updatedSpot
     }
 }
 
@@ -102,7 +123,16 @@ const spotsReducer = (state = initialState, action) => {
             }
             console.log('NEW SPOT THUNKAROO', createSpot)
             return createSpot;
-
+        case UPDATE_ONE:
+            let update = {...state};
+            update = { 
+                ...state,
+                allSpots: {
+                    ...state.allSpots,
+                    [action.spot.id]: action.spot
+                }
+            };
+            return { update }
 
         default:
             return state
