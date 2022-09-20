@@ -24,9 +24,10 @@ const createSpot = (spot) => ({
     spot
 });
 
-const updateSpot = (spot) => ({
+const updateSpot = (spot, id) => ({
     type: UPDATE_ONE,
-    spot
+    spot,
+    id
 })
 
 
@@ -61,7 +62,7 @@ export const createNewSpot = (spot) => async dispatch => {
         body: JSON.stringify(spot)
     });
 
-    if (res.ok ) {
+    if (res.ok) {
         const createdSpot = await res.json();
         console.log('CREATED SPOT THUNK:', createdSpot)
         dispatch(createSpot(createdSpot));
@@ -69,10 +70,10 @@ export const createNewSpot = (spot) => async dispatch => {
     }
 };
 
-export const editSpot = (spot) => async dispatch => {
-    const res = await csrfFetch(`/api/spots/${spot.id}`, {
+export const editSpot = (spot, spotId) => async dispatch => {
+    const res = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(spot)
     });
 
@@ -91,7 +92,7 @@ const initialState = {
 };
 
 const spotsReducer = (state = initialState, action) => {
-    const newState = {...state}
+    const newState = { ...state }
     switch (action.type) {
         case LOAD_SPOTS:
             const allSpots = {};
@@ -112,7 +113,7 @@ const spotsReducer = (state = initialState, action) => {
 
         // spotDetails[spotId] = action.spotDetails
         case ADD_ONE:
-            let createSpot = {...newState}
+            let createSpot = { ...newState }
             const newSpot = action.spot;
             createSpot = {
                 ...state,
@@ -124,15 +125,35 @@ const spotsReducer = (state = initialState, action) => {
             console.log('NEW SPOT THUNKAROO', createSpot)
             return createSpot;
         case UPDATE_ONE:
-            let update = {...state};
-            update = { 
+            let update = { ...newState }
+            // const newSpot = action.spot;
+            update = {
                 ...state,
                 allSpots: {
                     ...state.allSpots,
                     [action.spot.id]: action.spot
-                }
-            };
-            return { update }
+                },
+                singleSpot: action.spot
+            }
+            return update;
+            // let spots = { ...state };
+            // if (spots.id === action.spot.id) {
+            //     return {
+            //         [action.spot.id]: {
+            //             ...state[action.spot.spotId],
+            //             allSpots: [...state[action.spot.spotId], action.spot]
+
+            //         }
+
+            //     }
+            // }
+        // return {
+        //     ...state,
+        //     [action.spot.spotId]: {
+        //         ...state[action.spot.spotId],
+        //         allSpots: [...state[action.spot.spotId], action.spot]
+        //     }
+        // }
 
         default:
             return state

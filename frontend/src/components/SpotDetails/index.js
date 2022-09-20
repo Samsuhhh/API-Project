@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import './SpotDetails.css'
+import UpdateSpotFormPage from "../UpdateSpot";
 
 const SpotDetail = () => {
     const params = useParams();
@@ -42,6 +43,8 @@ const SpotDetail = () => {
                 </div>
             </div>
         </div>
+
+        <UpdateSpotFormPage/>
         
         </>
 
