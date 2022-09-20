@@ -5,7 +5,9 @@
     width: 100%;
     background-color: white;
     border-bottom: lightgray 1px solid;
-    /* display: none */
+    /* display: none; */
+    /* border: solid black 5px; */
+    height: 100px
 
 }
 
@@ -21,8 +23,9 @@
     margin-right: 72.5px;
     padding-left: 80px;
     padding-right: 80px;
+    position: fixed;
+    background-color: white;
     /* border: dashed blue 2px */
-
     /* border: solid red 1px; */
 
 }
