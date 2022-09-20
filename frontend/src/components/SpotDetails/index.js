@@ -11,6 +11,9 @@ const SpotDetail = () => {
     const { spotId } = params;
     const dispatch = useDispatch();
     const history = useHistory(); 
+    const currentUser = useSelector(state => state.session.user);
+    const spot = useSelector(state => state.spots.singleSpot);
+
 
     const spotDetails = useSelector(state => {
         return state.spots.singleSpot
@@ -56,7 +59,10 @@ const SpotDetail = () => {
                     Spot Description: {spotDetails.description}
                 </div>
             </div>
+
+        {currentUser && currentUser.id === spot.ownerId && (
             <button onClick={updateRedirect}>UPDATE SPOT</button>
+        )}
         </div>
         
         </>

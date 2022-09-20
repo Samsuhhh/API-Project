@@ -42,7 +42,7 @@ const CreateSpotForm = () => {
        if (newSpot) {
         history.push(`/spots/${newSpot.id}`)
        }
-    }
+    };
 
     return (
 
@@ -146,6 +146,8 @@ const CreateSpotForm = () => {
                             placeholder='Bio here'
                         />
                     </div>
+
+                    
                     <button >SUBMIT</button>
                 </form>
             </div>
