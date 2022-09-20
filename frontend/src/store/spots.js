@@ -2,7 +2,7 @@ import { csrfFetch } from "./csrf";
 export const ADD_ONE = 'spots/ADD_ONE';
 export const LOAD_SPOTS = 'spots/LOAD_SPOTS';
 export const UPDATE_ONE = 'spots/UPDATE_ONE';
-export const REMOVE_SPOT = 'spots/REMOVE_SPOT';
+export const DELETE_ONE = 'spots/DELETE_ONE';
 export const LOAD_ONE = 'spots/LOAD_ONE';
 
 
@@ -29,9 +29,12 @@ const updateSpot = (spot) => ({
     spot
 })
 
+const deleteOne = (spotId) => ({
+    type: DELETE_ONE,
+    spotId
+})
 
-//CREATE TOMORROW
-
+// READ ALL SPOTS
 export const getAllSpots = () => async dispatch => {
     const res = await fetch('/api/spots');
 
@@ -43,6 +46,7 @@ export const getAllSpots = () => async dispatch => {
     }
 };
 
+// READ ONE SPOT
 export const getSpotDetails = (spotId) => async dispatch => {
     const res = await fetch(`/api/spots/${spotId}`)
 
@@ -54,6 +58,7 @@ export const getSpotDetails = (spotId) => async dispatch => {
     }
 };
 
+// CREATE NEW SPOT
 export const createNewSpot = (spot) => async dispatch => {
     const res = await csrfFetch('/api/spots', {
         method: 'POST',
@@ -69,6 +74,7 @@ export const createNewSpot = (spot) => async dispatch => {
     }
 };
 
+// UPDATE SPOT
 export const editSpot = (spot, id) => async dispatch => {
     const res = await csrfFetch(`/api/spots/${id}`, {
         method: 'PUT',
@@ -81,6 +87,19 @@ export const editSpot = (spot, id) => async dispatch => {
         console.log('UPDATED SPOTaroooo', updatedSpot);
         dispatch(updateSpot(updatedSpot));
         return updatedSpot
+    }
+};
+
+// DELETE SPOT
+export const deleteSpot = (spotId) => async dispatch => {
+    const res = await csrfFetch(`/api/spots/${spotId}`, {
+        method: 'DELETE'
+    })
+    if (res.ok) {
+        dispatch(deleteOne(spotId));
+        console.log('Delete thunk is hitting', spotId)
+        window.alert('This SPOT has been deleted')
+        return null;
     }
 }
 
@@ -131,7 +150,10 @@ const spotsReducer = (state = initialState, action) => {
             }
                 newState.singleSpot = action.spot;
                  return newState;
-
+        case DELETE_ONE:
+            newState = {...state};
+            delete newState[action.spotId];
+            return null;
         default:
             return state
     }
