@@ -3,12 +3,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useParams } from "react-router-dom";
 import { editSpot, getSpotDetails } from "../../store/spots";
 
-
-
-
 // maybe a modal
 const UpdateSpotFormPage = () => {
-    const {spotId} = useParams();
+    const { spotId } = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -38,13 +35,14 @@ const UpdateSpotFormPage = () => {
 
 
 
-useEffect(() => {
-    dispatch(getSpotDetails(spotId))
-}, [dispatch])
+    useEffect(() => {
+        dispatch(getSpotDetails(spotId))
+    }, [dispatch, spotId])
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        // e.stopPropagation();
 
         const payload = {
             address,
@@ -58,7 +56,7 @@ useEffect(() => {
             price
         };
 
-        let updatedSpot = await dispatch(editSpot(payload));
+        let updatedSpot = await dispatch(editSpot(payload, spot.id));
         console.log('edited spot', updatedSpot)
 
         if (updatedSpot) {
@@ -80,9 +78,8 @@ useEffect(() => {
                         <input
                             id='name'
                             type='text'
-                            onChange={e => setName(e.target.value)}
+                            onChange={updateName}
                             value={name}
-                            placeholder='Name'
                         />
                     </div>
                     <div>
@@ -90,9 +87,8 @@ useEffect(() => {
                         <input
                             id='lat'
                             type='text'
-                            onChange={e => setLat(e.target.value)}
+                            onChange={updateLat}
                             value={lat}
-                            placeholder='Latitude'
                         />
                     </div>
                     <div>
@@ -100,9 +96,8 @@ useEffect(() => {
                         <input
                             id='lng'
                             type='text'
-                            onChange={e => setLng(e.target.value)}
+                            onChange={updateLng}
                             value={lng}
-                            placeholder='Longitude'
                         />
                     </div>
                     <div>
@@ -110,9 +105,8 @@ useEffect(() => {
                         <input
                             id='address'
                             type='text'
-                            onChange={e => setAddress(e.target.value)}
+                            onChange={updateAddress}
                             value={address}
-                            placeholder='Address'
                         />
                     </div>
                     <div>
@@ -120,9 +114,8 @@ useEffect(() => {
                         <input
                             id='city'
                             type='text'
-                            onChange={e => setCity(e.target.value)}
+                            onChange={updateCity}
                             value={city}
-                            placeholder='City'
                         />
                     </div>
                     <div>
@@ -130,14 +123,13 @@ useEffect(() => {
                         <input
                             id='state'
                             type='text'
-                            onChange={e => setState(e.target.value)}
+                            onChange={updateState}
                             value={state}
-                            placeholder='State'
                         />
                         <br></br>
                         <select
                             name="Country"
-                            onChange={(e) => setCountry(e.target.value)}
+                            onChange={updateCountry}
                             value={country}
                         >
                             <option value="" >
@@ -154,9 +146,8 @@ useEffect(() => {
                         <input
                             id='price'
                             type='text'
-                            onChange={e => setPrice(e.target.value)}
+                            onChange={updatePrice}
                             value={price}
-                            placeholder='Price'
                         />
                     </div>
                     <div>
@@ -164,18 +155,16 @@ useEffect(() => {
                         <textarea
                             id='description'
                             type='text'
-                            onChange={e => setDescription(e.target.value)}
+                            onChange={updateDescription}
                             value={description}
                             placeholder='Bio here'
                         />
                     </div>
-                    <button >SUBMIT</button>
+                    <button>SUBMIT</button>
                 </form>
             </div>
-        </div>    )
-
-
-
+        </div>
+    )
 
 }
 

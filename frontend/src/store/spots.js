@@ -24,10 +24,9 @@ const createSpot = (spot) => ({
     spot
 });
 
-const updateSpot = (spot, id) => ({
+const updateSpot = (spot) => ({
     type: UPDATE_ONE,
-    spot,
-    id
+    spot
 })
 
 
@@ -70,8 +69,8 @@ export const createNewSpot = (spot) => async dispatch => {
     }
 };
 
-export const editSpot = (spot, spotId) => async dispatch => {
-    const res = await csrfFetch(`/api/spots/${spotId}`, {
+export const editSpot = (spot, id) => async dispatch => {
+    const res = await csrfFetch(`/api/spots/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(spot)
@@ -92,7 +91,7 @@ const initialState = {
 };
 
 const spotsReducer = (state = initialState, action) => {
-    const newState = { ...state }
+    let newState;
     switch (action.type) {
         case LOAD_SPOTS:
             const allSpots = {};
@@ -113,7 +112,7 @@ const spotsReducer = (state = initialState, action) => {
 
         // spotDetails[spotId] = action.spotDetails
         case ADD_ONE:
-            let createSpot = { ...newState }
+            let createSpot = { ...state }
             const newSpot = action.spot;
             createSpot = {
                 ...state,
@@ -125,35 +124,13 @@ const spotsReducer = (state = initialState, action) => {
             console.log('NEW SPOT THUNKAROO', createSpot)
             return createSpot;
         case UPDATE_ONE:
-            let update = { ...newState }
+            // let update = { ...newState }
             // const newSpot = action.spot;
-            update = {
-                ...state,
-                allSpots: {
-                    ...state.allSpots,
-                    [action.spot.id]: action.spot
-                },
-                singleSpot: action.spot
+            newState = {
+                ...state
             }
-            return update;
-            // let spots = { ...state };
-            // if (spots.id === action.spot.id) {
-            //     return {
-            //         [action.spot.id]: {
-            //             ...state[action.spot.spotId],
-            //             allSpots: [...state[action.spot.spotId], action.spot]
-
-            //         }
-
-            //     }
-            // }
-        // return {
-        //     ...state,
-        //     [action.spot.spotId]: {
-        //         ...state[action.spot.spotId],
-        //         allSpots: [...state[action.spot.spotId], action.spot]
-        //     }
-        // }
+                newState.singleSpot = action.spot;
+                 return newState;
 
         default:
             return state
