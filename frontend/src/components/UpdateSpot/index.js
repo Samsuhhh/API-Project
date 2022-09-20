@@ -9,7 +9,6 @@ const UpdateSpotFormPage = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const currentUser = useSelector(state => state.session.user);
     const spot = useSelector(state => state.spots.singleSpot);
 
 
