@@ -1,13 +1,16 @@
-import { getSpotDetails } from "../../store/spots"
+import { editSpot, getSpotDetails } from "../../store/spots"
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import './SpotDetails.css'
+import UpdateSpotFormPage from "../UpdateSpot";
+
 
 const SpotDetail = () => {
     const params = useParams();
     const { spotId } = params;
     const dispatch = useDispatch();
+    const history = useHistory(); 
 
     const spotDetails = useSelector(state => {
         return state.spots.singleSpot
@@ -20,6 +23,18 @@ const SpotDetail = () => {
     }, [dispatch, spotId])
 
     if (!spotDetails) return null;
+
+
+    const updateRedirect = async (e) => {
+
+        // let updatedSpot = await dispatch(getSpotDetails(spotId));
+        // console.log('UPDATING SPOT', updatedSpot);
+
+        // if(updatedSpot) {
+            history.push(`/spots/update/${spotId}`)
+        // }
+
+    }
 
     return (
         <>
@@ -41,6 +56,7 @@ const SpotDetail = () => {
                     Spot Description: {spotDetails.description}
                 </div>
             </div>
+            <button onClick={updateRedirect}>UPDATE SPOT</button>
         </div>
         
         </>

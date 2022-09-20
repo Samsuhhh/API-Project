@@ -9,6 +9,7 @@ import SpotsBrowser from './components/AllSpots/index'
 import SpotDetail from "./components/SpotDetails";
 // import { getSpotDetails } from "./store/spots";
 import CreateSpotForm from "./components/CreateSpotForm";
+import UpdateSpotFormPage from "./components/UpdateSpot";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-  
+
 
   return (
     <>
@@ -34,15 +35,18 @@ function App() {
             Home Page
             <SpotsBrowser></SpotsBrowser>
           </Route>
-          <Route path={'/spots/:spotId'}>
-            <SpotDetail />
+          <Route exact path={'/spots'}>
+            <CreateSpotForm />
           </Route>
-          <Route path={'/spots'}>
-            <CreateSpotForm/>
+          <Route exact path={'/spots/update/:spotId'}>
+            <UpdateSpotFormPage />
+          </Route>
+          <Route exact path={'/spots/:spotId'}>
+            <SpotDetail />
           </Route>
         </Switch>
       )}
-      
+
     </>
   );
 }

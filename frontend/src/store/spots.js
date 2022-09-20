@@ -61,7 +61,7 @@ export const createNewSpot = (spot) => async dispatch => {
         body: JSON.stringify(spot)
     });
 
-    if (res.ok ) {
+    if (res.ok) {
         const createdSpot = await res.json();
         console.log('CREATED SPOT THUNK:', createdSpot)
         dispatch(createSpot(createdSpot));
@@ -69,10 +69,10 @@ export const createNewSpot = (spot) => async dispatch => {
     }
 };
 
-export const editSpot = (spot) => async dispatch => {
-    const res = await csrfFetch(`/api/spots/${spot.id}`, {
+export const editSpot = (spot, id) => async dispatch => {
+    const res = await csrfFetch(`/api/spots/${id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(spot)
     });
 
@@ -91,7 +91,7 @@ const initialState = {
 };
 
 const spotsReducer = (state = initialState, action) => {
-    const newState = {...state}
+    let newState;
     switch (action.type) {
         case LOAD_SPOTS:
             const allSpots = {};
@@ -112,7 +112,7 @@ const spotsReducer = (state = initialState, action) => {
 
         // spotDetails[spotId] = action.spotDetails
         case ADD_ONE:
-            let createSpot = {...newState}
+            let createSpot = { ...state }
             const newSpot = action.spot;
             createSpot = {
                 ...state,
@@ -124,15 +124,13 @@ const spotsReducer = (state = initialState, action) => {
             console.log('NEW SPOT THUNKAROO', createSpot)
             return createSpot;
         case UPDATE_ONE:
-            let update = {...state};
-            update = { 
-                ...state,
-                allSpots: {
-                    ...state.allSpots,
-                    [action.spot.id]: action.spot
-                }
-            };
-            return { update }
+            // let update = { ...newState }
+            // const newSpot = action.spot;
+            newState = {
+                ...state
+            }
+                newState.singleSpot = action.spot;
+                 return newState;
 
         default:
             return state
