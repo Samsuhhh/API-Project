@@ -1,3 +1,4 @@
+import { csrfFetch } from "./csrf";
 export const ADD_ONE = 'spots/ADD_ONE';
 export const LOAD_SPOTS = 'spots/LOAD_SPOTS';
 export const UPDATE_SPOT = 'spots/UPDATE_SPOTS';
@@ -48,9 +49,9 @@ export const getSpotDetails = (spotId) => async dispatch => {
 };
 
 export const createNewSpot = (spot) => async dispatch => {
-    const res = await fetch('api/spots/', {
+    const res = await csrfFetch('/api/spots', {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(spot)
     });
 
@@ -60,7 +61,6 @@ export const createNewSpot = (spot) => async dispatch => {
         dispatch(createSpot(createdSpot));
         return createdSpot;
     }
-
 }
 
 
@@ -100,6 +100,7 @@ const spotsReducer = (state = initialState, action) => {
                     [action.spot.id]: newSpot
                 }
             }
+            console.log('NEW SPOT THUNKAROO', createSpot)
             return createSpot;
 
 

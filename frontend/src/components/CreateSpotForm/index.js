@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { createNewSpot } from '../../store/spots';
 import './CreateSpotForm.css'
+
 
 const CreateSpotForm = () => {
 
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
@@ -17,48 +20,96 @@ const CreateSpotForm = () => {
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
 
+    
+    const handleSubmit = async (e) => {
+       e.preventDefault();
 
-    const handleSubmit = () => {
+       const payload = {
+        address,
+        city,
+        state,
+        country,
+        lat,
+        lng,
+        name,
+        description,
+        price
+       };
 
+       let newSpot = await dispatch(createNewSpot(payload));
+       console.log('NEw spot', newSpot)
+
+       if (newSpot) {
+        history.push(`/spots/${newSpot.id}`)
+       }
     }
 
     return (
-
 
         <div id='form-container'>
             <div id='createSpot-form'>
                 <div>
                     <h1>CREATE SPOT</h1>
                 </div>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div>
-                        <label htmlFor='name'>Name:</label>
+                        <label htmlFor='name'></label>
                         <input
                             id='name'
                             type='text'
                             onChange={e => setName(e.target.value)}
                             value={name}
-                            placeholder='Name here'
+                            placeholder='Name'
                         />
                     </div>
                     <div>
-                        <label htmlFor='city'>City:</label>
+                        <label htmlFor='lat'></label>
+                        <input
+                            id='lat'
+                            type='text'
+                            onChange={e => setLat(e.target.value)}
+                            value={lat}
+                            placeholder='Latitude'
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor='lng'></label>
+                        <input
+                            id='lng'
+                            type='text'
+                            onChange={e => setLng(e.target.value)}
+                            value={lng}
+                            placeholder='Longitude'
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor='address'></label>
+                        <input
+                            id='address'
+                            type='text'
+                            onChange={e => setAddress(e.target.value)}
+                            value={address}
+                            placeholder='Address'
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor='city'></label>
                         <input
                             id='city'
                             type='text'
                             onChange={e => setCity(e.target.value)}
                             value={city}
-                            placeholder='City here'
+                            placeholder='City'
                         />
                     </div>
                     <div>
-                        <label htmlFor='state'>State:</label>
+                        <label htmlFor='state'></label>
                         <input
                             id='state'
                             type='text'
-                            onChange={e => state(e.target.value)}
-                            value={state} state
-                            placeholder='State here'
+                            onChange={e => setState(e.target.value)}
+                            value={state}
+                            placeholder='State'
                         />
                         <br></br>
                         <select
@@ -67,7 +118,7 @@ const CreateSpotForm = () => {
                             value={country}
                         >
                             <option value="" >
-                                select country
+                                select a country
                             </option>
                             <option>USA</option>
                             <option>CHINA</option>
@@ -75,19 +126,18 @@ const CreateSpotForm = () => {
                         </select>
                     </div>
                     <div>
-                        <div>
-                            <label htmlFor='price'>Price:</label>
-                            <input
-                                id='price'
-                                type='text'
-                                onChange={e => setName(e.target.value)}
-                                value={price}
-                                placeholder='price here'
-                            />
-                        </div>
+
+                        <label htmlFor='price'></label>
+                        <input
+                            id='price'
+                            type='text'
+                            onChange={e => setPrice(e.target.value)}
+                            value={price}
+                            placeholder='Price'
+                        />
                     </div>
                     <div>
-                        <label htmlFor='description'>Description:</label>
+                        <label htmlFor='description'></label>
                         <textarea
                             id='description'
                             type='text'
@@ -96,8 +146,7 @@ const CreateSpotForm = () => {
                             placeholder='Bio here'
                         />
                     </div>
-
-
+                    <button >SUBMIT</button>
                 </form>
             </div>
         </div>
