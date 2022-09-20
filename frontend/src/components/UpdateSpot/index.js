@@ -8,7 +8,7 @@ const UpdateSpot = () => {
 
     const dispatch = useDispatch();
 
-
+    
 
 
 

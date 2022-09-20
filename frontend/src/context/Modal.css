@@ -39,9 +39,9 @@
 #loginSignup {
     width: 123px;
     height: 20px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+    /* display: flex; */
+    /* justify-content: space-around; */
+    /* align-items: center; */
     margin-left: 75px;
     margin-right: 75px;
 }
@@ -70,9 +70,10 @@
     background-color: white;
     width: 400px;
     height: 600px;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
+    
+     /* display: flex;
+    justify-content: center; */
+    /*align-items: center; */
 }
 
 #close-modal {

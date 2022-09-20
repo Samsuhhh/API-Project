@@ -28,7 +28,7 @@ function Navigation({ isLoaded }) {
     return (
         <div className='header'>
             <div className='nav-bar'>
-                <img alt='blue airBnB logo' className='logo' src='https://1000logos.net/wp-content/uploads/2017/08/Airbnb-Logo-2008.jpg' />
+                <img alt='airBnB logo' className='logo' src='https://1000logos.net/wp-content/uploads/2017/08/Airbnb-Logo-2008.jpg' />
 
                 <div className='dropdown'>
                     <button className='access-granted-btn'> fix me :(
