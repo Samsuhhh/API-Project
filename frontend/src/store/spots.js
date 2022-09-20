@@ -127,24 +127,20 @@ const spotsReducer = (state = initialState, action) => {
             let singleSpot = { ...state };
             singleSpot = { ...action.spotDetails }
             console.log('LOAD ONE', singleSpot)
-            return { singleSpot }
+            return  { ...state, singleSpot }
 
         // spotDetails[spotId] = action.spotDetails
         case ADD_ONE:
-            let createSpot = { ...state }
+            let newState = { ...state }
             const newSpot = action.spot;
-            createSpot = {
-                ...state,
-                allSpots: {
-                    ...state.allSpots,
+            newState = {
+                singleSpot: {
                     [action.spot.id]: newSpot
                 }
             }
-            console.log('NEW SPOT THUNKAROO', createSpot)
-            return createSpot;
+            console.log('NEW SPOT THUNKAROO', newState)
+            return newState;
         case UPDATE_ONE:
-            // let update = { ...newState }
-            // const newSpot = action.spot;
             newState = {
                 ...state
             }
