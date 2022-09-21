@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 export const LOAD_REVIEWS = 'reviews/LOAD_REVIEWS';
 export const CREATE_REVIEW = 'reviews/CREATE_REVIEW';
+export const EDIT_REVIEW = 'reviews/EDIT_REVIEW';
 
 const load = (reviews) => ({
     type: LOAD_REVIEWS,
@@ -14,6 +15,30 @@ const add = (review, spotId) => ({
     spotId
 });
 
+const update = (review, reviewId) => ({
+    type: EDIT_REVIEW,
+    review,
+    reviewId
+
+});
+
+// EDIT A REVIEW
+export const editReview = (review, reviewId) => async dispatch => {
+    const res = await csrfFetch(`/api/reviews/${reviewId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(review)
+    });
+
+    if (res.ok) {
+        const updatedReview = await res.json();
+        dispatch(update(updatedReview, reviewId));
+        return updatedReview;
+    }
+}
+
+
+// CREATE A REVIEW FOR A SPOT BY SPOT ID
 export const createReview = (review, spotId) => async dispatch => {
     const res = await csrfFetch(`/api/spots/${spotId}/reviews`, {
         method: 'POST',
@@ -63,7 +88,6 @@ const reviewsReducer = (state = initialState, action) => {
                 ...state,
                 spot: spotReviews
             }
-
         case CREATE_REVIEW:
             newState = { 
                 ...state,
