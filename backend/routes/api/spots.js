@@ -65,7 +65,7 @@ router.get('/:spotId/reviews', async (req, res) => {
     const { spotId } = req.params;
     const findSpot = await Spot.findByPk(spotId)
 
-    const getReviews = await Review.findOne({
+    const getReviews = await Review.findAll({
         where: {
             spotId: spotId
         },
@@ -93,7 +93,7 @@ router.get('/:spotId/reviews', async (req, res) => {
             })
     };
 
-    return res.json({ Reviews: getReviews })
+    return res.json( {Reviews: getReviews })
 
 });
 
@@ -350,9 +350,11 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
     // find if Review Exists and if so, throw the error
     const reviewExists = await Review.findOne({
         where: {
-            userId: req.user.id
+            userId: req.user.id,
+            spotId: spotId
         }
     });
+    console.log(reviewExists)
     if (reviewExists) {
         return res
             .status(403)
@@ -367,8 +369,8 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
         const newReview = await Review.create({
             userId: req.user.id,
             spotId: Number(spotId),
-            review: "This was an awesome spot!",
-            stars: 5
+            review: req.body.review,
+            stars: req.body.stars
         });
         return res.json(newReview)
 

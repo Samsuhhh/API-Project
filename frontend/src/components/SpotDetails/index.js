@@ -1,10 +1,11 @@
 import { editSpot, getSpotDetails } from "../../store/spots"
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { Link, Redirect, useHistory, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import './SpotDetails.css'
 import UpdateSpotFormPage from "../UpdateSpot";
 import { deleteSpot } from "../../store/spots";
+import SpotReviews from "../AllReviews";
 
 
 const SpotDetail = () => {
@@ -30,10 +31,8 @@ const SpotDetail = () => {
 
 
     const updateRedirect = async (e) => {
-
         // let updatedSpot = await dispatch(getSpotDetails(spotId));
         // console.log('UPDATING SPOT', updatedSpot);
-
         // if(updatedSpot) {
         history.push(`/spots/update/${spotId}`)
         // }
@@ -44,9 +43,13 @@ const SpotDetail = () => {
         await dispatch(deleteSpot(spot.id));
         history.push('/')
     }
- 
+    
+    const newReviewRedirect = () => {
+        history.push(`/spots/${spotId}/new-review`)
+    }
+
     return (
-        <>
+        <div>
             <div className="details-container">
                 <div>
                     Spot Name:  {spotDetails.name}
@@ -74,8 +77,17 @@ const SpotDetail = () => {
                 <button onClick={deleteHandler}>DELETE</button>
                 )}
             </div>
+            <div>
+                Reviews
+                <SpotReviews/>
+            </div>
+            <div>
+                <button onClick={newReviewRedirect}>
+                    CREATE NEW REVIEW
+                </button>
+            </div>
 
-        </>
+        </div>
 
     )
 }

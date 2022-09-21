@@ -10,6 +10,7 @@ import SpotDetail from "./components/SpotDetails";
 // import { getSpotDetails } from "./store/spots";
 import CreateSpotForm from "./components/CreateSpotForm";
 import UpdateSpotFormPage from "./components/UpdateSpot";
+import CreateReviewForm from "./components/CreateReviewForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +44,9 @@ function App() {
           </Route>
           <Route exact path={'/spots/:spotId'}>
             <SpotDetail />
+          </Route>
+          <Route path={'/spots/:spotId/new-review'}>
+            <CreateReviewForm/>
           </Route>
         </Switch>
       )}
