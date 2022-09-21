@@ -10,6 +10,7 @@ const SpotReviews = () => {
     const { spotId } = params;
     // const history = useHistory();
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const spot = useSelector(state => state.spots.singleSpot);
     const spotReviews = useSelector(state => state.reviews.spot);
@@ -21,10 +22,10 @@ const SpotReviews = () => {
         dispatch(getSpotReviews(spotId))
     }, [dispatch]);
 
-    const deleteHandler = (reviewId) => {
-        dispatch(deleteReview(reviewId))
-        window.alert('Review deleted')
-        // history.push(`/spots/${spotId}`)
+    const deleteHandler = async (reviewId) => {
+        await dispatch(deleteReview(reviewId))
+        // window.alert('Review deleted')
+        history.push(`/spots/${spotId}`)
     }
 
 
