@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 export const LOAD_REVIEWS = 'reviews/LOAD_REVIEWS';
 export const CREATE_REVIEW = 'reviews/CREATE_REVIEW';
 export const EDIT_REVIEW = 'reviews/EDIT_REVIEW';
+export const DELETE_REVIEW = 'reviews/DELETE_REVIEW';
 
 const load = (reviews) => ({
     type: LOAD_REVIEWS,
@@ -22,6 +23,27 @@ const update = (review, reviewId) => ({
 
 });
 
+const remove = (reviewId) => ({
+    type: DELETE_REVIEW,
+    reviewId
+});
+
+
+// DELETE REVIEW
+export const deleteReview = (reviewId) => async dispatch => {
+    const res = await csrfFetch(`/api/reviews/${reviewId}`, {
+        method: 'DELETE'
+    })
+
+    // if (!res) {
+    //     window.alert('Review could not be found ?')
+    // }
+    if (res.ok ) {
+        dispatch(remove(reviewId));
+        return null;
+    }
+}
+
 // EDIT A REVIEW
 export const editReview = (review, reviewId) => async dispatch => {
     const res = await csrfFetch(`/api/reviews/${reviewId}`, {
@@ -35,7 +57,7 @@ export const editReview = (review, reviewId) => async dispatch => {
         dispatch(update(updatedReview, reviewId));
         return updatedReview;
     }
-}
+};
 
 
 // CREATE A REVIEW FOR A SPOT BY SPOT ID
@@ -98,10 +120,17 @@ const reviewsReducer = (state = initialState, action) => {
             return {
                 ...state, newState
             }
-        case EDIT_REVIEW:
+        // case EDIT_REVIEW:
+        //     newState = {...state};
+        //     newState.spot = action.review;
+        //     return {newState}
+        case DELETE_REVIEW:
             newState = {...state};
-            newState.spot = action.review;
-            return {newState}
+            delete newState[action.reviewId];
+            return {
+                spot: newState
+            }
+            
             default:
             return state
 

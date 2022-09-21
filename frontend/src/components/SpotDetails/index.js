@@ -1,11 +1,12 @@
 import { editSpot, getSpotDetails } from "../../store/spots"
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Redirect, useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import './SpotDetails.css'
-import UpdateSpotFormPage from "../UpdateSpot";
+// import UpdateSpotFormPage from "../UpdateSpot";
 import { deleteSpot } from "../../store/spots";
 import SpotReviews from "../AllReviews";
+import { deleteReview } from "../../store/reviews";
 
 
 const SpotDetail = () => {
@@ -13,8 +14,11 @@ const SpotDetail = () => {
     const { spotId } = params;
     const dispatch = useDispatch();
     const history = useHistory();
+
     const currentUser = useSelector(state => state.session.user);
     const spot = useSelector(state => state.spots.singleSpot);
+    const reviewUser = useSelector(state => state.reviews.spot.User)
+    
 
 
     const spotDetails = useSelector(state => {
@@ -42,6 +46,20 @@ const SpotDetail = () => {
         // if (window.confirm('Are you sure you want to delete this spot?')) this.onCancel(spot.id)
         dispatch(deleteSpot(spot.id));
         history.push('/')
+    };
+
+    const reviewDeleteHandler = async () => {
+        console.log(reviewUser)
+
+        if (currentUser.id === reviewUser.id) {
+            dispatch(deleteReview(reviewUser.id))
+            history.push('/')
+        }
+        else {
+            window.alert('This is not yours to delete')
+            history.push('/')
+        }
+        
     }
     
     const newReviewRedirect = () => {
@@ -86,6 +104,11 @@ const SpotDetail = () => {
                 <button onClick={newReviewRedirect}>
                     CREATE NEW REVIEW
                 </button>
+                <button onClick={reviewDeleteHandler}>DELETE YOUR REVIEW</button>
+{/* 
+                {currentUser && currentUser.id === reviewUser.id && (
+                    <button>Delete YOUR review</button> */}
+                {/* )}; */}
             </div>
 
         </div>
