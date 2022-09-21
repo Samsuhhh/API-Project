@@ -97,7 +97,6 @@ export const deleteSpot = (spotId) => async dispatch => {
     if (res.ok) {
         dispatch(deleteOne(spotId));
         console.log('Delete thunk is hitting', spotId)
-        window.alert('This SPOT has been deleted')
         return null;
     }
 }
