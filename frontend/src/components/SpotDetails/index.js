@@ -41,16 +41,22 @@ const SpotDetail = () => {
     }
 
     const deleteHandler = async () => {
-        // if (window.confirm('Are you sure you want to delete this spot?')) this.onCancel(spot.id)
-        dispatch(deleteSpot(spot.id));
-        history.push('/')
+        if (window.confirm('Are you sure you want to delete this spot?')) {
+            await dispatch(deleteSpot(spotId));
+            history.push('/')
+        } else {
+            history.push(`/spots/${spotId}`)
+        }
+        // window.alert('This SPOT has been deleted')
+
+
     };
 
     // const reviewDeleteHandler = async () => {
     //     console.log('review user', reviewUser.userId)
 
     //     console.log( 'current user', currentUser.id)
-        
+
     //     if (currentUser.id === reviewUser.userId) {
     //         dispatch(deleteReview(reviewUser[0].id))
     //         window.alert('Review deleted')
@@ -62,7 +68,7 @@ const SpotDetail = () => {
     //     }
 
     // }
-    
+
     const newReviewRedirect = () => {
         history.push(`/spots/${spotId}/new-review`)
     }
@@ -90,16 +96,16 @@ const SpotDetail = () => {
                 </div>
 
                 {currentUser && currentUser.id === spot.ownerId && (
-                        <button onClick={updateRedirect}>UPDATE SPOT</button>
+                    <button onClick={updateRedirect}>UPDATE SPOT</button>
                 )}
                 <br></br>
                 {currentUser && currentUser.id === spot.ownerId && (
-                <button onClick={deleteHandler}>DELETE</button>
+                    <button onClick={deleteHandler}>DELETE</button>
                 )}
             </div>
             <div>
                 Reviews
-                <SpotReviews/>
+                <SpotReviews />
             </div>
             <div>
                 <button onClick={newReviewRedirect}>
