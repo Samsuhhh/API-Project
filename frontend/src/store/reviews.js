@@ -1,11 +1,35 @@
-export const LOAD_REVIEWS = 'reviews/LOAD_REVIEWS'
+import { csrfFetch } from "./csrf";
 
+export const LOAD_REVIEWS = 'reviews/LOAD_REVIEWS';
+export const CREATE_REVIEW = 'reviews/CREATE_REVIEW';
 
 const load = (reviews) => ({
     type: LOAD_REVIEWS,
     reviews,
-})
+});
 
+const add = (review, spotId) => ({
+    type: CREATE_REVIEW,
+    review
+});
+
+export const createReview = (review, spotId) => async dispatch => {
+    const res = await csrfFetch(`/api/spots/${spotId}/reviews`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(review)
+    });
+
+    if (res.ok) {
+        const newReview = await res.json();
+        console.log('NEW REVIEW THUNKER HITING: ', newReview);
+        dispatch(add(newReview));
+        return newReview;
+    }
+}
+
+
+// LOAD REVIEWS BY SPOT ID
 export const getSpotReviews = (spotId) => async dispatch => {
     const res = await fetch(`/api/spots/${spotId}/reviews`)
 
@@ -25,6 +49,7 @@ const initialState = {
 
 const reviewsReducer = (state = initialState, action) => {
 
+    let newState;
     switch ( action.type ) {
         case LOAD_REVIEWS:
             const spotReviews = {};
@@ -37,6 +62,18 @@ const reviewsReducer = (state = initialState, action) => {
                 ...state,
                 spot: spotReviews
             }
+
+        case CREATE_REVIEW:
+            newState = {...state};
+            newState = {
+                spot: {
+                    [action.review.id]: action.review
+                }
+            }
+            return {
+                ...state, newState
+            }
+
             default:
             return state
 
