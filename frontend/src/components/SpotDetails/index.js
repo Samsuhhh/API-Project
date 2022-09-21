@@ -1,11 +1,12 @@
 import { editSpot, getSpotDetails } from "../../store/spots"
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Redirect, useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import './SpotDetails.css'
-import UpdateSpotFormPage from "../UpdateSpot";
+// import UpdateSpotFormPage from "../UpdateSpot";
 import { deleteSpot } from "../../store/spots";
 import SpotReviews from "../AllReviews";
+import { deleteReview } from "../../store/reviews";
 
 
 const SpotDetail = () => {
@@ -13,9 +14,10 @@ const SpotDetail = () => {
     const { spotId } = params;
     const dispatch = useDispatch();
     const history = useHistory();
+
     const currentUser = useSelector(state => state.session.user);
     const spot = useSelector(state => state.spots.singleSpot);
-
+    const reviewUser = useSelector(state => state.reviews.spot);
 
     const spotDetails = useSelector(state => {
         return state.spots.singleSpot
@@ -42,11 +44,29 @@ const SpotDetail = () => {
         // if (window.confirm('Are you sure you want to delete this spot?')) this.onCancel(spot.id)
         dispatch(deleteSpot(spot.id));
         history.push('/')
-    }
+    };
+
+    // const reviewDeleteHandler = async () => {
+    //     console.log('review user', reviewUser.userId)
+
+    //     console.log( 'current user', currentUser.id)
+        
+    //     if (currentUser.id === reviewUser.userId) {
+    //         dispatch(deleteReview(reviewUser[0].id))
+    //         window.alert('Review deleted')
+    //         history.push(`/spots/${spotId}`)
+    //     }
+    //     else {
+    //         window.alert('This is not yours to delete')
+    //         // history.push('/')
+    //     }
+
+    // }
     
     const newReviewRedirect = () => {
         history.push(`/spots/${spotId}/new-review`)
     }
+
 
     return (
         <div>
