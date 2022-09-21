@@ -27,11 +27,11 @@ const CreateReviewForm = () => {
        if ( newReview ) {
            history.push(`/spots/${spotId}`)
        }
-    }
 
-    // const redirectHandler = () => {
-    //     history.push(`/spots/${spotId}`)
-    // }
+    //    if (!newReview) {
+    //     window.alert('You have already created a review for this Spot.')
+    //    }
+    }
 
 
     return (

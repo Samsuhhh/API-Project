@@ -13,7 +13,7 @@ const SpotReviews = () => {
 
     const spot = useSelector(state => state.spots.singleSpot);
     const spotReviews = useSelector(state => state.reviews.spot);
-
+    
 
     useEffect(() => {
         dispatch(getSpotReviews(spotId))
@@ -30,7 +30,6 @@ const SpotReviews = () => {
                     {Object.values(spotReviews).map(review => {
                         return <div key={review.id}> user: {review.review} </div>
                     })}
-
             </div>
         </div>
     )

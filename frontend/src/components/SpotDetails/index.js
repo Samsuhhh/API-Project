@@ -40,7 +40,7 @@ const SpotDetail = () => {
 
     const deleteHandler = async () => {
         // if (window.confirm('Are you sure you want to delete this spot?')) this.onCancel(spot.id)
-        await dispatch(deleteSpot(spot.id));
+        dispatch(deleteSpot(spot.id));
         history.push('/')
     }
     

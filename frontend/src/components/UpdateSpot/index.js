@@ -55,7 +55,7 @@ const UpdateSpotFormPage = () => {
             price
         };
 
-        let updatedSpot = await dispatch(editSpot(payload, spot.id));
+        let updatedSpot = await dispatch(editSpot(payload, spotId));
         console.log('edited spot', updatedSpot)
 
         if (updatedSpot) {
