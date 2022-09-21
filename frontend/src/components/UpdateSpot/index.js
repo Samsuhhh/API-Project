@@ -36,7 +36,7 @@ const UpdateSpotFormPage = () => {
 
     useEffect(() => {
         dispatch(getSpotDetails(spotId))
-    }, [dispatch, spotId])
+    }, [ dispatch ])
 
 
     const handleSubmit = async (e) => {
@@ -67,7 +67,7 @@ const UpdateSpotFormPage = () => {
 
     return (
         <div id='form-container'>
-            <div id='createSpot-form'>
+            <div id='updateSpot-form'>
                 <div>
                     <h1>UPDATE YOUR SPOT</h1>
                 </div>

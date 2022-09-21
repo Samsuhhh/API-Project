@@ -6,7 +6,6 @@ export const DELETE_ONE = 'spots/DELETE_ONE';
 export const LOAD_ONE = 'spots/LOAD_ONE';
 
 
-
 const load = (spots, spotId) => ({
     type: LOAD_SPOTS,
     spots,
@@ -131,7 +130,7 @@ const spotsReducer = (state = initialState, action) => {
 
         // spotDetails[spotId] = action.spotDetails
         case ADD_ONE:
-            let newState = { ...state }
+            newState = { ...state }
             const newSpot = action.spot;
             newState = {
                 singleSpot: {

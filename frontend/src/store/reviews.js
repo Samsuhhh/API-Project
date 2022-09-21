@@ -1,14 +1,9 @@
-
-
-
 export const LOAD_REVIEWS = 'reviews/LOAD_REVIEWS'
 
 
-
-const load = (reviews, reviewId) => ({
+const load = (reviews) => ({
     type: LOAD_REVIEWS,
     reviews,
-    reviewId
 })
 
 export const getSpotReviews = (spotId) => async dispatch => {
@@ -24,12 +19,13 @@ export const getSpotReviews = (spotId) => async dispatch => {
 
  
 const initialState = {
-    reviews: {}
+    spot: {},
+    user: {}
 }
 
 const reviewsReducer = (state = initialState, action) => {
 
-    switch( action.type ) {
+    switch ( action.type ) {
         case LOAD_REVIEWS:
             const spotReviews = {};
             console.log('reviews Reducer', action.reviews);
@@ -39,7 +35,7 @@ const reviewsReducer = (state = initialState, action) => {
             console.log('ALL REVIEWS REDUCED', spotReviews)
             return {
                 ...state,
-                spotReviews
+                spot: spotReviews
             }
             default:
             return state

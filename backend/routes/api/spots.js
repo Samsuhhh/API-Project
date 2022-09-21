@@ -65,7 +65,7 @@ router.get('/:spotId/reviews', async (req, res) => {
     const { spotId } = req.params;
     const findSpot = await Spot.findByPk(spotId)
 
-    const getReviews = await Review.findOne({
+    const getReviews = await Review.findAll({
         where: {
             spotId: spotId
         },
@@ -93,7 +93,7 @@ router.get('/:spotId/reviews', async (req, res) => {
             })
     };
 
-    return res.json({ Reviews: getReviews })
+    return res.json( {Reviews: getReviews })
 
 });
 

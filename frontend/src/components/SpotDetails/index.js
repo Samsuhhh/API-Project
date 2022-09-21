@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import './SpotDetails.css'
 import UpdateSpotFormPage from "../UpdateSpot";
 import { deleteSpot } from "../../store/spots";
+import SpotReviews from "../AllReviews";
 
 
 const SpotDetail = () => {
@@ -46,7 +47,7 @@ const SpotDetail = () => {
     }
  
     return (
-        <>
+        <div>
             <div className="details-container">
                 <div>
                     Spot Name:  {spotDetails.name}
@@ -74,8 +75,12 @@ const SpotDetail = () => {
                 <button onClick={deleteHandler}>DELETE</button>
                 )}
             </div>
+            <div>
+                Reviews
+                <SpotReviews/>
+            </div>
 
-        </>
+        </div>
 
     )
 }
