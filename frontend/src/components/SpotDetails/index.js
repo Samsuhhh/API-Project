@@ -48,6 +48,7 @@ const SpotDetail = () => {
         history.push(`/spots/${spotId}/new-review`)
     }
 
+
     return (
         <div>
             <div className="details-container">

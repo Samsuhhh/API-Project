@@ -70,7 +70,7 @@ export const getSpotReviews = (spotId) => async dispatch => {
  
 const initialState = {
     spot: {},
-    user: {}
+    User: {}
 }
 
 const reviewsReducer = (state = initialState, action) => {
@@ -98,7 +98,10 @@ const reviewsReducer = (state = initialState, action) => {
             return {
                 ...state, newState
             }
-
+        case EDIT_REVIEW:
+            newState = {...state};
+            newState.spot = action.review;
+            return {newState}
             default:
             return state
 
