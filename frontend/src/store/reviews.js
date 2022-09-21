@@ -10,7 +10,8 @@ const load = (reviews) => ({
 
 const add = (review, spotId) => ({
     type: CREATE_REVIEW,
-    review
+    review,
+    spotId
 });
 
 export const createReview = (review, spotId) => async dispatch => {
@@ -64,8 +65,8 @@ const reviewsReducer = (state = initialState, action) => {
             }
 
         case CREATE_REVIEW:
-            newState = {...state};
-            newState = {
+            newState = { 
+                ...state,
                 spot: {
                     [action.review.id]: action.review
                 }
