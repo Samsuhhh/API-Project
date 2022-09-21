@@ -34,7 +34,7 @@ export const deleteReview = (reviewId) => async dispatch => {
     const res = await csrfFetch(`/api/reviews/${reviewId}`, {
         method: 'DELETE'
     })
-
+    console.log('DELETE REVIEW THUNK: ', reviewId)
     // if (!res) {
     //     window.alert('Review could not be found ?')
     // }

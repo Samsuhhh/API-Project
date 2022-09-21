@@ -17,9 +17,7 @@ const SpotDetail = () => {
 
     const currentUser = useSelector(state => state.session.user);
     const spot = useSelector(state => state.spots.singleSpot);
-    const reviewUser = useSelector(state => state.reviews.spot.User)
-    
-
+    const reviewUser = useSelector(state => state.reviews.spot);
 
     const spotDetails = useSelector(state => {
         return state.spots.singleSpot
@@ -48,19 +46,22 @@ const SpotDetail = () => {
         history.push('/')
     };
 
-    const reviewDeleteHandler = async () => {
-        console.log(reviewUser)
+    // const reviewDeleteHandler = async () => {
+    //     console.log('review user', reviewUser.userId)
 
-        if (currentUser.id === reviewUser.id) {
-            dispatch(deleteReview(reviewUser.id))
-            history.push('/')
-        }
-        else {
-            window.alert('This is not yours to delete')
-            history.push('/')
-        }
+    //     console.log( 'current user', currentUser.id)
         
-    }
+    //     if (currentUser.id === reviewUser.userId) {
+    //         dispatch(deleteReview(reviewUser[0].id))
+    //         window.alert('Review deleted')
+    //         history.push(`/spots/${spotId}`)
+    //     }
+    //     else {
+    //         window.alert('This is not yours to delete')
+    //         // history.push('/')
+    //     }
+
+    // }
     
     const newReviewRedirect = () => {
         history.push(`/spots/${spotId}/new-review`)
@@ -104,11 +105,6 @@ const SpotDetail = () => {
                 <button onClick={newReviewRedirect}>
                     CREATE NEW REVIEW
                 </button>
-                <button onClick={reviewDeleteHandler}>DELETE YOUR REVIEW</button>
-{/* 
-                {currentUser && currentUser.id === reviewUser.id && (
-                    <button>Delete YOUR review</button> */}
-                {/* )}; */}
             </div>
 
         </div>
