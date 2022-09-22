@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useParams } from "react-router-dom";
-import { editSpot, getSpotDetails } from "../../store/spots";
+import { addSpotImage, editSpot, getSpotDetails } from "../../store/spots";
+
 
 // maybe a modal
 const UpdateSpotFormPage = () => {
@@ -10,6 +11,7 @@ const UpdateSpotFormPage = () => {
     const history = useHistory();
 
     const spot = useSelector(state => state.spots.singleSpot);
+    const spotImg = useSelector(state => state.spots.singleSpot.spotImages)
 
 
     const [address, setAddress] = useState(spot.address);
@@ -21,6 +23,7 @@ const UpdateSpotFormPage = () => {
     const [name, setName] = useState(spot.name);
     const [description, setDescription] = useState(spot.description);
     const [price, setPrice] = useState(spot.price);
+    const [imgUrl, setImgUrl] = useState(spotImg.url);
 
     const updateAddress = e => setAddress(e.target.value);
     const updateCity = e => setCity(e.target.value);
@@ -31,12 +34,12 @@ const UpdateSpotFormPage = () => {
     const updateName = e => setName(e.target.value);
     const updateDescription = e => setDescription(e.target.value);
     const updatePrice = e => setPrice(e.target.value);
-
+    const updateImgUrl = e => setImgUrl(e.target.value)
 
 
     useEffect(() => {
         dispatch(getSpotDetails(spotId))
-    }, [ dispatch ])
+    }, [dispatch])
 
 
     const handleSubmit = async (e) => {
@@ -59,9 +62,17 @@ const UpdateSpotFormPage = () => {
         console.log('edited spot', updatedSpot)
 
         if (updatedSpot) {
-            history.push(`/spots/${updatedSpot.id}`)
+            const imgReq = ({
+                url: imgUrl,
+                preview: true
+            });
+
+            await dispatch(addSpotImage(imgReq, updatedSpot.id));
+            history.push(`/spots/${updatedSpot.id}`);
         }
-    }
+
+
+    };
 
 
 
@@ -157,6 +168,16 @@ const UpdateSpotFormPage = () => {
                             onChange={updateDescription}
                             value={description}
                             placeholder='Bio here'
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor='imgUrl'></label>
+                        <input
+                            id='imgUrl'
+                            type='text'
+                            onChange={updateImgUrl}
+                            value={imgUrl}
+                            placeholder='imgUrl'
                         />
                     </div>
                     <button>SUBMIT</button>
