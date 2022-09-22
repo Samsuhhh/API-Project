@@ -37,7 +37,7 @@ function App() {
             Home Page
             <SpotsBrowser></SpotsBrowser>
           </Route>
-          <Route exact path={'/spots'}>
+          <Route exact path={'/spots/new'}>
             <CreateSpotForm />
           </Route>
           <Route exact path={'/spots/update/:spotId'}>

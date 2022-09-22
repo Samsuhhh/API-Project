@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { createNewSpot } from '../../store/spots';
 import './CreateSpotForm.css'
+import { addSpotImage } from '../../store/spots';
 
 
 const CreateSpotForm = () => {
@@ -19,6 +20,7 @@ const CreateSpotForm = () => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
+    const [imgUrl, setImgUrl] = useState('');
 
     
     const handleSubmit = async (e) => {
@@ -37,11 +39,19 @@ const CreateSpotForm = () => {
        };
 
        let newSpot = await dispatch(createNewSpot(payload));
-       console.log('NEw spot', newSpot)
+    //    console.log('NEw spot', newSpot)
 
+       // include an  image for the new spot
        if (newSpot) {
+
+        const imgReq = ({
+            url: imgUrl,
+            preview: true
+        });
+
+        await dispatch(addSpotImage(imgReq, newSpot.id))
         history.push(`/spots/${newSpot.id}`)
-       }
+    }
     };
 
     return (
@@ -49,7 +59,7 @@ const CreateSpotForm = () => {
         <div id='form-container'>
             <div id='createSpot-form'>
                 <div>
-                    <h1>CREATE SPOT!!!</h1>
+                    <h1>CREATE NEW SPOT!!!</h1>
                 </div>
                 <form onSubmit={handleSubmit}>
                     <div>
@@ -145,6 +155,16 @@ const CreateSpotForm = () => {
                             value={description}
                             placeholder='Bio here'
                         />
+                    </div>
+                    <div>
+                        <label htmlFor='imgUrl'></label>
+                        <input
+                            id='imgUrl'
+                            type='text'
+                            onChange={e => setImgUrl(e.target.value)}
+                            value={imgUrl}
+                            placeholder='imgUrl'
+                            />
                     </div>
 
                     
