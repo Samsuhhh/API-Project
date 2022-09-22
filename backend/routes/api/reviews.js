@@ -38,9 +38,9 @@ router.get('/current', requireAuth, async (req, res) => {
             userId: userId
         },
     });
-
     for (let i = 0; i < reviews.length; i++) {
         let resPreview = reviews[i].toJSON();
+        // console.log(resPreview)
         let spotImageUrl = resPreview.Spot.SpotImages[0]
         // if (!spotImageUrl) return null;
 
@@ -52,6 +52,7 @@ router.get('/current', requireAuth, async (req, res) => {
         delete resPreview.Spot.SpotImages;
         reviews[i] = resPreview;
     };
+    console.log('HELLLOO FROM THE BACKEND',reviews)
 
     return res.json({ Reviews: reviews })
 });
