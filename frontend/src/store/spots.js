@@ -4,12 +4,14 @@ export const LOAD_SPOTS = 'spots/LOAD_SPOTS';
 export const UPDATE_ONE = 'spots/UPDATE_ONE';
 export const DELETE_ONE = 'spots/DELETE_ONE';
 export const LOAD_ONE = 'spots/LOAD_ONE';
+export const LOAD_CURRENT = 'spots/LOAD_CURRENT';
 
 
-const load = (spots, spotId) => ({
+
+const load = (spots) => ({
     type: LOAD_SPOTS,
-    spots,
-    spotId
+    spots
+ 
 });
 
 const loadOne = (spotDetails, spotId) => ({
@@ -26,12 +28,30 @@ const createSpot = (spot) => ({
 const updateSpot = (spot) => ({
     type: UPDATE_ONE,
     spot
-})
+});
 
 const deleteOne = (spotId) => ({
     type: DELETE_ONE,
     spotId
+});
+
+const current = (spots) => ({
+    type: LOAD_CURRENT,
+    spots
 })
+
+//GET CURRENT USER'S INFORMATION (ALL SPOTS)
+export const getCurrentUserSpots = () => async dispatch => {
+    const res = await csrfFetch('/api/spots/current')
+
+    if (res.ok) {
+        const data = await res.json();
+        console.log('current user SPOTS thunk hitting: ', data)
+        dispatch(current(data));
+        return data;
+    }
+};
+
 
 // READ ALL SPOTS
 export const getAllSpots = () => async dispatch => {
@@ -110,13 +130,14 @@ const initialState = {
 const spotsReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
+        case LOAD_CURRENT:
         case LOAD_SPOTS:
             const allSpots = {};
             console.log('spots ReDUCER', action.spots.Spots)
             action.spots.Spots.forEach(spot => {
                 allSpots[spot.id] = spot;
             });
-            console.log('ALL SPOTS REDUCED', allSpots)
+            // console.log('ALL SPOTS REDUCED', allSpots)
             return {
                 ...state,
                 allSpots

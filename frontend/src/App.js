@@ -11,6 +11,7 @@ import SpotDetail from "./components/SpotDetails";
 import CreateSpotForm from "./components/CreateSpotForm";
 import UpdateSpotFormPage from "./components/UpdateSpot";
 import CreateReviewForm from "./components/CreateReviewForm";
+import GetCurrentUser from "./components/GetCurrentUser";
 
 function App() {
   const dispatch = useDispatch();
@@ -47,6 +48,9 @@ function App() {
           </Route>
           <Route path={'/spots/:spotId/new-review'}>
             <CreateReviewForm/>
+          </Route>
+          <Route path={'/users/my-account/'}>
+            <GetCurrentUser/>
           </Route>
         </Switch>
       )}
