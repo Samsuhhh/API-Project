@@ -16,12 +16,13 @@ const SpotDetail = () => {
     const history = useHistory();
 
     const currentUser = useSelector(state => state.session.user);
-    const spot = useSelector(state => state.spots.singleSpot);
-    const reviewUser = useSelector(state => state.reviews.spot);
+    const spotImg = useSelector(state => Object.values(state.spots.singleSpot.SpotImages));
+    // const reviewUser = useSelector(state => state.reviews.spot);
 
     const spotDetails = useSelector(state => {
         return state.spots.singleSpot
-    })
+    });
+    console.log(spotDetails.SpotImages)
 
     // console.log('hi')
 
@@ -81,7 +82,8 @@ const SpotDetail = () => {
                     Spot Name:  {spotDetails.name}
                 </div>
                 <div className='image-section'>
-                    <img alt='no pic' src='https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg' />
+                    <img id='spot-img' alt='beautiful spotImage' src={spotImg[0]?.url ||
+                     'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg'} />
                 </div>
                 <div>
                     <div>
@@ -95,11 +97,11 @@ const SpotDetail = () => {
                     </div>
                 </div>
 
-                {currentUser && currentUser.id === spot.ownerId && (
+                {currentUser && currentUser.id === spotDetails.ownerId && (
                     <button onClick={updateRedirect}>UPDATE SPOT</button>
                 )}
                 <br></br>
-                {currentUser && currentUser.id === spot.ownerId && (
+                {currentUser && currentUser.id === spotDetails.ownerId && (
                     <button onClick={deleteHandler}>DELETE</button>
                 )}
             </div>
