@@ -163,14 +163,18 @@ const spotsReducer = (state = initialState, action) => {
             });
             // console.log('ALL SPOTS REDUCED', allSpots)
             return {
-                ...state,
-                allSpots
+                allSpots,
+                singleSpot: {
+                    SpotImages:[]
+                }
             }
         case LOAD_ONE:
             let singleSpot = { ...state };
             singleSpot = { ...action.spotDetails }
             console.log('LOAD ONE', singleSpot)
-            return  { ...state, singleSpot }
+            return  { ...state, singleSpot: {
+                ...singleSpot, 
+            } }
 
         // spotDetails[spotId] = action.spotDetails
         case ADD_ONE:
@@ -184,17 +188,15 @@ const spotsReducer = (state = initialState, action) => {
             console.log('NEW SPOT THUNKAROO', newState)
             return newState;
         case ADD_IMAGE:
-            newState = {...state}
+            newState = { ...state}
             newState.singleSpot.SpotImages = [action.spotId.url]
             return {
-                singleSpot: newState,
-                allSpots: {}
+                ...newState
             }
         case UPDATE_ONE:
-            newState = {
-                ...state
-            }
+            newState = {...state}
                 newState.singleSpot = action.spot;
+                newState.singleSpot.SpotImages = [...state.singleSpot.SpotImages]
                  return newState;
         case DELETE_ONE:
             newState = {...state};

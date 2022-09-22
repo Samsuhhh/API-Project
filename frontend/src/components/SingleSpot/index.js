@@ -8,14 +8,16 @@ import { Link } from 'react-router-dom';
 
 const SingleSpot = (spot) => {
 
-
     console.log('SINGLE SPOT', spot)
 
     return (
         <>
         <Link to={`/spots/${spot.spot.id}`}>
             {/* <div className="spot-card-container"> */}
-            <img id="spotImg" alt="nice house" src='https://64.media.tumblr.com/01d5b773173c39a69236138458ca2482/tumblr_p7eck8xuUC1ss7ju0o1_1280.jpg' />
+                <div className='image-section'>
+                    <img id='spot-img' alt='beautiful spotImage' src={ spot.spot.previewImage ||
+                        'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg'} />
+                </div>
             <div className='description-stars'>
                 <div id='location'>
                     {`${spot.spot.city}, ${spot.spot.state}`}

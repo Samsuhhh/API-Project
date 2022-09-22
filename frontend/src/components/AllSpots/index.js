@@ -18,7 +18,7 @@ const SpotsBrowser = () => {
 
 
     // return null;
-    if (!spots) return null;
+    if (!(spots)) return null;
 
     
 

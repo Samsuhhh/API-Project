@@ -70,6 +70,7 @@ const CreateSpotForm = () => {
                             onChange={e => setName(e.target.value)}
                             value={name}
                             placeholder='Name'
+                            required
                         />
                     </div>
                     <div>
@@ -80,6 +81,7 @@ const CreateSpotForm = () => {
                             onChange={e => setLat(e.target.value)}
                             value={lat}
                             placeholder='Latitude'
+                            required
                         />
                     </div>
                     <div>
@@ -90,6 +92,7 @@ const CreateSpotForm = () => {
                             onChange={e => setLng(e.target.value)}
                             value={lng}
                             placeholder='Longitude'
+                            required
                         />
                     </div>
                     <div>
@@ -100,6 +103,7 @@ const CreateSpotForm = () => {
                             onChange={e => setAddress(e.target.value)}
                             value={address}
                             placeholder='Address'
+                            required
                         />
                     </div>
                     <div>
@@ -110,6 +114,7 @@ const CreateSpotForm = () => {
                             onChange={e => setCity(e.target.value)}
                             value={city}
                             placeholder='City'
+                            required
                         />
                     </div>
                     <div>
@@ -120,12 +125,14 @@ const CreateSpotForm = () => {
                             onChange={e => setState(e.target.value)}
                             value={state}
                             placeholder='State'
+                            required
                         />
                         <br></br>
                         <select
                             name="Country"
                             onChange={(e) => setCountry(e.target.value)}
                             value={country}
+                            required
                         >
                             <option value="" >
                                 select a country
@@ -133,6 +140,7 @@ const CreateSpotForm = () => {
                             <option>USA</option>
                             <option>CHINA</option>
                             <option>Australia</option>
+                            
                         </select>
                     </div>
                     <div>
@@ -144,6 +152,7 @@ const CreateSpotForm = () => {
                             onChange={e => setPrice(e.target.value)}
                             value={price}
                             placeholder='Price'
+                            required
                         />
                     </div>
                     <div>
@@ -154,6 +163,7 @@ const CreateSpotForm = () => {
                             onChange={e => setDescription(e.target.value)}
                             value={description}
                             placeholder='Bio here'
+                            required
                         />
                     </div>
                     <div>
@@ -164,6 +174,7 @@ const CreateSpotForm = () => {
                             onChange={e => setImgUrl(e.target.value)}
                             value={imgUrl}
                             placeholder='imgUrl'
+                            required
                             />
                     </div>
 

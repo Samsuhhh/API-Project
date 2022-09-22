@@ -11,8 +11,8 @@ const UpdateSpotFormPage = () => {
     const history = useHistory();
 
     const spot = useSelector(state => state.spots.singleSpot);
-    const spotImg = useSelector(state => state.spots.singleSpot.spotImages)
-
+    // const spotImg = useSelector(state => state.spots.singleSpot);
+    // console.log(spotImg, spot)
 
     const [address, setAddress] = useState(spot.address);
     const [city, setCity] = useState(spot.city);
@@ -23,7 +23,7 @@ const UpdateSpotFormPage = () => {
     const [name, setName] = useState(spot.name);
     const [description, setDescription] = useState(spot.description);
     const [price, setPrice] = useState(spot.price);
-    const [imgUrl, setImgUrl] = useState(spotImg.url);
+    // const [imgUrl, setImgUrl] = useState(spot?.SpotImages[0]?.url);
 
     const updateAddress = e => setAddress(e.target.value);
     const updateCity = e => setCity(e.target.value);
@@ -34,13 +34,14 @@ const UpdateSpotFormPage = () => {
     const updateName = e => setName(e.target.value);
     const updateDescription = e => setDescription(e.target.value);
     const updatePrice = e => setPrice(e.target.value);
-    const updateImgUrl = e => setImgUrl(e.target.value)
+    // const updateImgUrl = e => setImgUrl(e.target.value)
 
 
     useEffect(() => {
         dispatch(getSpotDetails(spotId))
     }, [dispatch])
 
+    if (!Object.keys(spot).length) return null;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -61,16 +62,20 @@ const UpdateSpotFormPage = () => {
         let updatedSpot = await dispatch(editSpot(payload, spotId));
         console.log('edited spot', updatedSpot)
 
+        if (!Object.keys(spot).length) return null;
+
         if (updatedSpot) {
-            const imgReq = ({
-                url: imgUrl,
-                preview: true
-            });
-
-            await dispatch(addSpotImage(imgReq, updatedSpot.id));
+            // const imgReq = ({
+            //     url: imgUrl,
+            //     preview: true
+            // });
+            // if (!Object.keys(spot).length) {
+            //     console.log('FUCK ME')
+            //     return null;
+            // }
+            // await dispatch(addSpotImage(imgReq, updatedSpot.id));
             history.push(`/spots/${updatedSpot.id}`);
-        }
-
+        } 
 
     };
 
@@ -170,7 +175,7 @@ const UpdateSpotFormPage = () => {
                             placeholder='Bio here'
                         />
                     </div>
-                    <div>
+                    {/* <div>
                         <label htmlFor='imgUrl'></label>
                         <input
                             id='imgUrl'
@@ -179,7 +184,7 @@ const UpdateSpotFormPage = () => {
                             value={imgUrl}
                             placeholder='imgUrl'
                         />
-                    </div>
+                    </div> */}
                     <button>SUBMIT</button>
                 </form>
             </div>
