@@ -5,6 +5,7 @@
     grid-template-rows: repeat(5, 1fr);
     /* grid-template-rows: repeat(5, 1fr); */
     /* border: 5px blue solid; */
+    grid-auto-flow: row;
     height: 100%;
     max-width: 100%;
     gap: 20px;
