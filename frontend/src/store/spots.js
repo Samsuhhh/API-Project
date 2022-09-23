@@ -11,7 +11,7 @@ export const ADD_IMAGE = 'spots/ADD_IMAGE';
 const load = (spots) => ({
     type: LOAD_SPOTS,
     spots
- 
+
 });
 
 const loadOne = (spotDetails, spotId) => ({
@@ -50,7 +50,7 @@ const addImage = (spotId) => ({
 export const addSpotImage = (imgUrl, spotId) => async dispatch => {
     const res = await csrfFetch(`/api/spots/${spotId}/images`, {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(imgUrl)
     });
 
@@ -165,16 +165,17 @@ const spotsReducer = (state = initialState, action) => {
             return {
                 allSpots,
                 singleSpot: {
-                    SpotImages:[]
+                    SpotImages: []
                 }
             }
         case LOAD_ONE:
             let singleSpot = { ...state };
             singleSpot = { ...action.spotDetails }
             console.log('LOAD ONE', singleSpot)
-            return  { ...state, singleSpot: {
-                ...singleSpot, 
-            } }
+            return {
+                ...state,
+                singleSpot: { ...singleSpot }
+            }
 
         // spotDetails[spotId] = action.spotDetails
         case ADD_ONE:
@@ -188,27 +189,27 @@ const spotsReducer = (state = initialState, action) => {
             console.log('NEW SPOT THUNKAROO', newState)
             return newState;
         case ADD_IMAGE:
-            newState = { ...state}
+            newState = { ...state }
             newState.singleSpot.SpotImages = [action.spotId.url]
             return {
                 ...newState
             }
         case UPDATE_ONE:
-            newState = {...state}
-                newState.singleSpot = action.spot;
-                newState.singleSpot.SpotImages = [...state.singleSpot.SpotImages]
-                 return newState;
+            newState = { ...state }
+            newState.singleSpot = action.spot;
+            newState.singleSpot.SpotImages = [...state.singleSpot.SpotImages]
+            return newState;
         case DELETE_ONE:
-            newState = {...state};
+            newState = { ...state };
             delete newState[action.spotId];
             return {
                 newState,
                 singleSpot: {}
             }
-            default:
+        default:
             return state
     }
-    
+
 };
 
 export default spotsReducer;

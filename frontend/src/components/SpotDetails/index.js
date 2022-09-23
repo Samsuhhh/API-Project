@@ -24,7 +24,7 @@ const SpotDetail = () => {
         return state.spots.singleSpot
     });
     // console.log('goodbye', spotImg)
-    console.log('hello?' , spotDetails.SpotImages)
+    console.log('SPOT DETAILS' , spotDetails.SpotImages)
 
     // console.log('hi')
 
@@ -33,7 +33,7 @@ const SpotDetail = () => {
     }, [dispatch, spotId])
 
     if (!Object.keys(spotDetails).length) {
-        console.log('FUCK')
+        console.log('if NO spotDetails safety hitting')
         return null;
     }
     
@@ -41,8 +41,6 @@ const SpotDetail = () => {
         // let updatedSpot = await dispatch(getSpotDetails(spotId));
         // console.log('UPDATING SPOT', updatedSpot);
         // if(updatedSpot) {
-
-
         history.push(`/spots/update/${spotId}`)
         // }
     }
@@ -55,7 +53,6 @@ const SpotDetail = () => {
         } else {
             history.push(`/spots/${spotId}`)
         }
-        // window.alert('This SPOT has been deleted')
     };
 
     // const reviewDeleteHandler = async () => {
