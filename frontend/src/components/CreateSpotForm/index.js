@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { createNewSpot } from '../../store/spots';
 import './CreateSpotForm.css'
 import { addSpotImage } from '../../store/spots';
@@ -21,6 +21,31 @@ const CreateSpotForm = () => {
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
     const [imgUrl, setImgUrl] = useState('');
+    const [createSpotErrors, setCreateSpotErrors] = useState([]);
+
+    useEffect(() => {
+        const errors = [];
+
+        if ( !address || address.length > 20 || address.length <= 5) {
+            errors.push('Please provide a valid address.')
+        };
+        if ( !city || city.length > 20 || city.length <= 5) {
+            errors.push('Please provide a valid city.')
+        };
+        if (!name || name.length > 24 || name.length < 3) {
+            errors.push('Please provide a valid name.')
+        };
+        if (!description || description.length > 150 || description.length < 5) {
+            errors.push('Please provide a valid description.')
+        };
+        if (!price || !Number(price)) {
+            errors.push('Please provide a valid price.')
+        };
+        
+    
+
+    })
+
 
     
     const handleSubmit = async (e) => {
@@ -52,6 +77,11 @@ const CreateSpotForm = () => {
         await dispatch(addSpotImage(imgReq, newSpot.id))
         history.push(`/spots/${newSpot.id}`)
     }
+    };
+
+    const cancelHandler = (e) => {
+        e.preventDefault();
+        history.push('/');
     };
 
     return (
@@ -179,7 +209,10 @@ const CreateSpotForm = () => {
                     </div>
 
                     
-                    <button >SUBMIT</button>
+                    <button
+                    disabled={createSpotErrors.length > 0 ? true : false}
+                    >Host my spot</button>
+                    <button onClick={cancelHandler}>CANCEL</button>
                 </form>
             </div>
         </div>
