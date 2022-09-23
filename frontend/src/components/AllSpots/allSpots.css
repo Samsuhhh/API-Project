@@ -5,24 +5,45 @@
     grid-template-rows: repeat(5, 1fr);
     /* grid-template-rows: repeat(5, 1fr); */
     /* border: 5px blue solid; */
-    grid-auto-flow: row;
-    height: 100%;
-    max-width: 100%;
-    gap: 20px;
-    padding-left: 80px;
-    padding-right: 80px;
+    /* grid-auto-flow: row; */
+    height: 60%;
+    width: 1750px;
+    gap: 25px;
+
+    /* padding-left: 80px;
+    padding-right: 80px; */
 }
 
+
+
+/* @media screen and (max-width: 800px) {
+    .SpotsContainer {
+        grid-template-columns: repeat(4, 300px);
+        grid-template-rows: repeat(5, 1fr);
+        grid-auto-flow: row;
+        height: 100%;
+        max-width: 100%;
+        gap: 20px;
+        padding-left: 80px;
+        padding-right: 80px;
+    }
+} */
+
 .wrapper {
-    width: 100%;
+    max-width: 100%;
+    height: 100%;
     border: solid red 5px;
     display: flex;
-    justify-content: center;
-    padding-top: 180px;
+    justify-content: right;
+    align-items: center;
+    /* padding-top: 180px; */
+    
+
 }
 
 #single-card {
-    display: flex;
+    /* display: flex;
+    justify-content: center; */
     /* height: 325x; */
     height: 100%;
     /* width: 300px; */

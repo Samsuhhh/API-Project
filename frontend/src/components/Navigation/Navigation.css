@@ -1,25 +1,25 @@
-.header{
+.header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     position: fixed;
-    width: 100%;
+    width: 90%;
     background-color: white;
     border-bottom: lightgray 1px solid;
     /* display: none; */
     /* border: solid black 5px; */
-    height: 100px
+    height: 100px;
+    padding-left: 150px;
+    padding-right: 150px;
 
 }
 
 .nav-bar {
     height: 80px;
-    width: 100%;
+    /* width: 100%; */
     font-size: 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-left: 72.5px;
-    margin-right: 72.5px;
     padding-left: 80px;
     padding-right: 80px;
     position: fixed;
@@ -28,6 +28,8 @@
     /* border: solid red 1px; */
 
 }
+
+
 
 .logo {
     height: 50px;
@@ -40,13 +42,13 @@
 }
 
 
-.access-granted-btn{
+.access-granted-btn {
     border-radius: 50px;
-    background:transparent;
+    background: transparent;
     height: 42px;
     width: 72px;
     border: auto;
-    
+
 }
 
 .dropdown-content {
@@ -88,6 +90,3 @@
 .hidden {
     display: none !important;
 }
-
-
-
