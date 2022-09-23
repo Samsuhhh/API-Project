@@ -5,12 +5,11 @@
     width: 100%;
     background-color: white;
     border-bottom: lightgray 1px solid;
-    display: none;
+    /* display: none; */
     /* border: solid black 5px; */
     height: 100px
 
 }
-
 
 .nav-bar {
     height: 80px;

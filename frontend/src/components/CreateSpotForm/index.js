@@ -42,9 +42,7 @@ const CreateSpotForm = () => {
             errors.push('Please provide a valid price.')
         };
         
-    
-
-    })
+    });
 
 
     
