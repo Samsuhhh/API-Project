@@ -10,9 +10,14 @@
     
 } */
 
-#spotImg {
+.image-section {
+    width: 100%;
+    height: 100%;
+}
+
+#spot-img {
     
-    height: 285px;
+    height: 285.7px;
     width: 100%;
     /* border: solid purple 5px; */
     display:flex;

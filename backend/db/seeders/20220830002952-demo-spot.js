@@ -9,7 +9,7 @@ const demoSpots = [
     country: 'United States of Demo',
     lat: 37.1234,
     lng: 121.1212,
-    name: "HollyWood",
+    name: "Death Valley",
     description: 'Place for devs to check if they are acting',
     price: 3000
   },
@@ -22,7 +22,7 @@ const demoSpots = [
     country: 'United States of Demo',
     lat: 37.5678,
     lng: 121.2323,
-    name: "YayArea",
+    name: "Mt Everest",
     description: 'Place for devs to check if they are crying on the inside',
     price: 420
   },
@@ -35,7 +35,7 @@ const demoSpots = [
     country: 'United States of Demo',
     lat: 37.9101,
     lng: 121.4545,
-    name: "Demo3",
+    name: "amazon jungle",
     description: 'Place for devs to check if they need a break',
     price: 500
   },
@@ -62,8 +62,8 @@ const demoSpots = [
     lat: 37.5678,
     lng: 121.2323,
     name: "Ghost Town",
-    description: 'Place for devs to die',
-    price: 666
+    description: 'Place for devs to learn',
+    price: 31000
   },
 ]
 const { Spot } = require('../models')
