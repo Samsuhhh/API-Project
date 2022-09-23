@@ -8,9 +8,8 @@ import './Navigation.css';
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
-
+    const spotDetails = useSelector(state => state.spots.singleSpot);
     let sessionLinks;
-
 
     if (sessionUser) {
         sessionLinks = (
@@ -42,7 +41,9 @@ function Navigation({ isLoaded }) {
                             <NavLink exact to="/">Home</NavLink>
                         </div>
                         <div>
-                            <NavLink to='/spots'>Host Your Spot</NavLink>
+                            {sessionUser && (
+                                <NavLink to='/spots/new'>Host Your Spot</NavLink>
+                            )}
                         </div>
                     </div>
                 </div>
