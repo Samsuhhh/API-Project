@@ -13,7 +13,8 @@ const SpotsBrowser = () => {
     console.log('ALL SPOTS', spots)
 
     useEffect(() => {
-        dispatch(getAllSpots());
+        const getAllspotsDispatch = dispatch(getAllSpots());
+        console.log('get all spots dispatch', getAllspotsDispatch);
     }, [dispatch])
 
 
@@ -26,21 +27,23 @@ const SpotsBrowser = () => {
         <div className='wrapper'>
 
             <div className='SpotsContainer'>
-               
-                    {Object.values(spots).map(spot => {
-                        return <div key={spot.id} className='single-card'>
 
-                            <SingleSpot spot={spot}>
-                            </SingleSpot>
+                {Object.values(spots).map(spot => {
+                    return <div key={spot.id} className='single-card'>
+
+                        <SingleSpot spot={spot}>
+
+                        </SingleSpot>
 
 
-                        </div>
-                    })}
-                
+                    </div>
+                })}
+
 
             </div>
 
         </div>
+
     )
 
 

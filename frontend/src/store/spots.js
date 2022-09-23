@@ -83,8 +83,9 @@ export const getAllSpots = () => async dispatch => {
 
     if (res.ok) {
         const spots = await res.json();
-        console.log('spots THUNK', spots)
-        dispatch(load(spots));
+        console.log('all spots THUNK', spots)
+        const getAllSpotsThunk = dispatch(load(spots));
+        console.log('get all spots thunk dispatch', getAllSpotsThunk)
         return spots;
     }
 };
@@ -157,7 +158,7 @@ const spotsReducer = (state = initialState, action) => {
         case LOAD_CURRENT:
         case LOAD_SPOTS:
             const allSpots = {};
-            console.log('spots ReDUCER', action.spots.Spots)
+            console.log('spots ReDUCER ACTION', action)
             action.spots.Spots.forEach(spot => {
                 allSpots[spot.id] = spot;
             });

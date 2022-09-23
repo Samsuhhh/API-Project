@@ -29,30 +29,33 @@ function Navigation({ isLoaded }) {
 
 
         <div className='header'>
-            <div>
-                <img alt='blue airBnB logo' className='logo' src='https://assets.entrepreneur.com/article/1405623476-airbnb-logo-explanation.jpg' />
-            </div>
+            <div className='nav-bar'>
 
-            <div>
+
+                <img alt='blue airBnB logo' id='logo' src='https://assets.entrepreneur.com/article/1405623476-airbnb-logo-explanation.jpg' />
 
                 <div className='dropdown'>
+
                     <button className='access-granted-btn'> fix me :(
+
                         {/* <img alt='hamburger menu' src='../../assets/icons8-menu-30.png' /> */}
                     </button >
-                </div>
-                <div className='dropdown-content'>
-                    {isLoaded && sessionLinks}
-                    <div>
-                        <NavLink exact to="/">Home</NavLink>
+                    <div className='dropdown-content'>
+                        {isLoaded && sessionLinks}
+                        <div id='wya'>
+                            <NavLink exact to="/">Home</NavLink>
+                        </div>
+                        <div id='please'>
+                            {sessionUser && (
+                                <NavLink to='/spots/new'>Host Your Spot</NavLink>
+                            )}
+                        </div>
                     </div>
-                    <div>
-                        {sessionUser && (
-                            <NavLink to='/spots/new'>Host Your Spot</NavLink>
-                        )}
-                    </div>
                 </div>
-            </div>
 
+
+
+            </div>
             {/* <div id='filter-space'>space</div> */}
         </div>
 
