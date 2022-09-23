@@ -6,7 +6,7 @@ import './SpotDetails.css'
 // import UpdateSpotFormPage from "../UpdateSpot";
 import { deleteSpot } from "../../store/spots";
 import SpotReviews from "../AllReviews";
-import { deleteReview } from "../../store/reviews";
+// import { deleteReview } from "../../store/reviews";
 
 
 const SpotDetail = () => {
@@ -16,12 +16,15 @@ const SpotDetail = () => {
     const history = useHistory();
 
     const currentUser = useSelector(state => state.session.user);
-    const spot = useSelector(state => state.spots.singleSpot);
-    const reviewUser = useSelector(state => state.reviews.spot);
+    // const spotImg = useSelector(state => state.spots.singleSpot);
+    // delete spotImages at the end of useSelector and then put it back in for the BUG to occur
+    // const reviewUser = useSelector(state => state.reviews.spot);
 
     const spotDetails = useSelector(state => {
         return state.spots.singleSpot
-    })
+    });
+    // console.log('goodbye', spotImg)
+    console.log('SPOT DETAILS' , spotDetails.SpotImages)
 
     // console.log('hi')
 
@@ -29,9 +32,11 @@ const SpotDetail = () => {
         dispatch(getSpotDetails(spotId))
     }, [dispatch, spotId])
 
-    if (!spotDetails) return null;
-
-
+    if (!Object.keys(spotDetails).length) {
+        console.log('if NO spotDetails safety hitting')
+        return null;
+    }
+    
     const updateRedirect = async (e) => {
         // let updatedSpot = await dispatch(getSpotDetails(spotId));
         // console.log('UPDATING SPOT', updatedSpot);
@@ -40,6 +45,7 @@ const SpotDetail = () => {
         // }
     }
 
+
     const deleteHandler = async () => {
         if (window.confirm('Are you sure you want to delete this spot?')) {
             await dispatch(deleteSpot(spotId));
@@ -47,9 +53,6 @@ const SpotDetail = () => {
         } else {
             history.push(`/spots/${spotId}`)
         }
-        // window.alert('This SPOT has been deleted')
-
-
     };
 
     // const reviewDeleteHandler = async () => {
@@ -81,7 +84,8 @@ const SpotDetail = () => {
                     Spot Name:  {spotDetails.name}
                 </div>
                 <div className='image-section'>
-                    <img alt='no pic' src='https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg' />
+                    <img id='spot-img' alt='beautiful spotImage' src={spotDetails.SpotImages[0]?.url ||
+                     'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg'} />
                 </div>
                 <div>
                     <div>
@@ -95,11 +99,11 @@ const SpotDetail = () => {
                     </div>
                 </div>
 
-                {currentUser && currentUser.id === spot.ownerId && (
+                {currentUser && currentUser.id === spotDetails.ownerId && (
                     <button onClick={updateRedirect}>UPDATE SPOT</button>
                 )}
                 <br></br>
-                {currentUser && currentUser.id === spot.ownerId && (
+                {currentUser && currentUser.id === spotDetails.ownerId && (
                     <button onClick={deleteHandler}>DELETE</button>
                 )}
             </div>

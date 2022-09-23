@@ -5,13 +5,13 @@ export const UPDATE_ONE = 'spots/UPDATE_ONE';
 export const DELETE_ONE = 'spots/DELETE_ONE';
 export const LOAD_ONE = 'spots/LOAD_ONE';
 export const LOAD_CURRENT = 'spots/LOAD_CURRENT';
-
+export const ADD_IMAGE = 'spots/ADD_IMAGE';
 
 
 const load = (spots) => ({
     type: LOAD_SPOTS,
     spots
- 
+
 });
 
 const loadOne = (spotDetails, spotId) => ({
@@ -38,7 +38,31 @@ const deleteOne = (spotId) => ({
 const current = (spots) => ({
     type: LOAD_CURRENT,
     spots
-})
+});
+
+const addImage = (spotId) => ({
+    type: ADD_IMAGE,
+    spotId
+});
+
+
+// add an image to a spot
+export const addSpotImage = (imgUrl, spotId) => async dispatch => {
+    const res = await csrfFetch(`/api/spots/${spotId}/images`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(imgUrl)
+    });
+
+    if (res.ok) {
+        const image = await res.json();
+        console.log('add Image thunk hitting:', image);
+        dispatch(addImage(image));
+        return image
+    };
+
+};
+
 
 //GET CURRENT USER'S INFORMATION (ALL SPOTS)
 export const getCurrentUserSpots = () => async dispatch => {
@@ -139,14 +163,19 @@ const spotsReducer = (state = initialState, action) => {
             });
             // console.log('ALL SPOTS REDUCED', allSpots)
             return {
-                ...state,
-                allSpots
+                allSpots,
+                singleSpot: {
+                    SpotImages: []
+                }
             }
         case LOAD_ONE:
             let singleSpot = { ...state };
             singleSpot = { ...action.spotDetails }
             console.log('LOAD ONE', singleSpot)
-            return  { ...state, singleSpot }
+            return {
+                ...state,
+                singleSpot: { ...singleSpot }
+            }
 
         // spotDetails[spotId] = action.spotDetails
         case ADD_ONE:
@@ -159,23 +188,28 @@ const spotsReducer = (state = initialState, action) => {
             }
             console.log('NEW SPOT THUNKAROO', newState)
             return newState;
-        case UPDATE_ONE:
-            newState = {
-                ...state
+        case ADD_IMAGE:
+            newState = { ...state }
+            newState.singleSpot.SpotImages = [action.spotId.url]
+            return {
+                ...newState
             }
-                newState.singleSpot = action.spot;
-                 return newState;
+        case UPDATE_ONE:
+            newState = { ...state }
+            newState.singleSpot = action.spot;
+            newState.singleSpot.SpotImages = [...state.singleSpot.SpotImages]
+            return newState;
         case DELETE_ONE:
-            newState = {...state};
+            newState = { ...state };
             delete newState[action.spotId];
             return {
                 newState,
                 singleSpot: {}
             }
-            default:
+        default:
             return state
     }
-    
+
 };
 
 export default spotsReducer;

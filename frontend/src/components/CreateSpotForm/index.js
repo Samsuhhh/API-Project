@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { createNewSpot } from '../../store/spots';
 import './CreateSpotForm.css'
+import { addSpotImage } from '../../store/spots';
 
 
 const CreateSpotForm = () => {
@@ -19,6 +20,7 @@ const CreateSpotForm = () => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
+    const [imgUrl, setImgUrl] = useState('');
 
     
     const handleSubmit = async (e) => {
@@ -37,11 +39,19 @@ const CreateSpotForm = () => {
        };
 
        let newSpot = await dispatch(createNewSpot(payload));
-       console.log('NEw spot', newSpot)
+    //    console.log('NEw spot', newSpot)
 
+       // include an  image for the new spot
        if (newSpot) {
+
+        const imgReq = ({
+            url: imgUrl,
+            preview: true
+        });
+
+        await dispatch(addSpotImage(imgReq, newSpot.id))
         history.push(`/spots/${newSpot.id}`)
-       }
+    }
     };
 
     return (
@@ -49,7 +59,7 @@ const CreateSpotForm = () => {
         <div id='form-container'>
             <div id='createSpot-form'>
                 <div>
-                    <h1>CREATE SPOT!!!</h1>
+                    <h1>CREATE NEW SPOT!!!</h1>
                 </div>
                 <form onSubmit={handleSubmit}>
                     <div>
@@ -60,6 +70,7 @@ const CreateSpotForm = () => {
                             onChange={e => setName(e.target.value)}
                             value={name}
                             placeholder='Name'
+                            required
                         />
                     </div>
                     <div>
@@ -70,6 +81,7 @@ const CreateSpotForm = () => {
                             onChange={e => setLat(e.target.value)}
                             value={lat}
                             placeholder='Latitude'
+                            required
                         />
                     </div>
                     <div>
@@ -80,6 +92,7 @@ const CreateSpotForm = () => {
                             onChange={e => setLng(e.target.value)}
                             value={lng}
                             placeholder='Longitude'
+                            required
                         />
                     </div>
                     <div>
@@ -90,6 +103,7 @@ const CreateSpotForm = () => {
                             onChange={e => setAddress(e.target.value)}
                             value={address}
                             placeholder='Address'
+                            required
                         />
                     </div>
                     <div>
@@ -100,6 +114,7 @@ const CreateSpotForm = () => {
                             onChange={e => setCity(e.target.value)}
                             value={city}
                             placeholder='City'
+                            required
                         />
                     </div>
                     <div>
@@ -110,12 +125,14 @@ const CreateSpotForm = () => {
                             onChange={e => setState(e.target.value)}
                             value={state}
                             placeholder='State'
+                            required
                         />
                         <br></br>
                         <select
                             name="Country"
                             onChange={(e) => setCountry(e.target.value)}
                             value={country}
+                            required
                         >
                             <option value="" >
                                 select a country
@@ -123,6 +140,7 @@ const CreateSpotForm = () => {
                             <option>USA</option>
                             <option>CHINA</option>
                             <option>Australia</option>
+                            
                         </select>
                     </div>
                     <div>
@@ -134,6 +152,7 @@ const CreateSpotForm = () => {
                             onChange={e => setPrice(e.target.value)}
                             value={price}
                             placeholder='Price'
+                            required
                         />
                     </div>
                     <div>
@@ -144,7 +163,19 @@ const CreateSpotForm = () => {
                             onChange={e => setDescription(e.target.value)}
                             value={description}
                             placeholder='Bio here'
+                            required
                         />
+                    </div>
+                    <div>
+                        <label htmlFor='imgUrl'></label>
+                        <input
+                            id='imgUrl'
+                            type='text'
+                            onChange={e => setImgUrl(e.target.value)}
+                            value={imgUrl}
+                            placeholder='imgUrl'
+                            required
+                            />
                     </div>
 
                     
