@@ -84,7 +84,7 @@ const CreateSpotForm = () => {
 
     return (
 
-        <div id='form-container'>
+        <div className='form-container'>
             <div id='createSpot-form'>
                 <div>
                     <h1>CREATE NEW SPOT!!!</h1>

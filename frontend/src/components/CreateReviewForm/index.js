@@ -36,18 +36,20 @@ const CreateReviewForm = () => {
 
     return (
         <div id='create-review-form'>
-            <div id='form-container'> HELLO WORLD
+            <div id='review-form-styling' className='form-container'>
+                <h1 id='review-h1'>Leave a Review</h1>
                 <form onSubmit={submitHandler}>
                     <div>
+                        <div>How was your stay?</div>
                         <label htmlFor="review"></label>
-                        <textarea
+                        <textarea style={{ resize: 'none', outline:'none', width:'360px', height:'150px'}}
                             id='review'
                             type='text'
                             onChange={e => setReview(e.target.value)}
                             value={review}
                         />
                     </div>
-                    <div>
+                    <div> 
                         <label htmlFor="stars"></label>
                         <input
                             id='stars'
