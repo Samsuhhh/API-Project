@@ -7,19 +7,21 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    /* border: red solid 5px; */
     margin-right: 150px;
     margin-left: 150px;
     /* margin-top: 100px; */
     width: 550px;
-    height: 600px;
+    height: 800px;
     border-color: rgb(221, 221, 221);
     box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px 0px;
+    border-radius: 20px;
+    
 
 }
 
 #create-h1-header {
     width: 550px;
+    padding-left: 48px;
     /* border-color: rgb(221, 221, 221);
     box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px 0px; */
 }
@@ -31,14 +33,75 @@
     padding-top: 100px;
 }
 
-;
+#form-styling {
+    width: 500px;
+    height: 100%;
+    display: flex;
 
-#form-styling {}
+    flex-direction: column;
+    /* line-height: 20px; */
+    /* border: 1px solid lightgrey; */
 
-#createSpot-form>#create-h1-header>#form-styling {
+}
+
+#createName {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.createForm-inputs {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+   
+}
+
+.createSpot-inputs::placeholder {
+    font-size: 18px;
+}
+
+select{
+    width: 101.3%;
+    border: 1px solid lightgrey;
+    height: 45px;
+}
+/* 
+input {
+    width: 496px;
+    height: 40px;
+    border-bottom: lightgrey .1px solid !important;
+    border: none;
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    border-bottom: .5 solid lightgrey;
+
+} */
+.createSpot-input {
+    border: 1px solid lightgrey;
+    height: 40px;
+    width: 100%;
+
+}
+
+#createName {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#create-description{
+    border: 1px solid lightgrey;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+/* #createSpot-form>#create-h1-header>#form-styling {
     width: 500px;
     height: 500px;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     line-height: 20px;
     border: 1px solid red;
-}
+} */

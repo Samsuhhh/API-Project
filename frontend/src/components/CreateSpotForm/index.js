@@ -85,18 +85,19 @@ const CreateSpotForm = () => {
     return (
 
         <div id='create-form-styling' className='form-container'>
+
             <div id='createSpot-form'>
 
-                <div id='create-h1-header'>
-                    <h1>Tell us about your place!</h1>
-                </div>
 
-                <div id='form-styling' style={{border:'red, solid, 1px'}}>
-                    <form onSubmit={handleSubmit}>
-                        <div>
-                            <label htmlFor='name'></label>
+                <div id='form-styling'>
+                    <div id='create-h1-header'>
+                        <h1>Tell us about your place!</h1>
+                    </div>
+                    <form className='createForm-inputs' onSubmit={handleSubmit}>
+                        
+                        <div id='createName' className='createForm-inputs' >
                             <input
-                                id='create-name'
+                                className='createSpot-input'
                                 type='text'
                                 onChange={e => setName(e.target.value)}
                                 value={name}
@@ -104,10 +105,9 @@ const CreateSpotForm = () => {
                                 required
                             />
                         </div>
-                        <div>
-                            <label htmlFor='lat'></label>
+                        <div className='createForm-inputs' >
                             <input
-                                id='create-lat'
+                                className='createSpot-input'
                                 type='text'
                                 onChange={e => setLat(e.target.value)}
                                 value={lat}
@@ -115,10 +115,9 @@ const CreateSpotForm = () => {
                                 required
                             />
                         </div>
-                        <div>
-                            <label htmlFor='lng'></label>
+                        <div className='createForm-inputs' >
                             <input
-                                id='create-lng'
+                                className='createSpot-input'
                                 type='text'
                                 onChange={e => setLng(e.target.value)}
                                 value={lng}
@@ -126,10 +125,9 @@ const CreateSpotForm = () => {
                                 required
                             />
                         </div>
-                        <div>
-                            <label htmlFor='address'></label>
+                        <div className='createForm-inputs' >
                             <input
-                                id='create-address'
+                                className='createSpot-input'
                                 type='text'
                                 onChange={e => setAddress(e.target.value)}
                                 value={address}
@@ -137,10 +135,9 @@ const CreateSpotForm = () => {
                                 required
                             />
                         </div>
-                        <div>
-                            <label htmlFor='city'></label>
+                        <div className='createForm-inputs' >
                             <input
-                                id='create-city'
+                                className='createSpot-input'
                                 type='text'
                                 onChange={e => setCity(e.target.value)}
                                 value={city}
@@ -148,19 +145,18 @@ const CreateSpotForm = () => {
                                 required
                             />
                         </div>
-                        <div>
-                            <label htmlFor='state'></label>
+                        <div className='createForm-inputs' >
                             <input
-                                id='create-state'
+                                className='createSpot-input'
                                 type='text'
                                 onChange={e => setState(e.target.value)}
                                 value={state}
                                 placeholder='State'
                                 required
                             />
-                            <br></br>
+                        </div>
+                        <div className='createForm-inputs' >
                             <select
-                                id='create-country'
                                 name="Country"
                                 onChange={(e) => setCountry(e.target.value)}
                                 value={country}
@@ -175,11 +171,11 @@ const CreateSpotForm = () => {
 
                             </select>
                         </div>
-                        <div>
+                        {/* </div> */}
+                        <div className='createForm-inputs' >
 
-                            <label htmlFor='price'></label>
                             <input
-                                id='create-price'
+                                className='createSpot-input'
                                 type='text'
                                 onChange={e => setPrice(e.target.value)}
                                 value={price}
@@ -187,21 +183,9 @@ const CreateSpotForm = () => {
                                 required
                             />
                         </div>
-                        <div>
-                            <label htmlFor='description'></label>
-                            <textarea
-                                id='create-description'
-                                type='text'
-                                onChange={e => setDescription(e.target.value)}
-                                value={description}
-                                placeholder='Bio here'
-                                required
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor='imgUrl'></label>
+                        <div className='createForm-inputs' >
                             <input
-                                id='create-imgUrl'
+                                className='createSpot-input'
                                 type='text'
                                 onChange={e => setImgUrl(e.target.value)}
                                 value={imgUrl}
@@ -209,15 +193,31 @@ const CreateSpotForm = () => {
                                 required
                             />
                         </div>
+                        <div className='createForm-inputs' >
+                            <textarea
+                                id='create-description'                            
+                                type='text'
+                                onChange={e => setDescription(e.target.value)}
+                                value={description}
+                                placeholder='Description here'
+                                style={{ resize: 'none', outline: 'none', width: '500px', height: '150px' }}
+                                required
+                            />
+                        </div>
+
+                        <div id='buttons'>
+                            <button
+                                disabled={createSpotErrors.length > 0 ? true : false}
+                            >Host my spot</button>
+                            <button onClick={cancelHandler}>CANCEL</button>
+
+                        </div>
                     </form>
                 </div>
 
             </div>
 
-            <button
-                disabled={createSpotErrors.length > 0 ? true : false}
-            >Host my spot</button>
-            <button onClick={cancelHandler}>CANCEL</button>
+
 
         </div>
     )
