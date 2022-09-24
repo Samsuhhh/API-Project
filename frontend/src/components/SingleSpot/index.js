@@ -16,7 +16,8 @@ const SingleSpot = (spot) => {
             <div className="spot-card-container">
                 <div className='image-section'>
                     <img id='spot-img' alt='beautiful spotImage' src={spot.spot.previewImage ||
-                        'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg'} />
+                        'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg'} 
+                        />
                 </div>
                 <div id='location-avgRating' className='spot-values'>
                     <div id='location'>

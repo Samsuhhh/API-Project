@@ -109,9 +109,12 @@ const SpotDetail = () => {
                             Self check-in
                         </div>
                         <div className='host-information'>
-                            {spotDetails.firstName} is a Superhost
+                            <div>
+                                {spotDetails.Owner?.firstName} is a Superhost
+                            </div>
                             <div id='superhost-description'>
                                 Superhosts are experienced, highly rated hosts who are committed to making money by appealing to guests.
+                                hell yea I got a lump in throught yea and you're going to sing the words wrong
                             </div>
                         </div>
                         <div className='host-information'>
@@ -128,7 +131,7 @@ const SpotDetail = () => {
                             </div>
                         </div>
 
-                        <div className='host-information'>
+                        <div id='spot-description'className='host-information'>
                             Spot Description: {spotDetails.description}
                         </div>
 

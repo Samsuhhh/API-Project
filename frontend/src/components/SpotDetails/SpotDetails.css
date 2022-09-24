@@ -13,16 +13,25 @@
     width: 100%;
 }
 
-
+#spotName-header {
+    display: flex;
+    /* padding-left: 80px;
+    padding-right: 80px; */
+    font-weight: 200;
+    height: 86px;
+    justify-content: start;
+    width: 1120px;
+    /* box-sizing: border-box; */
+}
 
 .details-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 1200px;
+    width: 1120px;
     height: 600px;
-    /* border: 2px blue solid; */
-    border-bottom: 1px solid lightgrey;
+    border: 2px blue solid;
+    /* border-bottom: 1px solid lightgrey; */
     /* margin: 40px; */
     /* margin-left: auto;
     margin-right: auto;
@@ -45,6 +54,7 @@
 #details-left {
     display: block;
     border: 2px red dashed;
+    width: 660px;
     
 }
 .host-information {
@@ -56,7 +66,9 @@
 
 #superhost-description {
     font-size: 14px;
-    color: grey
+    color: grey;
+    overflow-wrap: normal;
+    
 }
 
 #appAcademy-disclaimer {
@@ -64,6 +76,9 @@
     padding-bottom: 15px;
 }
 
+#spot-description {
+    overflow-wrap: normal;
+}
 
 #right-modal {
     border: 2px solid lightgrey;
@@ -71,9 +86,11 @@
     width: 322.33px;
     height: 482px;
     margin-top: 48px;
-    margin-right: 45px;
+    margin-right: 35px;
     position: sticky;
 }
+
+/* inline styling: style={{width: '700px', height:'560px'}} */
 
 /* .spotDetails-image {
     height: 100%;
@@ -90,20 +107,12 @@
     /* flex-direction: row; */
     justify-content: left;
     border: 2px red solid;
-    width: 1200px;
+    width: 1120px;
     height: 565px;
+        overflow: hidden;
 }
 
-#spotName-header{
-    display: flex;
-    /* padding-left: 80px;
-    padding-right: 80px; */
-    font-weight: 200;
-    height: 86px;
-    justify-content: start;
-    width: 1200px;
-    /* box-sizing: border-box; */
-}
+
 
 #header-wrap {
     display: flex;
@@ -114,10 +123,57 @@
     /* box-sizing: border-box; */
 }
 
+#reviews-header {
+    width: 1120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
 
 #reviews-container {
     display: block;
     text-align: center;
     width: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px; 
+
+}
+
+.review-detail-spacing {
+    margin-top:7px;
+}
+
+#review-firstName {
+    font-size: 18px;
+
+}
+
+#existing-reviews{
+    width: 1120px;
+    height: 400px;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    border: 2px solid pink
+
+}
+
+#review-container-style {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+#review-card {
+    display: block;
+    text-align: start;
+    padding: 10px, 10px, 10px, 10px;
+}
+
+#delete-review-btn{
 
 }

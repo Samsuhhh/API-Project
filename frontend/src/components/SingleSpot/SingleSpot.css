@@ -1,12 +1,11 @@
-
 .spot-card-container {
     display: grid;
     grid-template-rows: repeat(5, .8fr);
-    height: 390px;
+    height: 370px;
     width: 300px;
     /* border: 5px red dashed; */
     font-size: 15px;
-    line-height: 19px;
+    line-height: 16px;
     text-decoration: none;
 }
 
@@ -21,14 +20,14 @@
     height: 285.7px;
     width: 100%;
     /* border: solid purple 5px; */
-    display:flex;
+    display: flex;
     flex-direction: row;
     border-radius: 5%;
     justify-content: center;
 }
 
 .description-stars {
-    display:flex;
+    display: flex;
     justify-content: space-between;
 }
 
@@ -44,4 +43,7 @@
     display: flex;
     justify-content: space-between;
     text-decoration: none;
+}
+#location {
+    font-weight: 620;
 }
