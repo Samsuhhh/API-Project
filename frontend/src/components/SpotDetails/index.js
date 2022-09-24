@@ -1,6 +1,6 @@
 import { editSpot, getSpotDetails } from "../../store/spots"
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, NavLink, useHistory, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import './SpotDetails.css'
 // import UpdateSpotFormPage from "../UpdateSpot";
@@ -24,7 +24,7 @@ const SpotDetail = () => {
         return state.spots.singleSpot
     });
     // console.log('goodbye', spotImg)
-    console.log('SPOT DETAILS' , spotDetails.SpotImages)
+    console.log('SPOT DETAILS', spotDetails.SpotImages)
 
     // console.log('hi')
 
@@ -36,7 +36,7 @@ const SpotDetail = () => {
         console.log('if NO spotDetails safety hitting')
         return null;
     }
-    
+
     const updateRedirect = async (e) => {
         // let updatedSpot = await dispatch(getSpotDetails(spotId));
         // console.log('UPDATING SPOT', updatedSpot);
@@ -78,45 +78,84 @@ const SpotDetail = () => {
 
 
     return (
-        <div>
-            <div className="details-container">
-                <div>
+        <div id='spot-outermost'>
+            <div id='header-wrap'>
+                <div id='spotName-header'>
                     Spot Name:  {spotDetails.name}
                 </div>
-                <div className='image-section'>
-                    <img id='spot-img' alt='beautiful spotImage' src={spotDetails.SpotImages[0]?.url ||
-                     'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg'} />
+            </div>
+            <div id='spotPage'>
+
+                <div id='spotDetails-content'>
+                    {/* <div className='spotDetails-image'> */}
+                    <img id='spotDetails-img' alt='beautiful spotImage' src={spotDetails.SpotImages[0]?.url ||
+                        'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg'} />
+                    {/* </div> */}
+                </div>
+
+                <div className="details-container">
+
+                    <div id='details-left'>
+
+                        <div id='details-mini-header'>
+                            <div id='mini-header-styling'>
+                                <h2 id='h2header'>{spotDetails.name} hosted by {spotDetails.Owner.firstName}</h2>
+                                <span>Spot Id: {spotDetails.id}</span>
+                            </div>
+                        </div>
+
+                        <div className='host-information'>
+                            Self check-in
+                        </div>
+                        <div className='host-information'>
+                            {spotDetails.firstName} is a Superhost
+                            <div id='superhost-description'>
+                                Superhosts are experienced, highly rated hosts who are committed to making money by appealing to guests.
+                            </div>
+                        </div>
+                        <div className='host-information'>
+                            Free cancellation for 48 hours.
+                        </div>
+
+                        <div className='host-information' id='appAcademy-disclaimer'>
+                            <logo>aA logo</logo>
+                            <div>
+                                Everything on this site is 1000% real, venmo: @Samsuhhh for payments.
+                            </div>
+                            <div>
+                                <Link color='black' to='/https://www.appacademy.io/'>Learn More</Link>
+                            </div>
+                        </div>
+
+                        <div className='host-information'>
+                            Spot Description: {spotDetails.description}
+                        </div>
+
+
+                    </div>
+                    <div id='right-modal'>
+                        {currentUser && currentUser.id === spotDetails.ownerId && (
+                            <button onClick={updateRedirect}>UPDATE SPOT</button>
+                        )}
+                        <br></br>
+                        {currentUser && currentUser.id === spotDetails.ownerId && (
+                            <button onClick={deleteHandler}>DELETE</button>
+                        )}
+                    </div>
+
+                </div>
+            </div>
+            <div id='reviews-container'>
+                <div>
+                    <SpotReviews />
                 </div>
                 <div>
-                    <div>
-                        Spot Id: {spotDetails.id}
-                    </div>
-                    <div>
-                        Price Per Night: ${spotDetails.price}
-                    </div>
-                    <div>
-                        Spot Description: {spotDetails.description}
-                    </div>
+                    <button onClick={newReviewRedirect}>
+                        CREATE NEW REVIEW
+                    </button>
                 </div>
 
-                {currentUser && currentUser.id === spotDetails.ownerId && (
-                    <button onClick={updateRedirect}>UPDATE SPOT</button>
-                )}
-                <br></br>
-                {currentUser && currentUser.id === spotDetails.ownerId && (
-                    <button onClick={deleteHandler}>DELETE</button>
-                )}
             </div>
-            <div>
-                Reviews
-                <SpotReviews />
-            </div>
-            <div>
-                <button onClick={newReviewRedirect}>
-                    CREATE NEW REVIEW
-                </button>
-            </div>
-
         </div>
 
     )

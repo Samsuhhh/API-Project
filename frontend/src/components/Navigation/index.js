@@ -32,7 +32,7 @@ function Navigation({ isLoaded }) {
             <div className='nav-bar'>
 
 
-                <img alt='blue airBnB logo' id='logo' src='https://assets.entrepreneur.com/article/1405623476-airbnb-logo-explanation.jpg' />
+                <img alt='airBnB logo' id='logo' src='https://assets.entrepreneur.com/article/1405623476-airbnb-logo-explanation.jpg' />
 
                 <div className='dropdown'>
 

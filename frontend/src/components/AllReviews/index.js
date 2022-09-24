@@ -34,7 +34,7 @@ const SpotReviews = () => {
             <div>
                 <h1>Reviews</h1>
             </div>
-            <div id='Reviews-container'>
+            <div id='existing-reviews'>
                 REVIEWS CONTAINER
                 {Object.values(spotReviews).map(review => {
                     return <div key={review.id}>

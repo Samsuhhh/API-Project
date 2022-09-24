@@ -9,7 +9,7 @@
     position: fixed;
     /* display: none; */
     /* border: solid black 5px; */
-    height: 100px;
+    height: 80px;
     /* padding-left: 150px;
     padding-right: 150px; */
     z-index: 3;
@@ -17,7 +17,7 @@
 }
 
 .nav-bar {
-    height: 100px;
+    height: 80px;
     /* width: 100%; */
     width: 84%;
     font-size: 16px;
