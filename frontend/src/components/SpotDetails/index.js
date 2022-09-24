@@ -150,9 +150,9 @@ const SpotDetail = () => {
                 </div>
             </div>
             <section id='reviews-container'>
-                <div>
+                {/* <div> */}
                     <SpotReviews />
-                </div>
+                {/* </div> */}
                 <div>
                     <button onClick={newReviewRedirect}>
                         CREATE NEW REVIEW
