@@ -164,7 +164,7 @@ const CreateSpotForm = () => {
                                 required
                             >
                                 <option value="" >
-                                    select a country
+                                    Select a country
                                 </option>
                                 <option>USA</option>
                                 <option>CHINA</option>
@@ -202,16 +202,19 @@ const CreateSpotForm = () => {
                                 onChange={e => setDescription(e.target.value)}
                                 value={description}
                                 placeholder='Description here'
-                                style={{ resize: 'none', outline: 'none', width: '500px', height: '150px' }}
+                                style={{ resize: 'none', outline: 'none', width: '450px', height: '150px' }}
                                 required
                             />
                         </div>
 
-                        <div id='buttons'>
+                        <div id='create-buttons'>
                             <button
+                            className='createSpot-buttons'
                                 disabled={createSpotErrors.length > 0 ? true : false}
                             >Host my spot</button>
-                            <button onClick={cancelHandler}>CANCEL</button>
+                            <button 
+                            className='createSpot-buttons'
+                            onClick={cancelHandler}>Cancel</button>
 
                         </div>
                     </form>
