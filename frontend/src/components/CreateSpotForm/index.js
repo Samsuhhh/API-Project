@@ -106,10 +106,10 @@ const CreateSpotForm = () => {
                                 required
                             />
                         </div>
-                        <div className='createForm-inputs-div' >
+                        {/* <div className='createForm-inputs-div' >
                             <input
                                 className='createSpot-input'
-                                type='text'
+                                type='number'
                                 onChange={e => setLat(e.target.value)}
                                 value={lat}
                                 placeholder='Latitude'
@@ -119,13 +119,13 @@ const CreateSpotForm = () => {
                         <div className='createForm-inputs-div' >
                             <input
                                 className='createSpot-input'
-                                type='text'
+                                type='number'
                                 onChange={e => setLng(e.target.value)}
                                 value={lng}
                                 placeholder='Longitude'
                                 required
                             />
-                        </div>
+                        </div> */}
                         <div className='createForm-inputs-div' >
                             <input
                                 className='createSpot-input'
@@ -176,8 +176,9 @@ const CreateSpotForm = () => {
                         <div className='createForm-inputs-div' >
 
                             <input
+                                id='number-input'
                                 className='createSpot-input'
-                                type='text'
+                                type='number'
                                 onChange={e => setPrice(e.target.value)}
                                 value={price}
                                 placeholder='Price'
