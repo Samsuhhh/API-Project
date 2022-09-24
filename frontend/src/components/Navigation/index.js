@@ -8,9 +8,8 @@ import './Navigation.css';
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
-
+    const spotDetails = useSelector(state => state.spots.singleSpot);
     let sessionLinks;
-
 
     if (sessionUser) {
         sessionLinks = (
@@ -26,26 +25,36 @@ function Navigation({ isLoaded }) {
     }
 
     return (
+
+
+
         <div className='header'>
             <div className='nav-bar'>
-                <img alt='blue airBnB logo' className='logo' src='https://1000logos.net/wp-content/uploads/2017/08/Airbnb-Logo-2008.jpg' />
+
+
+                <img alt='airBnB logo' id='logo' src='https://assets.entrepreneur.com/article/1405623476-airbnb-logo-explanation.jpg' />
 
                 <div className='dropdown'>
+
                     <button className='access-granted-btn'> fix me :(
 
                         {/* <img alt='hamburger menu' src='../../assets/icons8-menu-30.png' /> */}
                     </button >
-
                     <div className='dropdown-content'>
                         {isLoaded && sessionLinks}
-                        <div>
+                        <div id='wya'>
                             <NavLink exact to="/">Home</NavLink>
                         </div>
-                        <div>
-                            <NavLink to='/spots'>Host Your Spot</NavLink>
+                        <div id='please'>
+                            {sessionUser && (
+                                <NavLink to='/spots/new'>Host Your Spot</NavLink>
+                            )}
                         </div>
                     </div>
                 </div>
+
+
+
             </div>
             {/* <div id='filter-space'>space</div> */}
         </div>

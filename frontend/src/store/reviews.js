@@ -135,9 +135,6 @@ const reviewsReducer = (state = initialState, action) => {
                 currentReviews[review.id] = review;
             })
             return  {user: currentReviews}
-            
-
-
         case CREATE_REVIEW:
             newState = {
                 ...state,

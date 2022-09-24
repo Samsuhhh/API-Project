@@ -9,18 +9,19 @@ import './allSpots.css'
 const SpotsBrowser = () => {
     const dispatch = useDispatch();
 
-    const spots = useSelector(state => state.spots.allSpots );
+    const spots = useSelector(state => state.spots.allSpots);
     console.log('ALL SPOTS', spots)
 
     useEffect(() => {
-        dispatch(getAllSpots());
+        const getAllspotsDispatch = dispatch(getAllSpots());
+        console.log('get all spots dispatch', getAllspotsDispatch);
     }, [dispatch])
 
 
     // return null;
     if (!(spots)) return null;
 
-    
+
 
     return (
         <div className='wrapper'>
@@ -31,9 +32,10 @@ const SpotsBrowser = () => {
                     return <div key={spot.id} className='single-card'>
 
                         <SingleSpot spot={spot}>
+
                         </SingleSpot>
 
-                        
+
                     </div>
                 })}
 
@@ -41,6 +43,7 @@ const SpotsBrowser = () => {
             </div>
 
         </div>
+
     )
 
 

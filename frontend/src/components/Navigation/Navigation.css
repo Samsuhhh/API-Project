@@ -1,36 +1,41 @@
-.header{
+.header {
     display: flex;
     justify-content: center;
-    position: fixed;
+    align-items: center;
     width: 100%;
     background-color: white;
     border-bottom: lightgray 1px solid;
-    display: none;
+    border: black 1px dashed;
+    position: fixed;
+    /* display: none; */
     /* border: solid black 5px; */
-    height: 100px
+    height: 80px;
+    /* padding-left: 150px;
+    padding-right: 150px; */
+    z-index: 3;
 
 }
 
-
 .nav-bar {
     height: 80px;
-    width: 1750px;
+    /* width: 100%; */
+    width: 84%;
     font-size: 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-left: 72.5px;
-    margin-right: 72.5px;
-    padding-left: 80px;
-    padding-right: 80px;
+    /* padding-left: 80px;
+    padding-right: 80px; */
     position: fixed;
     background-color: white;
-    /* border: dashed blue 2px */
+    border: dashed blue 2px
     /* border: solid red 1px; */
 
 }
 
-.logo {
+
+
+#logo {
     height: 50px;
     width: 75px;
 }
@@ -41,13 +46,13 @@
 }
 
 
-.access-granted-btn{
+.access-granted-btn {
     border-radius: 50px;
-    background:transparent;
+    background: transparent;
     height: 42px;
     width: 72px;
     border: auto;
-    
+
 }
 
 .dropdown-content {
@@ -56,7 +61,7 @@
     background-color: #ddd;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+    z-index: 5;
 
 }
 
@@ -64,6 +69,7 @@
 /* Change color of dropdown links on hover */
 .dropdown-content div:hover {
     background-color: #ddd;
+
 }
 
 /* Show the dropdown menu on hover */
@@ -89,6 +95,3 @@
 .hidden {
     display: none !important;
 }
-
-
-

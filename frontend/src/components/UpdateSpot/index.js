@@ -24,6 +24,7 @@ const UpdateSpotFormPage = () => {
     const [description, setDescription] = useState(spot.description);
     const [price, setPrice] = useState(spot.price);
     // const [imgUrl, setImgUrl] = useState(spot?.SpotImages[0]?.url);
+    const [UpdateErrors, setUpdateErrors] = ([]);
 
     const updateAddress = e => setAddress(e.target.value);
     const updateCity = e => setCity(e.target.value);
@@ -36,6 +37,26 @@ const UpdateSpotFormPage = () => {
     const updatePrice = e => setPrice(e.target.value);
     // const updateImgUrl = e => setImgUrl(e.target.value)
 
+    useEffect(() => {
+        const errors = [];
+
+        if ( !address ) {
+            errors.push('Please provide a valid address.')
+        };
+        if ( !city ) {
+            errors.push('Please provide a valid city.')
+        };
+        if ( !name ) {
+            console.log('uh oh')
+            errors.push('Please provide a valid name.')
+        };
+        if ( !description ) {
+            errors.push('Please provide a valid description.')
+        };
+        if ( !price ) {
+            errors.push('Please provide a valid price.')
+        };
+    });    
 
     useEffect(() => {
         dispatch(getSpotDetails(spotId))
@@ -79,7 +100,10 @@ const UpdateSpotFormPage = () => {
 
     };
 
-
+    const cancelHandler = (e) => {
+        e.preventDefault();
+        history.push(`/spots/${spotId}`);
+    };
 
     return (
         <div id='form-container'>
@@ -185,7 +209,8 @@ const UpdateSpotFormPage = () => {
                             placeholder='imgUrl'
                         />
                     </div> */}
-                    <button>SUBMIT</button>
+                    <button>Update spot</button>
+                    <button onClick={cancelHandler}>CANCEL</button>
                 </form>
             </div>
         </div>

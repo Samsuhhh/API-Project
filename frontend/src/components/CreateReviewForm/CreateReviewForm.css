@@ -2,9 +2,29 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    padding-top: 150px;
+
 }
 
 #form-container {
     margin-top: 100px;
 
+}
+
+#review-form-styling {
+    display: block;
+    width: 400px;
+    height: 400px;
+    text-align: center;
+        border-color: rgb(221, 221, 221);
+            box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px 0px;
+
+
+
+}
+
+
+#review-h1 {
+    border-bottom: 1px lightgrey solid;
 }

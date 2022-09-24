@@ -34,7 +34,6 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route exact path='/'>
-            Home Page
             <SpotsBrowser></SpotsBrowser>
           </Route>
           <Route exact path={'/spots/new'}>
