@@ -21,7 +21,8 @@
     justify-content: space-between;
     width: 1200px;
     height: 600px;
-    border: 2px blue solid;
+    /* border: 2px blue solid; */
+    border-bottom: 1px solid lightgrey;
     /* margin: 40px; */
     /* margin-left: auto;
     margin-right: auto;
@@ -49,6 +50,7 @@
 .host-information {
     font-size: 18px;
     margin-top: 20px;
+    font-weight: 400;
     color: rgb(34, 34, 34)
 }
 
@@ -69,6 +71,7 @@
     width: 322.33px;
     height: 482px;
     margin-top: 48px;
+    margin-right: 45px;
     position: sticky;
 }
 
@@ -95,6 +98,7 @@
     display: flex;
     /* padding-left: 80px;
     padding-right: 80px; */
+    font-weight: 200;
     height: 86px;
     justify-content: start;
     width: 1200px;
@@ -112,7 +116,8 @@
 
 
 #reviews-container {
-    display: flex;
-    justify-content: center;
+    display: block;
+    text-align: center;
     width: 100%;
+
 }

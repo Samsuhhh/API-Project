@@ -81,7 +81,7 @@ const SpotDetail = () => {
         <div id='spot-outermost'>
             <div id='header-wrap'>
                 <div id='spotName-header'>
-                    Spot Name:  {spotDetails.name}
+                    <h1> Spot Name:  {spotDetails.name}</h1>
                 </div>
             </div>
             <div id='spotPage'>
@@ -99,8 +99,9 @@ const SpotDetail = () => {
 
                         <div id='details-mini-header'>
                             <div id='mini-header-styling'>
-                                <h2 id='h2header'>{spotDetails.name} hosted by {spotDetails.Owner.firstName}</h2>
+                                <h2 id='h2header'>{spotDetails.name} hosted by {spotDetails.Owner?.firstName}</h2>
                                 <span>Spot Id: {spotDetails.id}</span>
+                                <span></span>
                             </div>
                         </div>
 
@@ -145,7 +146,7 @@ const SpotDetail = () => {
 
                 </div>
             </div>
-            <div id='reviews-container'>
+            <section id='reviews-container'>
                 <div>
                     <SpotReviews />
                 </div>
@@ -155,7 +156,7 @@ const SpotDetail = () => {
                     </button>
                 </div>
 
-            </div>
+            </section>
         </div>
 
     )
