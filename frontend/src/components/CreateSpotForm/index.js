@@ -93,10 +93,11 @@ const CreateSpotForm = () => {
                     <div id='create-h1-header'>
                         <h1>Tell us about your place!</h1>
                     </div>
-                    <form className='createForm-inputs' onSubmit={handleSubmit}>
-                        
-                        <div id='createName' className='createForm-inputs' >
+                    <form className='createForm-inputs-div' onSubmit={handleSubmit}>
+
+                        <div className='createForm-inputs-div' >
                             <input
+                                id='createName'
                                 className='createSpot-input'
                                 type='text'
                                 onChange={e => setName(e.target.value)}
@@ -105,7 +106,7 @@ const CreateSpotForm = () => {
                                 required
                             />
                         </div>
-                        <div className='createForm-inputs' >
+                        <div className='createForm-inputs-div' >
                             <input
                                 className='createSpot-input'
                                 type='text'
@@ -115,7 +116,7 @@ const CreateSpotForm = () => {
                                 required
                             />
                         </div>
-                        <div className='createForm-inputs' >
+                        <div className='createForm-inputs-div' >
                             <input
                                 className='createSpot-input'
                                 type='text'
@@ -125,7 +126,7 @@ const CreateSpotForm = () => {
                                 required
                             />
                         </div>
-                        <div className='createForm-inputs' >
+                        <div className='createForm-inputs-div' >
                             <input
                                 className='createSpot-input'
                                 type='text'
@@ -135,7 +136,7 @@ const CreateSpotForm = () => {
                                 required
                             />
                         </div>
-                        <div className='createForm-inputs' >
+                        <div className='createForm-inputs-div' >
                             <input
                                 className='createSpot-input'
                                 type='text'
@@ -145,7 +146,7 @@ const CreateSpotForm = () => {
                                 required
                             />
                         </div>
-                        <div className='createForm-inputs' >
+                        <div className='createForm-inputs-div' >
                             <input
                                 className='createSpot-input'
                                 type='text'
@@ -155,7 +156,7 @@ const CreateSpotForm = () => {
                                 required
                             />
                         </div>
-                        <div className='createForm-inputs' >
+                        <div className='createForm-inputs-div' >
                             <select
                                 name="Country"
                                 onChange={(e) => setCountry(e.target.value)}
@@ -172,7 +173,7 @@ const CreateSpotForm = () => {
                             </select>
                         </div>
                         {/* </div> */}
-                        <div className='createForm-inputs' >
+                        <div className='createForm-inputs-div' >
 
                             <input
                                 className='createSpot-input'
@@ -183,7 +184,7 @@ const CreateSpotForm = () => {
                                 required
                             />
                         </div>
-                        <div className='createForm-inputs' >
+                        <div className='createForm-inputs-div' >
                             <input
                                 className='createSpot-input'
                                 type='text'
@@ -193,8 +194,9 @@ const CreateSpotForm = () => {
                                 required
                             />
                         </div>
-                        <div className='createForm-inputs' >
+                        <div className='createForm-inputs-div' >
                             <textarea
+                                className='createSpot-inputs'
                                 id='create-description'                            
                                 type='text'
                                 onChange={e => setDescription(e.target.value)}

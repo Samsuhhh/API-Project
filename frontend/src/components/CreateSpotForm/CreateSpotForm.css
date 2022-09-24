@@ -11,7 +11,7 @@
     margin-left: 150px;
     /* margin-top: 100px; */
     width: 550px;
-    height: 800px;
+    height: 700px;
     border-color: rgb(221, 221, 221);
     box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px 0px;
     border-radius: 20px;
@@ -44,12 +44,8 @@
 
 }
 
-#createName {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
 
-.createForm-inputs {
+.createForm-inputs-div {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -59,7 +55,8 @@
 }
 
 .createSpot-inputs::placeholder {
-    font-size: 18px;
+    font-size: 16px;
+   
 }
 
 select{
@@ -86,6 +83,10 @@ input {
 
 }
 
+#createName {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
 #createName {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
