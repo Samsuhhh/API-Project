@@ -1,0 +1,37 @@
+#user-review {
+    overflow-wrap: normal;
+}
+
+
+#existing-reviews {
+
+    width: 1120px;
+    height: 400px;
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+    /* grid-template-areas:
+        "a a"
+        "a a"
+        "a a"; */
+    border: 2px solid pink;
+
+}
+#review-container-style {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+
+#review-card {
+    display: block;
+    text-align: start;
+    padding: 10px, 10px, 10px, 10px;
+    width: 1124px;
+    /* grid-area: a; */
+    overflow-wrap: break-word;
+}

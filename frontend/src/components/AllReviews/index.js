@@ -2,6 +2,7 @@ import { useHistory, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { deleteReview, getSpotReviews } from "../../store/reviews";
+import './AllReviews.css'
 
 
 const SpotReviews = () => {
