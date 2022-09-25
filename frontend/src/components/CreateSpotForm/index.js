@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { createNewSpot } from '../../store/spots';
-import './CreateSpotForm.css'
 import { addSpotImage } from '../../store/spots';
+import './CreateSpotForm.css'
 
 
 const CreateSpotForm = () => {
@@ -15,8 +15,8 @@ const CreateSpotForm = () => {
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [country, setCountry] = useState('');
-    const [lat, setLat] = useState('');
-    const [lng, setLng] = useState('');
+    // const [lat, setLat] = useState('');
+    // const [lng, setLng] = useState('');
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');

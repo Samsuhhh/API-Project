@@ -1,9 +1,5 @@
+import { NavLink } from 'react-router-dom';
 import './SingleSpot.css'
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { getAllSpots } from '../../store/spots';
-import { Link, NavLink } from 'react-router-dom';
-// import SpotsBrowser from '../AllSpots';
 
 
 const SingleSpot = (spot) => {

@@ -62,7 +62,10 @@
     border: lightgrey 1px solid;
     color: white;
 }
-
+#loginBtn:hover,
+#demoBtn:hover{
+    cursor: pointer;
+}
 
 #demoBtn {
     margin-top: 7px;
