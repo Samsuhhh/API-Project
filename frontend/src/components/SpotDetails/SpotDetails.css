@@ -31,8 +31,8 @@
     justify-content: space-between;
     width: 1120px;
     height: 600px;
-    border: 2px blue solid;
-    /* border-bottom: 1px solid lightgrey; */
+    border-bottom: 1px solid lightgrey;
+    /* border: 2px blue solid; */
     /* margin: 40px; */
     /* margin-left: auto;
     margin-right: auto;
@@ -55,7 +55,7 @@
 
 #details-left {
     display: block;
-    border: 2px red dashed;
+    /* border: 2px red dashed; */
     width: 660px;
 
 }
@@ -103,7 +103,8 @@
     border: 2px solid lightgrey;
     border-radius: 20px;
     width: 372px;
-    height: 482px;
+    /* height: 482px; */
+    height: 225px;
     margin-top: 47px;
     display: flex;
     justify-content: center;
@@ -117,13 +118,11 @@
     width: 322px;
     height: 400px;
     margin-top: 20px;
-    /* border: 1px solid purple; */
 }
 
 #modal-header {
     display: flex;
     width: 100%;
-    /* border: 1px solid red; */
     height: 25px;
     justify-content: space-between;
     align-items: flex-end;
@@ -153,10 +152,9 @@
 #header-right-stars-reviews {
     color: black;
     font-family: system-ui;
-    font-weight: 400;
-    width: 140px;
+    font-weight: 500;
+    width: 110px;
     height: 20px;
-    /* border: 1px red solid; */
     display: flex;
     justify-content: space-around;
     font-size: 14px;
@@ -176,8 +174,9 @@
     width: 322px;
 }
 
+#create-review-btn,
 #delete-spot-btn,
-#edit-spot-btn {
+#edit-spot-btn{
     width: 80%;
     margin-top: 15px;
     height: 40px;
@@ -190,11 +189,13 @@
     font-family: system-ui;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px 0px;
 }
+#create-review-btn:hover,
+#delete-spot-btn:hover,
+#edit-spot-btn:hover { cursor: pointer}
 
-#delete-spot-btn {}
-
-#edit-spot-btn {}
-
+#create-review-btn{
+    width: 322px;
+}
 
 
 
@@ -276,11 +277,12 @@
 }
 
 .review-detail-spacing {
-    margin-top: 7px;
+    /* margin-top: 7px; */
 }
 
 #review-firstName {
-    font-size: 18px;
+    font-size: 16px;
+    font-family: system-ui;
 
 }
 

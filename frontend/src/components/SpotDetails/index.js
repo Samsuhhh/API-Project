@@ -208,32 +208,44 @@ const SpotDetail = () => {
                                 </div>
                                 <div id='header-right-stars-reviews'>
                                     <span id='headerRight-reviews'>
-                                        {spotDetails.avgRating === null ? 'Un-visited' : '★ ' + spotDetails.avgRating}
+                                        {spotDetails.avgRating === null ? 'NEW' : '★ ' + spotDetails.avgRating}
                                     </span>
                                     &#x2022;
-                                    <span id='headerRight-stars'>
-                                        {spotDetails.numReviews} reviews
-                                    </span>
+                                    <a
+                                        style={{ color: "grey" }}
+                                        href="#all_reviews_jump">
+                                        <span id='headerRight-stars'>
+                                            {spotDetails.numReviews} reviews
+                                        </span>
+                                    </a>
                                 </div>
                             </div>
                             <div id='spot-owner-buttons'>
 
                                 {currentUser && currentUser.id === spotDetails.ownerId && (
-                                    <button
-                                        id='edit-spot-btn'
-                                        onClick={updateRedirect}
-                                    >
-                                        Update your spot
-                                    </button>
+                                    <>
+                                        <button
+                                            id='edit-spot-btn'
+                                            onClick={updateRedirect}
+                                        >
+                                            Update your spot
+                                        </button>
+                                        <button
+                                            id='delete-spot-btn'
+                                            onClick={deleteHandler}
+                                        >
+                                            Delete your spot
+                                        </button>
+                                    </>
                                 )}
-
-                                {currentUser && currentUser.id === spotDetails.ownerId && (
-                                    <button
-                                        id='delete-spot-btn'
-                                        onClick={deleteHandler}
-                                    >
-                                        Delete your spot
-                                    </button>
+                                {currentUser && currentUser.id !== spotDetails.ownerId && (
+                                    <div >
+                                        <button
+                                            id='create-review-btn'
+                                            onClick={newReviewRedirect}>
+                                            Leave a review
+                                        </button>
+                                    </div>
                                 )}
                             </div>
                         </div>
@@ -242,15 +254,7 @@ const SpotDetail = () => {
                 </div>
             </div>
             <section id='reviews-container'>
-                {/* <div> */}
                 <SpotReviews />
-                {/* </div> */}
-                <div>
-                    <button onClick={newReviewRedirect}>
-                        CREATE NEW REVIEW
-                    </button>
-                </div>
-
             </section>
         </div>
 

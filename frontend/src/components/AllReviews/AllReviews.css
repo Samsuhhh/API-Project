@@ -1,22 +1,20 @@
-#user-review {
-    overflow-wrap: normal;
-}
 
 
 #existing-reviews {
-
     width: 1120px;
     height: 400px;
     display: grid;
-
+    column-gap: 25px;
     grid-template-columns: repeat(2, 1fr);
     /* grid-template-areas:
         "a a"
         "a a"
         "a a"; */
-    border: 2px solid pink;
+    /* border: 2px solid pink; */
+    font-family: system-ui;
 
 }
+
 #review-container-style {
     width: 100%;
     display: flex;
@@ -26,6 +24,20 @@
 
 }
 
+#delete-review-btn {
+    width: 50%;
+    margin-top: 15px;
+    height: 40px;
+    background-color: #FF5A5F;
+    color: white;
+    border-radius: 20px;
+    border: 1px solid lightgrey;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: system-ui;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px 0px;
+    margin-left: 100px;
+}
 
 #review-card {
     display: block;
@@ -35,4 +47,27 @@
     height: fit-content;
     /* grid-area: a; */
     overflow-wrap: break-word;
+}
+
+#review-time{
+    font-size: 14px;
+}
+
+#review-profile-details{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 245px
+}
+
+#review-name-data{
+    padding-left: 8px;
+    padding-bottom: 10px;
+}
+
+#user-review {
+    overflow-wrap: normal;
+    font-style: italic;
+    font-weight: 300;
+    padding-top: 10px;
 }
