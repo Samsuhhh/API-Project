@@ -198,3 +198,7 @@ textarea:focus {
 #list-error{
     margin-bottom: 7px;
 }
+
+#select-country:hover{
+    cursor: pointer;
+}

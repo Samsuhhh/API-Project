@@ -180,6 +180,7 @@ const CreateSpotForm = () => {
                         </div>
                         <div className='createForm-inputs-div' >
                             <select
+                                id='select-country'
                                 name="Country"
                                 onChange={(e) => setCountry(e.target.value)}
                                 value={country}
