@@ -1,6 +1,7 @@
 /* frontend/src/context/Modal.css */
 #modal {
-    position: absolute;
+    margin-top: -80px;
+    position: fixed;
     top: 0;
     right: 0;
     left: 0;
@@ -11,9 +12,9 @@
     align-items: center;
     animation-name: bounce;
     animation-duration: .1s;
-    border: red 5px;
+    /* border: red 5px; */
     width: 100%;
-    height: 100%
+    height: 100%;
 }
 
 @keyframes bounce {
@@ -26,34 +27,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 500px;
-    height: 60px;
+    flex-direction: row;
+    width: 350px;
+    height: 40px;
     box-sizing: border-box;
-    position: 'fixed';
-            /* overflow: 'hidden';
+    /* position: 'fixed'; */
+    /* overflow: 'hidden';
             inset: '-2066.25px 0px 0px';
             inset-inline-end: '19px';
             --scrollbar-gutter: '19px' */
 }
 
-#loginSignup {
-    width: 123px;
-    height: 20px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-left: 75px;
-    margin-right: 75px;
-}
-
-
-#modal-container {
+/* #modal-container {
     width: 100%;
     height: 100%;
     border: red 10px;
-}
-
-
+} */
 
 #modal-background {
     position: fixed;
@@ -65,14 +54,42 @@
 
 }
 
+
+#loginForm-styling{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width: 400px;
+    height: 400px;
+    /* border: 1px solid red; */
+}
+
+
+#loginSignup {
+    font-size: 18px;
+    width: 350px;
+    height: 30px;
+    display: block;
+    text-align: center;
+    border-bottom: 1px solid lightgrey;
+    /* justify-content: space-around; */
+    /* align-items: center; */
+    /* margin-left: 75px;
+    margin-right: 75px; */
+}
+
 #modal-content {
-    position: absolute;
+    position: fixed;
     background-color: white;
     width: 400px;
-    height: 600px;
-    /* display: flex;
+    height: 500px;
+    border-radius: 20px;
+    padding-bottom: -200px;
+    /* padding: 20px; */
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center; */
+    align-items: center;
 }
 
 #close-modal {

@@ -41,10 +41,10 @@ const CreateSpotForm = () => {
         if (!price || !Number(price)) {
             errors.push('Price must be a number.')
         };
-        if (!state || state.length > 25 || state.length < 5){
+        if (!state || state.length > 25 || state.length < 5) {
             errors.push('State must be greater than 5, and less than 25 characters.')
         }
-        if (!country){
+        if (!country) {
             errors.push('Please select a country.')
         }
         if (!imgUrl.match(/\.(jpg|jpeg|png|gif)$/)) errors.push('Image url must end in .jpg .jpeg .png or .gif')
@@ -111,7 +111,7 @@ const CreateSpotForm = () => {
 
                 <div id='form-styling'>
                     <div id='create-h1-header'>
-                        <h1 style={{fontWeight: 400}}>Tell us about your place!</h1>
+                        <h1 style={{ fontWeight: 400 }}>Tell us about your place!</h1>
                     </div>
 
 

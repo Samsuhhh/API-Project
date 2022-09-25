@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
+import './LoginForm.css'
 
 function LoginForm() {
     const dispatch = useDispatch();
@@ -20,33 +21,67 @@ function LoginForm() {
         );
     };
 
+    const handleDemo = (e) => {
+        e.preventDefault();
+        setCredential('Demo-lition');
+        setPassword('password12');
+        return dispatch(sessionActions.login({ credential, password })).catch(
+            async (res) => {
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors);
+            }
+        );
+    }
+
+
     return (
-        <form onSubmit={handleSubmit}>
-            <ul>
-                {errors.map((error, idx) => (
-                    <li key={idx}>{error}</li>
-                ))}
-            </ul>
-            <label>
-                Username or Email
-                <input
-                    type="text"
-                    value={credential}
-                    onChange={(e) => setCredential(e.target.value)}
-                    required
-                />
-            </label>
-            <label>
-                Password
-                <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-            </label>
-            <button type="submit">Log In</button>
-        </form>
+        <div id='login-form-container'>
+
+            <form id='loginForm-form' onSubmit={handleSubmit}>
+
+                <div id='login-error-handling-div'>
+                    <ul>
+                        {!errors.length && errors.map((error, idx) => (
+                            <li key={idx}>{error}</li>
+                        ))}
+                    </ul>
+                </div>
+                <div id='username-div' className='login-input-div'>
+                    <input
+                        id='credential-input'
+                        type="text"
+                        value={credential}
+                        onChange={(e) => setCredential(e.target.value)}
+                        placeholder='Username or Email'
+                        required
+                    />
+                </div>
+
+                <div id='password-div' className='login-input-div'>
+
+                    <input
+                        id='password-input'
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder='Password'
+                        required
+                    />
+                </div>
+
+                <button id='loginBtn' type="submit">Log In</button>
+
+                <button type="submit"
+                    id='demoBtn'
+                    onClick={handleDemo}
+                >
+                    Log in as Demo User
+                </button>
+
+            </form>
+
+
+        </div>
     );
 }
 
