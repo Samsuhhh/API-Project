@@ -7,10 +7,10 @@
     justify-content: center;
     /* border: green solid 2px; */
 }
-
+/* 
 #signup-form {
     display: block;
-    /* justify-content: center; */
+    justify-content: center;
     margin-top: 60px;
     margin-left: 10px;
     margin-right: 10px;
@@ -19,10 +19,25 @@
     border-radius: 25px;
     width: 400px;
     height: 500px;
-    /* position: relative; */
+    position: relative;
 
+} */
+
+#confirm-password {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
-asdf
-.input {
-    margin-top: 10px;
+
+
+#signup-form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-right: 150px;
+    margin-left: 150px;
+    width: 550px;
+    height: 600px;
+    border-color: rgb(221, 221, 221);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px 0px;
+    border-radius: 20px;
 }
