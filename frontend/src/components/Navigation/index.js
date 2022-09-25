@@ -33,7 +33,9 @@ function Navigation({ isLoaded }) {
 
     if (sessionUser) {
         sessionLinks = (
-            <ProfileButton user={sessionUser} />
+            <div className={dropdownClass()}>
+                <ProfileButton user={sessionUser} />
+            </div>
         );
     } else {
         sessionLinks = (

@@ -12,11 +12,12 @@
 .image-section {
     /* margin-top: 100px; */
     width: 100%;
-    height: 287px
+    height: 287px;
+    
 }
 
 #spot-img {
-
+    object-fit: cover;
     height: 285.7px;
     width: 100%;
     /* border: solid purple 5px; */
@@ -27,7 +28,7 @@
 }
 
 
-#singleSpot-details-container{
+#singleSpot-details-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -53,6 +54,7 @@
     justify-content: space-between;
     text-decoration: none;
 }
+
 #location {
     font-weight: 620;
 }
