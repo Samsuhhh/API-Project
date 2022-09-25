@@ -26,23 +26,31 @@ const CreateSpotForm = () => {
     useEffect(() => {
         const errors = [];
 
-        if (!address || address.length > 20 || address.length <= 5) {
-            errors.push('Please provide a valid address.')
+        if (!address || address.length > 25 || address.length < 5) {
+            errors.push('Address must be greater than 5, and less than 25 characters.')
         };
-        if (!city || city.length > 20 || city.length <= 5) {
-            errors.push('Please provide a valid city.')
+        if (!city || city.length > 25 || city.length < 3) {
+            errors.push('City must be greater than 3, and less than 25 characters.')
         };
-        if (!name || name.length > 24 || name.length < 3) {
-            errors.push('Please provide a valid name.')
+        if (!name || name.length > 40 || name.length < 3) {
+            errors.push('Name must be greater than 3, and less than 25 characters.')
         };
-        if (!description || description.length > 150 || description.length < 5) {
-            errors.push('Please provide a valid description.')
+        if (!description || description.length > 200 || description.length < 5) {
+            errors.push('Description must be greater than 5 characters.')
         };
         if (!price || !Number(price)) {
-            errors.push('Please provide a valid price.')
+            errors.push('Price must be a number.')
         };
+        if (!state || state.length > 25 || state.length < 5){
+            errors.push('State must be greater than 5, and less than 25 characters.')
+        }
+        if (!country){
+            errors.push('Please select a country.')
+        }
+        if (!imgUrl.match(/\.(jpg|jpeg|png|gif)$/)) errors.push('Image url must end in .jpg .jpeg .png or .gif')
 
-    });
+        setCreateSpotErrors(errors);
+    }, [address, city, name, description, price, state, country, imgUrl]);
 
 
 
@@ -54,8 +62,8 @@ const CreateSpotForm = () => {
             city,
             state,
             country,
-            lat,
-            lng,
+            // lat,
+            // lng,
             name,
             description,
             price
@@ -86,13 +94,27 @@ const CreateSpotForm = () => {
 
         <div id='create-form-styling' className='form-container'>
 
+            <div id='error-handling'>
+                <h2 id='form-requirements-heading'>Form Requirements:</h2>
+                <ul id='error-list'>
+                    {createSpotErrors.length > 0 && createSpotErrors.map((error) => {
+                        return <li id='list-error' key={error}>{error}</li>
+                    })}
+                    {createSpotErrors.length === 0 && (
+                        <li id='allclear-message'>Your spot is good to go!</li>
+                    )}
+                </ul>
+            </div>
+
             <div id='createSpot-form'>
 
 
                 <div id='form-styling'>
                     <div id='create-h1-header'>
-                        <h1>Tell us about your place!</h1>
+                        <h1 style={{fontWeight: 400}}>Tell us about your place!</h1>
                     </div>
+
+
                     <form className='createForm-inputs-div' onSubmit={handleSubmit}>
 
                         <div className='createForm-inputs-div' >
@@ -198,7 +220,7 @@ const CreateSpotForm = () => {
                         <div className='createForm-inputs-div' >
                             <textarea
                                 className='createSpot-inputs'
-                                id='create-description'                            
+                                id='create-description'
                                 type='text'
                                 onChange={e => setDescription(e.target.value)}
                                 value={description}
@@ -210,12 +232,12 @@ const CreateSpotForm = () => {
 
                         <div id='create-buttons'>
                             <button
-                            className='createSpot-buttons'
+                                className='createSpot-buttons'
                                 disabled={createSpotErrors.length > 0 ? true : false}
                             >Host my spot</button>
-                            <button 
-                            className='createSpot-buttons'
-                            onClick={cancelHandler}>Cancel</button>
+                            <button
+                                className='createSpot-buttons'
+                                onClick={cancelHandler}>Cancel</button>
 
                         </div>
                     </form>

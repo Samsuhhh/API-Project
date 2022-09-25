@@ -33,9 +33,10 @@ function SignupFormPage() {
 
     return (
         <div id='signup-container'>
+            
             <div id='signup-form'>
                 <br></br>
-                    WELCOME TO AIRNBN
+                    Welcome to AirNbN
                 <form onSubmit={handleSubmit}>
                     <ul>
                         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
