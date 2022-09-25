@@ -14,17 +14,49 @@
 
 #review-form-styling {
     display: block;
-    width: 400px;
-    height: 400px;
+    width: 500px;
+    height: 500px;
     text-align: center;
-        border-color: rgb(221, 221, 221);
-            box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px 0px;
-
-
+    border-color: rgb(221, 221, 221);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px 0px;
 
 }
 
 
 #review-h1 {
     border-bottom: 1px lightgrey solid;
+}
+
+#createReview-buttonDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+}
+
+#stars-reviews {
+    
+}
+
+
+#createReview-submitBtn,
+#cancelReviewbtn{
+    width: 350px;
+    height: 40px;
+    background-color: #FF5A5F;
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-top: 10px;
+    border-radius: 20px;
+    border: 1px solid lightgrey;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+#review-description {
+    border-radius: 15px;
+    font-size: 16px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding-left: 10px;
+    padding-top: 10px;
 }
