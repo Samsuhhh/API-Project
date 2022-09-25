@@ -37,27 +37,6 @@ const UpdateSpotFormPage = () => {
     const updatePrice = e => setPrice(e.target.value);
     // const updateImgUrl = e => setImgUrl(e.target.value)
 
-    // useEffect(() => {
-    //     const errors = [];
-
-    //     if ( !address ) {
-    //         errors.push('Please provide a valid address.')
-    //     };
-    //     if ( !city ) {
-    //         errors.push('Please provide a valid city.')
-    //     };
-    //     if ( !name ) {
-    //         console.log('uh oh')
-    //         errors.push('Please provide a valid name.')
-    //     };
-    //     if ( !description ) {
-    //         errors.push('Please provide a valid description.')
-    //     };
-    //     if ( !price ) {
-    //         errors.push('Please provide a valid price.')
-    //     };
-    //     setUpdateErrors(errors);
-    // }, [address, city, name, description, price]);    
 
     useEffect(() => {
         const errors = [];
@@ -74,11 +53,11 @@ const UpdateSpotFormPage = () => {
         if (!description || description.length > 250 || description.length < 5) {
             errors.push('Description must be greater than 5, and less than 250 characters.')
         };
-        if (!price || !Number(price)) {
-            errors.push('Price must be a number.')
+        if (!price || !Number(price) || price < 1) {
+            errors.push('Price must be a number greater than 0.')
         };
-        if (!state || state.length > 25 || state.length < 5) {
-            errors.push('State must be greater than 5, and less than 25 characters.')
+        if (!state || state.length > 25 || state.length < 4) {
+            errors.push('State must be greater than 4, and less than 25 characters.')
         }
         if (!country) {
             errors.push('Please select a country.')
@@ -157,7 +136,7 @@ const UpdateSpotFormPage = () => {
 
                 <div id='form-styling'>
                     <div id='create-h1-header'>
-                        <h1 style={{ fontWeight: 400 }}>Tell us about your place!</h1>
+                        <h1 style={{ fontWeight: 400 }}>Update your spot's details</h1>
                     </div>
 
 
@@ -296,117 +275,6 @@ const UpdateSpotFormPage = () => {
 
         </div>
 
-
-
-
-        // <div id='form-container'>
-        //     <div id='updateSpot-form'>
-        //         <div>
-        //             <h1>UPDATE YOUR SPOT</h1>
-        //         </div>
-        //         <form onSubmit={handleSubmit}>
-        //             <div>
-        //                 <label htmlFor='name'></label>
-        //                 <input
-        //                     id='name'
-        //                     type='text'
-        //                     onChange={updateName}
-        //                     value={name}
-        //                 />
-        //             </div>
-        //             <div>
-        //                 <label htmlFor='lat'></label>
-        //                 <input
-        //                     id='lat'
-        //                     type='text'
-        //                     onChange={updateLat}
-        //                     value={lat}
-        //                 />
-        //             </div>
-        //             <div>
-        //                 <label htmlFor='lng'></label>
-        //                 <input
-        //                     id='lng'
-        //                     type='text'
-        //                     onChange={updateLng}
-        //                     value={lng}
-        //                 />
-        //             </div>
-        //             <div>
-        //                 <label htmlFor='address'></label>
-        //                 <input
-        //                     id='address'
-        //                     type='text'
-        //                     onChange={updateAddress}
-        //                     value={address}
-        //                 />
-        //             </div>
-        //             <div>
-        //                 <label htmlFor='city'></label>
-        //                 <input
-        //                     id='city'
-        //                     type='text'
-        //                     onChange={updateCity}
-        //                     value={city}
-        //                 />
-        //             </div>
-        //             <div>
-        //                 <label htmlFor='state'></label>
-        //                 <input
-        //                     id='state'
-        //                     type='text'
-        //                     onChange={updateState}
-        //                     value={state}
-        //                 />
-        //                 <br></br>
-        //                 <select
-        //                     name="Country"
-        //                     onChange={updateCountry}
-        //                     value={country}
-        //                 >
-        //                     <option value="" >
-        //                         select a country
-        //                     </option>
-        //                     <option>USA</option>
-        //                     <option>CHINA</option>
-        //                     <option>Australia</option>
-        //                 </select>
-        //             </div>
-        //             <div>
-
-        //                 <label htmlFor='price'></label>
-        //                 <input
-        //                     id='price'
-        //                     type='text'
-        //                     onChange={updatePrice}
-        //                     value={price}
-        //                 />
-        //             </div>
-        //             <div>
-        //                 <label htmlFor='description'></label>
-        //                 <textarea
-        //                     id='description'
-        //                     type='text'
-        //                     onChange={updateDescription}
-        //                     value={description}
-        //                     placeholder='Bio here'
-        //                 />
-        //             </div>
-        //             <div>
-        //                 <label htmlFor='imgUrl'></label>
-        //                 <input
-        //                     id='imgUrl'
-        //                     type='text'
-        //                     onChange={updateImgUrl}
-        //                     value={imgUrl}
-        //                     placeholder='imgUrl'
-        //                 />
-        //             </div>
-        //             <button>Update spot</button>
-        //             <button onClick={cancelHandler}>CANCEL</button>
-        //         </form>
-        //     </div>
-        // </div>
     )
 
 }
