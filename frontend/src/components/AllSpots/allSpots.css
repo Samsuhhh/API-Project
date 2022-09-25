@@ -1,14 +1,11 @@
 .SpotsContainer {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    /* grid-template-columns: repeat(5, 1fr); */
-    /* grid-template-rows: repeat(5, 1fr); */
-    /* grid-template-rows: repeat(5, 1fr); */
-    border: 5px blue solid;
-    /* grid-auto-flow: row; */
+    /* border: 5px blue solid; */
     height: 100%;
     width: 1616px;
-    gap: 25px;
+    column-gap: 24px;
+    row-gap: 45px;
     margin-top: 100px;
     /* padding-left: 80px;
     padding-right: 80px; */
@@ -31,11 +28,12 @@
 
 .wrapper {
     height: 100%;
-    border: solid red 5px;
+    /* border: solid red 5px; */
     display: flex;
     justify-content: center;
     width: 100%; 
     /* padding-top: 180px; */
+    margin-bottom: 25px;
 }
 
  #single-card {

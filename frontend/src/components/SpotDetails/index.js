@@ -20,9 +20,7 @@ const SpotDetail = () => {
     // delete spotImages at the end of useSelector and then put it back in for the BUG to occur
     // const reviewUser = useSelector(state => state.reviews.spot);
 
-    const spotDetails = useSelector(state => {
-        return state.spots.singleSpot
-    });
+    const spotDetails = useSelector(state => state.spots.singleSpot);
     // console.log('goodbye', spotImg)
     console.log('SPOT DETAILS', spotDetails.SpotImages)
 
@@ -81,16 +79,57 @@ const SpotDetail = () => {
         <div id='spot-outermost'>
             <div id='header-wrap'>
                 <div id='spotName-header'>
-                    <h1> Spot Name:  {spotDetails.name}</h1>
+                    <div style={{ fontWeight: 500, fontSize: '26px' }}> {spotDetails.name}</div>
+                    <div id='spotName-header-mini-details'>
+                        <span id='miniheader-reviews'
+                            style={{ color: "black", paddingRight: '7px' }}
+                        >
+                            {spotDetails.avgRating === null ? 'NEW' : '★ ' + spotDetails.avgRating}
+                        </span>
+                        &#x2022;
+                        <a
+                            style={{ color: "black", paddingLeft: '7px', paddingRight: '7px' }}
+                            href="#all_reviews_jump">
+                            <span>
+                                {spotDetails.numReviews} reviews
+                            </span>
+                        </a>
+                        &#x2022;
+                        <span style={{ color: "black", paddingLeft: '7px', paddingRight: '7px' }}>
+                            {spotDetails.city},{spotDetails.state}
+                        </span>
+
+                        &#x2022;
+                        <span style={{ color: "black", paddingLeft: '7px', paddingRight: '7px' }}>
+                            {spotDetails.country}
+                        </span>
+
+                    </div>
                 </div>
+
             </div>
             <div id='spotPage'>
 
-                <div id='spotDetails-content'>
-                    {/* <div className='spotDetails-image'> */}
-                    <img id='spotDetails-img' alt='beautiful spotImage' src={spotDetails.SpotImages[0]?.url ||
-                        'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg'} />
-                    {/* </div> */}
+                <div id='spotDetails-images-container'>
+                    <div id='bigImg-div'>
+                        <img id='big-img' alt='beautiful spotImage' src={spotDetails.SpotImages[0]?.url ||
+                            'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg'} />
+                    </div>
+                    <div className="smallImage-column-divs">
+                        <div>
+                            <img className='small-img' src={spotDetails.SpotImages[1]?.url || 'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg'} alt='small house' />
+                        </div>
+                        <div>
+                            <img className='small-img' src={spotDetails.SpotImages[2]?.url || 'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg'} alt='small house' />
+                        </div>
+                    </div>
+                    <div className='smallImage-column-divs'>
+                        <img id='small-img-TR' src={spotDetails.SpotImages[3]?.url || 'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg'} alt='small house' />
+                        <div >
+                            <img id='small-img-BR' src={spotDetails.SpotImages[4]?.url || 'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg'} alt='small house' />
+                        </div>
+                    </div>
+
                 </div>
 
                 <div className="details-container">
@@ -100,65 +139,162 @@ const SpotDetail = () => {
                         <div id='details-mini-header'>
                             <div id='mini-header-styling'>
                                 <h2 id='h2header'>{spotDetails.name} hosted by {spotDetails.Owner?.firstName}</h2>
-                                <span>Spot Id: {spotDetails.id}</span>
-                                <span></span>
+                                <span>Id #{spotDetails.id}</span>
+                            </div>
+                        </div>
+                        <div id='host-info-div'>
+                            <div id='host-info-container'>
+                                <img
+                                    alt='enter icon'
+                                    src="https://www.pngrepo.com/png/318342/180/lock.png"
+                                    style={{
+                                        width: '30px',
+                                        height: '30px',
+                                        paddingTop: '20px',
+
+                                    }}
+                                />
+                                <div className='host-information'>
+                                    <div>
+                                        Self check-in
+                                    </div>
+                                    <div id='Check-in-description'>
+                                        Check yourself in with the keypad.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id='host-superhost-div'>
+                                <img
+                                    src='https://www.pngrepo.com/png/128236/180/badge.png'
+                                    alt='superhost-badge'
+                                    style={{
+                                        width: '30px',
+                                        height: '30px',
+                                        paddingTop: '23px',
+                                        paddingLeft: '2px',
+                                    }}
+                                />
+                                <div id='aa-guarantee-div' className='host-information'>
+
+                                    <div>
+                                        {spotDetails.Owner?.firstName} is a Superhost
+                                    </div>
+                                    <div id='superhost-description'>
+                                        Superhosts are experienced, highly rated hosts who are committed to making money by appealing to guests.
+                                        hell yea I got a lump in throught yea and you're going to sing the words wrong
+                                    </div>
+                                </div>
+                            </div>
+                            <div id='free-cancel-div'>
+                                <img
+                                    src='https://www.pngrepo.com/png/56251/180/calendar.png'
+                                    alt='superhost-badge'
+                                    style={{
+                                        width: '30px',
+                                        height: '30px',
+                                        paddingTop: '23px',
+                                        paddingLeft: '4px'
+
+                                    }}
+                                />
+                                <div className='host-information'
+                                    style={{
+                                        fontSize: '19px',
+                                        fontWeight: '500',
+                                        paddingTop: '3px'
+                                    }}
+                                >
+                                    Free cancellation for 48 hours.
+                                </div>
                             </div>
                         </div>
 
-                        <div className='host-information'>
-                            Self check-in
-                        </div>
-                        <div className='host-information'>
-                            <div>
-                                {spotDetails.Owner?.firstName} is a Superhost
-                            </div>
-                            <div id='superhost-description'>
-                                Superhosts are experienced, highly rated hosts who are committed to making money by appealing to guests.
-                                hell yea I got a lump in throught yea and you're going to sing the words wrong
-                            </div>
-                        </div>
-                        <div className='host-information'>
-                            Free cancellation for 48 hours.
-                        </div>
-
-                        <div className='host-information' id='appAcademy-disclaimer'>
-                            <logo>aA logo</logo>
-                            <div>
+                        <div id='appAcademy-disclaimer'>
+                            <logo>
+                                <img
+                                    alt="app academy logo"
+                                    style={{ width: '210px', height: '70px' }}
+                                    src='https://assets-global.website-files.com/5dcc7f8c449e597ed83356b8/6269b3a19f67fd137a262d0a_A%20Logo%20Main%20-%20Red.svg' />
+                            </logo>
+                            <div style={{ paddingLeft: '3px', paddingBottom: '3px' }}>
                                 Everything on this site is 1000% real, venmo: @Samsuhhh for payments.
                             </div>
                             <div>
-                                <Link color='black' to='/https://www.appacademy.io/'>Learn More</Link>
+                                <a style={{ color: 'black', paddingLeft: '3px', paddingBottom: '3px' }}
+                                    href='/https://www.appacademy.io/'>
+                                    Learn More
+                                </a>
                             </div>
                         </div>
 
-                        <div id='spot-description'className='host-information'>
+                        <div id='spot-description' className='host-information'>
                             Spot Description: {spotDetails.description}
                         </div>
 
 
                     </div>
+
                     <div id='right-modal'>
-                        {currentUser && currentUser.id === spotDetails.ownerId && (
-                            <button onClick={updateRedirect}>UPDATE SPOT</button>
-                        )}
-                        <br></br>
-                        {currentUser && currentUser.id === spotDetails.ownerId && (
-                            <button onClick={deleteHandler}>DELETE</button>
-                        )}
+                        <div id='right-modal-content'>
+                            <div id='modal-header'>
+                                <div id='header-price'>
+                                    <span id='header-left-price'>
+                                        {'$' + spotDetails.price}
+                                    </span>
+                                    <span id="header-left-night">
+                                        night
+                                    </span>
+                                </div>
+                                <div id='header-right-stars-reviews'>
+                                    <span id='headerRight-reviews'>
+                                        {spotDetails.avgRating === null ? 'NEW' : '★ ' + spotDetails.avgRating}
+                                    </span>
+                                    &#x2022;
+                                    <a
+                                        style={{ color: "grey" }}
+                                        href="#all_reviews_jump">
+                                        <span id='headerRight-stars'>
+                                            {spotDetails.numReviews} reviews
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div id='spot-owner-buttons'>
+
+                                {currentUser && currentUser.id === spotDetails.ownerId && (
+                                    <>
+                                        <button
+                                            id='edit-spot-btn'
+                                            onClick={updateRedirect}
+                                        >
+                                            Update your spot
+                                        </button>
+                                        <button
+                                            id='delete-spot-btn'
+                                            onClick={deleteHandler}
+                                        >
+                                            Delete your spot
+                                        </button>
+                                    </>
+                                )}
+                                {currentUser && currentUser.id !== spotDetails.ownerId && (
+                                    <div >
+                                        <button
+                                            id='create-review-btn'
+                                            onClick={newReviewRedirect}>
+                                            Leave a review
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
                     </div>
 
                 </div>
             </div>
             <section id='reviews-container'>
-                {/* <div> */}
-                    <SpotReviews />
-                {/* </div> */}
-                <div>
-                    <button onClick={newReviewRedirect}>
-                        CREATE NEW REVIEW
-                    </button>
-                </div>
-
+                <SpotReviews />
             </section>
         </div>
 

@@ -34,38 +34,50 @@ const SpotReviews = () => {
         history.push(`/spots/${spotId}/new-review`)
     }
 
-    
+
     return (
-        <div id='review-container-style'>
-            <div id='reviews-header'>
-                <h1 >{singleSpot.avgRating} &#x2022; {singleSpot.numReviews} reviews</h1>
-                <div>
-                    <button onClick={newReviewRedirect}>
-                        CREATE NEW REVIEW
-                    </button>
+        <a id='all_reviews_jump'>
+            <div id='review-container-style'>
+                <div id='reviews-header'>
+                    <h1 >{singleSpot.avgRating} &#x2022; {singleSpot.numReviews} reviews</h1>
+
+                </div>
+                <div id='existing-reviews'>
+                    {Object.values(spotReviews).map(review => {
+                        return (
+
+                            <div key={review.id} id='review-card'>
+
+                                <div id='review-profile-details'>
+                                    <img
+                                        src='https://www.pngrepo.com/png/56251/180/calendar.png'
+                                        alt='superhost-badge'
+                                        style={{
+                                            width: '40px',
+                                            height: '40px',
+                                        }}
+                                    />
+                                    <div id='review-name-date'>
+                                        <div className='review-detail-spacing' id='review-firstName'>
+                                            {review.User?.firstName}
+                                        </div>
+                                        <div id='review-time'>
+                                            {review.createdAt}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='review-detail-spacing' id='user-review'>
+                                    {review.review}
+                                </div>
+                                {currentUser && currentUser.id === review.userId && (
+                                    <button id='delete-review-btn' onClick={() => deleteHandler(review.id)}> Delete your review </button>
+                                )}
+                            </div>
+                        )
+                    })}
                 </div>
             </div>
-            <div id='existing-reviews'>
-                {Object.values(spotReviews).map(review => {
-                    return (
-                        
-                        <div key={review.id} id='review-card'>
-                            <div className='review-detail-spacing'id='review-firstName'>
-                                {review.User?.firstName}
-                            </div>
-                            <div id='review-time'>
-                                 {review.createdAt}
-                            </div>
-                            <div className='review-detail-spacing' id='user-review'>
-                                {review.review}
-                            </div>
-                            {currentUser && currentUser.id === review.userId && (
-                                <button id='delete-review-btn' onClick={() => deleteHandler(review.id)}> Delete your review </button>
-                            )}
-                        </div>
-                    )})}
-            </div>
-        </div>
+        </a>
     )
 }
 
