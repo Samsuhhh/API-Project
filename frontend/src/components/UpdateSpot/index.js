@@ -24,43 +24,74 @@ const UpdateSpotFormPage = () => {
     const [description, setDescription] = useState(spot.description);
     const [price, setPrice] = useState(spot.price);
     // const [imgUrl, setImgUrl] = useState(spot?.SpotImages[0]?.url);
-    const [UpdateErrors, setUpdateErrors] = ([]);
+    const [UpdateErrors, setUpdateErrors] = useState([]);
 
     const updateAddress = e => setAddress(e.target.value);
     const updateCity = e => setCity(e.target.value);
     const updateState = e => setState(e.target.value);
     const updateCountry = e => setCountry(e.target.value);
-    const updateLat = e => setLat(e.target.value);
-    const updateLng = e => setLng(e.target.value);
+    // const updateLat = e => setLat(e.target.value);
+    // const updateLng = e => setLng(e.target.value);
     const updateName = e => setName(e.target.value);
     const updateDescription = e => setDescription(e.target.value);
     const updatePrice = e => setPrice(e.target.value);
     // const updateImgUrl = e => setImgUrl(e.target.value)
 
+    // useEffect(() => {
+    //     const errors = [];
+
+    //     if ( !address ) {
+    //         errors.push('Please provide a valid address.')
+    //     };
+    //     if ( !city ) {
+    //         errors.push('Please provide a valid city.')
+    //     };
+    //     if ( !name ) {
+    //         console.log('uh oh')
+    //         errors.push('Please provide a valid name.')
+    //     };
+    //     if ( !description ) {
+    //         errors.push('Please provide a valid description.')
+    //     };
+    //     if ( !price ) {
+    //         errors.push('Please provide a valid price.')
+    //     };
+    //     setUpdateErrors(errors);
+    // }, [address, city, name, description, price]);    
+
     useEffect(() => {
         const errors = [];
 
-        if ( !address ) {
-            errors.push('Please provide a valid address.')
+        if (!address || address.length > 25 || address.length < 5) {
+            errors.push('Address must be greater than 5, and less than 25 characters.')
         };
-        if ( !city ) {
-            errors.push('Please provide a valid city.')
+        if (!city || city.length > 25 || city.length < 3) {
+            errors.push('City must be greater than 3, and less than 25 characters.')
         };
-        if ( !name ) {
-            console.log('uh oh')
-            errors.push('Please provide a valid name.')
+        if (!name || name.length > 40 || name.length < 3) {
+            errors.push('Name must be greater than 3, and less than 25 characters.')
         };
-        if ( !description ) {
-            errors.push('Please provide a valid description.')
+        if (!description || description.length > 250 || description.length < 5) {
+            errors.push('Description must be greater than 5, and less than 250 characters.')
         };
-        if ( !price ) {
-            errors.push('Please provide a valid price.')
+        if (!price || !Number(price)) {
+            errors.push('Price must be a number.')
         };
-    });    
+        if (!state || state.length > 25 || state.length < 5) {
+            errors.push('State must be greater than 5, and less than 25 characters.')
+        }
+        if (!country) {
+            errors.push('Please select a country.')
+        }
+        // if (!imgUrl.match(/\.(jpg|jpeg|png|gif)$/)) errors.push('Image url must end in .jpg .jpeg .png or .gif')
+
+        setUpdateErrors(errors);
+    }, [address, city, name, description, price, state, country ]);
+
 
     useEffect(() => {
         dispatch(getSpotDetails(spotId))
-    }, [dispatch])
+    }, [dispatch, spotId])
 
     if (!Object.keys(spot).length) return null;
 
@@ -73,8 +104,8 @@ const UpdateSpotFormPage = () => {
             city,
             state,
             country,
-            lat,
-            lng,
+            // lat,
+            // lng,
             name,
             description,
             price
@@ -106,114 +137,276 @@ const UpdateSpotFormPage = () => {
     };
 
     return (
-        <div id='form-container'>
-            <div id='updateSpot-form'>
-                <div>
-                    <h1>UPDATE YOUR SPOT</h1>
-                </div>
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <label htmlFor='name'></label>
-                        <input
-                            id='name'
-                            type='text'
-                            onChange={updateName}
-                            value={name}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor='lat'></label>
-                        <input
-                            id='lat'
-                            type='text'
-                            onChange={updateLat}
-                            value={lat}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor='lng'></label>
-                        <input
-                            id='lng'
-                            type='text'
-                            onChange={updateLng}
-                            value={lng}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor='address'></label>
-                        <input
-                            id='address'
-                            type='text'
-                            onChange={updateAddress}
-                            value={address}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor='city'></label>
-                        <input
-                            id='city'
-                            type='text'
-                            onChange={updateCity}
-                            value={city}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor='state'></label>
-                        <input
-                            id='state'
-                            type='text'
-                            onChange={updateState}
-                            value={state}
-                        />
-                        <br></br>
-                        <select
-                            name="Country"
-                            onChange={updateCountry}
-                            value={country}
-                        >
-                            <option value="" >
-                                select a country
-                            </option>
-                            <option>USA</option>
-                            <option>CHINA</option>
-                            <option>Australia</option>
-                        </select>
-                    </div>
-                    <div>
 
-                        <label htmlFor='price'></label>
-                        <input
-                            id='price'
-                            type='text'
-                            onChange={updatePrice}
-                            value={price}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor='description'></label>
-                        <textarea
-                            id='description'
-                            type='text'
-                            onChange={updateDescription}
-                            value={description}
-                            placeholder='Bio here'
-                        />
-                    </div>
-                    {/* <div>
-                        <label htmlFor='imgUrl'></label>
-                        <input
-                            id='imgUrl'
-                            type='text'
-                            onChange={updateImgUrl}
-                            value={imgUrl}
-                            placeholder='imgUrl'
-                        />
-                    </div> */}
-                    <button>Update spot</button>
-                    <button onClick={cancelHandler}>CANCEL</button>
-                </form>
+        <div id='create-form-styling' className='form-container'>
+
+            <div id='error-handling'>
+                <h2 id='form-requirements-heading'>Form Requirements:</h2>
+                <ul id='error-list'>
+                    {UpdateErrors.length > 0 && UpdateErrors.map((error) => {
+                        return <li id='list-error' key={error}>{error}</li>
+                    })}
+                    {UpdateErrors.length === 0 && (
+                        <li id='allclear-message'>Your spot is good to go!</li>
+                    )}
+                </ul>
             </div>
+
+            <div id='createSpot-form'>
+
+
+                <div id='form-styling'>
+                    <div id='create-h1-header'>
+                        <h1 style={{ fontWeight: 400 }}>Tell us about your place!</h1>
+                    </div>
+
+
+                    <form className='createForm-inputs-div' onSubmit={handleSubmit}>
+
+                        <div className='createForm-inputs-div' >
+                            <input
+                                id='createName'
+                                className='createSpot-input'
+                                type='text'
+                                onChange={updateName}
+                                value={name}
+                                placeholder='Name'
+                                required
+                            />
+                        </div>
+                        {/* <div className='createForm-inputs-div' >
+                            <input
+                                className='createSpot-input'
+                                type='number'
+                                onChange={e => setLat(e.target.value)}
+                                value={lat}
+                                placeholder='Latitude'
+                                required
+                            />
+                        </div>
+                        <div className='createForm-inputs-div' >
+                            <input
+                                className='createSpot-input'
+                                type='number'
+                                onChange={e => setLng(e.target.value)}
+                                value={lng}
+                                placeholder='Longitude'
+                                required
+                            />
+                        </div> */}
+                        <div className='createForm-inputs-div' >
+                            <input
+                                className='createSpot-input'
+                                type='text'
+                                onChange={updateAddress}
+                                value={address}
+                                placeholder='Address'
+                                required
+                            />
+                        </div>
+                        <div className='createForm-inputs-div' >
+                            <input
+                                className='createSpot-input'
+                                type='text'
+                                onChange={updateCity}
+                                value={city}
+                                placeholder='City'
+                                required
+                            />
+                        </div>
+                        <div className='createForm-inputs-div' >
+                            <input
+                                className='createSpot-input'
+                                type='text'
+                                onChange={updateState}
+                                value={state}
+                                placeholder='State'
+                                required
+                            />
+                        </div>
+                        <div className='createForm-inputs-div' >
+                            <select
+                                id='select-country'
+                                name="Country"
+                                onChange={updateCountry}
+                                value={country}
+                                required
+                            >
+                                <option value="" >
+                                    Select a country
+                                </option>
+                                <option>USA</option>
+                                <option>CHINA</option>
+                                <option>Australia</option>
+
+                            </select>
+                        </div>
+                        {/* </div> */}
+                        <div className='createForm-inputs-div' >
+
+                            <input
+                                id='number-input'
+                                className='createSpot-input'
+                                type='number'
+                                onChange={updatePrice}
+                                value={price}
+                                placeholder='Price'
+                                required
+                            />
+                        </div>
+                        {/* <div className='createForm-inputs-div' >
+                            <input
+                                className='createSpot-input'
+                                type='text'
+                                onChange={e => setImgUrl(e.target.value)}
+                                value={imgUrl}
+                                placeholder='imgUrl'
+                                required
+                            />
+                        </div> */}
+                        <div className='createForm-inputs-div' >
+                            <textarea
+                                className='createSpot-inputs'
+                                id='create-description'
+                                type='text'
+                                onChange={updateDescription}
+                                value={description}
+                                placeholder='Description here'
+                                style={{ resize: 'none', outline: 'none', width: '450px', height: '150px' }}
+                                required
+                            />
+                        </div>
+
+                        <div id='create-buttons'>
+                            <button
+                                className='createSpot-buttons'
+                                disabled={UpdateErrors.length > 0 ? true : false}
+                            >Update new details</button>
+                            <button
+                                className='createSpot-buttons'
+                                onClick={cancelHandler}>Cancel</button>
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+
+
         </div>
+
+
+
+
+        // <div id='form-container'>
+        //     <div id='updateSpot-form'>
+        //         <div>
+        //             <h1>UPDATE YOUR SPOT</h1>
+        //         </div>
+        //         <form onSubmit={handleSubmit}>
+        //             <div>
+        //                 <label htmlFor='name'></label>
+        //                 <input
+        //                     id='name'
+        //                     type='text'
+        //                     onChange={updateName}
+        //                     value={name}
+        //                 />
+        //             </div>
+        //             <div>
+        //                 <label htmlFor='lat'></label>
+        //                 <input
+        //                     id='lat'
+        //                     type='text'
+        //                     onChange={updateLat}
+        //                     value={lat}
+        //                 />
+        //             </div>
+        //             <div>
+        //                 <label htmlFor='lng'></label>
+        //                 <input
+        //                     id='lng'
+        //                     type='text'
+        //                     onChange={updateLng}
+        //                     value={lng}
+        //                 />
+        //             </div>
+        //             <div>
+        //                 <label htmlFor='address'></label>
+        //                 <input
+        //                     id='address'
+        //                     type='text'
+        //                     onChange={updateAddress}
+        //                     value={address}
+        //                 />
+        //             </div>
+        //             <div>
+        //                 <label htmlFor='city'></label>
+        //                 <input
+        //                     id='city'
+        //                     type='text'
+        //                     onChange={updateCity}
+        //                     value={city}
+        //                 />
+        //             </div>
+        //             <div>
+        //                 <label htmlFor='state'></label>
+        //                 <input
+        //                     id='state'
+        //                     type='text'
+        //                     onChange={updateState}
+        //                     value={state}
+        //                 />
+        //                 <br></br>
+        //                 <select
+        //                     name="Country"
+        //                     onChange={updateCountry}
+        //                     value={country}
+        //                 >
+        //                     <option value="" >
+        //                         select a country
+        //                     </option>
+        //                     <option>USA</option>
+        //                     <option>CHINA</option>
+        //                     <option>Australia</option>
+        //                 </select>
+        //             </div>
+        //             <div>
+
+        //                 <label htmlFor='price'></label>
+        //                 <input
+        //                     id='price'
+        //                     type='text'
+        //                     onChange={updatePrice}
+        //                     value={price}
+        //                 />
+        //             </div>
+        //             <div>
+        //                 <label htmlFor='description'></label>
+        //                 <textarea
+        //                     id='description'
+        //                     type='text'
+        //                     onChange={updateDescription}
+        //                     value={description}
+        //                     placeholder='Bio here'
+        //                 />
+        //             </div>
+        //             <div>
+        //                 <label htmlFor='imgUrl'></label>
+        //                 <input
+        //                     id='imgUrl'
+        //                     type='text'
+        //                     onChange={updateImgUrl}
+        //                     value={imgUrl}
+        //                     placeholder='imgUrl'
+        //                 />
+        //             </div>
+        //             <button>Update spot</button>
+        //             <button onClick={cancelHandler}>CANCEL</button>
+        //         </form>
+        //     </div>
+        // </div>
     )
 
 }

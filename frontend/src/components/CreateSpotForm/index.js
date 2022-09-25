@@ -35,8 +35,8 @@ const CreateSpotForm = () => {
         if (!name || name.length > 40 || name.length < 3) {
             errors.push('Name must be greater than 3, and less than 25 characters.')
         };
-        if (!description || description.length > 200 || description.length < 5) {
-            errors.push('Description must be greater than 5 characters.')
+        if (!description || description.length > 250 || description.length < 5) {
+            errors.push('Description must be greater than 5, and less than 250 characters.')
         };
         if (!price || !Number(price)) {
             errors.push('Price must be a number.')

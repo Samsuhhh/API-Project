@@ -61,8 +61,6 @@ function Navigation({ isLoaded }) {
     }
 
 
-
-
     return (
         <div className='header'>
             <div className='nav-bar'>
