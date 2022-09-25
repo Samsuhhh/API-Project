@@ -216,15 +216,26 @@ const SpotDetail = () => {
                                     </span>
                                 </div>
                             </div>
+                            <div id='spot-owner-buttons'>
 
-                            {currentUser && currentUser.id === spotDetails.ownerId && (
-                                <button onClick={updateRedirect}>UPDATE SPOT</button>
-                            )}
+                                {currentUser && currentUser.id === spotDetails.ownerId && (
+                                    <button
+                                        id='edit-spot-btn'
+                                        onClick={updateRedirect}
+                                    >
+                                        Update your spot
+                                    </button>
+                                )}
 
-                            <br></br>
-                            {currentUser && currentUser.id === spotDetails.ownerId && (
-                                <button onClick={deleteHandler}>DELETE</button>
-                            )}
+                                {currentUser && currentUser.id === spotDetails.ownerId && (
+                                    <button
+                                        id='delete-spot-btn'
+                                        onClick={deleteHandler}
+                                    >
+                                        Delete your spot
+                                    </button>
+                                )}
+                            </div>
                         </div>
                     </div>
 

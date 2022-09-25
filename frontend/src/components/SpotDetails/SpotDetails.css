@@ -68,7 +68,7 @@
     color: rgb(34, 34, 34)
 }
 
-#host-superhost-div{
+#host-superhost-div {
     display: flex;
     flex-direction: row;
 }
@@ -80,7 +80,7 @@
 
 }
 
-#free-cancel-div{
+#free-cancel-div {
     display: flex;
     justify-content: row;
 }
@@ -168,7 +168,32 @@
 
 }
 
+#spot-owner-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    width: 322px;
+}
 
+#delete-spot-btn,
+#edit-spot-btn {
+    width: 80%;
+    margin-top: 15px;
+    height: 40px;
+    background-color: #FF5A5F;
+    color: white;
+    border-radius: 20px;
+    border: 1px solid lightgrey;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: system-ui;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px 0px;
+}
+
+#delete-spot-btn {}
+
+#edit-spot-btn {}
 
 
 
@@ -198,7 +223,7 @@
 
 #host-info-container {
     display: flex;
-    
+
 }
 
 
@@ -218,7 +243,7 @@
     color: grey;
 }
 
-#aa-guarantee-div{
+#aa-guarantee-div {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
