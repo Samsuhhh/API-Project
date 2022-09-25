@@ -33,6 +33,73 @@
 
 }
 
+#avatar,
+#menu {
+    width: 15px;
+    height: 15px;
+}
+
+
+
+.main-dropdown-container{
+    /* width: 80px;
+    height: 40px;
+    border: 1px solid red;
+    border-radius: 20px;
+    display: flex;
+    background-color: white;
+    z-index: 5;
+    align-items: center;
+    justify-content: space-between; */
+    position: absolute;
+    right: 20px;
+    display: inline-block;
+}
+
+.home-button-dropdown{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: red;
+    position: absolute;
+    cursor: pointer;
+    height: 40px;
+    width: 80px;
+    border-radius: 9999px;
+}
+
+.home-dropdownMenu-visible{
+    visibility: visible;
+    position: absolute;
+    background-color: white;
+    border: 1px solid lightgrey;
+    border-radius: 15px;
+    z-index: 5;
+    right: 0;
+    top: 0;
+    width: 100px;
+    height: 100px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.home-dropdownMenu-hidden{
+    visibility: hidden;
+}
+
+.home-dropdownMenu-visible a {
+    visibility: visible;
+    display: block;
+    z-index: 2;
+
+}
+.home-dropdownMenu-hidden a {
+    visibility: hidden;
+    display: block;
+    /* z-index: 0; */
+
+}
 
 
 #logo {
@@ -40,7 +107,7 @@
     width: 75px;
 }
 
-.dropdown {
+/* .dropdown {
     position: relative;
     display: inline-block;
 }
@@ -66,24 +133,21 @@
 }
 
 
-/* Change color of dropdown links on hover */
 .dropdown-content div:hover {
     background-color: #ddd;
 
 }
 
-/* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
     display: block;
 }
 
-/* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
 }
 
 
-/* #filter-space{
+#filter-space{
     width: 1692px;
     height: 98px;
     border: blue solid 1px; 
@@ -91,7 +155,3 @@
 } */
 
 
-
-.hidden {
-    display: none !important;
-}
