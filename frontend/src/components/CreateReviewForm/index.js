@@ -33,6 +33,10 @@ const CreateReviewForm = () => {
     //    }
     }
 
+    const handleCancel = (e) => {
+        e.preventDefault();
+        history.push(`/spots/${spotId}`)
+    };
 
     return (
         <div id='create-review-form'>
@@ -43,7 +47,7 @@ const CreateReviewForm = () => {
                         <div>How was your stay?</div>
                         <label htmlFor="review"></label>
                         <textarea style={{ resize: 'none', outline:'none', width:'360px', height:'150px'}}
-                            id='review'
+                            id='review-description'
                             type='text'
                             onChange={e => setReview(e.target.value)}
                             value={review}
@@ -52,7 +56,7 @@ const CreateReviewForm = () => {
                     <div> 
                         <label htmlFor="stars"></label>
                         <input
-                            id='stars'
+                            id='stars-reviews'
                             type='number'
                             min='0'
                             max='5'
@@ -61,7 +65,12 @@ const CreateReviewForm = () => {
                             onChange={e => setStars(e.target.value)}
                         />
                     </div>
-                    <button>SUBMIT</button>
+
+                    <div id='createReview-buttonDiv'>
+                    <button id='createReview-submitBtn'type='submit'>Submit your review</button>
+                    <button id='cancelReviewbtn'onClick={handleCancel}>Cancel</button>
+
+                    </div>
                 </form>
 
             </div>

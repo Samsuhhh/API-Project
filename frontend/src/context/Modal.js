@@ -32,14 +32,18 @@ export function Modal({ onClose, children }) {
             <div id="modal-background" onClick={onClose} />
 
             <div id="modal-content">
-                <header className='top-modal'>
+
+                <div className='top-modal'>
                     <img alt='close-button' id='close-modal' onClick={onClose}
                         src='https://cdn-icons-png.flaticon.com/512/2723/2723639.png' />
 
                     <div id='loginSignup'>Login or Sign Up</div>
 
-                </header>
-                {children}
+                </div>
+                <div id='loginForm-styling'>
+
+                    {children}
+                </div>
             </div>
 
         </div>,
