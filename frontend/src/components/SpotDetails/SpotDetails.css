@@ -14,12 +14,14 @@
 
 #spotName-header {
     display: flex;
+    margin-top: -15px;
     /* padding-left: 80px;
     padding-right: 80px; */
     font-weight: 200;
     height: 86px;
     justify-content: start;
     width: 1120px;
+    font-family: system-ui;
     /* box-sizing: border-box; */
 }
 
@@ -34,14 +36,15 @@
     /* margin: 40px; */
     /* margin-left: auto;
     margin-right: auto;
-    text-align: center; */   
+    text-align: center; */
 }
 
 #details-mini-header {
     border-bottom: 1px solid lightgrey;
     padding: 48px 0px 24px 0px;
 }
-#mini-header-styling{
+
+#mini-header-styling {
     font-weight: 200;
 }
 
@@ -54,25 +57,42 @@
     display: block;
     border: 2px red dashed;
     width: 660px;
-    
+
 }
+
 .host-information {
-    font-size: 18px;
+    font-size: 17px;
     margin-top: 20px;
+    padding-left: 12px;
     font-weight: 400;
     color: rgb(34, 34, 34)
+}
+
+#host-superhost-div{
+    display: flex;
+    flex-direction: row;
 }
 
 #superhost-description {
     font-size: 14px;
     color: grey;
     overflow-wrap: normal;
-    
+
 }
+
+#free-cancel-div{
+    display: flex;
+    justify-content: row;
+}
+
 
 #appAcademy-disclaimer {
     border-bottom: 1px lightgrey solid;
     padding-bottom: 15px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 #spot-description {
@@ -82,12 +102,76 @@
 #right-modal {
     border: 2px solid lightgrey;
     border-radius: 20px;
-    width: 322.33px;
+    width: 372px;
     height: 482px;
-    margin-top: 48px;
-    margin-right: 35px;
-    position: sticky;
+    margin-top: 47px;
+    display: flex;
+    justify-content: center;
+    /* position: sticky; */
+    /* display: none; */
 }
+
+
+#right-modal-content {
+    display: block;
+    width: 322px;
+    height: 400px;
+    margin-top: 20px;
+    /* border: 1px solid purple; */
+}
+
+#modal-header {
+    display: flex;
+    width: 100%;
+    /* border: 1px solid red; */
+    height: 25px;
+    justify-content: space-between;
+    align-items: flex-end;
+
+}
+
+#header-price {
+    display: flex;
+    justify-content: space-between;
+    color: black;
+    height: 100%;
+    width: 70px;
+
+}
+
+#header-left-price {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+#header-left-night {
+    font-size: 18px;
+    padding-left: 5px;
+    padding-top: 3px
+}
+
+#header-right-stars-reviews {
+    color: black;
+    font-family: system-ui;
+    font-weight: 400;
+    width: 140px;
+    height: 20px;
+    /* border: 1px red solid; */
+    display: flex;
+    justify-content: space-around;
+    font-size: 14px;
+}
+
+#headerRight-reviews {
+    color: black;
+    font-family: system-ui;
+
+}
+
+
+
+
+
 
 /* inline styling: style={{width: '700px', height:'560px'}} */
 
@@ -96,7 +180,7 @@
     width: 100%;
 } */
 
-.spotDetails-img{
+.spotDetails-img {
     width: 502px;
     height: 560px;
 }
@@ -108,10 +192,37 @@
     border: 2px red solid;
     width: 1120px;
     height: 565px;
-        overflow: hidden;
+    overflow: hidden;
+
+}
+
+#host-info-container {
+    display: flex;
+    
 }
 
 
+#host-info-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 225px;
+    border-bottom: 1px solid lightgrey;
+}
+
+
+
+#Check-in-description {
+    font-size: 14px;
+    font-weight: 400;
+    color: grey;
+}
+
+#aa-guarantee-div{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
 
 #header-wrap {
     display: flex;
@@ -119,7 +230,7 @@
     padding-top: 90px;
     height: 86px;
     width: 100%
-    /* box-sizing: border-box; */
+        /* box-sizing: border-box; */
 }
 
 #reviews-header {
@@ -127,7 +238,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
+
 }
 
 #reviews-container {
@@ -135,12 +246,12 @@
     text-align: center;
     width: 100%;
     padding-top: 15px;
-    padding-bottom: 15px; 
+    padding-bottom: 15px;
 
 }
 
 .review-detail-spacing {
-    margin-top:7px;
+    margin-top: 7px;
 }
 
 #review-firstName {
@@ -152,6 +263,4 @@
 
 
 
-#delete-review-btn{
-
-}
+#delete-review-btn {}
