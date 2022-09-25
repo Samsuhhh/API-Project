@@ -79,16 +79,57 @@ const SpotDetail = () => {
         <div id='spot-outermost'>
             <div id='header-wrap'>
                 <div id='spotName-header'>
-                    <h2 style={{ fontWeight: 500 }}> Spot Name:  {spotDetails.name}</h2>
+                    <div style={{ fontWeight: 500, fontSize: '26px' }}> {spotDetails.name}</div>
+                    <div id='spotName-header-mini-details'>
+                        <span id='miniheader-reviews'
+                            style={{ color: "black", paddingRight: '7px' }}
+                        >
+                            {spotDetails.avgRating === null ? 'NEW' : '★ ' + spotDetails.avgRating}
+                        </span>
+                        &#x2022;
+                        <a
+                            style={{ color: "black", paddingLeft: '7px', paddingRight: '7px' }}
+                            href="#all_reviews_jump">
+                            <span>
+                                {spotDetails.numReviews} reviews
+                            </span>
+                        </a>
+                        &#x2022;
+                        <span style={{ color: "black", paddingLeft: '7px', paddingRight: '7px' }}>
+                            {spotDetails.city},{spotDetails.state}
+                        </span>
+
+                        &#x2022;
+                        <span style={{ color: "black", paddingLeft: '7px', paddingRight: '7px' }}>
+                            {spotDetails.country}
+                        </span>
+
+                    </div>
                 </div>
+
             </div>
             <div id='spotPage'>
 
-                <div id='spotDetails-content'>
-                    {/* <div className='spotDetails-image'> */}
-                    <img id='spotDetails-img' alt='beautiful spotImage' src={spotDetails.SpotImages[0]?.url ||
-                        'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg'} />
-                    {/* </div> */}
+                <div id='spotDetails-images-container'>
+                    <div id='bigImg-div'>
+                        <img id='big-img' alt='beautiful spotImage' src={spotDetails.SpotImages[0]?.url ||
+                            'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg'} />
+                    </div>
+                    <div className="smallImage-column-divs">
+                        <div>
+                            <img className='small-img' src={spotDetails.SpotImages[1]?.url || 'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg'} alt='small house' />
+                        </div>
+                        <div>
+                            <img className='small-img' src={spotDetails.SpotImages[2]?.url || 'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg'} alt='small house' />
+                        </div>
+                    </div>
+                    <div className='smallImage-column-divs'>
+                        <img id='small-img-TR' src={spotDetails.SpotImages[3]?.url || 'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg'} alt='small house' />
+                        <div >
+                            <img id='small-img-BR' src={spotDetails.SpotImages[4]?.url || 'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg'} alt='small house' />
+                        </div>
+                    </div>
+
                 </div>
 
                 <div className="details-container">
@@ -98,8 +139,7 @@ const SpotDetail = () => {
                         <div id='details-mini-header'>
                             <div id='mini-header-styling'>
                                 <h2 id='h2header'>{spotDetails.name} hosted by {spotDetails.Owner?.firstName}</h2>
-                                <span>Spot Id: {spotDetails.id}</span>
-                                <span></span>
+                                <span>Id #{spotDetails.id}</span>
                             </div>
                         </div>
                         <div id='host-info-div'>

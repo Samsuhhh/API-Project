@@ -14,15 +14,24 @@
 
 #spotName-header {
     display: flex;
-    margin-top: -15px;
+    flex-direction: column;
+    /* padding-bottom: 15px; */
+    justify-content: space-around;
     /* padding-left: 80px;
     padding-right: 80px; */
-    font-weight: 200;
-    height: 86px;
+    font-weight: 570;
+    height: 80px;
     justify-content: start;
     width: 1120px;
     font-family: system-ui;
     /* box-sizing: border-box; */
+}
+
+#spotName-header-mini-details {
+    display: flex;
+    flex-direction: row;
+    padding-right: 10px;
+    font-size: 14px;
 }
 
 .details-container {
@@ -176,7 +185,7 @@
 
 #create-review-btn,
 #delete-spot-btn,
-#edit-spot-btn{
+#edit-spot-btn {
     width: 80%;
     margin-top: 15px;
     height: 40px;
@@ -189,11 +198,14 @@
     font-family: system-ui;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px 0px;
 }
+
 #create-review-btn:hover,
 #delete-spot-btn:hover,
-#edit-spot-btn:hover { cursor: pointer}
+#edit-spot-btn:hover {
+    cursor: pointer
+}
 
-#create-review-btn{
+#create-review-btn {
     width: 322px;
 }
 
@@ -206,19 +218,55 @@
     width: 100%;
 } */
 
-.spotDetails-img {
-    width: 502px;
-    height: 560px;
-}
 
-#spotDetails-content {
+#spotDetails-images-container {
     display: flex;
     /* flex-direction: row; */
-    justify-content: left;
-    border: 2px red solid;
+    justify-content: space-between;
+    /* border: 2px red solid; */
     width: 1120px;
     height: 565px;
     overflow: hidden;
+
+}
+
+#smallImage-column-divs{
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+
+}
+
+#big-img {
+    width: 560px;
+    height: 485px;
+    object-fit: cover;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+#bigImg-div {
+    width: 560px;
+    height: 560px;
+}
+
+
+.small-img {
+    width: 270px;
+    height: 250px;
+    object-fit: cover;
+}
+
+#small-img-TR {
+    width: 270px;
+    height: 250px;
+    object-fit: cover;
+}
+
+#small-img-BR {
+    width: 270px;
+    height: 250px;
+    object-fit: cover;
 
 }
 
@@ -252,11 +300,17 @@
 
 #header-wrap {
     display: flex;
-    justify-content: center;
-    padding-top: 90px;
-    height: 86px;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: space-between;
+    padding-top: 100px;
+    height: 80px;
     width: 100%
         /* box-sizing: border-box; */
+}
+
+#miniheader-reviews {
+    width: 40px;
 }
 
 #reviews-header {
