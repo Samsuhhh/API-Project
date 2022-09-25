@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { createNewSpot } from '../../store/spots';
-import './CreateSpotForm.css'
 import { addSpotImage } from '../../store/spots';
+import './CreateSpotForm.css'
 
 
 const CreateSpotForm = () => {
@@ -15,8 +15,8 @@ const CreateSpotForm = () => {
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [country, setCountry] = useState('');
-    const [lat, setLat] = useState('');
-    const [lng, setLng] = useState('');
+    // const [lat, setLat] = useState('');
+    // const [lng, setLng] = useState('');
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
@@ -35,14 +35,14 @@ const CreateSpotForm = () => {
         if (!name || name.length > 40 || name.length < 3) {
             errors.push('Name must be greater than 3, and less than 25 characters.')
         };
-        if (!description || description.length > 200 || description.length < 5) {
-            errors.push('Description must be greater than 5 characters.')
+        if (!description || description.length > 250 || description.length < 5) {
+            errors.push('Description must be greater than 5, and less than 250 characters.')
         };
         if (!price || !Number(price)) {
-            errors.push('Price must be a number.')
+            errors.push('Price must be a number gretaer than 0.')
         };
-        if (!state || state.length > 25 || state.length < 5) {
-            errors.push('State must be greater than 5, and less than 25 characters.')
+        if (!state || state.length > 25 || state.length < 4) {
+            errors.push('State must be greater than 4, and less than 25 characters.')
         }
         if (!country) {
             errors.push('Please select a country.')
