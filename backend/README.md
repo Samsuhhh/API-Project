@@ -1,7 +1,7 @@
 # API-Project
 api project starting on w12d3
 
-##airnbn
+airbnb --> airnbn
 
 ## Database Schema Design
 
