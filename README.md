@@ -29,5 +29,23 @@ AirNbN's greatest attraction is the ability to leverage nights at the houses you
 ![Postgresql](https://img.shields.io/badge/Postgresql-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
 ![HEROKU](https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=Heroku&logoColor=white)
 
+## Get Started
 
+* Clone the Repo
+* run npm install to install dependencies
+* cd into frontend and backend/src folders and run npm start in both.
+* This will open up our site. Happy Exploring!
+
+
+### Site Functionality 
+Here is some functionality to airnbn-api-project.herokuapp.com 
+
+* This is how a visitor can explore the site without creating account, using a demo login.
+![img1](https://i.imgur.com/D4pvduv.gif)
+
+* This is how you create a review for a spot.
+![img2](https://i.imgur.com/2Qj4lpf.gif)
+
+* This is how you become a host at airnbn!
+![img3](https://i.imgur.com/qecOifr.gif)
 
