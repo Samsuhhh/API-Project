@@ -16,7 +16,7 @@ function LoginForm() {
         return dispatch(sessionActions.login({ credential, password })).catch(
             async (res) => {
                 const data = await res.json();
-                if (data && data.errors) setErrors(data.errors);
+                if (data && data.message) setErrors(['Invalid username or password!']);
             }
         );
     };
@@ -24,7 +24,7 @@ function LoginForm() {
     const handleDemo = (e) => {
         e.preventDefault();
 
-        return dispatch(sessionActions.login({ credential: 'Demo-lition', password:'password12' })).catch(
+        return dispatch(sessionActions.login({ credential: '9ziggy9', password:'June2022' })).catch(
             async (res) => {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors);
@@ -67,7 +67,11 @@ function LoginForm() {
                         required
                     />
                 </div>
-
+                <div id='auth-error'>
+                    {errors.map((error, idx)=> (
+                        <div key={idx}>{error}</div>
+                    ))}
+                </div>
                 <button id='loginBtn' type="submit">Log In</button>
 
                 <button type="submit"

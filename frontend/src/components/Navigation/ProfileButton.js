@@ -48,7 +48,7 @@ function ProfileButton({ user }) {
                 <div className={dropdownClass()}>
                     <div className="sessionLinks-styling">{user.username}</div>
                     <div className="sessionLinks-styling">{user.email}</div>
-                    <div className="sessionLinks-styling" onClick={logout}>Log out</div>
+                    <div id="logout" className="sessionLinks-styling" onClick={logout}>Log out</div>
                 </div>
             )}
 

@@ -33,8 +33,10 @@
     margin-top: 15px;
 }
 
-#stars-reviews {}
-
+#createReview-submitBtn:hover,
+#cancelReviewbtn:hover {
+    cursor: pointer;
+}
 
 #createReview-submitBtn,
 #cancelReviewbtn {

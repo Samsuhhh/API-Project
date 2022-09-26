@@ -335,16 +335,12 @@
 
 .review-detail-spacing {
     /* margin-top: 7px; */
+    padding-left: 10px;
 }
 
 #review-firstName {
     font-size: 16px;
     font-family: system-ui;
 
+
 }
-
-
-
-
-
-#delete-review-btn {}

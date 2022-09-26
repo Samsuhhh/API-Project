@@ -139,7 +139,7 @@ function SignupFormPage() {
                             <input
                                 id='number-input'
                                 className='createSpot-input'
-                                type='text'
+                                type='password'
                                 onChange={e => setPassword(e.target.value)}
                                 value={password}
                                 placeholder='Password'
@@ -150,7 +150,7 @@ function SignupFormPage() {
                             <input
                                 className='createSpot-input'
                                 id='confirm-password'
-                                type='text'
+                                type='password'
                                 onChange={e => setConfirmPassword(e.target.value)}
                                 value={confirmPassword}
                                 placeholder='Confirm password'

@@ -1,13 +1,12 @@
-import { editSpot, getSpotDetails } from "../../store/spots"
+import { getSpotDetails } from "../../store/spots"
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink, useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import './SpotDetails.css'
 // import UpdateSpotFormPage from "../UpdateSpot";
 import { deleteSpot } from "../../store/spots";
 import SpotReviews from "../AllReviews";
 // import { deleteReview } from "../../store/reviews";
-import { refresh } from "../../store/spots";
 
 const SpotDetail = () => {
     const params = useParams();
@@ -15,17 +14,24 @@ const SpotDetail = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const currentUser = useSelector(state => state.session.user);
     // const spotImg = useSelector(state => state.spots.singleSpot);
     // delete spotImages at the end of useSelector and then put it back in for the BUG to occur
     // const reviewUser = useSelector(state => state.reviews.spot);
-
-    const spotDetails = useSelector(state => state.spots.singleSpot);
-    const reviews = useSelector(state => state.reviews.spot)
     // console.log('goodbye', spotImg)
     // console.log('SPOT DETAILS', spotDetails.SpotImages)
-
     // console.log('hi')
+    const currentUser = useSelector(state => state.session.user);
+    const spotDetails = useSelector(state => state.spots.singleSpot);
+    const reviews = useSelector(state => state.reviews.spot)
+    const allReviews = Object.values(reviews);
+    let reviewExists;
+    if (!allReviews.length) {
+        reviewExists = true;
+    } else {
+        for (let i = 0; i < allReviews.length; i++) {
+            (allReviews[i].User?.id === currentUser?.id ? reviewExists = false : reviewExists = true)
+        };
+    }
 
     useEffect(() => {
         dispatch(getSpotDetails(spotId))
@@ -33,7 +39,7 @@ const SpotDetail = () => {
 
 
     if (!Object.keys(spotDetails).length) {
-        console.log('if NO spotDetails safety hitting')
+        // console.log('if NO spotDetails safety hitting')
         return null;
     }
 
@@ -47,10 +53,10 @@ const SpotDetail = () => {
 
 
     const deleteHandler = async () => {
-            await dispatch(deleteSpot(spotId));
+        await dispatch(deleteSpot(spotId));
 
-            history.push(`/spots/${spotId}`)
-        
+        history.push(`/spots/${spotId}`)
+
     };
 
     // const reviewDeleteHandler = async () => {
@@ -74,12 +80,6 @@ const SpotDetail = () => {
         history.push(`/spots/${spotId}/new-review`)
     }
 
-    const handleRepeatReview= () => {
-        if (reviews.userId === currentUser.id){
-             window.alert('You already have a review for this spot.')
-            return true;
-        } else return false;
-    }
 
     return (
         <div id='spot-outermost'>
@@ -217,20 +217,20 @@ const SpotDetail = () => {
                         </div>
 
                         <div id='appAcademy-disclaimer'>
-                            <logo>
+                            <div>
                                 <img
                                     alt="app academy logo"
                                     style={{ width: '210px', height: '70px' }}
                                     src='https://assets-global.website-files.com/5dcc7f8c449e597ed83356b8/6269b3a19f67fd137a262d0a_A%20Logo%20Main%20-%20Red.svg' />
-                            </logo>
+                            </div>
                             <div style={{ paddingLeft: '3px', paddingBottom: '3px' }}>
                                 Everything on this site is 1000% real, venmo: @Samsuhhh for donations cuz I'm broke.
                             </div>
                             <div>
-                                <Link style={{ color: 'black', paddingLeft: '3px', paddingBottom: '3px' }}
-                                    to='/https://www.appacademy.io/'>
+                                <a style={{ color: 'black', paddingLeft: '3px', paddingBottom: '3px' }}
+                                    href='https://www.appacademy.io/'>
                                     Learn More
-                                </Link>
+                                </a>
                             </div>
                         </div>
 
@@ -284,7 +284,7 @@ const SpotDetail = () => {
                                         </button>
                                     </>
                                 )}
-                                {currentUser && currentUser.id !== spotDetails.ownerId && (
+                                {currentUser && currentUser.id !== spotDetails.ownerId && reviewExists && (
                                     <div >
                                         <button
                                             // disabled={handleRepeatReview}

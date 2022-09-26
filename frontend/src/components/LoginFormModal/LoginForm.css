@@ -40,6 +40,13 @@
     outline: none;
 }
 
+#auth-error{
+    padding-top: 10px;
+    font-family: system-ui;
+    color: #FF5A5F;
+    font-size: 15px;
+}
+
 
 #password-input,
 #password-input:focus {

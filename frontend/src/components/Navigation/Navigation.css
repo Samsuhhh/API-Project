@@ -40,7 +40,7 @@
     height: 15px;
 }
 
-#navBar-host{
+#navBar-host {
     top: 37px;
     right: 250px;
     position: fixed;
@@ -67,18 +67,20 @@
 }
 
 .home-dropdownMenu-visible {
-    visibility: visible;
+    /* visibility: visible; */
     position: absolute;
     background-color: white;
     border: 1px solid lightgrey;
     border-radius: 15px;
-    z-index: 5;
+    /* z-index: 5; */
     right: 0;
     top: 75px;
     width: 200px;
     height: 150px;
-    display: inline-block;
+    display: flex;
     flex-direction: column;
+    align-items: center;
+    row-gap: 20px;
     padding-top: 10px;
 
 }
@@ -88,13 +90,28 @@
     color: white;
     text-decoration: none;
     font-size: 100px;
-
 }
+
+.hide-login {
+    visibility: hidden;
+}
+
+.modal-link {
+    color: #767676;
+}
+
+.signup-navlink {
+    color: #767676;
+    text-decoration: none;
+    text-decoration-color: currentColor;
+}
+
 
 .home-dropdownMenu-hidden:link {
     color: white;
     text-decoration: none;
 }
+
 .home-dropdownMenu-hidden:visited {
     color: white;
     text-decoration: none;
@@ -102,30 +119,48 @@
 
 .home-dropdownMenu-visible a {
     visibility: visible;
-    /* display: block;
-    z-index: 2; */
+
 
 }
 
 .home-dropdownMenu-hidden a {
     visibility: hidden;
-    /* display: block; */
-    /* z-index: 0; */
+
 }
 
-.sessionLinks-styling:hover {
-    background-color: red;
+#logout:hover {
+    background-color: #f8f8f8;
     cursor: pointer;
 }
 
+
 .sessionLinks-styling {
     border-bottom: 1px solid lightgrey;
-    width: 100%;
-    height: 25px;
+    width: 90%;
+    height: 30px;
     position: relative;
+    color: #767676;
+    padding-left: 10px;
+    border-radius: 15px;
+    padding-top: 7px;
+    margin-bottom: 5px;
 }
 
+.dropdown-links-fix {
+    width: 90%;
+    height: 25px;
+    padding-top: 10px;
+    position: relative;
+    border: 1px solid #F8f8f8;
+    padding-left: 10px;
+    border-radius: 15px;
+    margin-top: 10px
+}
 
+.dropdown-links-fix:hover {
+    background-color: #f8f8f8;
+    cursor: pointer;
+}
 
 #logo {
     height: 55px;
