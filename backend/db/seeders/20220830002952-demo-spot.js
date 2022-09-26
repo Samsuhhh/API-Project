@@ -3,6 +3,30 @@
 const demoSpots = [
   {
     ownerId: 1,
+    address: '119 Big Tree Ave',
+    city: 'Redwood',
+    state: 'California',
+    country: 'United States of America',
+    lat: 37.5678,
+    lng: 121.2323,
+    name: "Big Tree house",
+    description: '300 sq ft treehouse with stairs leading ',
+    price: 100
+  },
+  {
+    ownerId: 2,
+    address: '87 Snowhill Drive',
+    city: 'Lake Tahoe',
+    state: 'California',
+    country: 'United States of America',
+    lat: 37.5678,
+    lng: 121.2323,
+    name: "Cabin Getaway for party of 2-6",
+    description: 'Our custom built guesthouse was completed in 2016. Clean and cozy, this space is perfect for your Tahoe getaway. Recently remodeled with brand new furnishings, kitchen, and bathroom, you will have everything you need for a long or short-term stay!',
+    price: 300
+  },
+  {
+    ownerId: 1,
     address: "123 demo avenue",
     city: "Los Angeles",
     state: "Demofornia",
@@ -91,7 +115,8 @@ const demoSpots = [
     description: 'Four Sevon is the perfect place to visit if you want to make your home feel like a vacation everyday. The uncleanliness and unwelcoming environment makes you appreciate home that much more. ',
     price: 100
   },
-  
+
+
 ]
 const { Spot } = require('../models')
 

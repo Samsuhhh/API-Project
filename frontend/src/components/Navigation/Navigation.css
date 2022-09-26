@@ -48,22 +48,7 @@
 }
 
 
-.main-dropdown-container {
-    /* width: 80px;
-    height: 40px;
-    border: 1px solid red;
-    border-radius: 20px;
-    display: flex;
-    background-color: white;
-    z-index: 5;
-    align-items: center;
-    justify-content: space-between; */
-    /* display: inline-block; */
 
-    /* ADD BACK IN!!! */
-    /* position: absolute;
-    right: 20px; */
-}
 
 .home-button-dropdown {
     display: flex;

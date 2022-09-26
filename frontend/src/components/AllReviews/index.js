@@ -33,10 +33,6 @@ const SpotReviews = () => {
         history.push(`/spots/${spotId}`)
     }
 
-    const newReviewRedirect = () => {
-        history.push(`/spots/${spotId}/new-review`)
-    }
-
 
     return (
         <a id='all_reviews_jump'>
