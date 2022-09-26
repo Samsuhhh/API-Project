@@ -1,6 +1,6 @@
 // frontend/src/components/Navigation/index.js
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
@@ -11,30 +11,35 @@ function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
     // const spotDetails = useSelector(state => state.spots.singleSpot);
     let sessionLinks;
-
+    const history = useHistory();
     const [showMenu, setShowMenu] = useState(false);
 
-    const dropdownClass = () => {
-        if (showMenu) {
-            return 'home-dropdownMenu-visible';
-        } else {
-            return 'home-dropDownMenu-hidden';
-        }
-    }
+    // const dropdownClass = () => {
+    //     if (showMenu) {
+    //         return 'home-dropdownMenu-visible';
+    //     } else {
+    //         return 'home-dropDownMenu-hidden';
+    //     }
+    // }
     const dropdownClass2 = showMenu ? 'home-dropdownMenu-visible' : 'home-dropDownMenu-hidden';
 
+    const OCRedirect = () => {
+        setShowMenu(false);
+        history.push('/signup');
+    }
+
     const openMenu = () => {
-        if (showMenu) return setShowMenu(false);
+        if (showMenu) return;
         setShowMenu(true);
     };
 
-    useEffect(() => {
-        if (!showMenu) return;
-        const closeMenu = () => setShowMenu(false);
-        document.addEventListener('click', closeMenu);
-        return () => document.removeEventListener('click', closeMenu);
+    // useEffect(() => {
+    //     if (!showMenu) return;
+    //     const closeMenu = () => setShowMenu(false);
+    //     document.addEventListener('click', closeMenu);
+    //     return () => document.removeEventListener('click', closeMenu);
 
-    }, [showMenu]);
+    // }, [showMenu]);
 
 
     if (sessionUser) {
@@ -48,10 +53,10 @@ function Navigation({ isLoaded }) {
     } else {
         sessionLinks = (
 
-            <div className='main-dropdown-container'>
+            <div className='main-dropdown-container' id={openMenu ? 'open' : 'closed'}>
                 <button
                     className='home-button-dropdown'
-                    onClick={openMenu}
+                    onClick={showMenu ? () => setShowMenu(false) : openMenu}
                 >
                     <img alt='none' src='https://www.pngrepo.com/png/313139/512/hamburger-menu.png' id='menu' />
                     <img alt='none' src='https://www.pngrepo.com/png/415804/180/user-profile-avatar.png' id='avatar' />
@@ -59,9 +64,16 @@ function Navigation({ isLoaded }) {
 
                 {/* {showMenu && ( */}
 
-                <div className={dropdownClass2}  >
-                    <LoginFormModal />
-                    <NavLink to="/signup">Sign Up</NavLink>
+                <div className={showMenu ? 'home-dropdownMenu-visible' : 'home-dropdownMenu-hidden'}>
+                    <div className='dropdown-links-fix' onClick={showMenu ? () => setShowMenu(false) : openMenu}>
+                        <LoginFormModal classProp={showMenu ? 'show-login' : 'hide-login'} />
+                    </div>
+                    <div className='dropdown-links-fix'>
+                            <Link className={`signup-navlink ${showMenu ? 'show-login' : 'hide-login'}`}
+                            onClick={OCRedirect} to='/signup'>Sign Up</Link>
+                    </div>
+
+                    {/* <NavLink to="/signup">Sign Up</NavLink> */}
                 </div >
 
                 {/* )} */}
@@ -78,10 +90,7 @@ function Navigation({ isLoaded }) {
                 <NavLink to='/'>
                     <img alt='airnbn logo' id='logo' src='https://i.imgur.com/ekbo9fd.png' />
                 </NavLink>
-                {/* <button className='access-granted-btn'> fix me :( */}
 
-                {/* <img alt='hamburger menu' src='../../assets/icons8-menu-30.png' /> */}
-                {/* </button > */}
                 <div >
                     {/* {isLoaded && sessionLinks} */}
                     {isLoaded && sessionLinks}
