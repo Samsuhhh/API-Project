@@ -66,33 +66,32 @@ const demoSpots = [
     price: 31000
   },
 
-
-
   
   {
     ownerId: 3,
-    address: '',
-    city: 'Dead',
-    state: 'South',
-    country: 'United States of Dead',
+    address: '6551 Del Playa Drive',
+    city: 'Isla Vista',
+    state: 'California',
+    country: 'United States of America',
     lat: 37.5678,
     lng: 121.2323,
-    name: "Ghost Town",
-    description: 'Place for devs to learn',
-    price: 31000
+    name: "Tau Palace",
+    description: "Tau Palace is a magical place for which words cannot even begin to describe. It's an experience you have to FEEL.. There is also a fun beach. ",
+    price: 6511
   },
   {
     ownerId: 3,
-    address: '000 Ghost Town',
-    city: 'Dead',
-    state: 'South',
-    country: 'United States of Dead',
+    address: '6547 Del Playa Dr.',
+    city: 'Isla Vista',
+    state: 'California',
+    country: 'United States of America',
     lat: 37.5678,
     lng: 121.2323,
-    name: "Ghost Town",
-    description: 'Place for devs to learn',
-    price: 31000
+    name: "Four Sevon",
+    description: 'Four Sevon is the perfect place to visit if you want to make your home feel like a vacation everyday. The uncleanliness and unwelcoming environment makes you appreciate home that much more. ',
+    price: 100
   },
+  
 ]
 const { Spot } = require('../models')
 

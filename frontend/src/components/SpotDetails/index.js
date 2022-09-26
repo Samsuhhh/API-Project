@@ -7,7 +7,7 @@ import './SpotDetails.css'
 import { deleteSpot } from "../../store/spots";
 import SpotReviews from "../AllReviews";
 // import { deleteReview } from "../../store/reviews";
-
+import { refresh } from "../../store/spots";
 
 const SpotDetail = () => {
     const params = useParams();
@@ -21,6 +21,7 @@ const SpotDetail = () => {
     // const reviewUser = useSelector(state => state.reviews.spot);
 
     const spotDetails = useSelector(state => state.spots.singleSpot);
+    const reviews = useSelector(state => state.reviews.spot)
     // console.log('goodbye', spotImg)
     // console.log('SPOT DETAILS', spotDetails.SpotImages)
 
@@ -46,12 +47,10 @@ const SpotDetail = () => {
 
 
     const deleteHandler = async () => {
-        if (window.confirm('Are you sure you want to delete this spot?')) {
             await dispatch(deleteSpot(spotId));
-            history.push('/')
-        } else {
+
             history.push(`/spots/${spotId}`)
-        }
+        
     };
 
     // const reviewDeleteHandler = async () => {
@@ -75,6 +74,12 @@ const SpotDetail = () => {
         history.push(`/spots/${spotId}/new-review`)
     }
 
+    const handleRepeatReview= () => {
+        if (reviews.userId === currentUser.id){
+             window.alert('You already have a review for this spot.')
+            return true;
+        } else return false;
+    }
 
     return (
         <div id='spot-outermost'>
@@ -282,6 +287,7 @@ const SpotDetail = () => {
                                 {currentUser && currentUser.id !== spotDetails.ownerId && (
                                     <div >
                                         <button
+                                            // disabled={handleRepeatReview}
                                             id='create-review-btn'
                                             onClick={newReviewRedirect}>
                                             Leave a review

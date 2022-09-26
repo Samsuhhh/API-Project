@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { deleteReview, getSpotReviews } from "../../store/reviews";
 import './AllReviews.css'
+import { getSpotDetails } from "../../store/spots";
 
 
 
@@ -26,8 +27,9 @@ const SpotReviews = () => {
     }, [dispatch, spotId]);
 
     const deleteHandler = async (reviewId) => {
-        // window.alert('Review deleted')
-        dispatch(deleteReview(reviewId))
+
+        await dispatch(deleteReview(reviewId))
+        dispatch(getSpotDetails(spotId))
         history.push(`/spots/${spotId}`)
     }
 

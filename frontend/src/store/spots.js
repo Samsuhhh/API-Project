@@ -1,11 +1,11 @@
 import { csrfFetch } from "./csrf";
-export const ADD_ONE = 'spots/ADD_ONE';
-export const LOAD_SPOTS = 'spots/LOAD_SPOTS';
-export const UPDATE_ONE = 'spots/UPDATE_ONE';
-export const DELETE_ONE = 'spots/DELETE_ONE';
-export const LOAD_ONE = 'spots/LOAD_ONE';
-export const LOAD_CURRENT = 'spots/LOAD_CURRENT';
-export const ADD_IMAGE = 'spots/ADD_IMAGE';
+const ADD_ONE = 'spots/ADD_ONE';
+const LOAD_SPOTS = 'spots/LOAD_SPOTS';
+const UPDATE_ONE = 'spots/UPDATE_ONE';
+const DELETE_ONE = 'spots/DELETE_ONE';
+const LOAD_ONE = 'spots/LOAD_ONE';
+const LOAD_CURRENT = 'spots/LOAD_CURRENT';
+const ADD_IMAGE = 'spots/ADD_IMAGE';
 
 
 const load = (spots) => ({
@@ -44,6 +44,7 @@ const addImage = (spotId) => ({
     type: ADD_IMAGE,
     spotId
 });
+
 
 
 // add an image to a spot
@@ -146,7 +147,6 @@ export const deleteSpot = (spotId) => async dispatch => {
     }
 }
 
-
 const initialState = {
     allSpots: {},
     singleSpot: {}
@@ -207,6 +207,7 @@ const spotsReducer = (state = initialState, action) => {
                 newState,
                 singleSpot: {}
             }
+
         default:
             return state
     }

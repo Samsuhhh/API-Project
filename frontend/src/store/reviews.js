@@ -6,6 +6,7 @@ export const EDIT_REVIEW = 'reviews/EDIT_REVIEW';
 export const DELETE_REVIEW = 'reviews/DELETE_REVIEW';
 export const LOAD_CURRENT = 'reviews/LOAD_CURRENT';
 
+
 const load = (reviews) => ({
     type: LOAD_REVIEWS,
     reviews,
@@ -35,6 +36,7 @@ const current = (reviews) => ({
 })
 
 
+
 //GET CURRENT USER'S INFORMATION (ALL SPOTS and REVIEWS)
 export const getCurrentUserReviews = () => async dispatch => {
     const res = await csrfFetch('/api/reviews/current');
@@ -54,9 +56,7 @@ export const deleteReview = (reviewId) => async dispatch => {
         method: 'DELETE'
     })
     console.log('DELETE REVIEW THUNK: ', reviewId)
-    // if (!res) {
-    //     window.alert('Review could not be found ?')
-    // }
+
     if (res.ok) {
         dispatch(remove(reviewId));
         return null;
@@ -153,7 +153,6 @@ const reviewsReducer = (state = initialState, action) => {
             newState = { ...state, spot:{...state.spot} };
             delete newState.spot[action.reviewId];
             return newState;
-
         default:
             return state
 
