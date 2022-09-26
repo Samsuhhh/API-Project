@@ -8,7 +8,7 @@ function LoginFormModal() {
 
     return (
         <>
-            <div onClick={() => setShowModal(true)}>Log In</div>
+            <div style={{ cursor: 'pointer' }} onClick={() => setShowModal(true)}>Log In</div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <LoginForm />

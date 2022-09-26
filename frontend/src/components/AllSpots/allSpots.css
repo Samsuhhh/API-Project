@@ -44,8 +44,9 @@
     /* width: 300px; */
     width: 100%;
     max-width: 320px;
-    border: 5px red dashed;
+    /* border: 5px red dashed; */
     font-size: 15px;
     line-height: 19px;
     position: absolute;
+    object-fit: cover;
  }

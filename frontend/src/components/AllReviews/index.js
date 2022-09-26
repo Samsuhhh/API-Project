@@ -22,7 +22,7 @@ const SpotReviews = () => {
 
     useEffect(() => {
         dispatch(getSpotReviews(spotId))
-    }, [dispatch]);
+    }, [dispatch, spotId]);
 
     const deleteHandler = async (reviewId) => {
         await dispatch(deleteReview(reviewId))
@@ -39,7 +39,8 @@ const SpotReviews = () => {
         <a id='all_reviews_jump'>
             <div id='review-container-style'>
                 <div id='reviews-header'>
-                    <h1 >{singleSpot.avgRating} &#x2022; {singleSpot.numReviews} reviews</h1>
+                    <h1>{singleSpot.avgRating === null ? `NEW • ${singleSpot.numReviews} reviews` : `★  ${singleSpot.avgRating} • ${singleSpot.numReviews} reviews `}</h1>
+                    {/* <h1 >★ {singleSpot.avgRating} &#x2022; {singleSpot.numReviews} reviews</h1> */}
 
                 </div>
                 <div id='existing-reviews'>
@@ -50,7 +51,7 @@ const SpotReviews = () => {
 
                                 <div id='review-profile-details'>
                                     <img
-                                        src='https://www.pngrepo.com/png/56251/180/calendar.png'
+                                        src='https://i.imgur.com/XzcfzIP.png'
                                         alt='superhost-badge'
                                         style={{
                                             width: '40px',

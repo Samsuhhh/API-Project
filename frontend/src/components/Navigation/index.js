@@ -21,6 +21,12 @@ function Navigation({ isLoaded }) {
             return 'home-dropDownMenu-hidden';
         }
     }
+    const dropdownClass2 = showMenu ? 'home-dropdownMenu-visible' : 'home-dropDownMenu-hidden';
+
+    const openMenu = () => {
+        if (showMenu) return setShowMenu(false);
+        setShowMenu(true);
+    };
 
     useEffect(() => {
         if (!showMenu) return;
@@ -33,30 +39,34 @@ function Navigation({ isLoaded }) {
 
     if (sessionUser) {
         sessionLinks = (
-            <ProfileButton user={sessionUser} />
+            // <div className={dropdownClass()}>
+            <>
+                <ProfileButton user={sessionUser} />
+                <NavLink id='navBar-host' to='/spots/new'>Become a host</NavLink>
+            </>
         );
     } else {
         sessionLinks = (
-            <>
-                <div className='main-dropdown-container'>
-                    <button
-                        className='home-button-dropdown'
-                        onClick={(() => showMenu ? setShowMenu(false) : setShowMenu(true))}
-                    >
-                        <img alt='none' src='https://www.pngrepo.com/png/313139/512/hamburger-menu.png' id='menu' />
-                        <img alt='none' src='https://www.pngrepo.com/png/415804/180/user-profile-avatar.png' id='avatar' />
 
-                    </button>
+            <div className='main-dropdown-container'>
+                <button
+                    className='home-button-dropdown'
+                    onClick={openMenu}
+                >
+                    <img alt='none' src='https://www.pngrepo.com/png/313139/512/hamburger-menu.png' id='menu' />
+                    <img alt='none' src='https://www.pngrepo.com/png/415804/180/user-profile-avatar.png' id='avatar' />
+                </button>
 
-                    <div className={dropdownClass()}>
-                        <a href='#'>
-                            <LoginFormModal />
-                        </a>
-                        <NavLink to="/signup">Sign Up</NavLink>
-                    </div>
-                </div>
+                {/* {showMenu && ( */}
 
-            </>
+                <div className={dropdownClass2}  >
+                    <LoginFormModal />
+                    <NavLink to="/signup">Sign Up</NavLink>
+                </div >
+
+                {/* )} */}
+            </div >
+
         );
     }
 
@@ -66,14 +76,18 @@ function Navigation({ isLoaded }) {
             <div className='nav-bar'>
 
                 <NavLink to='/'>
-                <img alt='airBnB logo' id='logo' src='https://assets.entrepreneur.com/article/1405623476-airbnb-logo-explanation.jpg' />
+                    <img alt='airnbn logo' id='logo' src='https://i.imgur.com/ekbo9fd.png' />
                 </NavLink>
                 {/* <button className='access-granted-btn'> fix me :( */}
 
                 {/* <img alt='hamburger menu' src='../../assets/icons8-menu-30.png' /> */}
                 {/* </button > */}
                 <div >
+                    {/* {isLoaded && sessionLinks} */}
                     {isLoaded && sessionLinks}
+
+
+
                     {/* <div id='wya'>
                             <NavLink exact to="/">Home</NavLink>
                         </div>

@@ -40,6 +40,12 @@
     height: 15px;
 }
 
+#navBar-host{
+    top: 37px;
+    right: 250px;
+    position: fixed;
+    color: #484848
+}
 
 
 .main-dropdown-container {
@@ -53,7 +59,7 @@
     align-items: center;
     justify-content: space-between; */
     /* display: inline-block; */
-    
+
     /* ADD BACK IN!!! */
     /* position: absolute;
     right: 20px; */
@@ -64,55 +70,79 @@
     justify-content: space-around;
     align-items: center;
     background-color: #fff;
-    border: 1px solid red;
+    border: 1.5px solid lightgrey;
     position: fixed;
-    right: 155px;
+    right: 150px;
+    top: 20px;
     margin-bottom: 10px;
     cursor: pointer;
-    height: 45px;
-    width: 85px;
+    height: 40px;
+    width: 80px;
     border-radius: 9999px;
 }
 
 .home-dropdownMenu-visible {
     visibility: visible;
-    position: relative;
+    position: absolute;
     background-color: white;
-    border: 1px solid blue;
+    border: 1px solid lightgrey;
     border-radius: 15px;
     z-index: 5;
     right: 0;
-    top: 0;
-    bottom: 15px;
-    width: 100px;
-    height: 100px;
+    top: 75px;
+    width: 200px;
+    height: 150px;
     display: inline-block;
     flex-direction: column;
+    padding-top: 10px;
 
 }
 
 .home-dropdownMenu-hidden {
-    visibility: hidden;
-    display: none;
-    z-index: -1;
+    visibility: hidden !important;
+    color: white;
+    text-decoration: none;
+    font-size: 100px;
+
+}
+
+.home-dropdownMenu-hidden:link {
+    color: white;
+    text-decoration: none;
+}
+.home-dropdownMenu-hidden:visited {
+    color: white;
+    text-decoration: none;
 }
 
 .home-dropdownMenu-visible a {
     visibility: visible;
-    display: block;
-    z-index: 2;
+    /* display: block;
+    z-index: 2; */
 
 }
 
 .home-dropdownMenu-hidden a {
     visibility: hidden;
-    display: block;
+    /* display: block; */
     /* z-index: 0; */
 }
 
+.sessionLinks-styling:hover {
+    background-color: red;
+    cursor: pointer;
+}
+
+.sessionLinks-styling {
+    border-bottom: 1px solid lightgrey;
+    width: 100%;
+    height: 25px;
+    position: relative;
+}
+
+
 
 #logo {
-    height: 50px;
-    width: 75px;
-
+    height: 55px;
+    margin-left: -15px;
 }
