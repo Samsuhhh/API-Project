@@ -40,7 +40,9 @@ AirNbN's greatest attraction is the ability to leverage nights at the houses you
 ### Site Functionality 
 Here is some functionality to airnbn-api-project.herokuapp.com 
 
+
 * This is how a visitor can explore the site without creating account, using a demo login.
+(Landing Page)
 ![img1](https://i.imgur.com/D4pvduv.gif)
 
 * This is how you create a review for a spot.
