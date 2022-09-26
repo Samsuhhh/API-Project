@@ -22,13 +22,14 @@ const SpotDetail = () => {
 
     const spotDetails = useSelector(state => state.spots.singleSpot);
     // console.log('goodbye', spotImg)
-    console.log('SPOT DETAILS', spotDetails.SpotImages)
+    // console.log('SPOT DETAILS', spotDetails.SpotImages)
 
     // console.log('hi')
 
     useEffect(() => {
         dispatch(getSpotDetails(spotId))
     }, [dispatch, spotId])
+
 
     if (!Object.keys(spotDetails).length) {
         console.log('if NO spotDetails safety hitting')
@@ -117,16 +118,16 @@ const SpotDetail = () => {
                     </div>
                     <div className="smallImage-column-divs">
                         <div>
-                            <img className='small-img' src={spotDetails.SpotImages[1]?.url || 'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg'} alt='small house' />
+                            <img className='small-img' src={spotDetails.SpotImages[1]?.url || 'https://i.imgur.com/AwZ6ekH.png'} alt='small house' />
                         </div>
                         <div>
-                            <img className='small-img' src={spotDetails.SpotImages[2]?.url || 'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg'} alt='small house' />
+                            <img className='small-img' src={spotDetails.SpotImages[2]?.url || 'https://i.imgur.com/AwZ6ekH.png'} alt='small house' />
                         </div>
                     </div>
                     <div className='smallImage-column-divs'>
-                        <img id='small-img-TR' src={spotDetails.SpotImages[3]?.url || 'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg'} alt='small house' />
+                        <img id='small-img-TR' src={spotDetails.SpotImages[3]?.url || 'https://i.imgur.com/AwZ6ekH.png'} alt='small house' />
                         <div >
-                            <img id='small-img-BR' src={spotDetails.SpotImages[4]?.url || 'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg'} alt='small house' />
+                            <img id='small-img-BR' src={spotDetails.SpotImages[4]?.url || 'https://i.imgur.com/AwZ6ekH.png'} alt='small house' />
                         </div>
                     </div>
 
@@ -218,13 +219,13 @@ const SpotDetail = () => {
                                     src='https://assets-global.website-files.com/5dcc7f8c449e597ed83356b8/6269b3a19f67fd137a262d0a_A%20Logo%20Main%20-%20Red.svg' />
                             </logo>
                             <div style={{ paddingLeft: '3px', paddingBottom: '3px' }}>
-                                Everything on this site is 1000% real, venmo: @Samsuhhh for payments.
+                                Everything on this site is 1000% real, venmo: @Samsuhhh for donations cuz I'm broke.
                             </div>
                             <div>
-                                <a style={{ color: 'black', paddingLeft: '3px', paddingBottom: '3px' }}
-                                    href='/https://www.appacademy.io/'>
+                                <Link style={{ color: 'black', paddingLeft: '3px', paddingBottom: '3px' }}
+                                    to='/https://www.appacademy.io/'>
                                     Learn More
-                                </a>
+                                </Link>
                             </div>
                         </div>
 

@@ -74,7 +74,7 @@ function Navigation({ isLoaded }) {
             <div className='nav-bar'>
 
                 <NavLink to='/'>
-                    <img alt='airBnB logo' id='logo' src='https://assets.entrepreneur.com/article/1405623476-airbnb-logo-explanation.jpg' />
+                    <img alt='airnbn logo' id='logo' src='https://i.imgur.com/ekbo9fd.png' />
                 </NavLink>
                 {/* <button className='access-granted-btn'> fix me :( */}
 
