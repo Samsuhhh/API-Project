@@ -70,7 +70,7 @@ const SpotReviews = () => {
                                     {review.review}
                                 </div>
                                 {currentUser && currentUser.id === review.userId && (
-                                    <button id='delete-review-btn' onClick={() => deleteHandler(review.id)}> Delete your review </button>
+                                    <button id='delete-review-btn' onClick={() => deleteHandler(review.id)}> Delete review </button>
                                 )}
                             </div>
                         )

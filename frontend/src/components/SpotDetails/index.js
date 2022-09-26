@@ -15,17 +15,24 @@ const SpotDetail = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const currentUser = useSelector(state => state.session.user);
     // const spotImg = useSelector(state => state.spots.singleSpot);
     // delete spotImages at the end of useSelector and then put it back in for the BUG to occur
     // const reviewUser = useSelector(state => state.reviews.spot);
-
-    const spotDetails = useSelector(state => state.spots.singleSpot);
-    const reviews = useSelector(state => state.reviews.spot)
     // console.log('goodbye', spotImg)
     // console.log('SPOT DETAILS', spotDetails.SpotImages)
-
     // console.log('hi')
+    const currentUser = useSelector(state => state.session.user);
+    const spotDetails = useSelector(state => state.spots.singleSpot);
+    const reviews = useSelector(state => state.reviews.spot)
+    const allReviews = Object.values(reviews);
+    let reviewExists;
+    if (!allReviews.length) {
+        reviewExists = true;
+    } else {
+        for (let i = 0; i < allReviews.length; i++) {
+            (allReviews[i].User?.id === currentUser?.id ? reviewExists = false : reviewExists = true)
+        };
+    }
 
     useEffect(() => {
         dispatch(getSpotDetails(spotId))
@@ -47,10 +54,10 @@ const SpotDetail = () => {
 
 
     const deleteHandler = async () => {
-            await dispatch(deleteSpot(spotId));
+        await dispatch(deleteSpot(spotId));
 
-            history.push(`/spots/${spotId}`)
-        
+        history.push(`/spots/${spotId}`)
+
     };
 
     // const reviewDeleteHandler = async () => {
@@ -74,12 +81,6 @@ const SpotDetail = () => {
         history.push(`/spots/${spotId}/new-review`)
     }
 
-    const handleRepeatReview= () => {
-        if (reviews.userId === currentUser.id){
-             window.alert('You already have a review for this spot.')
-            return true;
-        } else return false;
-    }
 
     return (
         <div id='spot-outermost'>
@@ -284,7 +285,7 @@ const SpotDetail = () => {
                                         </button>
                                     </>
                                 )}
-                                {currentUser && currentUser.id !== spotDetails.ownerId && (
+                                {currentUser && currentUser.id !== spotDetails.ownerId && reviewExists && (
                                     <div >
                                         <button
                                             // disabled={handleRepeatReview}
