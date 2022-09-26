@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { createNewSpot } from '../../store/spots';
 import { addSpotImage } from '../../store/spots';
 import './CreateSpotForm.css'
+import {countries} from './countries.js'
 
 
 const CreateSpotForm = () => {
@@ -189,10 +190,7 @@ const CreateSpotForm = () => {
                                 <option value="" >
                                     Select a country
                                 </option>
-                                <option>USA</option>
-                                <option>CHINA</option>
-                                <option>Australia</option>
-
+                                {countries.map((ele) => (<option>{ele}</option>))}
                             </select>
                         </div>
                         {/* </div> */}
