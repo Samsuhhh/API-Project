@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useParams } from "react-router-dom";
 import { editSpot, getSpotDetails } from "../../store/spots";
-
+import { countries } from "../CreateSpotForm/countries";
 
 // maybe a modal
 const UpdateSpotFormPage = () => {
@@ -214,9 +214,8 @@ const UpdateSpotFormPage = () => {
                                 <option value="" >
                                     Select a country
                                 </option>
-                                <option>USA</option>
-                                <option>CHINA</option>
-                                <option>Australia</option>
+                                {countries.map((ele) => (<option>{ele}</option>))}
+
 
                             </select>
                         </div>

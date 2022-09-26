@@ -61,9 +61,9 @@ const SpotReviews = () => {
                                         <div className='review-detail-spacing' id='review-firstName'>
                                             {review.User?.firstName}
                                         </div>
-                                        <div id='review-time'>
+                                        {/* <div id='review-time'>
                                             {review.createdAt}
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                                 <div className='review-detail-spacing' id='user-review'>
