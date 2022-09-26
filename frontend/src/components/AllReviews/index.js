@@ -5,6 +5,7 @@ import { deleteReview, getSpotReviews } from "../../store/reviews";
 import './AllReviews.css'
 
 
+
 const SpotReviews = () => {
 
     const params = useParams();
@@ -25,8 +26,8 @@ const SpotReviews = () => {
     }, [dispatch, spotId]);
 
     const deleteHandler = async (reviewId) => {
-        await dispatch(deleteReview(reviewId))
         // window.alert('Review deleted')
+        dispatch(deleteReview(reviewId))
         history.push(`/spots/${spotId}`)
     }
 

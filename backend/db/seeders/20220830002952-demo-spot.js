@@ -65,6 +65,34 @@ const demoSpots = [
     description: 'Place for devs to learn',
     price: 31000
   },
+
+
+
+  
+  {
+    ownerId: 3,
+    address: '',
+    city: 'Dead',
+    state: 'South',
+    country: 'United States of Dead',
+    lat: 37.5678,
+    lng: 121.2323,
+    name: "Ghost Town",
+    description: 'Place for devs to learn',
+    price: 31000
+  },
+  {
+    ownerId: 3,
+    address: '000 Ghost Town',
+    city: 'Dead',
+    state: 'South',
+    country: 'United States of Dead',
+    lat: 37.5678,
+    lng: 121.2323,
+    name: "Ghost Town",
+    description: 'Place for devs to learn',
+    price: 31000
+  },
 ]
 const { Spot } = require('../models')
 

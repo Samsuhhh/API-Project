@@ -153,6 +153,7 @@ const reviewsReducer = (state = initialState, action) => {
             newState = { ...state, spot:{...state.spot} };
             delete newState.spot[action.reviewId];
             return newState;
+
         default:
             return state
 
