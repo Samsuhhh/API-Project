@@ -40,8 +40,10 @@ function Navigation({ isLoaded }) {
     if (sessionUser) {
         sessionLinks = (
             // <div className={dropdownClass()}>
-            <ProfileButton user={sessionUser} />
-            // </div>
+            <>
+                <ProfileButton user={sessionUser} />
+                <NavLink id='navBar-host' to='/spots/new'>Become a host</NavLink>
+            </>
         );
     } else {
         sessionLinks = (

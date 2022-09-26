@@ -40,6 +40,12 @@
     height: 15px;
 }
 
+#navBar-host{
+    top: 37px;
+    right: 250px;
+    position: fixed;
+    color: #484848
+}
 
 
 .main-dropdown-container {
