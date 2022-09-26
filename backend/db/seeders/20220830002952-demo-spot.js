@@ -3,118 +3,193 @@
 const demoSpots = [
   {
     ownerId: 1,
-    address: '119 Big Tree Ave',
+    address: '119 Big Tree Avenue',
     city: 'Redwood',
     state: 'California',
-    country: 'United States of America',
+    country: 'United States',
     lat: 37.5678,
     lng: 121.2323,
-    name: "Big Tree house",
-    description: '300 sq ft treehouse with stairs leading ',
+    name: "BIG Tree house",
+    description: '300 sq ft treehouse with 3 bedrooms. Close to 7 different hiking trails with a gorgeous open wall bed/bath to breathe in the fresh air.',
     price: 100
   },
   {
-    ownerId: 2,
+    ownerId: 1,
     address: '87 Snowhill Drive',
     city: 'Lake Tahoe',
     state: 'California',
-    country: 'United States of America',
+    country: 'United States',
     lat: 37.5678,
     lng: 121.2323,
-    name: "Cabin Getaway for party of 2-6",
+    name: "Cabin Getaway",
     description: 'Our custom built guesthouse was completed in 2016. Clean and cozy, this space is perfect for your Tahoe getaway. Recently remodeled with brand new furnishings, kitchen, and bathroom, you will have everything you need for a long or short-term stay!',
-    price: 300
+    price: 530
   },
+
   {
     ownerId: 1,
-    address: "123 demo avenue",
+    address: "10748 Brightwood Ln.",
     city: "Los Angeles",
-    state: "Demofornia",
-    country: 'United States of Demo',
+    state: "California",
+    country: 'United States',
     lat: 37.1234,
     lng: 121.1212,
-    name: "Death Valley",
-    description: 'Place for devs to check if they are acting',
-    price: 3000
+    name: " 'City of Stars' Entire mansion",
+    description: 'Our location is a great destination for sight-seeing and experiencing boujee Hollywood. With a gorgeous view over all of Los Angeles, our location can fit up to 20 guests.',
+    price: 3230
+  },
+  {
+    ownerId: 2,
+    address: "Kawasan Wisata Nusa Dua",
+    city: "Bali",
+    state: "Lesser Sunda Islands",
+    country: 'United States',
+    lat: 37.1234,
+    lng: 121.1212,
+    name: "Entire villa",
+    description: 'Also known as the Land of the Gods, our location appeals through its sheer natural beauty of looming volcanoes and lush terraced rice fields that exude peace and serenity. ',
+    price: 497
+  },
+  {
+    ownerId: 2,
+    address: "23-2 Youido-Dong",
+    city: "Seoul",
+    state: "Gyeonggi",
+    country: 'South Korea',
+    lat: 37.1234,
+    lng: 121.1212,
+    name: "Entire traditional home",
+    description: 'Experience the traditions of Korea with a stay at our beautiful countryside location. Close enough to experience the city life, but far enough to be at peace.',
+    price: 999
+  },
+  {
+    ownerId: 2,
+    address: '662 Las Vegas Blvd',
+    city: 'Las Vegas',
+    state: 'Nevada',
+    country: 'United States',
+    lat: 37.5678,
+    lng: 121.2323,
+    name: "Viva Vegas penthouse",
+    description: "This probably won't be the best vacation spot, but if you're looking for a fun time in Sin City, this is the spot for you and yours.",
+    price: 777
   },
 
   {
-    ownerId: 2,
-    address: '456 demo avenue',
-    city: 'San Francsisco',
-    state: 'Demofornia',
-    country: 'United States of Demo',
-    lat: 37.5678,
-    lng: 121.2323,
-    name: "Mt Everest",
-    description: 'Place for devs to check if they are crying on the inside',
+    ownerId: 3,
+    address: "511 Ekekela Pl.",
+    city: "Kahuku",
+    state: "Hawaii",
+    country: 'United States',
+    lat: 37.1234,
+    lng: 121.1212,
+    name: "Island Stay",
+    description: 'The Island Stay beachhouse is a one-of-a-kind beatiful location with direct access to the North Shore of Oahu. With endless activities in the city and tons more in nature, come experience the beauty of Hawaii.',
+    price: 808
+  },
+
+  {
+    ownerId: 3,
+    address: "1501 Fillmore St.",
+    city: "San Fransisco",
+    state: "California",
+    country: 'United States',
+    lat: 37.1234,
+    lng: 121.1212,
+    name: "Entire apartment",
+    description: 'Our location is a great destination for sight-seeing and experiencing "The City". There is no judgement here, just enjoy our city and leave with good vibes.',
     price: 420
   },
-
-  {
-    ownerId: 3,
-    address: '789 demo avenue',
-    city: 'YOahu',
-    state: 'Havvai',
-    country: 'United States of Demo',
-    lat: 37.9101,
-    lng: 121.4545,
-    name: "amazon jungle",
-    description: 'Place for devs to check if they need a break',
-    price: 500
-  },
-
-  {
-    ownerId: 2,
-    address: '100 Aker Wood West',
-    city: 'Big',
-    state: 'Tree',
-    country: 'Winnie-the-Pooh',
-    lat: 37.5678,
-    lng: 121.2323,
-    name: "Pooh Bear's House",
-    description: 'Place for devs to not care',
-    price: 8888
-  },
-
-  {
-    ownerId: 3,
-    address: '000 Ghost Town',
-    city: 'Dead',
-    state: 'South',
-    country: 'United States of Dead',
-    lat: 37.5678,
-    lng: 121.2323,
-    name: "Ghost Town",
-    description: 'Place for devs to learn',
-    price: 31000
-  },
-
-  
   {
     ownerId: 3,
     address: '6551 Del Playa Drive',
     city: 'Isla Vista',
     state: 'California',
-    country: 'United States of America',
+    country: 'United States',
     lat: 37.5678,
     lng: 121.2323,
-    name: "Tau Palace",
-    description: "Tau Palace is a magical place for which words cannot even begin to describe. It's an experience you have to FEEL.. There is also a fun beach. ",
+    name: "Home Sweet Home",
+    description: "Tau Palace is a magical place for which words cannot even begin to describe. It's an experience you have to FEEL.. There is also a fun beach and amazing sunsets. Come make memories you will never forget.",
     price: 6511
   },
   {
-    ownerId: 3,
-    address: '6547 Del Playa Dr.',
-    city: 'Isla Vista',
+    ownerId: 4,
+    address: '14 Mt. Zion',
+    city: 'Utah',
     state: 'California',
-    country: 'United States of America',
+    country: 'United States',
     lat: 37.5678,
     lng: 121.2323,
-    name: "Four Sevon",
-    description: 'Four Sevon is the perfect place to visit if you want to make your home feel like a vacation everyday. The uncleanliness and unwelcoming environment makes you appreciate home that much more. ',
+    name: "Home Sweet Home",
+    description: "Tau Palace is a magical place for which words cannot even begin to describe. It's an experience you have to FEEL.. There is also a fun beach and amazing sunsets. Come make memories you will never forget.",
+    price: 6511
+  },
+
+
+  {
+    ownerId: 4,
+    address: '100 Aker Wood West',
+    city: 'Hundred',
+    state: 'Acre',
+    country: 'Wood',
+    lat: 37.5678,
+    lng: 121.2323,
+    name: "Pooh's House",
+    description: 'Come experience what it feels like to live like Winnie-the-Pooh. A great and extremely spacious location for animals of all shapes and sizes. ',
     price: 100
   },
+
+  {
+    ownerId: 4,
+    address: '1230 Ocean Drive ',
+    city: 'Miami Beach',
+    state: 'Florida',
+    country: 'United States',
+    lat: 37.5678,
+    lng: 121.2323,
+    name: "Miami Vice",
+    description: 'Our location offers a place for people to let go and just dance the night away. It is a vacation from all the stress and weight life puts on us, so just come to have some fun, dance, and laugh.',
+    price: 305
+  },
+  {
+    ownerId: 5,
+    address: '12 Fifth Avenue ',
+    city: 'Manhattan',
+    state: 'New York',
+    country: 'United States',
+    lat: 37.5678,
+    lng: 121.2323,
+    name: "New York New York",
+    description: 'The pictures speak for themselves, but do not do the location justice. Although cold, the best time to visit is in the winter so you can see the snow blanket our wonderful city.',
+    price: 917
+  },
+  {
+    ownerId: 5,
+    address: '934',
+    city: 'Hallow',
+    state: 'Valhalla',
+    country: 'United States',
+    lat: 37.5678,
+    lng: 121.2323,
+    name: "New York New York",
+    description: 'The pictures speak for themselves, but do not do the location justice. Although cold, the best time to visit is in the winter so you can see the snow blanket our wonderful city.',
+    price: 917
+  },
+
+  {
+    ownerId: 5,
+    address: '111 Sky Avenue',
+    city: 'Hallow',
+    state: 'Valhalla',
+    country: 'United States',
+    lat: 37.5678,
+    lng: 121.2323,
+    name: "The Halls",
+    description: 'One cannot simply purchase their way into our location. You must be vetted and cleared to enter the sacred halls of Valhalla. Only the worthy shall enter.',
+    price: 99999999
+  },
+
+
 
 
 ]

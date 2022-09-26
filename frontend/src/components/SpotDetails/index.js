@@ -217,20 +217,20 @@ const SpotDetail = () => {
                         </div>
 
                         <div id='appAcademy-disclaimer'>
-                            <logo>
+                            <div>
                                 <img
                                     alt="app academy logo"
                                     style={{ width: '210px', height: '70px' }}
                                     src='https://assets-global.website-files.com/5dcc7f8c449e597ed83356b8/6269b3a19f67fd137a262d0a_A%20Logo%20Main%20-%20Red.svg' />
-                            </logo>
+                            </div>
                             <div style={{ paddingLeft: '3px', paddingBottom: '3px' }}>
                                 Everything on this site is 1000% real, venmo: @Samsuhhh for donations cuz I'm broke.
                             </div>
                             <div>
-                                <Link style={{ color: 'black', paddingLeft: '3px', paddingBottom: '3px' }}
-                                    to='/https://www.appacademy.io/'>
+                                <a style={{ color: 'black', paddingLeft: '3px', paddingBottom: '3px' }}
+                                    href='https://www.appacademy.io/'>
                                     Learn More
-                                </Link>
+                                </a>
                             </div>
                         </div>
 
