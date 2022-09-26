@@ -121,13 +121,13 @@ const demoSpots = [
     lat: 37.5678,
     lng: 121.2323,
     name: "Home Sweet Home",
-    description: "Tau Palace is a magical place for which words cannot even begin to describe. It's an experience you have to FEEL.. There is also a fun beach and amazing sunsets. Come make memories you will never forget.",
+    description: "Stay at our beautiful location in Zion National Park. It is a unique experience that you will never forget. No smoking. No pets. No Wifi. Bring your own toiletries.",
     price: 6511
   },
 
 
   {
-    ownerId: 4,
+    ownerId: 5,
     address: '100 Aker Wood West',
     city: 'Hundred',
     state: 'Acre',
@@ -140,7 +140,7 @@ const demoSpots = [
   },
 
   {
-    ownerId: 4,
+    ownerId: 1,
     address: '1230 Ocean Drive ',
     city: 'Miami Beach',
     state: 'Florida',
@@ -152,7 +152,7 @@ const demoSpots = [
     price: 305
   },
   {
-    ownerId: 5,
+    ownerId: 2,
     address: '12 Fifth Avenue ',
     city: 'Manhattan',
     state: 'New York',
@@ -164,7 +164,7 @@ const demoSpots = [
     price: 917
   },
   {
-    ownerId: 5,
+    ownerId: 3,
     address: '934',
     city: 'Dufftown',
     state: 'Potter',
@@ -177,7 +177,7 @@ const demoSpots = [
   },
 
   {
-    ownerId: 5,
+    ownerId: 4,
     address: '111 Sky Avenue',
     city: 'Hallow',
     state: 'Valhalla',
