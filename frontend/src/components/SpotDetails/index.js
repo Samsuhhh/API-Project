@@ -1,13 +1,12 @@
-import { editSpot, getSpotDetails } from "../../store/spots"
+import { getSpotDetails } from "../../store/spots"
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink, useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import './SpotDetails.css'
 // import UpdateSpotFormPage from "../UpdateSpot";
 import { deleteSpot } from "../../store/spots";
 import SpotReviews from "../AllReviews";
 // import { deleteReview } from "../../store/reviews";
-import { refresh } from "../../store/spots";
 
 const SpotDetail = () => {
     const params = useParams();
@@ -40,7 +39,7 @@ const SpotDetail = () => {
 
 
     if (!Object.keys(spotDetails).length) {
-        console.log('if NO spotDetails safety hitting')
+        // console.log('if NO spotDetails safety hitting')
         return null;
     }
 
