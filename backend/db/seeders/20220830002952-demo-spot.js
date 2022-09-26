@@ -135,7 +135,7 @@ const demoSpots = [
     lat: 37.5678,
     lng: 121.2323,
     name: "Pooh's House",
-    description: 'Come experience what it feels like to live like Winnie-the-Pooh. A great and extremely spacious location for animals of all shapes and sizes. ',
+    description: 'Come experience what it feels like to live like Winnie-the-Pooh. A great and extremely spacious location for animals of all shapes and sizes. Food and Honey included.',
     price: 100
   },
 
@@ -166,13 +166,13 @@ const demoSpots = [
   {
     ownerId: 5,
     address: '934',
-    city: 'Hallow',
-    state: 'Valhalla',
-    country: 'United States',
+    city: 'Dufftown',
+    state: 'Potter',
+    country: 'Scotland',
     lat: 37.5678,
     lng: 121.2323,
-    name: "New York New York",
-    description: 'The pictures speak for themselves, but do not do the location justice. Although cold, the best time to visit is in the winter so you can see the snow blanket our wonderful city.',
+    name: "!Azkaban",
+    description: 'You know what it is. You know you want to come. Book your stay ASAP as reservations are almost booked for the next year! Experience the magic. ',
     price: 917
   },
 
