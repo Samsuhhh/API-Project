@@ -540,7 +540,7 @@ const demoImages = [
   },
   {
     spotId: 15,
-    url: false,
+    url: 'https://i.imgur.com/5RKIUgg.jpg' ,
     preview: true,
     createdAt: 'now',
     updatedAt: 'now'
