@@ -33,13 +33,13 @@ function Navigation({ isLoaded }) {
         setShowMenu(true);
     };
 
-    // useEffect(() => {
-    //     if (!showMenu) return;
-    //     const closeMenu = () => setShowMenu(false);
-    //     document.addEventListener('click', closeMenu);
-    //     return () => document.removeEventListener('click', closeMenu);
+    useEffect(() => {
+        if (!showMenu) return;
+        const closeMenu = () => setShowMenu(false);
+        document.addEventListener('click', closeMenu);
+        return () => document.removeEventListener('click', closeMenu);
 
-    // }, [showMenu]);
+    }, [showMenu]);
 
 
     if (sessionUser) {
@@ -65,7 +65,7 @@ function Navigation({ isLoaded }) {
                 {/* {showMenu && ( */}
 
                 <div className={showMenu ? 'home-dropdownMenu-visible' : 'home-dropdownMenu-hidden'}>
-                    <div className='dropdown-links-fix' onClick={showMenu ? () => setShowMenu(false) : openMenu}>
+                    <div className='dropdown-links-fix' >
                         <LoginFormModal classProp={showMenu ? 'show-login' : 'hide-login'} />
                     </div>
                     <div className='dropdown-links-fix'>
