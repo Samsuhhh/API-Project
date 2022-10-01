@@ -21,7 +21,7 @@ function Navigation({ isLoaded }) {
     //         return 'home-dropDownMenu-hidden';
     //     }
     // }
-    const dropdownClass2 = showMenu ? 'home-dropdownMenu-visible' : 'home-dropDownMenu-hidden';
+    // const dropdownClass2 = showMenu ? 'home-dropdownMenu-visible' : 'home-dropDownMenu-hidden';
 
     const OCRedirect = () => {
         setShowMenu(false);
