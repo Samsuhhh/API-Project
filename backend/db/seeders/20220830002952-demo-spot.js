@@ -91,7 +91,7 @@ const demoSpots = [
   {
     ownerId: 3,
     address: "1501 Fillmore St.",
-    city: "San Fransisco",
+    city: "San Francisco",
     state: "California",
     country: 'United States',
     lat: 37.1234,
