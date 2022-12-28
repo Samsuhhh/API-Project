@@ -120,7 +120,7 @@ const demoSpots = [
     country: 'United States',
     lat: 37.5678,
     lng: 121.2323,
-    name: "Home Sweet Home",
+    name: "Nature's Getaway",
     description: "Stay at our beautiful location in Zion National Park. It is a unique experience that you will never forget. No smoking. No pets. No Wifi. Bring your own toiletries.",
     price: 6511
   },
