@@ -55,7 +55,7 @@ const SpotDetail = () => {
     const deleteHandler = async () => {
         await dispatch(deleteSpot(spotId));
 
-        history.push(`/spots/${spotId}`)
+        history.push(`/`)
 
     };
 
