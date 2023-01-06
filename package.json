@@ -1,20 +1,22 @@
 {
   "dependencies": {
-    "pg": "^8.8.0"
+    "date-fns": "^2.29.3",
+    "pg": "^8.8.0",
+    "react": "^18.2.0",
+    "react-date-range": "^1.4.0"
   },
   "name": "api-project",
   "description": "api project starting on w12d3 # `<NbNair : wip>`",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
-    "scripts": {
-      "heroku-postbuild": "npm run build --prefix frontend",
-      "install": "npm --prefix backend install backend && npm --prefix frontend install frontend",
-      "dev:backend": "npm install --prefix backend start",
-      "sequelize": "npm run --prefix backend sequelize",
-      "sequelize-cli": "npm run --prefix backend sequelize-cli",
-      "start": "npm start --prefix backend"
-    },
+  "scripts": {
+    "heroku-postbuild": "npm run build --prefix frontend",
+    "install": "npm --prefix backend install backend && npm --prefix frontend install frontend",
+    "dev:backend": "npm install --prefix backend start",
+    "sequelize": "npm run --prefix backend sequelize",
+    "sequelize-cli": "npm run --prefix backend sequelize-cli",
+    "start": "npm start --prefix backend"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Samsuhhh/API-Project.git"

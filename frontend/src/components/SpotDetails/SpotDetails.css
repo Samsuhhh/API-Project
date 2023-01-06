@@ -113,7 +113,8 @@
     border-radius: 20px;
     width: 372px;
     /* height: 482px; */
-    height: 225px;
+    height: fit-content;
+    padding-bottom: 25px;
     margin-top: 47px;
     display: flex;
     justify-content: center;
@@ -230,7 +231,7 @@
 
 }
 
-#smallImage-column-divs{
+#smallImage-column-divs {
     display: flex;
     flex-direction: column;
     margin: 5px;
@@ -343,4 +344,206 @@
     font-family: system-ui;
 
 
+}
+
+/* Custom Calendar Header */
+#custom-bookings-header-wrapper{
+    display: flex;
+    justify-content: space-between;
+    width: 597px;
+    height: 70px;
+    margin-top: 25px;
+}
+
+#bookings-header-left{
+    display: flex;
+    flex-direction: column;
+}
+
+#qty-nights{
+    font-size: 22px;
+    color:rgb(34, 34, 34);
+    font-weight: 600;
+    line-height: 26px;
+    margin-bottom: 10px;
+}
+
+#bookings-date-range {
+    color: rgb(113, 113, 113);
+    box-sizing: border-box;
+    font-size: 14px;
+    font-weight: 400;
+    height: 36px;
+    text-overflow: ellipsis;
+    line-height: 18px;
+}
+
+.dateRange-display{
+    padding: 10px;
+    /* border: 1px solid black; */
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    font-weight: 400;
+    color: rgb(34, 34, 34);
+    font-size: 14px;
+}
+
+.bookings-label{
+    font-size: 10px;
+    color: rgb(34, 34, 34);
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+
+#bookings-header-right {
+    width: 240px;
+    height: 56px;
+    border: 2px solid black;
+    border-radius: 15px;
+    display: flex;
+}
+
+#check-in{
+    border-right: 2px solid black;
+}
+
+
+/* CALENDAR */
+#calendar-wrapper {
+    border: 1x solid red;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    /* width: fit-content;
+    height: fit-content; */
+
+}
+
+.dateRange-calendar {
+    /* border: 1px solid pink; */
+    /* position: absolute; */
+    font-weight: 400;
+    z-index: 1;
+    min-height: 350px;
+    display: flex;
+    /* margin-top: 20px; */
+    /* margin-left: -100px; */
+}
+
+#dateRange-container {
+    width: 597px;
+    height: 469px;
+    min-height: 460px;
+    padding: 0 32px 16px 32px;
+    border: 3px solid blue;
+    display: flex;
+    flex-direction: column;
+    margin-left: -200px;
+    height: 500px;
+    /* justify-content: flex-start; */
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 6px 20px 0px;
+    background-color: white;
+    border-radius: 15px;
+}
+
+.rdrMonthName{
+    /* min-width: 70em; */
+    /* min-height: fit-content; */
+    color: rgb(34,34,34) !important;
+    font-weight: 600;
+    font-size: 16px;
+    text-align: center !important;
+}
+
+.rdrMonths{
+    width: 597px;
+    position: absolute;
+    margin-top: 14px;
+}
+
+.rdrMonthAndYearWrapper{
+    z-index: 2;
+
+}
+
+.rdrMonthAndYearPickers{
+    display: none !important;
+}
+
+.rdrMonthPicker{
+    border: 1px solid black;
+    margin: 0 !important;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.rdrYearPicker{
+    border-left:none !important;
+    border: 1px solid black;
+    margin: 0 !important;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.rdrDays{
+    font-size: 14px;
+    height: 37px;
+}
+
+.rdrDayNumber > span{
+    font-weight: 600
+}
+
+.rdrNextButton,
+.rdrNextPrevButton{
+    background: none !important;
+    border-radius: 50% !important;
+}
+
+.rdrNextButton:hover,
+.rdrNextPrevButton:hover{
+    background: #EFF2F7 !important;
+}
+
+#close-bookings-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 15px;
+    margin-top: 10px;
+    /* position: absolute; */
+    /* margin-top: 100px; */
+    /* z-index: 2; */
+    /* border: 3px solid red; */
+}
+
+#clear-dates-btn{
+    text-decoration: underline;
+    height: 34px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: rgb(34, 34, 34);
+    font-weight: 600;
+    letter-spacing: 0.25px;
+
+}
+
+#close-bookings-btn{
+    width: 69px;
+    height: 34px;
+    background-color: rgb(34, 34, 34);
+    display: inline-block;
+    align-items: flex-start;
+    color: white;
+    font-size: 16px;
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    letter-spacing: 0.25px;
 }
