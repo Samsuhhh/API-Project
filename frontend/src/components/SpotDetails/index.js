@@ -303,11 +303,15 @@ const SpotDetail = () => {
                                 <div id='bookings-header-right' className={openCalendar ? "hidden" : "not"} onClick={() => setOpenCalendar(!openCalendar)}>
                                     <div className="dateRange-display" id='check-in'>
                                         <span className='bookings-label'>CHECK-IN</span>
-                                        <span className="date-display">{new Date(dateRange[0]?.startDate).toLocaleDateString()} </span>
+                                        <span className="date-display">
+                                            {new Date(dateRange[0].startDate).toLocaleDateString() === (new Date(dateRange[0].endDate)).toLocaleDateString() ? <span className="add-date-style">Add date</span> : <span>{new Date(dateRange[0]?.startDate).toLocaleDateString()}</span>}
+                                        </span>
                                     </div>
                                     <div className="dateRange-display" id='check-out'>
                                         <span className='bookings-label'>CHECKOUT</span>
-                                        <span className="date-display">{new Date(dateRange[0]?.endDate).toLocaleDateString()}</span>
+                                        <span className="date-display">
+                                            {new Date(dateRange[0].startDate).toLocaleDateString() === (new Date(dateRange[0].endDate)).toLocaleDateString() ? <span className="add-date-style">Add date</span> : <span>{new Date(dateRange[0]?.endDate).toLocaleDateString()}</span>}
+                                        </span>
                                     </div>
                                 </div>
                                 {openCalendar && (
@@ -331,11 +335,15 @@ const SpotDetail = () => {
                                             <div id='bookings-header-right'>
                                                 <div className="dateRange-display" id='check-in'>
                                                     <span className='bookings-label'>CHECK-IN</span>
-                                                    <span className="date-display">{new Date(dateRange[0]?.startDate).toLocaleDateString()} </span>
+                                                    <span className="date-display">
+                                                        {new Date(dateRange[0].startDate).toLocaleDateString() === (new Date(dateRange[0].endDate)).toLocaleDateString() ? <span className="add-date-style">Add date</span> : <span>{new Date(dateRange[0]?.startDate).toLocaleDateString()}</span>}
+                                                    </span>
                                                 </div>
                                                 <div className="dateRange-display" id='check-out'>
                                                     <span className='bookings-label'>CHECKOUT</span>
-                                                    <span className="date-display">{new Date(dateRange[0]?.endDate).toLocaleDateString()}</span>
+                                                    <span className="date-display">
+                                                        {new Date(dateRange[0].startDate).toLocaleDateString() === (new Date(dateRange[0].endDate)).toLocaleDateString() ? <span className="add-date-style">Add date</span> : <span>{new Date(dateRange[0]?.endDate).toLocaleDateString()}</span>}
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
@@ -371,13 +379,15 @@ const SpotDetail = () => {
                                 )}
                             </div>
                             <div id='spot-owner-buttons'>
-                                {/* <DateRange
-                                editableDateInputs={true}
-                                onChange={item => setDateRange([item.selection])}
-                                moveRangeOnFirstSelection={false}
-                                ranges={dateRange}
-                                /> */}
-                                {/* <Calendar onChange={item => setDate(item)} date={date}/> */}
+
+                                {currentUser && currentUser.id !== spotDetails.ownerId && (     // && booking for this spot does not exist for this user
+                                    <div>
+                                        <button id='reserve-booking'>
+                                            {new Date(dateRange[0].startDate).toLocaleDateString() === (new Date(dateRange[0].endDate)).toLocaleDateString() ? <span>Check availability</span> : <span>Reserve</span>}
+                                        </button>
+                                    </div>
+                                )}
+
                                 {currentUser && currentUser.id === spotDetails.ownerId && openCalendar === false && (
                                     <>
                                         <button
@@ -395,7 +405,8 @@ const SpotDetail = () => {
                                     </>
                                 )}
                                 {currentUser && currentUser.id !== spotDetails.ownerId && reviewExists && openCalendar === false && (
-                                    <div >
+                                    <div id='leave-review-container'>
+                                        <div>Been here before?</div>
                                         <button
                                             // disabled={handleRepeatReview}
                                             id='create-review-btn'
@@ -404,6 +415,8 @@ const SpotDetail = () => {
                                         </button>
                                     </div>
                                 )}
+
+
                             </div>
                         </div>
                     </div>

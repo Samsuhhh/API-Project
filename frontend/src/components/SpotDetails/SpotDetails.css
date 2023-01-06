@@ -123,7 +123,8 @@
     margin-top: 47px;
     display: flex;
     justify-content: center;
-    /* position: sticky; */
+    position: sticky;
+    top: 100px;
     /* display: none; */
 }
 
@@ -131,7 +132,7 @@
 #right-modal-content {
     display: block;
     width: 322px;
-    height: 400px;
+    height: fit-content;
     margin-top: 20px;
 }
 
@@ -187,6 +188,12 @@
     align-items: center;
     margin-top: 10px;
     width: 322px;
+}
+
+#leave-review-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #create-review-btn,
@@ -412,6 +419,10 @@
     border-right: 2px solid black;
 }
 
+.add-date-style {
+    color: rgb(113, 113, 113)
+}
+
 .bookings-label {
     font-size: 10px;
     color: rgb(34, 34, 34);
@@ -451,7 +462,7 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    margin-left: -270px;
+    margin-left: -290px;
     margin-top: -24px;
     height: 500px;
     /* justify-content: flex-start; */
