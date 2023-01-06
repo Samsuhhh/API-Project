@@ -459,16 +459,27 @@
     background-color: white;
     border-radius: 15px;
     animation-name: bounce;
-    animation-duration: .2s;
+    animation-duration: .5s;
 }
 
 @keyframes bounce {
     0% {
         margin-top: 50px
     }
-    50% {
-        margin-top: -50px
+    25% {
+        margin-top: -25px
     }
+    50% {
+        margin-top: 0px
+    }
+    75% {
+        margin-top: -24px
+    }
+
+    85% {
+        margin-top: -18px
+    }
+
     100% {
         margin-top: -24px
     }
