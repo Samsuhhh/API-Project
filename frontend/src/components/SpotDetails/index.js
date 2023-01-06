@@ -41,8 +41,7 @@ const SpotDetail = () => {
     }
 
     useEffect(() => {
-        if (new Date(dateRange[0].startDate).toLocaleDateString() !== (new Date()).toLocaleDateString()
-            && new Date(dateRange[0].endDate).toLocaleDateString() !== (new Date()).toLocaleDateString()
+        if (new Date(dateRange[0].startDate).toLocaleDateString() !== new Date(dateRange[0].endDate).toLocaleDateString()
         ) {
             setOpenCalendar(false);
         }
@@ -301,13 +300,17 @@ const SpotDetail = () => {
                                 </div>
                             </div>
                             <div id='calendar-wrapper'>
-                                <div onClick={() => setOpenCalendar(!openCalendar)}
-                                >hello
-                                    <span>{new Date(dateRange[0]?.startDate).toLocaleDateString()}</span>
-                                    <span> {new Date(dateRange[0]?.endDate).toLocaleDateString()}</span>
+                                <div id='bookings-header-right' className={openCalendar ? "hidden" : "not"} onClick={() => setOpenCalendar(!openCalendar)}>
+                                    <div className="dateRange-display" id='check-in'>
+                                        <span className='bookings-label'>CHECK-IN</span>
+                                        <span className="date-display">{new Date(dateRange[0]?.startDate).toLocaleDateString()} </span>
+                                    </div>
+                                    <div className="dateRange-display" id='check-out'>
+                                        <span className='bookings-label'>CHECKOUT</span>
+                                        <span className="date-display">{new Date(dateRange[0]?.endDate).toLocaleDateString()}</span>
+                                    </div>
                                 </div>
                                 {openCalendar && (
-
                                     <div id='dateRange-container'>
                                         <div id='custom-bookings-header-wrapper'>
                                             <div id='bookings-header-left'>
@@ -338,8 +341,9 @@ const SpotDetail = () => {
                                         </div>
                                         <DateRange
                                             ranges={dateRange}
+                                            moveRangeOnFirstSelection={true}
+                                            retainEndDateOnFirstSelection={true}
                                             editableDateInputs={false}
-                                            moveRangeOnFirstSelection={false}
                                             showMonthAndYearPickers={false}
                                             rangeColors={['black']}
                                             showPreview={false}
@@ -349,6 +353,7 @@ const SpotDetail = () => {
                                             minDate={addDays(new Date(), 1)}
                                             direction={"horizontal"}
                                             className="dateRange-calendar"
+
                                         // disabledDates={getBookedDates()}
                                         />
                                         <div id='close-bookings-wrapper'>
@@ -373,7 +378,7 @@ const SpotDetail = () => {
                                 ranges={dateRange}
                                 /> */}
                                 {/* <Calendar onChange={item => setDate(item)} date={date}/> */}
-                                {currentUser && currentUser.id === spotDetails.ownerId && (
+                                {currentUser && currentUser.id === spotDetails.ownerId && openCalendar === false && (
                                     <>
                                         <button
                                             id='edit-spot-btn'
@@ -389,7 +394,7 @@ const SpotDetail = () => {
                                         </button>
                                     </>
                                 )}
-                                {currentUser && currentUser.id !== spotDetails.ownerId && reviewExists && (
+                                {currentUser && currentUser.id !== spotDetails.ownerId && reviewExists && openCalendar === false && (
                                     <div >
                                         <button
                                             // disabled={handleRepeatReview}
