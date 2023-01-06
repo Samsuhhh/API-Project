@@ -458,8 +458,8 @@
     box-shadow: rgba(0, 0, 0, 0.4) 0px 6px 20px 0px;
     background-color: white;
     border-radius: 15px;
-    animation-name: bounce;
-    animation-duration: .5s;
+    animation-name: grow;
+    animation-duration: .2s;
 }
 
 @keyframes bounce {
@@ -482,6 +482,16 @@
 
     100% {
         margin-top: -24px
+    }
+}
+
+@keyframes grow {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
     }
 }
 
