@@ -1,18 +1,52 @@
 import { getSpotDetails } from "../../store/spots"
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { Component, useEffect, useState } from "react";
 import './SpotDetails.css'
 // import UpdateSpotFormPage from "../UpdateSpot";
 import { deleteSpot } from "../../store/spots";
 import SpotReviews from "../AllReviews";
 // import { deleteReview } from "../../store/reviews";
+import { Calendar, DateRange, DateRangePicker } from 'react-date-range';
+import { addDays } from 'date-fns';
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file
+
 
 const SpotDetail = () => {
     const params = useParams();
     const { spotId } = params;
     const dispatch = useDispatch();
     const history = useHistory();
+
+    // calendar
+    const [date, setDate] = useState(null);
+    const [openCalendar, setOpenCalendar] = useState(false);
+    const [dateRange, setDateRange] = useState([
+        {
+            startDate: new Date(),
+            endDate: new Date(),
+            key: 'selection'
+        }
+    ])
+
+    const calculateNights = (start, end) => {
+        let startDate = new Date(start);
+        let endDate = new Date(end);
+
+        let timeDiff = endDate.getTime() - startDate.getTime()
+        let daysDiff = timeDiff / (1000 * 3600 * 24);
+
+        return daysDiff;
+    }
+
+    useEffect(() => {
+        if (new Date(dateRange[0].startDate).toLocaleDateString() !== (new Date()).toLocaleDateString()
+            && new Date(dateRange[0].endDate).toLocaleDateString() !== (new Date()).toLocaleDateString()
+        ) {
+            setOpenCalendar(false);
+        }
+    }, [dateRange])
 
     // const spotImg = useSelector(state => state.spots.singleSpot);
     // delete spotImages at the end of useSelector and then put it back in for the BUG to occur
@@ -266,8 +300,79 @@ const SpotDetail = () => {
                                     </a>
                                 </div>
                             </div>
-                            <div id='spot-owner-buttons'>
+                            <div id='calendar-wrapper'>
+                                <div onClick={() => setOpenCalendar(!openCalendar)}
+                                >hello
+                                    <span>{new Date(dateRange[0]?.startDate).toLocaleDateString()}</span>
+                                    <span> {new Date(dateRange[0]?.endDate).toLocaleDateString()}</span>
+                                </div>
+                                {openCalendar && (
 
+                                    <div id='dateRange-container'>
+                                        <div id='custom-bookings-header-wrapper'>
+                                            <div id='bookings-header-left'>
+                                                <div id='qty-nights'>
+                                                    {
+                                                        calculateNights(dateRange[0].startDate, dateRange[0].endDate) === 0 ?
+                                                            'Select dates' : calculateNights(dateRange[0].startDate, dateRange[0].endDate) + ' nights'
+                                                    }
+                                                </div>
+                                                <div id='bookings-date-range'>
+                                                    {new Date(dateRange[0].startDate).toLocaleDateString() === (new Date()).toLocaleDateString() ?
+                                                        <span> Add your travel dates for exact pricing </span>
+                                                        : <span> {new Date(dateRange[0].startDate).toLocaleDateString()} - {new Date(dateRange[0]?.endDate).toLocaleDateString()}</span>
+                                                    }
+
+                                                </div>
+                                            </div>
+                                            <div id='bookings-header-right'>
+                                                <div className="dateRange-display" id='check-in'>
+                                                    <span className='bookings-label'>CHECK-IN</span>
+                                                    <span className="date-display">{new Date(dateRange[0]?.startDate).toLocaleDateString()} </span>
+                                                </div>
+                                                <div className="dateRange-display" id='check-out'>
+                                                    <span className='bookings-label'>CHECKOUT</span>
+                                                    <span className="date-display">{new Date(dateRange[0]?.endDate).toLocaleDateString()}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <DateRange
+                                            ranges={dateRange}
+                                            editableDateInputs={false}
+                                            moveRangeOnFirstSelection={false}
+                                            showMonthAndYearPickers={false}
+                                            rangeColors={['black']}
+                                            showPreview={false}
+                                            onChange={(e) => { setDateRange([e.selection]) }}
+                                            showDateDisplay={false}
+                                            months={2}
+                                            minDate={addDays(new Date(), 1)}
+                                            direction={"horizontal"}
+                                            className="dateRange-calendar"
+                                        // disabledDates={getBookedDates()}
+                                        />
+                                        <div id='close-bookings-wrapper'>
+                                            <div id='clear-dates-btn'
+                                                onClick={() => setDateRange([{
+                                                    startDate: new Date(),
+                                                    endDate: new Date(),
+                                                    key: 'selection'
+                                                }])}
+                                            >Clear dates</div>
+                                            <div onClick={() => setOpenCalendar(false)} id='close-bookings-btn'>Close</div>
+                                        </div>
+                                    </div>
+
+                                )}
+                            </div>
+                            <div id='spot-owner-buttons'>
+                                {/* <DateRange
+                                editableDateInputs={true}
+                                onChange={item => setDateRange([item.selection])}
+                                moveRangeOnFirstSelection={false}
+                                ranges={dateRange}
+                                /> */}
+                                {/* <Calendar onChange={item => setDate(item)} date={date}/> */}
                                 {currentUser && currentUser.id === spotDetails.ownerId && (
                                     <>
                                         <button
