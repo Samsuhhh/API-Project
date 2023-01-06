@@ -30,6 +30,24 @@ const SpotDetail = () => {
         }
     ])
 
+    const calculateNights = (start, end) => {
+        let startDate = new Date(start);
+        let endDate = new Date(end);
+
+        let timeDiff = endDate.getTime() - startDate.getTime()
+        let daysDiff = timeDiff / (1000 * 3600 * 24);
+
+        return daysDiff;
+    }
+
+    useEffect(() => {
+        if (new Date(dateRange[0].startDate).toLocaleDateString() !== (new Date()).toLocaleDateString()
+            && new Date(dateRange[0].endDate).toLocaleDateString() !== (new Date()).toLocaleDateString()
+        ) {
+            setOpenCalendar(false);
+        }
+    }, [dateRange])
+
     // const spotImg = useSelector(state => state.spots.singleSpot);
     // delete spotImages at the end of useSelector and then put it back in for the BUG to occur
     // const reviewUser = useSelector(state => state.reviews.spot);
@@ -293,7 +311,12 @@ const SpotDetail = () => {
                                     <div id='dateRange-container'>
                                         <div id='custom-bookings-header-wrapper'>
                                             <div id='bookings-header-left'>
-                                                <div id='qty-nights'>X nights</div>
+                                                <div id='qty-nights'>
+                                                    {
+                                                        calculateNights(dateRange[0].startDate, dateRange[0].endDate) === 0 ?
+                                                            'Select dates' : calculateNights(dateRange[0].startDate, dateRange[0].endDate) + ' nights'
+                                                    }
+                                                </div>
                                                 <div id='bookings-date-range'>
                                                     {new Date(dateRange[0].startDate).toLocaleDateString() === (new Date()).toLocaleDateString() ?
                                                         <span> Add your travel dates for exact pricing </span>
@@ -320,7 +343,7 @@ const SpotDetail = () => {
                                             showMonthAndYearPickers={false}
                                             rangeColors={['black']}
                                             showPreview={false}
-                                            onChange={(e) => { setDateRange([e.selection]); }}
+                                            onChange={(e) => { setDateRange([e.selection]) }}
                                             showDateDisplay={false}
                                             months={2}
                                             minDate={addDays(new Date(), 1)}
@@ -329,7 +352,13 @@ const SpotDetail = () => {
                                         // disabledDates={getBookedDates()}
                                         />
                                         <div id='close-bookings-wrapper'>
-                                            <div id='clear-dates-btn'>Clear dates</div>
+                                            <div id='clear-dates-btn'
+                                                onClick={() => setDateRange([{
+                                                    startDate: new Date(),
+                                                    endDate: new Date(),
+                                                    key: 'selection'
+                                                }])}
+                                            >Clear dates</div>
                                             <div onClick={() => setOpenCalendar(false)} id='close-bookings-btn'>Close</div>
                                         </div>
                                     </div>

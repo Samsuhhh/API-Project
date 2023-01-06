@@ -347,7 +347,7 @@
 }
 
 /* Custom Calendar Header */
-#custom-bookings-header-wrapper{
+#custom-bookings-header-wrapper {
     display: flex;
     justify-content: space-between;
     width: 597px;
@@ -355,14 +355,14 @@
     margin-top: 25px;
 }
 
-#bookings-header-left{
+#bookings-header-left {
     display: flex;
     flex-direction: column;
 }
 
-#qty-nights{
+#qty-nights {
     font-size: 22px;
-    color:rgb(34, 34, 34);
+    color: rgb(34, 34, 34);
     font-weight: 600;
     line-height: 26px;
     margin-bottom: 10px;
@@ -378,7 +378,7 @@
     line-height: 18px;
 }
 
-.dateRange-display{
+.dateRange-display {
     padding: 10px;
     /* border: 1px solid black; */
     width: 50%;
@@ -389,7 +389,7 @@
     font-size: 14px;
 }
 
-.bookings-label{
+.bookings-label {
     font-size: 10px;
     color: rgb(34, 34, 34);
     font-weight: 700;
@@ -400,11 +400,11 @@
     width: 240px;
     height: 56px;
     border: 2px solid black;
-    border-radius: 15px;
+    border-radius: 10px;
     display: flex;
 }
 
-#check-in{
+#check-in {
     border-right: 2px solid black;
 }
 
@@ -448,62 +448,62 @@
     border-radius: 15px;
 }
 
-.rdrMonthName{
+.rdrMonthName {
     /* min-width: 70em; */
     /* min-height: fit-content; */
-    color: rgb(34,34,34) !important;
+    color: rgb(34, 34, 34) !important;
     font-weight: 600;
     font-size: 16px;
     text-align: center !important;
 }
 
-.rdrMonths{
+.rdrMonths {
     width: 597px;
     position: absolute;
     margin-top: 14px;
 }
 
-.rdrMonthAndYearWrapper{
+.rdrMonthAndYearWrapper {
     z-index: 2;
 
 }
 
-.rdrMonthAndYearPickers{
+.rdrMonthAndYearPickers {
     display: none !important;
 }
 
-.rdrMonthPicker{
+.rdrMonthPicker {
     border: 1px solid black;
     margin: 0 !important;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
 }
 
-.rdrYearPicker{
-    border-left:none !important;
+.rdrYearPicker {
+    border-left: none !important;
     border: 1px solid black;
     margin: 0 !important;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
 }
 
-.rdrDays{
+.rdrDays {
     font-size: 14px;
     height: 37px;
 }
 
-.rdrDayNumber > span{
+.rdrDayNumber>span {
     font-weight: 600
 }
 
 .rdrNextButton,
-.rdrNextPrevButton{
+.rdrNextPrevButton {
     background: none !important;
     border-radius: 50% !important;
 }
 
 .rdrNextButton:hover,
-.rdrNextPrevButton:hover{
+.rdrNextPrevButton:hover {
     background: #EFF2F7 !important;
 }
 
@@ -519,7 +519,7 @@
     /* border: 3px solid red; */
 }
 
-#clear-dates-btn{
+#clear-dates-btn {
     text-decoration: underline;
     height: 34px;
     padding: 8px;
@@ -527,12 +527,18 @@
     align-items: center;
     font-size: 16px;
     color: rgb(34, 34, 34);
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: 0.25px;
-
+    box-sizing: border-box;
+    border-radius: 5px;
 }
 
-#close-bookings-btn{
+#clear-dates-btn:hover {
+    background-color: #f7f7f7b5;
+    cursor: pointer;
+}
+
+#close-bookings-btn {
     width: 69px;
     height: 34px;
     background-color: rgb(34, 34, 34);
@@ -546,4 +552,9 @@
     align-items: center;
     border-radius: 5px;
     letter-spacing: 0.25px;
+    box-sizing: border-box;
+    padding: 8px;
+}
+#close-bookings-btn:hover{
+    cursor: pointer;
 }
