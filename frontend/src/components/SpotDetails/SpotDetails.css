@@ -1,3 +1,8 @@
+.hidden {
+    display: none !important;
+}
+
+
 #spot-outermost {
     width: 100%;
     height: 100%;
@@ -109,7 +114,7 @@
 }
 
 #right-modal {
-    border: 2px solid lightgrey;
+    border: 1px solid lightgrey;
     border-radius: 20px;
     width: 372px;
     /* height: 482px; */
@@ -118,7 +123,9 @@
     margin-top: 47px;
     display: flex;
     justify-content: center;
-    /* position: sticky; */
+    position: sticky;
+    top: 100px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px 5px;
     /* display: none; */
 }
 
@@ -126,7 +133,7 @@
 #right-modal-content {
     display: block;
     width: 322px;
-    height: 400px;
+    height: fit-content;
     margin-top: 20px;
 }
 
@@ -136,7 +143,7 @@
     height: 25px;
     justify-content: space-between;
     align-items: flex-end;
-
+    margin-bottom: 24px;
 }
 
 #header-price {
@@ -184,10 +191,124 @@
     width: 322px;
 }
 
+:root {
+    --x: 0%;
+}
+
+#reserve-booking {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    padding: 14px 24px;
+    transition: box-shadow 0.2s ease 0s, transform 0.1 ease 0s, transform 0.1s ease 0s, transform 0.1s ease 0s;
+    width: 304px;
+    height: 46px;
+    box-sizing: border-box;
+    line-height: 20px;
+    font-size: 16px;
+    font-stretch: 100%;
+    border-radius: 5px;
+    border: none;
+    background-color: #E31C5F;
+    color: white;
+    font-weight: 600;
+    background: linear-gradient(90deg,
+            #BD1E59 0%,
+            #FF385C var(--x),
+            #BD1E59 100%);
+    /* background-color: rgb(255, 90, 95); button color used first time around */
+    /* background-color: #FF385C ; we like this red */
+    /* background-color: #D70466; */
+    /* background: radial-gradient(circle at center,
+            #FF385C 0%,
+            #E61E4D 27.5%,
+            #E31C5F 40% var(--x),
+            #D70466 57.5%,
+            #BD1E59 75%,
+            #BD1E59 100%) !important; */
+}
+
+#reserve-booking:focus {
+    outline: none;
+}
+
+/* #reserve-booking:hover{
+    background-image: radial;
+} */
+
+.reserve-inner-span {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 24px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+
+.selected-booking-summary-container {
+    border-bottom: 1px solid lightgray;
+    width: 304px;
+    height: fit-content;
+    padding: 15px 0 20px 0;
+    box-sizing: border-box;
+}
+
+.noCharge-disclaimer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+    font-size: 14px;
+    color: rgb(113, 113, 113);
+}
+
+.booking-summary-row {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.bsr-left {
+    text-decoration: underline;
+    font-size: 16px;
+    font-weight: 300;
+    color: rgb(34, 34, 34);
+}
+
+.bsr-right {
+    font-size: 16px;
+    font-weight: 300;
+    color: rgb(34, 34, 34);
+}
+
+.bookings-total-sum {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.bts-left,
+.bts-right {
+    color: rgb(34, 34, 34);
+    font-weight: 500;
+    font-size: 16px;
+}
+
+#leave-review-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 24px;
+}
+
 #create-review-btn,
 #delete-spot-btn,
 #edit-spot-btn {
-    width: 80%;
+    /* width: 80%;
     margin-top: 15px;
     height: 40px;
     background-color: #FF5A5F;
@@ -196,8 +317,32 @@
     border: 1px solid lightgrey;
     font-size: 16px;
     font-weight: 500;
-    font-family: system-ui;
+    font-family: system-ui; */
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    padding: 14px 24px;
+    transition: box-shadow 0.2s ease 0s, transform 0.1 ease 0s;
+    width: 304px;
+    height: 46px;
+    box-sizing: border-box;
+    line-height: 20px;
+    font-size: 16px;
+    font-stretch: 100%;
+    border-radius: 5px;
+    border: none;
+    background-color: #E31C5F;
+    color: white;
+    font-weight: 500;
+    letter-spacing: .5px;
+    margin-bottom: 10px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px 0px;
+    background: linear-gradient(90deg,
+            #BD1E59 0%,
+            #FF385C var(--x),
+            #BD1E59 100%);
 }
 
 #create-review-btn:hover,
@@ -389,25 +534,34 @@
     font-size: 14px;
 }
 
+
+#bookings-header-right {
+    width: 300px;
+    height: 56px;
+    border: 2px solid black;
+    border-radius: 10px;
+    display: flex;
+    cursor: pointer;
+}
+
+/* #bookings-header-right:hover{
+    cursor: pointer
+} */
+
+#check-in {
+    border-right: 2px solid black;
+}
+
+.add-date-style {
+    color: rgb(113, 113, 113)
+}
+
 .bookings-label {
     font-size: 10px;
     color: rgb(34, 34, 34);
     font-weight: 700;
     margin-bottom: 3px;
 }
-
-#bookings-header-right {
-    width: 240px;
-    height: 56px;
-    border: 2px solid black;
-    border-radius: 10px;
-    display: flex;
-}
-
-#check-in {
-    border-right: 2px solid black;
-}
-
 
 /* CALENDAR */
 #calendar-wrapper {
@@ -437,15 +591,56 @@
     height: 469px;
     min-height: 460px;
     padding: 0 32px 16px 32px;
-    border: 3px solid blue;
+    /* border: 3px solid blue; */
+    position: absolute;
     display: flex;
     flex-direction: column;
-    margin-left: -200px;
+    margin-left: -290px;
+    margin-top: -24px;
     height: 500px;
     /* justify-content: flex-start; */
     box-shadow: rgba(0, 0, 0, 0.4) 0px 6px 20px 0px;
     background-color: white;
     border-radius: 15px;
+    animation-name: grow;
+    animation-duration: .2s;
+    transform-origin: top right;
+}
+
+@keyframes bounce {
+    0% {
+        margin-top: 50px
+    }
+
+    25% {
+        margin-top: -25px
+    }
+
+    50% {
+        margin-top: 0px
+    }
+
+    75% {
+        margin-top: -24px
+    }
+
+    85% {
+        margin-top: -18px
+    }
+
+    100% {
+        margin-top: -24px
+    }
+}
+
+@keyframes grow {
+    from {
+        transform: scale(.3);
+    }
+
+    to {
+        transform: scale(1);
+    }
 }
 
 .rdrMonthName {
@@ -513,10 +708,6 @@
     align-items: center;
     column-gap: 15px;
     margin-top: 10px;
-    /* position: absolute; */
-    /* margin-top: 100px; */
-    /* z-index: 2; */
-    /* border: 3px solid red; */
 }
 
 #clear-dates-btn {
@@ -555,6 +746,7 @@
     box-sizing: border-box;
     padding: 8px;
 }
-#close-bookings-btn:hover{
+
+#close-bookings-btn:hover {
     cursor: pointer;
 }

@@ -41,11 +41,32 @@ const SpotDetail = () => {
     }
 
     useEffect(() => {
-        if (new Date(dateRange[0].startDate).toLocaleDateString() !== (new Date()).toLocaleDateString()
-            && new Date(dateRange[0].endDate).toLocaleDateString() !== (new Date()).toLocaleDateString()
+        if (!openCalendar && document.getElementById("reserve-booking")) {
+            let btn = document.getElementById("reserve-booking")
+            // let editBtn = document.getElementById("edit-spot-btn")
+            // let deleteBtn = document.getElementById("delete-spot-btn")
+            // let reviewBtn = document.getElementById("create-review-btn")
+
+            btn.onmousemove = function (e) {
+                let size = e.target.getBoundingClientRect();
+                let x = e.clientX - size.left;
+                btn.style.setProperty("--x", x + "px");
+            };
+        }
+
+    }, [openCalendar])
+
+    // close calendar on dateRange selection and gradient button effect
+    useEffect(() => {
+        if (new Date(dateRange[0].startDate).toLocaleDateString() !== new Date(dateRange[0].endDate).toLocaleDateString()
         ) {
             setOpenCalendar(false);
         }
+        // if (!openCalendar && document.getElementById("dateRange-container")) {
+        //     let calendar = document.getElementById("dateRange-container")
+        //     calendar.style.setProperty("animation-direction", "reverse")
+        // }
+
     }, [dateRange])
 
     // const spotImg = useSelector(state => state.spots.singleSpot);
@@ -221,8 +242,7 @@ const SpotDetail = () => {
                                         {spotDetails.Owner?.firstName} is a Superhost
                                     </div>
                                     <div id='superhost-description'>
-                                        Superhosts are experienced, highly rated hosts who are committed to making money by appealing to guests.
-                                        hell yea I got a lump in throught yea and you're going to sing the words wrong
+                                        Superhosts are experienced, highly rated hosts who are committed to making money by catering to guests.
                                     </div>
                                 </div>
                             </div>
@@ -301,13 +321,21 @@ const SpotDetail = () => {
                                 </div>
                             </div>
                             <div id='calendar-wrapper'>
-                                <div onClick={() => setOpenCalendar(!openCalendar)}
-                                >hello
-                                    <span>{new Date(dateRange[0]?.startDate).toLocaleDateString()}</span>
-                                    <span> {new Date(dateRange[0]?.endDate).toLocaleDateString()}</span>
+                                <div id='bookings-header-right' className={openCalendar ? "hidden" : "not"} onClick={() => setOpenCalendar(!openCalendar)}>
+                                    <div className="dateRange-display" id='check-in'>
+                                        <span className='bookings-label'>CHECK-IN</span>
+                                        <span className="date-display">
+                                            {new Date(dateRange[0].startDate).toLocaleDateString() === (new Date(dateRange[0].endDate)).toLocaleDateString() ? <span className="add-date-style">Add date</span> : <span>{new Date(dateRange[0]?.startDate).toLocaleDateString()}</span>}
+                                        </span>
+                                    </div>
+                                    <div className="dateRange-display" id='check-out'>
+                                        <span className='bookings-label'>CHECKOUT</span>
+                                        <span className="date-display">
+                                            {new Date(dateRange[0].startDate).toLocaleDateString() === (new Date(dateRange[0].endDate)).toLocaleDateString() ? <span className="add-date-style">Add date</span> : <span>{new Date(dateRange[0]?.endDate).toLocaleDateString()}</span>}
+                                        </span>
+                                    </div>
                                 </div>
                                 {openCalendar && (
-
                                     <div id='dateRange-container'>
                                         <div id='custom-bookings-header-wrapper'>
                                             <div id='bookings-header-left'>
@@ -328,18 +356,23 @@ const SpotDetail = () => {
                                             <div id='bookings-header-right'>
                                                 <div className="dateRange-display" id='check-in'>
                                                     <span className='bookings-label'>CHECK-IN</span>
-                                                    <span className="date-display">{new Date(dateRange[0]?.startDate).toLocaleDateString()} </span>
+                                                    <span className="date-display">
+                                                        {new Date(dateRange[0].startDate).toLocaleDateString() === (new Date(dateRange[0].endDate)).toLocaleDateString() ? <span className="add-date-style">Add date</span> : <span>{new Date(dateRange[0]?.startDate).toLocaleDateString()}</span>}
+                                                    </span>
                                                 </div>
                                                 <div className="dateRange-display" id='check-out'>
                                                     <span className='bookings-label'>CHECKOUT</span>
-                                                    <span className="date-display">{new Date(dateRange[0]?.endDate).toLocaleDateString()}</span>
+                                                    <span className="date-display">
+                                                        {new Date(dateRange[0].startDate).toLocaleDateString() === (new Date(dateRange[0].endDate)).toLocaleDateString() ? <span className="add-date-style">Add date</span> : <span>{new Date(dateRange[0]?.endDate).toLocaleDateString()}</span>}
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
                                         <DateRange
                                             ranges={dateRange}
+                                            moveRangeOnFirstSelection={true}
+                                            retainEndDateOnFirstSelection={true}
                                             editableDateInputs={false}
-                                            moveRangeOnFirstSelection={false}
                                             showMonthAndYearPickers={false}
                                             rangeColors={['black']}
                                             showPreview={false}
@@ -362,35 +395,70 @@ const SpotDetail = () => {
                                             <div onClick={() => setOpenCalendar(false)} id='close-bookings-btn'>Close</div>
                                         </div>
                                     </div>
-
                                 )}
                             </div>
                             <div id='spot-owner-buttons'>
-                                {/* <DateRange
-                                editableDateInputs={true}
-                                onChange={item => setDateRange([item.selection])}
-                                moveRangeOnFirstSelection={false}
-                                ranges={dateRange}
-                                /> */}
-                                {/* <Calendar onChange={item => setDate(item)} date={date}/> */}
-                                {currentUser && currentUser.id === spotDetails.ownerId && (
-                                    <>
-                                        <button
-                                            id='edit-spot-btn'
-                                            onClick={updateRedirect}
-                                        >
-                                            Update your spot
-                                        </button>
-                                        <button
-                                            id='delete-spot-btn'
-                                            onClick={deleteHandler}
-                                        >
-                                            Delete your spot
-                                        </button>
-                                    </>
+
+                                {currentUser && currentUser.id !== spotDetails.ownerId && openCalendar === false && (     // && booking for this spot does not exist for this user
+                                    <div>
+                                        {new Date(dateRange[0].startDate).toLocaleDateString() === (new Date(dateRange[0].endDate)).toLocaleDateString() ?
+                                            <button id='reserve-booking' onClick={() => setOpenCalendar(!openCalendar)}>
+                                                <span className="reserve-inner-span">Check availability</span>
+                                            </button> :
+                                            <button id='reserve-booking' onClick={() => setOpenCalendar(!openCalendar)}> 
+                                            {/* change onClick to pull up confirm booking modal */}
+                                                <span className="reserve-inner-span">Reserve</span>
+                                            </button>
+
+                                        }
+                                    </div>
                                 )}
-                                {currentUser && currentUser.id !== spotDetails.ownerId && reviewExists && (
-                                    <div >
+
+                                {currentUser && currentUser.id !== spotDetails.ownerId
+                                    && new Date(dateRange[0].startDate).toLocaleDateString() !== (new Date(dateRange[0].endDate)).toLocaleDateString()
+                                    && (
+                                        <div>
+                                            <div className="selected-booking-summary-container">
+                                                <div className="noCharge-disclaimer">You won't be charged yet</div>
+                                                <div className="booking-summary-row">
+                                                    <span className="bsr-left"> {'$' + spotDetails.price} x {calculateNights(dateRange[0].startDate, dateRange[0].endDate)} nights</span>
+                                                    <span className="bsr-right">${spotDetails.price * calculateNights(dateRange[0].startDate, dateRange[0].endDate)} </span>
+                                                </div>
+                                                <br></br>
+                                                <div className="booking-summary-row">
+                                                    <span className="bsr-left">Cleaning fee</span>
+                                                    <span className="bsr-right">$140</span>
+                                                </div>
+                                                <br></br>
+                                                <div className="booking-summary-row">
+                                                    <span className="bsr-left">Service fee</span>
+                                                    <span className="bsr-right">$229</span>
+                                                </div>
+                                                <br></br>
+                                                <div className="booking-summary-row">
+                                                    <span className="bsr-left">Sam needs a job fee</span>
+                                                    <span className="bsr-right">$7.77</span>
+                                                </div>
+                                            </div>
+                                            <div className="bookings-total-sum">
+                                                <span className="bts-left">Total before taxes</span>
+                                                <span className="bts-right">${((spotDetails.price * calculateNights(dateRange[0].startDate, dateRange[0].endDate)) + 140 + 229 + 7.77)}</span>
+                                            </div>
+                                        </div>
+                                    )}
+
+                                {currentUser && currentUser.id === spotDetails.ownerId && openCalendar === false && (
+                                    <div id='owner-auth-btns-container'>
+                                        <div className="noCharge-disclaimer">This location belongs to you.</div>
+                                        <button id='edit-spot-btn' onClick={updateRedirect}>Update your spot</button>
+                                        <button id='delete-spot-btn' onClick={deleteHandler}>Delete your spot</button>
+                                    </div>
+                                )}
+
+                                {/* COMMENT BACK IN AFTER DONE WITH BUTTON CSS */}
+                                {/* {currentUser && currentUser.id !== spotDetails.ownerId && reviewExists && openCalendar === false && (
+                                    <div id='leave-review-container'>
+                                        <div>Been here before?</div>
                                         <button
                                             // disabled={handleRepeatReview}
                                             id='create-review-btn'
@@ -398,7 +466,9 @@ const SpotDetail = () => {
                                             Leave a review
                                         </button>
                                     </div>
-                                )}
+                                )} */}
+
+
                             </div>
                         </div>
                     </div>
@@ -408,7 +478,7 @@ const SpotDetail = () => {
             <section id='reviews-container'>
                 <SpotReviews />
             </section>
-        </div>
+        </div >
 
     )
 }
