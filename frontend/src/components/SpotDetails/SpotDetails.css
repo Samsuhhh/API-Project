@@ -2,7 +2,6 @@
     display: none !important;
 }
 
-
 #spot-outermost {
     width: 100%;
     height: 100%;
@@ -233,10 +232,6 @@
 #reserve-booking:focus {
     outline: none;
 }
-
-/* #reserve-booking:hover{
-    background-image: radial;
-} */
 
 .reserve-inner-span {
     width: 100%;
@@ -568,22 +563,14 @@
     border: 1x solid red;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
-    /* width: fit-content;
-    height: fit-content; */
-
 }
 
 .dateRange-calendar {
-    /* border: 1px solid pink; */
-    /* position: absolute; */
     font-weight: 400;
     z-index: 1;
     min-height: 350px;
     display: flex;
-    /* margin-top: 20px; */
-    /* margin-left: -100px; */
 }
 
 #dateRange-container {
