@@ -131,7 +131,7 @@ export const editSpot = (spot, id) => async dispatch => {
         const updatedSpot = await res.json();
         console.log('UPDATED SPOTaroooo', updatedSpot);
         dispatch(updateSpot(updatedSpot));
-        return updatedSpot
+        return updatedSpot;
     }
 };
 
@@ -146,6 +146,7 @@ export const deleteSpot = (spotId) => async dispatch => {
         return null;
     }
 }
+
 
 const initialState = {
     allSpots: {},
