@@ -110,6 +110,11 @@
 
 #spot-description {
     overflow-wrap: normal;
+    font-size: 17px;
+    margin-top: 20px;
+    /* padding-left: 12px; */
+    font-weight: 400;
+    color: rgb(34, 34, 34)
 }
 
 #right-modal {
@@ -341,13 +346,9 @@
 }
 
 #create-review-btn:hover,
-#delete-spot-btn:hover,
+#delete-review-btn #delete-spot-btn:hover,
 #edit-spot-btn:hover {
     cursor: pointer
-}
-
-#create-review-btn {
-    width: 322px;
 }
 
 
@@ -476,7 +477,7 @@
 
 .review-detail-spacing {
     /* margin-top: 7px; */
-    padding-left: 10px;
+    padding-left: 5px;
 }
 
 #review-firstName {

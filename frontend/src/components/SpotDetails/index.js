@@ -1,16 +1,17 @@
 import { getSpotDetails } from "../../store/spots"
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
-import { Component, useEffect, useState } from "react";
+import { useHistory, useLocation, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import './SpotDetails.css'
 // import UpdateSpotFormPage from "../UpdateSpot";
 import { deleteSpot } from "../../store/spots";
 import SpotReviews from "../AllReviews";
 // import { deleteReview } from "../../store/reviews";
 import { Calendar, DateRange, DateRangePicker } from 'react-date-range';
-import { addDays } from 'date-fns';
+import { addDays, parseISO, toDate } from 'date-fns';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
+import { createBookingThunk, getAllBookingsThunk } from "../../store/bookings";
 
 
 const SpotDetail = () => {
@@ -18,28 +19,92 @@ const SpotDetail = () => {
     const { spotId } = params;
     const dispatch = useDispatch();
     const history = useHistory();
+    const location = useLocation();
+
+    const currentUser = useSelector(state => state.session.user);
+    const spotDetails = useSelector(state => state.spots.singleSpot);
+    const reviews = useSelector(state => state.reviews.spot)
+    const allReviews = Object.values(reviews);
+    const allSpotBookings = useSelector(state => state.bookings.spotBookings)
+    let bookedRanges = [];
+
+    const getBookedDates = () => {
+        bookedRanges = [];
+
+       if (allSpotBookings.length > 0){ allSpotBookings?.forEach(booking => {
+            bookedRanges.push({ startDate: parseISO(booking.startDate), endDate: parseISO(booking.endDate), key: "disabled", disabled: true })
+        })}
+
+        console.log('bookedRanges take 1', bookedRanges)
+        return bookedRanges
+    }
 
     // calendar
-    const [date, setDate] = useState(null);
     const [openCalendar, setOpenCalendar] = useState(false);
     const [dateRange, setDateRange] = useState([
-        {
-            startDate: new Date(),
-            endDate: new Date(),
+       {
+            startDate: addDays(new Date(), 1),
+            endDate: addDays(new Date(), 7),
             key: 'selection'
         }
     ])
 
+
+    // true onLoad useEffect
+    useEffect(() => {
+        console.log('is it me')
+        let books = dispatch(getAllBookingsThunk(spotId))
+        let grey = getBookedDates();
+
+    }, [spotId])
+
+
+
+    //submit booking variables
+    const [startDate, setStartDate] = useState(parseISO(new Date(dateRange[0].startDate)));
+    const [endDate, setEndDate] = useState(parseISO(new Date(dateRange[0].endDate)));
+    const [bookingErrors, setBookingErrors] = useState({})
+
+    const newBookingSubmit = async (e) => {
+        e.preventDefault();
+        const newBooking = {
+            startDate: startDate,
+            endDate: endDate,
+            spotId: spotId,
+            userId: currentUser.id
+        }
+        const booking = await dispatch(createBookingThunk(newBooking)).catch(async (res) => {
+            const data = await res.json();
+            if (data && data.errors) {
+                setBookingErrors(data.errors);
+            }
+        })
+        if (booking) {
+            window.alert('new booking successful')
+            history.push('/')
+        } else {
+            window.alert('UH OH... Unfortunately, our site is so popular right now, Bookings have been temporarily disabled. Please try again soon. We apologize for any inconvenience this may have caused.')
+        }
+    }
+
+    // useEffect(() => {
+    //     if (bookingErrors.startDate || bookingErrors.endDate) {
+    //         window.alert(bookingErrors.startDate ? bookingErrors.startDate : bookingErrors.endDate ? bookingErrors.endDate : "wtf")
+    //     }
+
+    // }, [bookingErrors])
+
     const calculateNights = (start, end) => {
         let startDate = new Date(start);
         let endDate = new Date(end);
-
         let timeDiff = endDate.getTime() - startDate.getTime()
         let daysDiff = timeDiff / (1000 * 3600 * 24);
-
         return daysDiff;
     }
 
+
+
+    // useEffect for reserve button gradient effect
     useEffect(() => {
         if (!openCalendar && document.getElementById("reserve-booking")) {
             let btn = document.getElementById("reserve-booking")
@@ -56,17 +121,14 @@ const SpotDetail = () => {
 
     }, [openCalendar])
 
-    // close calendar on dateRange selection and gradient button effect
+    // useEffect for closing calendar on dateRange select
     useEffect(() => {
         if (new Date(dateRange[0].startDate).toLocaleDateString() !== new Date(dateRange[0].endDate).toLocaleDateString()
         ) {
+            setStartDate(dateRange[0].startDate.toLocaleDateString());
+            setEndDate(dateRange[0].endDate.toLocaleDateString());
             setOpenCalendar(false);
         }
-        // if (!openCalendar && document.getElementById("dateRange-container")) {
-        //     let calendar = document.getElementById("dateRange-container")
-        //     calendar.style.setProperty("animation-direction", "reverse")
-        // }
-
     }, [dateRange])
 
     // const spotImg = useSelector(state => state.spots.singleSpot);
@@ -75,10 +137,7 @@ const SpotDetail = () => {
     // console.log('goodbye', spotImg)
     // console.log('SPOT DETAILS', spotDetails.SpotImages)
     // console.log('hi')
-    const currentUser = useSelector(state => state.session.user);
-    const spotDetails = useSelector(state => state.spots.singleSpot);
-    const reviews = useSelector(state => state.reviews.spot)
-    const allReviews = Object.values(reviews);
+
     let reviewExists;
     if (!allReviews.length) {
         reviewExists = true;
@@ -130,6 +189,8 @@ const SpotDetail = () => {
     //     }
 
     // }
+
+
 
     const newReviewRedirect = () => {
         history.push(`/spots/${spotId}/new-review`)
@@ -288,7 +349,7 @@ const SpotDetail = () => {
                             </div>
                         </div>
 
-                        <div id='spot-description' className='host-information'>
+                        <div id='spot-description' >
                             Spot Description: {spotDetails.description}
                         </div>
 
@@ -370,19 +431,21 @@ const SpotDetail = () => {
                                         </div>
                                         <DateRange
                                             ranges={dateRange}
-                                            moveRangeOnFirstSelection={true}
+                                            moveRangeOnFirstSelection={false}
                                             retainEndDateOnFirstSelection={true}
                                             editableDateInputs={false}
                                             showMonthAndYearPickers={false}
-                                            rangeColors={['black']}
+                                            rangeColors={['black', 'pink']}
                                             showPreview={false}
                                             onChange={(e) => { setDateRange([e.selection]) }}
                                             showDateDisplay={false}
                                             months={2}
                                             minDate={addDays(new Date(), 1)}
                                             direction={"horizontal"}
+                                            disabledDates={bookedRanges}
                                             className="dateRange-calendar"
-                                        // disabledDates={getBookedDates()}
+                                            allowDisabledSelection={false}
+                                        // disabledDay={getBookedDates()}
                                         />
                                         <div id='close-bookings-wrapper'>
                                             <div id='clear-dates-btn'
@@ -405,14 +468,16 @@ const SpotDetail = () => {
                                             <button id='reserve-booking' onClick={() => setOpenCalendar(!openCalendar)}>
                                                 <span className="reserve-inner-span">Check availability</span>
                                             </button> :
-                                            <button id='reserve-booking' onClick={() => setOpenCalendar(!openCalendar)}> 
-                                            {/* change onClick to pull up confirm booking modal */}
+                                            <button id='reserve-booking' onClick={(e) => newBookingSubmit(e)}>
+                                                {/* change onClick to pull up confirm booking modal */}
                                                 <span className="reserve-inner-span">Reserve</span>
                                             </button>
 
                                         }
                                     </div>
                                 )}
+
+
 
                                 {currentUser && currentUser.id !== spotDetails.ownerId
                                     && new Date(dateRange[0].startDate).toLocaleDateString() !== (new Date(dateRange[0].endDate)).toLocaleDateString()
@@ -456,7 +521,7 @@ const SpotDetail = () => {
                                 )}
 
                                 {/* COMMENT BACK IN AFTER DONE WITH BUTTON CSS */}
-                                {/* {currentUser && currentUser.id !== spotDetails.ownerId && reviewExists && openCalendar === false && (
+                                {currentUser && currentUser.id !== spotDetails.ownerId && reviewExists && openCalendar === false && (
                                     <div id='leave-review-container'>
                                         <div>Been here before?</div>
                                         <button
@@ -466,7 +531,7 @@ const SpotDetail = () => {
                                             Leave a review
                                         </button>
                                     </div>
-                                )} */}
+                                )}
 
 
                             </div>
