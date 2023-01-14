@@ -1,4 +1,4 @@
-import { getSpotDetails } from "../../store/spots"
+import { clearSpot, getSpotDetails } from "../../store/spots"
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -29,22 +29,25 @@ const SpotDetail = () => {
 
     let bookedRanges = [];
 
-    const getBookedDates = () => {
-        bookedRanges = [];
+    // const getBookedDates = () => {
+    //     bookedRanges = [];
 
-       if (allSpotBookings.length > 0){ allSpotBookings?.forEach(booking => {
-            bookedRanges.push({ startDate: parseISO(booking.startDate), endDate: parseISO(booking.endDate), key: "disabled", disabled: true })
-        })}
+    //     if (allSpotBookings.length > 0) {
+    //         allSpotBookings?.forEach(booking => {
+    //             bookedRanges.push({ startDate: parseISO(booking.startDate), endDate: parseISO(booking.endDate), key: "disabled", disabled: true })
+    //         })
+    //     }
 
-        console.log('bookedRanges take 1', bookedRanges)
-        return bookedRanges
-    }
+    //     console.log('bookedRanges take 1', bookedRanges)
+    //     return bookedRanges
+    // }
 
     useEffect(() => {
         dispatch(getSpotDetails(spotId))
         let books = dispatch(getAllBookingsThunk(spotId))
+        return () => dispatch(clearSpot())
         // let grey = getBookedDates();
-    }, [dispatch, spotId])
+    }, [dispatch, spotId, currentUser])
 
 
 
@@ -52,7 +55,7 @@ const SpotDetail = () => {
     // calendar
     const [openCalendar, setOpenCalendar] = useState(false);
     const [dateRange, setDateRange] = useState([
-       {
+        {
             startDate: addDays(new Date(), 1),
             endDate: addDays(new Date(), 7),
             key: 'selection'
@@ -81,19 +84,19 @@ const SpotDetail = () => {
             }
         })
         if (booking) {
-            window.alert('new booking successful')
+            window.alert(`Your booking is set for ${startDate} - ${endDate}. We have taken care of the cost for this booking: $${((spotDetails.price * calculateNights(dateRange[0].startDate, dateRange[0].endDate)) + 140 + 229 + 7.77)}. Enjoy your trip!`)
             history.push('/')
         } else {
-            window.alert('UH OH... Unfortunately, our site is so popular right now, Bookings have been temporarily disabled. Please try again soon. We apologize for any inconvenience this may have caused.', booking.errors.endDate )
+            window.alert('UH OH... Unfortunately, the desired booking dates conflict with an existing booking date. Please select a new date.')
         }
     }
 
-    useEffect(() => {
-        if (bookingErrors.startDate || bookingErrors.endDate) {
-            window.alert(bookingErrors.startDate ? bookingErrors.startDate : bookingErrors.endDate ? bookingErrors.endDate : "wtf")
-        }
+    // useEffect(() => {
+    //     if (bookingErrors.startDate || bookingErrors.endDate) {
+    //         window.alert(bookingErrors.startDate ? bookingErrors.startDate : bookingErrors.endDate ? bookingErrors.endDate : "wtf")
+    //     }
 
-    }, [bookingErrors])
+    // }, [bookingErrors])
 
     const calculateNights = (start, end) => {
         let startDate = new Date(start);
@@ -189,7 +192,7 @@ const SpotDetail = () => {
     }
 
 
-    if (!Object.keys(spotDetails).length) {
+    if (!Object.values(spotDetails).length) {
         // console.log('if NO spotDetails safety hitting')
         return null;
     }
@@ -234,20 +237,20 @@ const SpotDetail = () => {
                 <div id='spotDetails-images-container'>
                     <div id='bigImg-div'>
                         <img id='big-img' alt='beautiful spotImage' src={spotDetails.SpotImages[0]?.url ||
-                            'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg'} />
+                            'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg' } />
                     </div>
                     <div className="smallImage-column-divs">
                         <div>
-                            <img className='small-img' src={spotDetails.SpotImages[1]?.url || 'https://i.imgur.com/AwZ6ekH.png'} alt='small house' />
+                            <img className='small-img' src={spotDetails.SpotImages[1]?.url } alt='small house' />
                         </div>
                         <div>
-                            <img className='small-img' src={spotDetails.SpotImages[2]?.url || 'https://i.imgur.com/AwZ6ekH.png'} alt='small house' />
+                            <img className='small-img' src={spotDetails.SpotImages[2]?.url } alt='small house' />
                         </div>
                     </div>
                     <div className='smallImage-column-divs'>
-                        <img id='small-img-TR' src={spotDetails.SpotImages[3]?.url || 'https://i.imgur.com/AwZ6ekH.png'} alt='small house' />
+                        <img id='small-img-TR' src={spotDetails.SpotImages[3]?.url } alt='small house' />
                         <div >
-                            <img id='small-img-BR' src={spotDetails.SpotImages[4]?.url || 'https://i.imgur.com/AwZ6ekH.png'} alt='small house' />
+                            <img id='small-img-BR' src={spotDetails.SpotImages[4]?.url } alt='small house' />
                         </div>
                     </div>
 
@@ -445,10 +448,10 @@ const SpotDetail = () => {
                                             className="dateRange-calendar"
                                             allowDisabledSelection={false}
                                             disabledDay={(date) => {
-                                                let parsedDate = new Date(date).toJSON().slice(0,10)
+                                                let parsedDate = new Date(date).toJSON().slice(0, 10)
                                                 for (let i = 0; i < allSpotBookings.length; i++) {
                                                     let booking = allSpotBookings[i]
-                                                    if (booking.startDate <= parsedDate && booking.endDate >= parsedDate) return true 
+                                                    if (booking.startDate <= parsedDate && booking.endDate >= parsedDate) return true
                                                 }
                                             }}
                                         />
@@ -470,9 +473,13 @@ const SpotDetail = () => {
                                 {currentUser && currentUser.id !== spotDetails.ownerId && openCalendar === false && (     // && booking for this spot does not exist for this user
                                     <div>
                                         {new Date(dateRange[0].startDate).toLocaleDateString() === (new Date(dateRange[0].endDate)).toLocaleDateString() ?
-                                            <button id='reserve-booking' onClick={() => setOpenCalendar(!openCalendar)}>
-                                                <span className="reserve-inner-span">Check availability</span>
-                                            </button> :
+                                            <>
+                                                <div className="noCharge-disclaimer">You won't be charged yet</div>
+                                                <button id='reserve-booking' onClick={() => setOpenCalendar(!openCalendar)}>
+                                                    <span className="reserve-inner-span">Check availability</span>
+                                                </button>
+                                            </>
+                                            :
                                             <button id='reserve-booking' onClick={(e) => newBookingSubmit(e)}>
                                                 {/* change onClick to pull up confirm booking modal */}
                                                 <span className="reserve-inner-span">Reserve</span>
@@ -482,14 +489,12 @@ const SpotDetail = () => {
                                     </div>
                                 )}
 
-
-
                                 {currentUser && currentUser.id !== spotDetails.ownerId
                                     && new Date(dateRange[0].startDate).toLocaleDateString() !== (new Date(dateRange[0].endDate)).toLocaleDateString()
                                     && (
                                         <div>
                                             <div className="selected-booking-summary-container">
-                                                <div className="noCharge-disclaimer">You won't be charged yet</div>
+                                                {/* <div className="noCharge-disclaimer">You won't be charged yet</div> */}
                                                 <div className="booking-summary-row">
                                                     <span className="bsr-left"> {'$' + spotDetails.price} x {calculateNights(dateRange[0].startDate, dateRange[0].endDate)} nights</span>
                                                     <span className="bsr-right">${spotDetails.price * calculateNights(dateRange[0].startDate, dateRange[0].endDate)} </span>
