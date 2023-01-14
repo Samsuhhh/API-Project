@@ -61,11 +61,11 @@
 
 #loginBtn {
     margin-top: 15px;
-    width: 300px;
+    width: 100%;
     height: 35px;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 16px 0px;
-    background-color: #FF5A5F;
-    border-radius: 20px;
+    background-color: #E31C5F;
+    border-radius: 5px;
     border: lightgrey 1px solid;
     color: white;
 }
@@ -76,11 +76,11 @@
 
 #demoBtn {
     margin-top: 7px;
-    width: 300px;
+    width: 100%;
     height: 35px;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 16px 0px;
-    background-color: #FF5A5F;
-    border-radius: 20px;
+    background-color: #E31C5F;
+    border-radius: 5px;
     border: lightgrey 1px solid;
     color: white;
 }

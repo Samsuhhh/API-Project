@@ -26,6 +26,7 @@ const SpotDetail = () => {
     const reviews = useSelector(state => state.reviews.spot)
     const allReviews = Object.values(reviews);
     const allSpotBookings = useSelector(state => state.bookings.spotBookings)
+
     let bookedRanges = [];
 
     const getBookedDates = () => {
@@ -39,6 +40,15 @@ const SpotDetail = () => {
         return bookedRanges
     }
 
+    useEffect(() => {
+        dispatch(getSpotDetails(spotId))
+        let books = dispatch(getAllBookingsThunk(spotId))
+        // let grey = getBookedDates();
+    }, [dispatch, spotId])
+
+
+
+
     // calendar
     const [openCalendar, setOpenCalendar] = useState(false);
     const [dateRange, setDateRange] = useState([
@@ -50,19 +60,10 @@ const SpotDetail = () => {
     ])
 
 
-    // true onLoad useEffect
-    useEffect(() => {
-        console.log('is it me')
-        let books = dispatch(getAllBookingsThunk(spotId))
-        let grey = getBookedDates();
-
-    }, [spotId])
-
-
 
     //submit booking variables
-    const [startDate, setStartDate] = useState(parseISO(new Date(dateRange[0].startDate)));
-    const [endDate, setEndDate] = useState(parseISO(new Date(dateRange[0].endDate)));
+    const [startDate, setStartDate] = useState(new Date(dateRange[0].startDate));
+    const [endDate, setEndDate] = useState(new Date(dateRange[0].endDate));
     const [bookingErrors, setBookingErrors] = useState({})
 
     const newBookingSubmit = async (e) => {
@@ -83,16 +84,16 @@ const SpotDetail = () => {
             window.alert('new booking successful')
             history.push('/')
         } else {
-            window.alert('UH OH... Unfortunately, our site is so popular right now, Bookings have been temporarily disabled. Please try again soon. We apologize for any inconvenience this may have caused.')
+            window.alert('UH OH... Unfortunately, our site is so popular right now, Bookings have been temporarily disabled. Please try again soon. We apologize for any inconvenience this may have caused.', booking.errors.endDate )
         }
     }
 
-    // useEffect(() => {
-    //     if (bookingErrors.startDate || bookingErrors.endDate) {
-    //         window.alert(bookingErrors.startDate ? bookingErrors.startDate : bookingErrors.endDate ? bookingErrors.endDate : "wtf")
-    //     }
+    useEffect(() => {
+        if (bookingErrors.startDate || bookingErrors.endDate) {
+            window.alert(bookingErrors.startDate ? bookingErrors.startDate : bookingErrors.endDate ? bookingErrors.endDate : "wtf")
+        }
 
-    // }, [bookingErrors])
+    }, [bookingErrors])
 
     const calculateNights = (start, end) => {
         let startDate = new Date(start);
@@ -125,8 +126,8 @@ const SpotDetail = () => {
     useEffect(() => {
         if (new Date(dateRange[0].startDate).toLocaleDateString() !== new Date(dateRange[0].endDate).toLocaleDateString()
         ) {
-            setStartDate(dateRange[0].startDate.toLocaleDateString());
-            setEndDate(dateRange[0].endDate.toLocaleDateString());
+            setStartDate(new Date(dateRange[0].startDate).toLocaleDateString());
+            setEndDate(new Date(dateRange[0].endDate).toLocaleDateString());
             setOpenCalendar(false);
         }
     }, [dateRange])
@@ -147,15 +148,6 @@ const SpotDetail = () => {
         };
     }
 
-    useEffect(() => {
-        dispatch(getSpotDetails(spotId))
-    }, [dispatch, spotId])
-
-
-    if (!Object.keys(spotDetails).length) {
-        // console.log('if NO spotDetails safety hitting')
-        return null;
-    }
 
     const updateRedirect = async (e) => {
         // let updatedSpot = await dispatch(getSpotDetails(spotId));
@@ -195,6 +187,13 @@ const SpotDetail = () => {
     const newReviewRedirect = () => {
         history.push(`/spots/${spotId}/new-review`)
     }
+
+
+    if (!Object.keys(spotDetails).length) {
+        // console.log('if NO spotDetails safety hitting')
+        return null;
+    }
+
 
 
     return (
@@ -445,7 +444,13 @@ const SpotDetail = () => {
                                             disabledDates={bookedRanges}
                                             className="dateRange-calendar"
                                             allowDisabledSelection={false}
-                                        // disabledDay={getBookedDates()}
+                                            disabledDay={(date) => {
+                                                let parsedDate = new Date(date).toJSON().slice(0,10)
+                                                for (let i = 0; i < allSpotBookings.length; i++) {
+                                                    let booking = allSpotBookings[i]
+                                                    if (booking.startDate <= parsedDate && booking.endDate >= parsedDate) return true 
+                                                }
+                                            }}
                                         />
                                         <div id='close-bookings-wrapper'>
                                             <div id='clear-dates-btn'
