@@ -112,14 +112,20 @@ const SpotDetail = () => {
     useEffect(() => {
         if (!openCalendar && document.getElementById("reserve-booking")) {
             let btn = document.getElementById("reserve-booking")
-            // let editBtn = document.getElementById("edit-spot-btn")
-            // let deleteBtn = document.getElementById("delete-spot-btn")
-            // let reviewBtn = document.getElementById("create-review-btn")
+            let editBtn = document.getElementById("edit-spot-btn")
+            let deleteBtn = document.getElementById("delete-spot-btn")
+            let reviewBtn = document.getElementById("create-review-btn")
 
             btn.onmousemove = function (e) {
                 let size = e.target.getBoundingClientRect();
                 let x = e.clientX - size.left;
                 btn.style.setProperty("--x", x + "px");
+            };
+
+            reviewBtn.onmousemove = function (e) {
+                let size = e.target.getBoundingClientRect();
+                let x = e.clientX - size.left;
+                reviewBtn.style.setProperty("--x", x + "px");
             };
         }
 
