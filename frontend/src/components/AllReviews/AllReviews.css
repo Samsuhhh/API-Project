@@ -14,6 +14,7 @@
     height: fit-content;
     display: grid;
     column-gap: 25px;
+    row-gap: 25px;
     grid-template-columns: repeat(2, 1fr);
     /* grid-template-areas:
         "a a"

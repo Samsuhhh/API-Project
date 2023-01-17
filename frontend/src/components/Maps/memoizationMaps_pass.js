@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getKey } from '../../store/maps';
-import Maps from './Maps';
+// import Maps from './Maps';
 
-const MapContainer = () => {
+const SpotMap = ({spot}) => {
     const key = useSelector((state) => state.maps.key);
     const dispatch = useDispatch();
 
@@ -19,8 +19,9 @@ const MapContainer = () => {
     }
 
     return (
-        <Maps apiKey={key} />
+        // <Maps apiKey={key} spot={spot} />
+        <div></div>
     );
 };
 
-export default MapContainer;
+export default SpotMap;

@@ -12,7 +12,8 @@ import { addDays, parseISO, toDate } from 'date-fns';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { createBookingThunk, getAllBookingsThunk } from "../../store/bookings";
-import MapContainer from "../Maps/MapContainer";
+import MapContainer from "../Maps/SpotMap";
+import SpotMap from "../Maps/SpotMap";
 
 
 const SpotDetail = () => {
@@ -556,7 +557,7 @@ const SpotDetail = () => {
                                         </div>
                                     )}
 
-                                {currentUser && currentUser.id === spotDetails.ownerId && openCalendar === false && (
+                                {currentUser && currentUser.id === spotDetails.ownerId && !openCalendar && (
                                     <div id='owner-auth-btns-container'>
                                         <div className="noCharge-disclaimer">This location belongs to you.</div>
                                         <button id='edit-spot-btn' onClick={updateRedirect}>Update your spot</button>
@@ -565,7 +566,7 @@ const SpotDetail = () => {
                                 )}
 
                                 {/* COMMENT BACK IN AFTER DONE WITH BUTTON CSS */}
-                                {currentUser && currentUser.id !== spotDetails.ownerId && reviewExists && openCalendar === false && (
+                                { currentUser.id !== spotDetails.ownerId && reviewExists && openCalendar === false && (
                                     <div id='leave-review-container'>
                                         <div>Been here before?</div>
                                         <button
@@ -590,7 +591,7 @@ const SpotDetail = () => {
             <section id="spotDetails-maps-section">
                 <div id="spotDetails-mapContainer">
                     <div id="spotDetails-maps-header">Where you'll be</div>
-                    <MapContainer />
+                    <SpotMap spot={spotDetails}/>
                 </div>
             </section>
         </div >
