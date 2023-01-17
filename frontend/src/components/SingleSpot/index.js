@@ -4,15 +4,15 @@ import './SingleSpot.css';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
-const SingleSpot = (spot) => {
+const SingleSpot = ({spot}) => {
 
-    console.log('SINGLE SPOT', spot)
+    // console.log('SINGLE SPOT', spot)
 
     const [isLoaded, setIsLoaded] = useState(false);
-    setTimeout(() => {
-       setIsLoaded(true) 
-    }, 500);
 
+    setTimeout(() => { setIsLoaded(true) }, 300);
+
+    if(!spot) return null;
 
     if (!isLoaded) {
         return (
@@ -27,34 +27,33 @@ const SingleSpot = (spot) => {
                 <Skeleton style={{ height: "16px", width: "50px", borderRadius: "16px" }}></Skeleton>
             </>
         )
-    }
-    return isLoaded && (
+    } return isLoaded && (
         <>
-            <NavLink id='nav-link' to={`/spots/${spot.spot.id}`}>
+            <NavLink id='nav-link' to={`/spots/${spot.id}`}>
                 <div className="spot-card-container">
                     <div className='image-section'>
-                        <img id='spot-img' alt='beautiful spotImage' src={spot.spot.previewImage ||
+                        <img id='spot-img' alt='beautiful spotImage' src={spot.previewImage ||
                             'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg'}
                         />
                     </div>
                     <div id='singleSpot-details-container'>
                         <div id='location-avgRating' className='spot-values'>
                             <div id='location'>
-                                {`${spot.spot.city}, ${spot.spot.state}`}
+                                {`${spot.city}, ${spot.state}`}
                             </div>
                             <div className='spot-values'>
-                                {'★ ' + spot.spot.avgRating}
+                                {'★ ' + spot.avgRating}
                             </div>
                         </div>
                         <div className='spot-values'>
-                            {spot.spot.name}
+                            {spot.name}
                         </div>
                         <div className='spot-values'>
-                            {spot.spot.address}
+                            {spot.address}
                         </div>
                         <div className='spot-values'>
                             <span style={{ fontWeight: '600' }}>
-                                ${spot.spot.price}
+                                ${spot.price}
                             </span>
                             <span style={{ paddingLeft: '3px' }}>night</span>
                         </div>

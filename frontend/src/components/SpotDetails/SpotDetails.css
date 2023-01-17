@@ -25,7 +25,7 @@
     padding-right: 80px; */
     font-weight: 570;
     height: 80px;
-    justify-content: start;
+    justify-content: flex-start;
     width: 1120px;
     font-family: system-ui;
     /* box-sizing: border-box; */
@@ -784,6 +784,7 @@
     width: 24px;
     height: 24px;
 }
+
 
 #spotDetails-overlay-shadow{
     height: 100px;

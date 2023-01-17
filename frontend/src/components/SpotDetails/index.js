@@ -47,7 +47,7 @@ const SpotDetail = () => {
     useEffect(() => {
         dispatch(getSpotDetails(spotId))
         let books = dispatch(getAllBookingsThunk(spotId))
-        return () => dispatch(clearSpot())
+        return () => dispatch(clearSpot());
         // let grey = getBookedDates();
     }, [dispatch, spotId, currentUser])
 
@@ -201,7 +201,7 @@ const SpotDetail = () => {
 
 
     if (!Object.values(spotDetails).length) {
-        // console.log('if NO spotDetails safety hitting')
+        console.log('if NO spotDetails safety hitting')
         return null;
     }
 
@@ -591,7 +591,7 @@ const SpotDetail = () => {
             <section id="spotDetails-maps-section">
                 <div id="spotDetails-mapContainer">
                     <div id="spotDetails-maps-header">Where you'll be</div>
-                    <SpotMap spot={spotDetails}/>
+                    <SpotMap lat={spotDetails.lat} lng={spotDetails.lng}/>
                 </div>
             </section>
         </div >

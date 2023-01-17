@@ -9,19 +9,21 @@ import './allSpots.css'
 const SpotsBrowser = () => {
     const dispatch = useDispatch();
 
-    const spots = useSelector(state => state.spots.allSpots);
+    const spots = useSelector(state => Object.values(state.spots.allSpots));
     console.log('ALL SPOTS', spots)
     const [count, setCount] = useState(0);
 
+    
     useEffect(() => {
         let counter = count;
         let countInterval = setInterval(() => {
-            if (counter >= Object.values(spots).length) {
+            if (counter >= spots.length) {
                 clearInterval(countInterval)
             } else {
-                setCount(count => count + 1)
+                setCount(count => count + 1);
             }
-        }, 60);
+        }, 30);
+
         return () => (clearInterval(countInterval))
     }, [spots])
 
@@ -30,10 +32,10 @@ const SpotsBrowser = () => {
         console.log('get all spots dispatch', getAllspotsDispatch);
     }, [dispatch])
 
-    const allSpotsArray = Object.values(spots).slice(0, count);
-
+    const allSpotsArray = spots.slice(0, count);
+    console.log('allSpotsArray', allSpotsArray)
     // return null;
-    if (!(spots)) return null;
+    if (!spots.length) return null;
 
 
 
@@ -42,16 +44,15 @@ const SpotsBrowser = () => {
 
             <div className='SpotsContainer'>
 
-                {allSpotsArray.map(spot => {
-                    return <div key={spot.id} className='single-card'>
+                {allSpotsArray.map(spot => (
+                     <div key={spot.id} className='single-card'>
 
-                        <SingleSpot spot={spot}>
+                        <SingleSpot spot={spot} key={spot.id}>
 
                         </SingleSpot>
 
-
                     </div>
-                })}
+                ))}
 
 
             </div>
