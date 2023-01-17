@@ -1,6 +1,8 @@
 # AirNbN 
 ![Alt text](./frontend/src/assets/readMeLogo.svg)
 
+
+
 If you haven't guessed it already, AirNbN is a web app inspired by [AirBnB](https://www.airbnb.com/).
 AirNbN can be used as online marketplace for lodging, primarily homestays for vacation rentals, and tourism activities.
 AirNbN's greatest attraction is the ability to leverage nights at the houses you own and trade them for nights in others' homes, the only requirement being that both owners are in agreement.
