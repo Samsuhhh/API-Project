@@ -43,7 +43,7 @@
     flex-direction: row;
     justify-content: space-between;
     width: 1120px;
-    height: 600px;
+    height: 100%;
     border-bottom: 1px solid lightgrey;
     /* border: 2px blue solid; */
     /* margin: 40px; */
@@ -101,7 +101,7 @@
 
 #appAcademy-disclaimer {
     border-bottom: 1px lightgrey solid;
-    padding-bottom: 15px;
+    padding-bottom: 20px;
     margin-top: 20px;
     display: flex;
     flex-direction: column;
@@ -114,7 +114,14 @@
     margin-top: 20px;
     /* padding-left: 12px; */
     font-weight: 400;
-    color: rgb(34, 34, 34)
+    color: rgba(34, 34, 34, .9);
+    border-bottom: 1px lightgrey solid;
+    padding-bottom: 20px;
+}
+
+#basic-calendar-display{
+    width: fit-content;
+    height: fit-content;
 }
 
 #right-modal {

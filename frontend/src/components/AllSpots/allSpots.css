@@ -72,7 +72,7 @@
     }    
 }
 
-@media screen and (min-width: 0px) and (max-width: 480px) {
+@media screen and (max-width: 480px) {
     .SpotsContainer {
         display: grid;
         grid-template-columns: repeat(1, 1fr);

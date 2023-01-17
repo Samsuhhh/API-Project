@@ -350,8 +350,8 @@ const SpotDetail = () => {
                                 Everything on this site is 1000% real, venmo: @Samsuhhh for donations cuz I'm broke.
                             </div>
                             <div>
-                                <a style={{ color: 'black', paddingLeft: '3px', paddingBottom: '3px' }}
-                                    href='https://www.appacademy.io/'>
+                                <a style={{ color: 'rgb(34,34,34', paddingLeft: '3px', paddingBottom: '3px' }}
+                                    href='https://www.appacademy.io/' target="_blank" rel="noreferrer">
                                     Learn More
                                 </a>
                             </div>
@@ -359,6 +359,33 @@ const SpotDetail = () => {
 
                         <div id='spot-description' >
                             Spot Description: {spotDetails.description}
+                        </div>
+
+                        <div id="basic-calendar-display">
+                            <DateRange
+                                ranges={dateRange}
+                                moveRangeOnFirstSelection={false}
+                                retainEndDateOnFirstSelection={true}
+                                editableDateInputs={false}
+                                showMonthAndYearPickers={false}
+                                rangeColors={['black', 'pink']}
+                                // showPreview={false}
+                                onChange={(e) => { setDateRange([e.selection]) }}
+                                showDateDisplay={false}
+                                months={2}
+                                minDate={addDays(new Date(), 1)}
+                                direction={"horizontal"}
+                                disabledDates={bookedRanges}
+                                className="dateRange-calendar"
+                                allowDisabledSelection={false}
+                                disabledDay={(date) => {
+                                    let parsedDate = new Date(date).toJSON().slice(0, 10)
+                                    for (let i = 0; i < allSpotBookings.length; i++) {
+                                        let booking = allSpotBookings[i]
+                                        if (booking.startDate <= parsedDate && booking.endDate >= parsedDate) return true
+                                    }
+                                }}
+                            />    
                         </div>
 
 
