@@ -6,7 +6,12 @@ const DELETE_ONE = 'spots/DELETE_ONE';
 const LOAD_ONE = 'spots/LOAD_ONE';
 const LOAD_CURRENT = 'spots/LOAD_CURRENT';
 const ADD_IMAGE = 'spots/ADD_IMAGE';
+const CLEAR_SPOT = 'spots/CLEAR_SPOT';
 
+
+export const clearSpot = () => ({
+    type: CLEAR_SPOT
+})
 
 const load = (spots) => ({
     type: LOAD_SPOTS,
@@ -208,7 +213,10 @@ const spotsReducer = (state = initialState, action) => {
                 newState,
                 singleSpot: {}
             }
-
+        case CLEAR_SPOT:
+            newState = {...state};
+            newState.singleSpot = {}
+            return newState
         default:
             return state
     }

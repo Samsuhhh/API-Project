@@ -10,18 +10,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    animation-name: bounce;
-    animation-duration: .1s;
+    /* animation-name: bounce; */
+    /* animation-duration: .1s; */
     /* border: red 5px; */
     width: 100%;
     height: 100%;
 }
 
-@keyframes bounce {
+/* @keyframes bounce {
     0% {
         top: 300px
     }
-}
+} */
 
 #top-modal {
     display: flex;

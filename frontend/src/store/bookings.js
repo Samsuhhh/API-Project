@@ -27,6 +27,7 @@ export const createBookingThunk = (booking) => async dispatch => {
         console.log('NEW BOOKING', newBooking);
         return newBooking;
     }
+    return res;
 }
 
 export const getAllBookingsThunk = (spotId) => async dispatch => {
