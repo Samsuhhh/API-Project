@@ -1,6 +1,7 @@
 # AirNbN 
 ![Alt text](./frontend/src/assets/readMeLogo.svg)
-<!-- <img src="./frontend/src/assets/readMeLogo.svg"> -->
+
+
 
 If you haven't guessed it already, AirNbN is a web app inspired by [AirBnB](https://www.airbnb.com/).
 AirNbN can be used as online marketplace for lodging, primarily homestays for vacation rentals, and tourism activities.
