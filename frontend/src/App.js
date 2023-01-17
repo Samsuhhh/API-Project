@@ -12,6 +12,7 @@ import CreateSpotForm from "./components/CreateSpotForm";
 import UpdateSpotFormPage from "./components/UpdateSpot";
 import CreateReviewForm from "./components/CreateReviewForm";
 import GetCurrentUser from "./components/GetCurrentUser";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,7 +35,8 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route exact path='/'>
-            <SpotsBrowser></SpotsBrowser>
+            <SpotsBrowser/>
+            <Footer/>
           </Route>
           <Route exact path={'/spots/new'}>
             <CreateSpotForm />
