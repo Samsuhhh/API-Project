@@ -12,6 +12,7 @@ import { addDays, parseISO, toDate } from 'date-fns';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { createBookingThunk, getAllBookingsThunk } from "../../store/bookings";
+import MapContainer from "../Maps/MapContainer";
 
 
 const SpotDetail = () => {
@@ -243,20 +244,20 @@ const SpotDetail = () => {
                 <div id='spotDetails-images-container'>
                     <div id='bigImg-div'>
                         <img id='big-img' alt='beautiful spotImage' src={spotDetails.SpotImages[0]?.url ||
-                            'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg' } />
+                            'https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg'} />
                     </div>
                     <div className="smallImage-column-divs">
                         <div>
-                            <img className='small-img' src={spotDetails.SpotImages[1]?.url } alt='small house' />
+                            <img className='small-img' src={spotDetails.SpotImages[1]?.url} alt='small house' />
                         </div>
                         <div>
-                            <img className='small-img' src={spotDetails.SpotImages[2]?.url } alt='small house' />
+                            <img className='small-img' src={spotDetails.SpotImages[2]?.url} alt='small house' />
                         </div>
                     </div>
                     <div className='smallImage-column-divs'>
-                        <img id='small-img-TR' src={spotDetails.SpotImages[3]?.url } alt='small house' />
+                        <img id='small-img-TR' src={spotDetails.SpotImages[3]?.url} alt='small house' />
                         <div >
-                            <img id='small-img-BR' src={spotDetails.SpotImages[4]?.url } alt='small house' />
+                            <img id='small-img-BR' src={spotDetails.SpotImages[4]?.url} alt='small house' />
                         </div>
                     </div>
 
@@ -385,7 +386,7 @@ const SpotDetail = () => {
                                         if (booking.startDate <= parsedDate && booking.endDate >= parsedDate) return true
                                     }
                                 }}
-                            />    
+                            />
                         </div>
 
 
@@ -585,6 +586,12 @@ const SpotDetail = () => {
             </div>
             <section id='reviews-container'>
                 <SpotReviews />
+            </section>
+            <section id="spotDetails-maps-section">
+                <div id="spotDetails-mapContainer">
+                    <div id="spotDetails-maps-header">Where you'll be</div>
+                    <MapContainer />
+                </div>
             </section>
         </div >
 

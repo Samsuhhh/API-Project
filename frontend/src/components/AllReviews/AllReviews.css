@@ -1,8 +1,17 @@
 
+#review-container-style {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    /* border: 5px solid blue; */
+}
 
 #existing-reviews {
     width: 1120px;
-    height: 400px;
+    height: fit-content;
     display: grid;
     column-gap: 25px;
     grid-template-columns: repeat(2, 1fr);
@@ -12,16 +21,21 @@
         "a a"; */
     /* border: 2px solid pink; */
     font-family: system-ui;
-
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid lightgrey;
 }
 
-#review-container-style {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
 
+#reviews-header {
+    width: 1120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 500;
+    color: rgb(34, 34, 34);
+    margin: 25px 0;
 }
 
 #delete-review-btn {

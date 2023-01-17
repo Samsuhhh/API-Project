@@ -465,14 +465,6 @@
     width: 40px;
 }
 
-#reviews-header {
-    width: 1120px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-}
-
 #reviews-container {
     display: block;
     text-align: center;
@@ -744,4 +736,33 @@
 
 #close-bookings-btn:hover {
     cursor: pointer;
+}
+
+
+/* Spot Details Map Styling  */
+
+#spotDetails-maps-section{
+    width: 100vw;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 100px;
+    box-sizing: border-box;
+}
+
+#spotDetails-maps-header{
+    font-size: 24px;
+    font-weight: 500;
+    color: rgb(34, 34, 34);
+    margin-bottom: 25px;
+}
+
+#spotDetails-mapContainer{
+    /* display: flex;
+    justify-content: center; */
+    width: 1120px;
+    height: 100%;
+    /* border: 5px solid red; */
+    box-sizing: border-box;
+    padding-bottom: 25px;
 }

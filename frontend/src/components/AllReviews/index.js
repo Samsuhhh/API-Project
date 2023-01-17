@@ -38,7 +38,7 @@ const SpotReviews = () => {
         <a id='all_reviews_jump'>
             <div id='review-container-style'>
                 <div id='reviews-header'>
-                    <h1>{singleSpot.avgRating === null ? `NEW • ${singleSpot.numReviews} reviews` : `★  ${singleSpot.avgRating} • ${singleSpot.numReviews} reviews `}</h1>
+                    {singleSpot.avgRating === null ? `NEW • ${singleSpot.numReviews} reviews` : `★  ${singleSpot.avgRating} • ${singleSpot.numReviews} reviews `}
                     {/* <h1 >★ {singleSpot.avgRating} &#x2022; {singleSpot.numReviews} reviews</h1> */}
 
                 </div>

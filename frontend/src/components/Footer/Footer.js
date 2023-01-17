@@ -1,7 +1,17 @@
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import './footer.css';
 
 const Footer = () => {
 
+    // const location = useLocation();
+
+    // useEffect(() => {
+    //     if (location.pathname === '/spots/3') { 
+    //         let wrap = document.getElementById('footer-wrapper')
+    //         wrap.style.setProperty("position", "absolute")
+    //     }
+    // })
 
     return (
         <div id="footer-wrapper">
