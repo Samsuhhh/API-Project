@@ -14,6 +14,9 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 import { createBookingThunk, getAllBookingsThunk } from "../../store/bookings";
 import MapContainer from "../Maps/SpotMap";
 import SpotMap from "../Maps/SpotMap";
+import { FullscreenModal, Modal } from "../../context/Modal";
+import BigMap from "../Maps/BigMap";
+import SpotBigMap from "../Maps/BigMap";
 
 
 const SpotDetail = () => {
@@ -27,7 +30,9 @@ const SpotDetail = () => {
     const spotDetails = useSelector(state => state.spots.singleSpot);
     const reviews = useSelector(state => state.reviews.spot)
     const allReviews = Object.values(reviews);
-    const allSpotBookings = useSelector(state => state.bookings.spotBookings)
+    const allSpotBookings = useSelector(state => state.bookings.spotBookings);
+
+    const [fsModal, setFsModal] = useState(false);
 
     let bookedRanges = [];
 
@@ -230,7 +235,7 @@ const SpotDetail = () => {
                         </a>
                         &#x2022;
                         <span style={{ color: "black", paddingLeft: '7px', paddingRight: '7px' }}>
-                            {spotDetails.city},{spotDetails.state}
+                            {spotDetails.city}, {spotDetails.state}
                         </span>
 
                         &#x2022;
@@ -593,21 +598,45 @@ const SpotDetail = () => {
             <div id="spotDetails-maps-section">
                 <div id="spotDetails-mapContainer">
                     <div id="spotDetails-maps-header">Where you'll be</div>
-                    <SpotMap lat={spotDetails.lat} lng={spotDetails.lng} />
+                    <SpotMap spot={spotDetails} />
                     <div id="map-description">
                         <div id='spot-map-description' >
-                            <span style={{fontWeight: "600"}}>{spotDetails.city}, {spotDetails?.state}, {spotDetails.country}</span>
-                           <span>{spotDetails.description}</span> 
+                            <span style={{ fontWeight: "600" }}>{spotDetails.city}, {spotDetails?.state}, {spotDetails.country}</span>
+                            <span>{spotDetails.description}</span>
                         </div>
-                        <div id="spot-show-more-redirect">
+                        <div id="spot-show-more-modal" onClick={() => setFsModal(true)}>
                             <span>Show more</span>
                             <svg transform="rotate(90)" fill="#222222" height="10px" width="10px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 511.735 511.735" xmlSpace="preserve" stroke="#222222" strokeWidth="50.4694"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M508.788,371.087L263.455,125.753c-4.16-4.16-10.88-4.16-15.04,0L2.975,371.087c-4.053,4.267-3.947,10.987,0.213,15.04 c4.16,3.947,10.667,3.947,14.827,0l237.867-237.76l237.76,237.76c4.267,4.053,10.987,3.947,15.04-0.213 C512.734,381.753,512.734,375.247,508.788,371.087z"></path> </g> </g> </g></svg>
                         </div>
-                        
                     </div>
                 </div>
             </div>
+
+            {fsModal && (
+                <Modal onClose={() => setFsModal(false)} size={"big"} scrollable={false}>
+                    {/* <SpotBigMap onClose={() => setFsModal(false)} spot={spotDetails}/> */}
+                    <div id="fsModal-wrapper" onClose={() => setFsModal(false)}>
+                        <div id="fsModal-header">
+                            <div id="fsModal-close-div" onClick={() => setFsModal(false)}>
+                                <svg transform="rotate(-90)" fill="#222222" height="20px" width="20px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 511.735 511.735" xmlSpace="preserve" stroke="#222222" strokeWidth="50.4694"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M508.788,371.087L263.455,125.753c-4.16-4.16-10.88-4.16-15.04,0L2.975,371.087c-4.053,4.267-3.947,10.987,0.213,15.04 c4.16,3.947,10.667,3.947,14.827,0l237.867-237.76l237.76,237.76c4.267,4.053,10.987,3.947,15.04-0.213 C512.734,381.753,512.734,375.247,508.788,371.087z"></path> </g> </g> </g></svg>
+                            </div>
+                        </div>
+                        <div id="fsModal-body">
+                            <div id="fsBody-left">
+                                <h1>Where you'll be</h1>
+                                <span style={{ fontWeight: "600" }}>{spotDetails.city}, {spotDetails?.state}, {spotDetails.country}</span>
+                                <span style={{width: "90%", overflowWrap: "break-word"}}>{spotDetails.description}</span>
+                            </div>
+                            <div id="fsBody-right">
+                                <SpotMap onClose={() => setFsModal(false)} spot={spotDetails} />
+                            </div>
+                        </div>
+
+                    </div>
+                </Modal>
+            )}
         </div >
+
     )
 }
 

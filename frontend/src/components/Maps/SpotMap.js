@@ -11,9 +11,12 @@ const center = {
     lng: -122.405942,
 };
 
-const SpotMap = ({ lat, lng }) => {
+const SpotMap = ({ spot }) => {
+    console.log(spot, '#######')
+    const lat = spot.lat;
+    const lng = spot.lng;
 
-    const [currPosition, setCurrPosition] = useState({ lat: parseFloat(lat), lng: parseFloat(lng) })
+    const [currPosition, setCurrPosition] = useState({ lat: lat, lng: lng })
 
     // Not good practice, should run it in the backend but this is faster for personal project
     const { isLoaded } = useJsApiLoader({
@@ -21,9 +24,9 @@ const SpotMap = ({ lat, lng }) => {
         googleMapsApiKey: process.env.REACT_APP_MAPS_API_KEY
     });
 
-    console.log('$$$$$$$', lat, lng)
+    console.log('$$$$$$$', spot.lat, spot.lng)
 
-    if (!lat || !lng) return null;
+    if (!spot.lat || !spot.lng) return null;
 
     return (
         <>
@@ -36,7 +39,7 @@ const SpotMap = ({ lat, lng }) => {
 
                     >
                         <OverlayView
-                            position={{ lat: parseFloat(lat), lng: parseFloat(lng) }}
+                            position={{ lat: parseFloat(currPosition.lat), lng: parseFloat(currPosition.lng) }}
                             mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
                         >
                             <div id="spotDetails-overlay-shadow">

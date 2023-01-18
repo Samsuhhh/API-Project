@@ -804,7 +804,7 @@
     row-gap: 15px;
 }
 
-#spot-show-more-redirect{
+#spot-show-more-modal {
     text-decoration: underline;
     font-weight: 600;
     letter-spacing: .7px;
@@ -814,3 +814,68 @@
     padding-bottom: 50px;
     border-bottom: 1px solid lightgrey;
 }
+
+#spot-show-more-modal:hover{
+    cursor: pointer;
+}
+
+
+#fsModal-wrapper {
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+    /* position: fixed; */
+    padding: 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#fsModal-header {
+    width: 100%;
+    height: 50px;
+    /* border: 1px solid red; */
+    box-sizing: border-box;
+}
+
+#fsModal-close-div {
+    height: 35px;
+    width: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid blue; */
+    border-radius: 50%;
+}
+
+#fsModal-close-div:hover {
+    background-color: rgba(113, 113, 113, .2);
+    cursor: pointer;
+}
+
+#fsModal-body {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid purple; */
+    box-sizing: border-box;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+#fsBody-left {
+    width: 30%;
+    /* border: 3px solid gold; */
+    display: flex;
+    flex-direction: column;
+    line-height: 24px;
+    row-gap: 25px;
+}
+
+#fsBody-right {
+    width: 70%;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    }

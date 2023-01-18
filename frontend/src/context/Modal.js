@@ -23,30 +23,48 @@ export function ModalProvider({ children }) {
     );
 }
 
-export function Modal({ onClose, children }) {
+export function Modal({ onClose, children, size }) {
     const modalNode = useContext(ModalContext);
     if (!modalNode) return null;
 
-    return ReactDOM.createPortal(
-        <div id="modal">
-            <div id="modal-background" onClick={onClose} />
-
-            <div id="modal-content">
-
-                <div className='top-modal'>
-                    <img alt='close-button' id='close-modal' onClick={onClose}
-                        src='https://cdn-icons-png.flaticon.com/512/2723/2723639.png' />
-
-                    <div id='loginSignup'>Login or Sign Up</div>
-
+    if(size) {
+        return ReactDOM.createPortal(
+            <div id="fullscreen-modal-wrapper" className="slide-up-now">
+                {children}
+            </div>,
+            modalNode
+        )
+    } else {
+        return ReactDOM.createPortal(
+            <div id="modal">
+                <div id="modal-background" onClick={onClose} />
+    
+                <div id="modal-content">
+    
+                    <div className='top-modal'>
+                        <img alt='close-button' id='close-modal' onClick={onClose}
+                            src='https://cdn-icons-png.flaticon.com/512/2723/2723639.png' />
+    
+                        <div id='loginSignup'>Login or Sign Up</div>
+    
+                    </div>
+                    <div id='loginForm-styling'>
+    
+                        {children}
+                    </div>
                 </div>
-                <div id='loginForm-styling'>
+    
+            </div>,
+            modalNode
+        );
+    }
 
-                    {children}
-                </div>
-            </div>
-
-        </div>,
-        modalNode
-    );
 }
+
+// export function FullscreenModal({onClose, children}) {
+//     let bigModalNode = useContext(ModalContext);
+//     if (!bigModalNode) return null;
+
+    
+//     )
+// }
