@@ -124,11 +124,13 @@ const SpotDetail = () => {
                 btn.style.setProperty("--x", x + "px");
             };
 
-            reviewBtn.onmousemove = function (e) {
-                let size = e.target.getBoundingClientRect();
-                let x = e.clientX - size.left;
-                reviewBtn.style.setProperty("--x", x + "px");
-            };
+            if (reviewBtn) {
+                reviewBtn.onmousemove = function (e) {
+                    let size = e.target.getBoundingClientRect();
+                    let x = e.clientX - size.left;
+                    reviewBtn.style.setProperty("--x", x + "px");
+                };
+            }
         }
 
     }, [openCalendar])
@@ -566,7 +568,7 @@ const SpotDetail = () => {
                                 )}
 
                                 {/* COMMENT BACK IN AFTER DONE WITH BUTTON CSS */}
-                                { currentUser.id !== spotDetails.ownerId && reviewExists && openCalendar === false && (
+                                {currentUser.id !== spotDetails.ownerId && reviewExists && openCalendar === false && (
                                     <div id='leave-review-container'>
                                         <div>Been here before?</div>
                                         <button
@@ -588,14 +590,24 @@ const SpotDetail = () => {
             <section id='reviews-container'>
                 <SpotReviews />
             </section>
-            <section id="spotDetails-maps-section">
+            <div id="spotDetails-maps-section">
                 <div id="spotDetails-mapContainer">
                     <div id="spotDetails-maps-header">Where you'll be</div>
-                    <SpotMap lat={spotDetails.lat} lng={spotDetails.lng}/>
+                    <SpotMap lat={spotDetails.lat} lng={spotDetails.lng} />
+                    <div id="map-description">
+                        <div id='spot-map-description' >
+                            <span style={{fontWeight: "600"}}>{spotDetails.city}, {spotDetails?.state}, {spotDetails.country}</span>
+                           <span>{spotDetails.description}</span> 
+                        </div>
+                        <div id="spot-show-more-redirect">
+                            <span>Show more</span>
+                            <svg transform="rotate(90)" fill="#222222" height="10px" width="10px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 511.735 511.735" xmlSpace="preserve" stroke="#222222" strokeWidth="50.4694"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M508.788,371.087L263.455,125.753c-4.16-4.16-10.88-4.16-15.04,0L2.975,371.087c-4.053,4.267-3.947,10.987,0.213,15.04 c4.16,3.947,10.667,3.947,14.827,0l237.867-237.76l237.76,237.76c4.267,4.053,10.987,3.947,15.04-0.213 C512.734,381.753,512.734,375.247,508.788,371.087z"></path> </g> </g> </g></svg>
+                        </div>
+                        
+                    </div>
                 </div>
-            </section>
+            </div>
         </div >
-
     )
 }
 
