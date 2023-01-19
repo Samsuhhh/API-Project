@@ -5,7 +5,8 @@
 #spot-outermost {
     width: 100%;
     height: 100%;
-    display: block;
+    /* display: block; */
+    box-sizing: border-box;
 }
 
 #spotPage {
@@ -25,7 +26,7 @@
     padding-right: 80px; */
     font-weight: 570;
     height: 80px;
-    justify-content: start;
+    justify-content: flex-start;
     width: 1120px;
     font-family: system-ui;
     /* box-sizing: border-box; */
@@ -112,6 +113,7 @@
     overflow-wrap: normal;
     font-size: 17px;
     margin-top: 20px;
+    line-height: 22px;
     /* padding-left: 12px; */
     font-weight: 400;
     color: rgba(34, 34, 34, .9);
@@ -119,7 +121,7 @@
     padding-bottom: 20px;
 }
 
-#basic-calendar-display{
+#basic-calendar-display {
     width: fit-content;
     height: fit-content;
 }
@@ -465,34 +467,7 @@
     width: 40px;
 }
 
-#reviews-header {
-    width: 1120px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 
-}
-
-#reviews-container {
-    display: block;
-    text-align: center;
-    width: 100%;
-    padding-top: 15px;
-    padding-bottom: 15px;
-
-}
-
-.review-detail-spacing {
-    /* margin-top: 7px; */
-    padding-left: 5px;
-}
-
-#review-firstName {
-    font-size: 16px;
-    font-family: system-ui;
-
-
-}
 
 /* Custom Calendar Header */
 #custom-bookings-header-wrapper {
@@ -745,3 +720,162 @@
 #close-bookings-btn:hover {
     cursor: pointer;
 }
+
+
+/* Spot Details Map Styling  */
+
+#spotDetails-maps-section {
+    width: 100vw;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 100px;
+    box-sizing: border-box;
+}
+
+#spotDetails-maps-header {
+    font-size: 24px;
+    font-weight: 500;
+    color: rgb(34, 34, 34);
+    margin-bottom: 25px;
+    align-self: flex-start !important;
+}
+
+#spotDetails-mapContainer {
+    /* display: flex;
+    justify-content: center; */
+    width: 1120px;
+    height: 546px;
+    /* border: 5px solid red; */
+    box-sizing: border-box;
+    /* padding-bottom: 25px; */
+}
+
+#spotDetails-overlay-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    width: 48px;
+    font-size: 18px;
+    color: white;
+    background-color: #E31C5F;
+    border-radius: 50%;
+}
+
+.w-6 {
+    width: 24px;
+    height: 24px;
+}
+
+
+#spotDetails-overlay-shadow {
+    height: 100px;
+    width: 100px;
+    /* border: 1px solid green; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: rgba(227, 28, 95, .25);
+}
+
+#map-description {
+    width: 100%;
+    height: fit-content;
+    /* border: 3px solid red; */
+    padding-bottom: 50px;
+}
+
+#spot-map-description {
+    overflow-wrap: normal;
+    font-size: 17px;
+    width: 90%;
+    margin-top: 20px;
+    line-height: 22px;
+    /* padding-left: 12px; */
+    font-weight: 400;
+    color: rgba(34, 34, 34, .9);
+    padding-bottom: 20px;
+    line-height: 24px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
+#spot-show-more-modal {
+    text-decoration: underline;
+    font-weight: 600;
+    letter-spacing: .7px;
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid lightgrey;
+}
+
+#spot-show-more-modal:hover{
+    cursor: pointer;
+}
+
+
+#fsModal-wrapper {
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+    /* position: fixed; */
+    padding: 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#fsModal-header {
+    width: 100%;
+    height: 50px;
+    /* border: 1px solid red; */
+    box-sizing: border-box;
+}
+
+#fsModal-close-div {
+    height: 35px;
+    width: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid blue; */
+    border-radius: 50%;
+}
+
+#fsModal-close-div:hover {
+    background-color: rgba(113, 113, 113, .2);
+    cursor: pointer;
+}
+
+#fsModal-body {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid purple; */
+    box-sizing: border-box;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+#fsBody-left {
+    width: 30%;
+    /* border: 3px solid gold; */
+    display: flex;
+    flex-direction: column;
+    line-height: 24px;
+    row-gap: 25px;
+}
+
+#fsBody-right {
+    width: 70%;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    }

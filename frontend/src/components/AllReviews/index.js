@@ -20,7 +20,28 @@ const SpotReviews = () => {
     const currentUser = useSelector(state => state.session.user);
     const singleSpot = useSelector(state => state.spots.singleSpot)
 
+    const months = {
+        '01': 'January',
+        '02': 'February',
+        '03': 'March',
+        '04': 'April',
+        '05': 'May',
+        '06': 'June',
+        '07': 'July',
+        '08': 'August',
+        '09': 'September',
+        '10': 'October',
+        '11': 'November',
+        '12': 'December'
+    };
 
+    function parseDate(date) {
+        const year = date.split('-')[0];
+        const month = date.split('-')[1];
+        // const day = date.split('-')[2];
+
+        return `${months[month]} ${year}`
+    };
 
     useEffect(() => {
         dispatch(getSpotReviews(spotId))
@@ -38,7 +59,7 @@ const SpotReviews = () => {
         <a id='all_reviews_jump'>
             <div id='review-container-style'>
                 <div id='reviews-header'>
-                    <h1>{singleSpot.avgRating === null ? `NEW • ${singleSpot.numReviews} reviews` : `★  ${singleSpot.avgRating} • ${singleSpot.numReviews} reviews `}</h1>
+                    {singleSpot.avgRating === null ? `NEW • ${singleSpot.numReviews} reviews` : `★  ${singleSpot.avgRating} • ${singleSpot.numReviews} reviews `}
                     {/* <h1 >★ {singleSpot.avgRating} &#x2022; {singleSpot.numReviews} reviews</h1> */}
 
                 </div>
@@ -49,31 +70,36 @@ const SpotReviews = () => {
                             <div key={review.id} id='review-card'>
 
                                 <div id='review-profile-details'>
-                                    <img
-                                        src='https://i.imgur.com/XzcfzIP.png'
-                                        alt='superhost-badge'
-                                        style={{
-                                            width: '40px',
-                                            height: '40px',
-                                        }}
-                                    />
-                                    <div id='review-name-date'>
-                                        <div className='review-detail-spacing' id='review-firstName'>
-                                            {review.User?.firstName}
+                                    <div id="review-header-left">
+                                        <img
+                                            src='https://i.imgur.com/XzcfzIP.png'
+                                            alt='superhost-badge'
+                                            style={{
+                                                width: '40px',
+                                                height: '40px',
+                                            }}
+                                        />
+
+                                        <div id='review-name-date'>
+                                            <div className='review-detail-spacing' id='review-firstName'>
+                                                <span>{review.User?.firstName} </span>
+                                                <span> • (★ {review.stars})</span>
+                                            </div>
+                                            <div id='review-time'>
+                                                {review.createdAt ? parseDate(review.createdAt) : "Just visited!"}
+                                            </div>
                                         </div>
-                                        <div id='review-time'>
-                                            {review.stars}/5 ★
-                                        </div>
+                                    </div>
+                                    <div>
+                                        {currentUser && currentUser.id === review.userId && (
+                                            <button id='delete-review-btn' onClick={() => deleteHandler(review.id)}> Delete review </button>
+                                        )}
                                     </div>
                                 </div>
                                 <div className='review-detail-spacing' id='user-review'>
                                     {review.review}
                                 </div>
-                                <div>
-                                    {currentUser && currentUser.id === review.userId && (
-                                        <button id='delete-review-btn' onClick={() => deleteHandler(review.id)}> Delete review </button>
-                                    )}
-                                </div>
+
                             </div>
                         )
                     })}

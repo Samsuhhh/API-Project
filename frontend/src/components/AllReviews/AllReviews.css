@@ -1,10 +1,40 @@
 
+#review-container-style {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    /* border: 5px solid blue; */
+}
+
+#reviews-container {
+    display: block;
+    text-align: center;
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+}
+
+
+#review-firstName {
+    font-size: 16px;
+    font-family: system-ui;
+    font-weight: 600;
+    line-height: 20px;
+    color: rgb(34, 34, 34);
+    box-sizing: border-box;
+    letter-spacing: .8px;
+}
 
 #existing-reviews {
     width: 1120px;
-    height: 400px;
+    height: fit-content;
     display: grid;
     column-gap: 25px;
+    row-gap: 25px;
     grid-template-columns: repeat(2, 1fr);
     /* grid-template-areas:
         "a a"
@@ -12,21 +42,26 @@
         "a a"; */
     /* border: 2px solid pink; */
     font-family: system-ui;
-
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid lightgrey;
 }
 
-#review-container-style {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
 
+#reviews-header {
+    width: 1120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 500;
+    color: rgb(34, 34, 34);
+    margin: 25px 0;
 }
 
 #delete-review-btn {
     width: 50%;
-    margin-top: 15px;
+    /* margin-top: 15px; */
     height: 40px;
     background-color: #E31C5F;
     color: white;
@@ -41,39 +76,60 @@
 }
 
 #review-card {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid red; */
     text-align: start;
     padding: 10px, 10px, 10px, 10px;
-    width: fit-content;
-    height: fit-content;
+    width: 100%;
+    height: 100%;
     /* grid-area: a; */
     /* overflow-wrap: break-word; */
 }
 
-#review-time{
-    font-size: 14px;
-    padding-left: 5px;
-    width: 100%;
 
-}
 
 #review-profile-details{
     display:flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 60px;
+    width: 100%;
+    /* border: 1px solid purple; */
+    box-sizing: border-box;
+}
+
+#review-header-left{
+    display: flex;
 }
 
 #review-name-date{
     /* padding-left: 8px;
     padding-bottom: 10px; */
-    width: fit-content;
+    /* width: fit-content; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    margin-left: 5px
+}
+
+#review-time {
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+    color: rgb(113, 113, 113);
+    font-weight: 400;
 }
 
 #user-review {
     overflow-wrap: break-word;
-    font-style: italic;
-    font-weight: 300;
+    /* font-style: italic; */
+    font-weight: 400;
     padding-top: 10px;
-    width: 85%;
+    width: 90%;
+    line-height: 24px;
+    color: rgb(34, 34, 34);
+    box-sizing: border-box;
+    letter-spacing: .25px;
+    margin-top: 10px;
 }

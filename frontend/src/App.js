@@ -46,6 +46,7 @@ function App() {
           </Route>
           <Route exact path={'/spots/:spotId'}>
             <SpotDetail />
+            <Footer />
           </Route>
           <Route path={'/spots/:spotId/new-review'}>
             <CreateReviewForm/>
