@@ -10,7 +10,7 @@ const SpotsBrowser = () => {
     const dispatch = useDispatch();
 
     const spots = useSelector(state => Object.values(state.spots.allSpots));
-    console.log('ALL SPOTS', spots)
+    // console.log('ALL SPOTS', spots)
     const [count, setCount] = useState(0);
 
     
@@ -29,11 +29,11 @@ const SpotsBrowser = () => {
 
     useEffect(() => {
         const getAllspotsDispatch = dispatch(getAllSpots());
-        console.log('get all spots dispatch', getAllspotsDispatch);
+        // console.log('get all spots dispatch', getAllspotsDispatch);
     }, [dispatch])
 
     const allSpotsArray = spots.slice(0, count);
-    console.log('allSpotsArray', allSpotsArray)
+    // console.log('allSpotsArray', allSpotsArray)
     // return null;
     if (!spots.length) return null;
 

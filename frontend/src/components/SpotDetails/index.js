@@ -177,10 +177,8 @@ const SpotDetail = () => {
 
 
     const deleteHandler = async () => {
-        await dispatch(deleteSpot(spotId));
-
+        dispatch(deleteSpot(spotId));
         history.push(`/`)
-
     };
 
     // const reviewDeleteHandler = async () => {
@@ -208,10 +206,9 @@ const SpotDetail = () => {
 
 
     if (!Object.values(spotDetails).length) {
-        console.log('if NO spotDetails safety hitting')
+        // console.log('if NO spotDetails safety hitting')
         return null;
     }
-
 
 
     return (
@@ -573,7 +570,7 @@ const SpotDetail = () => {
                                 )}
 
                                 {/* COMMENT BACK IN AFTER DONE WITH BUTTON CSS */}
-                                {currentUser.id !== spotDetails.ownerId && reviewExists && openCalendar === false && (
+                                {currentUser && currentUser.id !== spotDetails.ownerId && reviewExists && openCalendar === false && (
                                     <div id='leave-review-container'>
                                         <div>Been here before?</div>
                                         <button

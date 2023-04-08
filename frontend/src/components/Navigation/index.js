@@ -62,7 +62,6 @@ function Navigation({ isLoaded }) {
                     <img alt='none' src='https://www.pngrepo.com/png/415804/180/user-profile-avatar.png' id='avatar' />
                 </button>
 
-                {/* {showMenu && ( */}
 
                 <div className={showMenu ? 'home-dropdownMenu-visible' : 'home-dropdownMenu-hidden'}>
                     <div className='dropdown-links-fix' >
@@ -75,8 +74,6 @@ function Navigation({ isLoaded }) {
 
                     {/* <NavLink to="/signup">Sign Up</NavLink> */}
                 </div >
-
-                {/* )} */}
             </div >
 
         );

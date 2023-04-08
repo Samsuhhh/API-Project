@@ -45,17 +45,17 @@ const SingleSpot = ({spot}) => {
                                 {'★ ' + spot.avgRating}
                             </div>
                         </div>
-                        <div className='spot-values'>
+                        <div className='spot-values' id="grey-spot-values">
                             {spot.name}
                         </div>
-                        <div className='spot-values'>
+                        <div className='spot-values' id="grey-spot-values">
                             {spot.address}
                         </div>
                         <div className='spot-values'>
                             <span style={{ fontWeight: '600' }}>
                                 ${spot.price}
                             </span>
-                            <span style={{ paddingLeft: '3px' }}>night</span>
+                            <span style={{ paddingLeft: '3px', fontWeight: "300" }}>night</span>
                         </div>
                     </div>
 

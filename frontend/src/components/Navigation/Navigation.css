@@ -3,7 +3,9 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    /* border: 5px solid red; */
+    width: 100vw;
+    box-sizing: border-box;
     background-color: white;
     border-bottom: lightgray 1px solid;
     /* border: black 1px dashed; */
@@ -13,6 +15,7 @@
     height: 80px;
     /* padding-left: 150px;
     padding-right: 150px; */
+    padding-bottom: 10px;
     z-index: 3;
 
 }
@@ -29,6 +32,8 @@
     padding-right: 80px; */
     position: fixed;
     background-color: white;
+    grid-template-columns: repeat(5, 1fr);
+    box-sizing: border-box;
     /* border: dashed blue 2px */
     /* border: solid red 1px; */
 
