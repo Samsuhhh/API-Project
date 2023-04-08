@@ -62,7 +62,7 @@ export const addSpotImage = (imgUrl, spotId) => async dispatch => {
 
     if (res.ok) {
         const image = await res.json();
-        console.log('add Image thunk hitting:', image);
+        // console.log('add Image thunk hitting:', image);
         dispatch(addImage(image));
         return image
     };
@@ -76,7 +76,7 @@ export const getCurrentUserSpots = () => async dispatch => {
 
     if (res.ok) {
         const data = await res.json();
-        console.log('current user SPOTS thunk hitting: ', data)
+        // console.log('current user SPOTS thunk hitting: ', data)
         dispatch(current(data));
         return data;
     }
@@ -89,9 +89,9 @@ export const getAllSpots = () => async dispatch => {
 
     if (res.ok) {
         const spots = await res.json();
-        console.log('all spots THUNK', spots)
+        // console.log('all spots THUNK', spots)
         const getAllSpotsThunk = dispatch(load(spots));
-        console.log('get all spots thunk dispatch', getAllSpotsThunk)
+        // console.log('get all spots thunk dispatch', getAllSpotsThunk)
         return spots;
     }
 };
@@ -102,7 +102,7 @@ export const getSpotDetails = (spotId) => async dispatch => {
 
     if (res.ok) {
         const spotDetails = await res.json();
-        console.log('spots THUNK: ', spotDetails)
+        // console.log('spots THUNK: ', spotDetails)
         dispatch(loadOne(spotDetails))
         return spotDetails
     }
@@ -118,7 +118,7 @@ export const createNewSpot = (spot) => async dispatch => {
 
     if (res.ok) {
         const createdSpot = await res.json();
-        console.log('CREATED SPOT THUNK:', createdSpot)
+        // console.log('CREATED SPOT THUNK:', createdSpot)
         dispatch(createSpot(createdSpot));
         return createdSpot;
     }
@@ -134,7 +134,7 @@ export const editSpot = (spot, id) => async dispatch => {
 
     if (res.ok) {
         const updatedSpot = await res.json();
-        console.log('UPDATED SPOTaroooo', updatedSpot);
+        // console.log('UPDATED SPOTaroooo', updatedSpot);
         dispatch(updateSpot(updatedSpot));
         return updatedSpot;
     }
@@ -147,7 +147,7 @@ export const deleteSpot = (spotId) => async dispatch => {
     })
     if (res.ok) {
         dispatch(deleteOne(spotId));
-        console.log('Delete thunk is hitting', spotId)
+        // console.log('Delete thunk is hitting', spotId)
         return null;
     }
 }
@@ -165,7 +165,7 @@ const spotsReducer = (state = initialState, action) => {
         case LOAD_SPOTS:
             newState = {...state}
             const allSpots = {};
-            console.log('spots ReDUCER ACTION', action)
+            // console.log('spots ReDUCER ACTION', action)
             action.spots.Spots.forEach(spot => {
                 allSpots[spot.id] = spot;
             });
@@ -175,7 +175,7 @@ const spotsReducer = (state = initialState, action) => {
         case LOAD_ONE:
             let singleSpot = { ...state };
             singleSpot = { ...action.spotDetails }
-            console.log('LOAD ONE', singleSpot)
+            // console.log('LOAD ONE', singleSpot)
             return {
                 ...state,
                 singleSpot: { ...singleSpot }
@@ -190,7 +190,7 @@ const spotsReducer = (state = initialState, action) => {
                     [action.spot.id]: newSpot
                 }
             }
-            console.log('NEW SPOT THUNKAROO', newState)
+            // console.log('NEW SPOT THUNKAROO', newState)
             return newState;
         case ADD_IMAGE:
             newState = { ...state }

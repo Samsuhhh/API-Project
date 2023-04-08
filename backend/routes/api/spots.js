@@ -99,13 +99,14 @@ router.get('/:spotId/reviews', async (req, res) => {
 
 
 // GET All BOOKINGS for a Spot by ID
-router.get('/:spotId/bookings', requireAuth, async (req, res) => {
-    const userId = req.user.id;
+router.get('/:spotId/bookings', async (req, res) => {
+    
+    const userId = req.user ? req.user.id : null;
     const { spotId } = req.params;
 
-    const spot = await Spot.findByPk(spotId)
+    const spot = await Spot.findByPk(spotId);
 
-    console.log("Yo get all bookings for a spot by Id BE ############")
+    // console.log("Yo get all bookings for a spot by Id BE ############")
     if (!spot) {
         return res
             .status(404)
@@ -355,7 +356,7 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
             spotId: spotId
         }
     });
-    console.log(reviewExists)
+    // console.log(reviewExists)
     if (reviewExists) {
         return res
             .status(403)
@@ -424,8 +425,8 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     });
 
     // const allBookings = findSpot.getBookings();
-    console.log('all bookings from bookings spots route', allBookings)
-    console.log('potential new booking from backend', new Date(startDate).toJSON().slice(0, 10), new Date(endDate).toJSON().slice(0, 10))
+    // console.log('all bookings from bookings spots route', allBookings)
+    // console.log('potential new booking from backend', new Date(startDate).toJSON().slice(0, 10), new Date(endDate).toJSON().slice(0, 10))
     // console.log(startDate, endDate)
     // checks if proposed start/end date is conflicting with any existing bookings
     const parsedStartDate = new Date(startDate).toJSON().slice(0, 10);
@@ -466,7 +467,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
             parsedStartDate <= allBookings[i].endDate) ||
             parsedStartDate === allBookings[i].startDate ||
             parsedStartDate === allBookings[i].startDate) {
-            console.log("NEW0 CHECK", parsedStartDate, allBookings[0].startDate)
+            // console.log("NEW0 CHECK", parsedStartDate, allBookings[0].startDate)
             return res
                 .status(403)
                 .json({
@@ -480,7 +481,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
             parsedEndDate <= allBookings[i].endDate) ||
             parsedEndDate === allBookings[i].startDate || 
             parsedEndDate === allBookings[i].endDate) {
-            console.log("NEW1 CHECK", parsedStartDate, allBookings[0].startDate)
+            // console.log("NEW1 CHECK", parsedStartDate, allBookings[0].startDate)
             return res
                 .status(403)
                 .json({
@@ -492,7 +493,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
                 })
         } else if (parsedStartDate >= allBookings[i].startDate &&
             parsedStartDate <= allBookings[i].endDate) {
-            console.log("NEW2 CHECK", parsedStartDate, allBookings[0].startDate)
+            // console.log("NEW2 CHECK", parsedStartDate, allBookings[0].startDate)
             return res
                 .status(403)
                 .json({
@@ -504,7 +505,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
                 })
         } else if (parsedEndDate >= allBookings[i].endDate &&
             parsedStartDate <= allBookings[i].startDate) {
-            console.log("NEW3 CHECK", parsedStartDate, allBookings[0].startDate)
+            // console.log("NEW3 CHECK", parsedStartDate, allBookings[0].startDate)
             return res
                 .status(403)
                 .json({

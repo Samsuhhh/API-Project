@@ -52,7 +52,7 @@ router.get('/current', requireAuth, async (req, res) => {
         delete resPreview.Spot.SpotImages;
         reviews[i] = resPreview;
     };
-    console.log('HELLLOO FROM THE BACKEND',reviews)
+    // console.log('HELLLOO FROM THE BACKEND',reviews)
 
     return res.json({ Reviews: reviews })
 });

@@ -44,7 +44,7 @@ export const getCurrentUserReviews = () => async dispatch => {
 
     if (res.ok) {
         const data = await res.json();
-        console.log('current user thunk hitting: ', data)
+        // console.log('current user thunk hitting: ', data)
         dispatch(current(data));
         return data;
     }
@@ -55,7 +55,7 @@ export const deleteReview = (reviewId) => async dispatch => {
     const res = await csrfFetch(`/api/reviews/${reviewId}`, {
         method: 'DELETE'
     })
-    console.log('DELETE REVIEW THUNK: ', reviewId)
+    // console.log('DELETE REVIEW THUNK: ', reviewId)
 
     if (res.ok) {
         dispatch(remove(reviewId));
@@ -89,7 +89,7 @@ export const createReview = (review, spotId) => async dispatch => {
 
     if (res.ok) {
         const newReview = await res.json();
-        console.log('NEW REVIEW THUNKER HITING: ', newReview);
+        // console.log('NEW REVIEW THUNKER HITING: ', newReview);
         dispatch(add(newReview));
         return newReview;
     }
@@ -102,7 +102,7 @@ export const getSpotReviews = (spotId) => async dispatch => {
 
     if (res.ok) {
         const reviews = await res.json();
-        console.log('REVIEWS THUNK', reviews);
+        // console.log('REVIEWS THUNK', reviews);
         dispatch(load(reviews));
         return reviews;
     }
@@ -120,11 +120,9 @@ const reviewsReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_REVIEWS:
             const spotReviews = {};
-            console.log('reviews Reducer', action.reviews);
             action.reviews.Reviews.forEach(review => {
                 spotReviews[review.id] = review;
             });
-            console.log('ALL REVIEWS REDUCED', spotReviews)
             return {
                 ...state,
                 spot: spotReviews

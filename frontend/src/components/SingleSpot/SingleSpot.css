@@ -45,7 +45,11 @@
     color: black;
 }
 
-
+#grey-spot-values{
+    color: rgb(113, 113, 113);
+    font-weight: 300;
+    
+}
 
 #nav-link {
     text-decoration: none;

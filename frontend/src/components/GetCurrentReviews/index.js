@@ -7,7 +7,7 @@ const CurrentUserReviews = () => {
     const dispatch = useDispatch();
 
     const reviews = useSelector(state => state.reviews.user);
-    console.log('heyyyoo ', reviews)
+    // console.log('heyyyoo ', reviews)
 
     useEffect(() => {
         dispatch(getCurrentUserReviews())
